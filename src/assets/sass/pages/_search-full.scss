@@ -1,0 +1,164 @@
+.searchsalon-page .maps {
+	display: none;
+}
+.searchfull-page .stylist {
+	width: 100%;
+	overflow-x: auto;
+	padding: 18px 0;
+	background: #fff;
+	.sub-container {
+		width: 1220px;
+		margin: 0 auto;
+		padding: 0 25px;
+		display: flex;
+		align-items: center;
+	}
+	.list {
+	    flex: 1 0;
+	    display: flex;
+	    align-items: center;
+	}
+	.item {
+		width: 25%;
+		padding-right: 50px;
+		display: flex;
+		align-items: center;
+		figure {
+			margin: 0 20px 0 0;
+			border-radius: 100px;
+			overflow: hidden;
+			width: 48px;
+		}
+		.info {
+			h3 {
+			    margin: 0 0 4px;
+			    font-size: 15px;
+			    font-weight: 300;
+			    a {
+				    color: #2f2f2f;
+				    &:hover {
+						color: $main-color;
+					}
+				}
+			}
+			span {
+			    font-size: 11px;
+			    opacity: 0.7;
+			    display: block;
+			}
+		}
+	}
+	.view-all {
+	    margin-left: 10px;
+	}
+}
+.searchfull-page .services {
+	width: 100%;
+	overflow-x: auto;
+	padding: 40px 0;
+	background: #F0F0F0;
+	.sub-container {
+	    width: 1220px;
+	    margin: 0 auto;
+	    padding: 0 25px;
+	    display: flex;
+	    align-items: center;
+	}
+	.list {
+	    flex: 1 0;
+	    display: flex;
+	    align-items: center;
+	}
+	.item {
+		width: calc(25% - 20px);
+		background: #fff;
+		margin-right: 20px;
+		border-radius: 5px;
+		padding: 25px;
+		h3 {
+		    margin: 0 0 8px 0;
+		    font-size: 17px;
+		    font-weight: normal;
+		    line-height: 1;
+		    a {
+			    color: #2f2f2f;
+			    &:hover {
+					color: $main-color;
+				}
+			}
+		}
+		span {
+		    display: block;
+		    font-size: 12px;
+		    line-height: 1;
+		}
+	}
+	.tp-view-all {
+	    background: #fff;
+	    border-radius: 5px;
+	    align-self: stretch;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    width: 170px;
+	    text-align: center;
+	}
+}
+.searchfull-page .salons {
+    background: #fff;
+    .list {
+	    padding: 15px 10px;
+	}
+	.item {
+	    margin-bottom: 30px;
+	    width: 100%;
+	    figure {
+		    margin: 0;
+		    img {
+			    width: 100%;
+			}
+		}
+		.info {
+		    border: 1px solid #EBF1F7;
+		    border-top: none;
+		    .name-adress {
+			    border-bottom: 1px solid #EBF1F7;
+			    padding: 15px 20px;
+			    h3 {
+				    margin: 0 0 5px;
+				    font-size: 17px;
+				    font-weight: 300;
+				    a {
+					    color: #2f2f2f;
+					    &:hover {
+							color: $main-color;
+						}
+					}
+				}
+				p {
+				    margin: 0;
+				    font-size: 12px;
+				}
+			}
+			.price {
+			    border-bottom: 1px solid #EBF1F7;
+			    padding: 15px 20px;
+			    strong {
+				    display: block;
+				    font-size: 17px;
+				    font-weight: 300;
+				}
+				span {
+				    display: block;
+				    font-size: 12px;
+				    opacity: 0.7;
+				    line-height: 1;
+				    margin-bottom: 1px;
+				}
+			}
+			.rate {
+			    padding: 15px 20px;
+			}
+		}
+	}
+}

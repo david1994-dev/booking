@@ -1,0 +1,28 @@
+/*	[ Content ]
+- - - - - - - - - - - - - - - - - - - - */
+body {
+	font-family: 'Roboto', sans-serif;
+	color: $text-color;
+	background: $background-color;
+	font-weight: 300;
+}
+a {
+	@include transition();
+	&:focus,
+	&:active,
+	&:hover {
+		text-decoration: none;
+	}
+}
+img {
+	max-width: 100%;
+}
+.main-color {
+	color: $main-color;
+}
+.ofhd {
+	overflow: hidden;
+}
+
+/*	[ Tooltip ]
+- - - - - - - - - - - - - - - - - - - - */

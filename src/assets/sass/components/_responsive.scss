@@ -1,0 +1,493 @@
+
+@media screen and (min-width: 320px) {
+	.wrapper-header .slogan .text {
+	    max-width: 430px;
+	    margin: 0 auto;
+	}
+}
+@media screen and (min-width: 480px) {
+	.tricks-beautiful, 
+	.discovery {
+		.list {
+			margin-left: -10px;
+			margin-right: -10px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.item{
+			width: 50%;
+			padding: 0 10px;
+		}
+	}
+	.discovery .list {
+		margin-bottom: 10px;
+	}
+	.footer .instagram li {
+		width: 25%;
+	}
+}
+@media screen and (min-width: 600px) {
+	.header {
+		.account {
+			display: flex;
+			.register {
+				display: block;
+			}
+			li {
+				margin-left: 55px;
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+	.guide-book {
+		.list {
+			margin: 0 -25px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.item{
+			width: 50%;
+			padding: 0 25px;
+		}
+	}
+
+	.savetime {
+		display: flex;
+		align-items: center;
+		figure{
+			width: 220px;
+			margin: 0 30px 0 0;
+		}
+		.info {
+			.register-now {
+				max-width: 250px;
+			}
+		}
+	}
+	.footer .instagram li {
+		width: 20%;
+	}
+	.searchfull-page .salons {
+		background:transparent;
+		.list {
+		    display: flex;
+		    flex-wrap: wrap;
+		}
+		.item {
+			width: calc(50% - 30px);
+			background: #fff;
+			padding: 0;
+			margin: 15px;
+		}
+	}
+	.searchsalon-page {
+		display: flex;
+		.maps {
+			display: block;
+			flex: 1 0;
+			height: 100vh;
+			&.fixed{
+			    position: fixed;
+			    top: 0;
+			    right: 0;
+			    width: calc(100% - 350px);
+			    z-index: 1;
+			}
+			iframe {
+			    width: 100%;
+			    height: 100%;
+			}
+		}
+	}
+	
+	.tp-salons {
+	    width: 320px;
+	    margin-right: 30px;
+	    background: transparent;
+	    .wrap-item{
+			background: #fff;
+			border-bottom: none;
+		}
+	}
+
+}
+@media screen and (min-width: 768px) {
+	.wrapper-header .search {
+    	display: flex;
+    	.wrap-input {
+			margin: 0 20px 0 0;
+			flex: 1 0;
+		}
+		.btn-search {
+			width: 150px;
+		}
+ 	}
+	.discovery .item{
+		width: 33.33%;
+	}
+	.savetime {
+		max-width: 790px;
+		margin-left: auto;
+		margin-right: auto;
+		figure{
+			width: 270px;
+			margin-right: 55px;
+		}
+	}
+	.copyright.bottom {
+		display: none;
+	}
+
+	.footer {
+		.savetime-footer .copyright {
+			display: block;
+			margin: 20px 0 6px 0;
+		}
+		.tp-container {
+			display: flex;
+		}
+		.full {
+			flex: 1 0;
+		}
+		.instagram {
+			width: 255px;
+			margin-bottom: 0;
+			order: 3;
+			li {
+				width: 33.33%;
+			}
+		}
+		.links {
+			order: 1;
+			display: flex;
+			flex-direction: column;
+			.list-link {
+				margin-bottom: 15px
+			}
+			.social {
+				margin-bottom: 0;
+			}
+		}
+		.savetime-footer {
+			flex: 1 0;
+			margin: 0 30px;
+			order: 2;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}
+@media screen and (min-width: 800px) {
+	.wrapper-header .search {
+    	max-width: 830px;
+    	margin: 0 auto;
+ 	}
+	.tricks-beautiful .item {
+		width: 33.33%;
+	}
+}
+@media screen and (min-width: 960px) {
+	.tp-container {
+		max-width: 1050px;
+		margin: 0 auto;
+	}
+	.footer {
+		.links {
+			width: 120px;
+		}
+		.savetime-footer {
+			margin: 0 70px;
+		}
+	}
+	.searchfull-page .salons .item {
+		width: calc(33.33% - 30px);
+	}
+}
+@media screen and (min-width: 1050px) {
+	.header {
+		max-width: 1170px;
+		margin: 0 auto;
+	}
+	.wrapper-header .search {
+		margin-bottom: 100px;
+	}
+	.tp-box {
+		padding-left: 60px;
+		padding-right: 60px;
+	}
+	.tp-container.landing-page {
+		margin-top: -100px;
+	}
+	.guide-book {
+		border-bottom: none;
+		.list {
+			border-bottom: 1px solid #EDF1F4;
+		}
+		.item{
+			width: 33.33%;
+			&:nth-child(3){
+				margin-left: 33.33%;
+			}
+		}
+	}
+
+	.landing-page .tp-box .wrap-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.tp-view-more {
+			display: block;
+		}
+	}
+
+	.discovery .item{
+		width: 25%;
+	}
+	.tp-view-more.bottom {
+		display: none;
+	}
+	.footer .tp-container {
+		padding: 110px 60px;
+	}
+
+	.searchfull-page .salons {
+		padding: 40px 0;
+		.sub-container {
+			width: 1220px;
+			margin: 0 auto;
+			padding: 0 25px;
+		}
+		.list {
+			padding: 0;
+			margin: 0 -15px;
+		}
+		.item .info {
+			.price-rate {
+				display: flex;
+			}
+			.price {
+				border-bottom: none;
+				border-right: 1px solid #EBF1F7;
+				width: 50%;
+			}
+			.rate {
+				width: 50%;
+				padding: 15px 0 15px 15px;
+			}
+		}
+	}
+	
+	.sub-header {
+		.sub-container {
+			max-width: 1220px;
+			margin: 0 auto;
+			padding: 0 25px;
+		}
+		.search {
+		    position: relative;
+		    width: 100%;
+		    max-width: 700px;
+		    .wrap-input {
+				margin-bottom: 0;
+				flex: 1 0;
+			}
+			.location .input {
+				border-left: none;
+				border-right: none;
+			}
+			.input{
+				border-radius: 0;
+			}
+			.btn-search {
+				color: transparent;
+				width: 50px;
+				border-radius: 0;
+				&:hover {
+					background: #1c928f;
+				}
+			}
+		}
+
+		.search-icon {
+			position: absolute;
+			color: #fff;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 16px;
+			pointer-events: none;
+		}
+		.account {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.account {
+			.login {
+				margin-left: 55px;
+			}
+			a {
+				color: #fff;
+				font-size: 14px;
+				&:hover {
+					color: $main-color;
+				}
+			}
+		}
+
+		.search-inner {
+			display: flex;
+		}
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.searchsalon-page .maps.fixed{
+		width: calc(100% - 830px);
+	}
+	.tp-salons {
+		width: 770px;
+		margin: 30px 30px 0;
+		.wrap-item {
+			padding-bottom: 0;
+			margin-bottom: 30px;
+			display: flex;
+			border-radius: 4px;
+		}
+		.img-price {
+			width: 380px;
+			display: flex;
+			flex-direction: column;
+			figure img {
+				border-radius: 4px 0 0 0;
+			}
+		}
+		.price-rate {
+			display: flex;
+			border-bottom: none;
+			flex: 1 0 auto;
+			.price {
+				position: static;
+				width: 50%;
+				border-right: 1px solid #ebf1f7;
+				border-radius: 0;
+				padding: 35px 15px;
+				background: transparent;
+			}
+			.rate {
+				width: 50%;
+				border-right: 1px solid #ebf1f7;
+				position: static;
+				padding-right: 0;
+				padding: 32px 0 32px 15px;
+			}
+		}
+		.wrap-info {
+			width: calc(100% - 380px);
+			.times {
+				flex-wrap: wrap;
+				border-bottom: none;
+				padding: 0 19px 0;
+				overflow-x: visible;
+				margin-top: -6px;
+				.item {
+					margin: 6px;
+					flex: 0 1 auto;
+					width: calc(20% - 12px);
+					cursor: pointer;
+					transition:all 0.3s;
+					&:nth-child(n + 16) {
+						display: none;
+					}
+					&:hover {
+						border-color: $main-color;
+					}
+				}
+			}
+			.wrap-times {
+				paddingadding-bottom: 15px;
+				&.expand .item:nth-child(n + 16) {
+					display: block;
+				}
+			}
+			.scrollup{
+				display: flex;
+				align-items: center;
+				padding: 0 25px;
+				cursor: pointer;
+				&:before,
+				&:after{
+					content: '';
+					flex: 1 0 auto;
+					height: 1px;
+					background: #E2E2E2;
+				}
+				i {
+					border: 1px solid #E2E2E2;
+					width: 20px;
+					line-height: 18px;
+					border-radius: 50px;
+					font-size: 7px;
+					text-align: center;
+					color: #6D6D6D;
+					transition: all 0.3s;
+				}
+			}
+			.wrap-stylist {
+				.scrollup {
+					margin: -10px 0 15px;
+					display: none;
+				}
+				&.expand {
+					.stylist-img {
+						flex-wrap: wrap;
+						.number {
+							display: none;
+						}
+						.item {
+							display: block !important;
+						}
+					}
+					.scrollup{
+						display: flex;
+					}
+				}
+			}
+			.wrap-stylist,
+			.wrap-times.expand {
+				.scrollup i{
+					transform: rotate(180deg);
+				}
+			}
+			.scrollup:hover i{
+				border-color: $main-color;
+			}
+
+			.stylist-img {
+				justify-content: 
+				flex-start;padding: 3px 13px;
+				.item {
+					padding-top: 12px;
+					padding-bottom: 12px;
+				}
+
+				.active .number {}
+				figure {
+					
+				}
+			}
+		}
+	}
+
+	.detail-page .slide .control {
+		width: 1180px;
+		margin: 0 auto;
+		top: 45px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+}
+
