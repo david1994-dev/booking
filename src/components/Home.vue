@@ -1,7 +1,15 @@
 <template>
 <div>
   <div class="wrapper-header">
-    <page-header />
+    <header class="header">
+      <div class="inner">
+        <router-link class="logo" :to="{ name: 'home' }"><img src="../assets/images/logo.png" /></router-link>
+        <ul class="account">
+          <li class="register"><a href="">Đăng ký</a></li>
+          <li class="login"><a href="">Đăng nhập</a></li>
+        </ul>
+      </div>
+    </header>
     <div class="slogan">
       <div class="clock-icon">
         <span class="line"></span>
@@ -28,20 +36,23 @@
 </template>
 
 <script>
-const PageHeader = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/HomeHeader')
+const Search = () => import(/* webpackChunkName: "search-bundle" */ './partials/Search')
 const PageFooter = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/Footer')
-const Search = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Search')
 const Explore = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Explore')
 const Blogs = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Blogs')
 
 export default {
   name: 'Home',
   components: {
-    PageHeader,
     PageFooter,
     Search,
     Explore,
     Blogs
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.$store.dispatch('clearSearchQuery')
+    })
   }
 }
 </script>

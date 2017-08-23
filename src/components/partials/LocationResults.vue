@@ -1,13 +1,13 @@
 <template>
 <ul>
-  <!-- <li>
+  <li>
     <a href="#">Vị trí hiện tại</a>
-  </li> -->
+  </li>
   <li v-for="city in locations">
     <a href="#">{{ city.name }}</a>
     <ul>
       <li v-for="area in city.areas">
-        <a href="#">{{ area.name }}</a>
+        <a @click="setSelectedArea(area)">{{ area.name }}</a>
       </li>
     </ul>
   </li>
@@ -15,12 +15,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'LocationResults',
   computed: mapState({
     locations: state => state.preloadData.locations || []
-  })
+  }),
+  methods: mapActions(['setSelectedArea'])
 }
 </script>

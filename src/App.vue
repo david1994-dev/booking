@@ -7,6 +7,10 @@
 <script>
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'Beauty booking',
+    titleTemplate: '%s | Bzone'
+  },
   created () {
     this.fetchPreloadData()
   },

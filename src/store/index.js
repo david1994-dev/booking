@@ -1,11 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { createVuexLoader } from 'vuex-loading'
 import * as actions from './actions'
 // import * as getters from './getters'
-// import modules from './modules'
+import modules from './modules'
 import mutations from './mutations'
+const VuexLoading = createVuexLoader({
+  // The Vuex module name, 'loading' by default.
+  moduleName: 'loading'
+})
 
 Vue.use(Vuex)
+Vue.use(VuexLoading)
 
 const state = {
   showMessage: true,
@@ -18,10 +24,11 @@ const state = {
 }
 
 export default new Vuex.Store({
+  plugins: [VuexLoading.Store],
   state,
   actions,
   // getters,
   mutations,
-  // modules,
+  modules,
   strict: process.env.NODE_ENV !== 'production'
 })

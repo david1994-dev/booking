@@ -41,6 +41,7 @@
 		}
 	}
 }
+
 .orange.tp-view-more a:before {
 	background: #E6AD85;
 }
@@ -88,103 +89,10 @@
 	}
 }
 
-.tp-search-result {
-	background: #FFFFFF;
-	border: 1px solid #F3F3F3;
-	box-shadow: 0 4px 13px 0 rgba(0,0,0,0.10);
-	border-radius: 4px;
-	font-size: 15px;
-	padding: 8px 0;
-	position: absolute;
-	width: 100%;
-	z-index: 999;
-	left: 0;
-	display: none;
-	&:before {
-		content: '';
-		position: absolute;
-		left:0;
-		width: 100%;
-		z-index: 999;
-	}
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		ul {
-			li:hover > a {
-			    background: #EDF1F4
-			}
-			ul {
-				position: absolute;
-				top: -10px;
-				left: 100%;
-				width: 300px;
-				background: #fff;
-				box-shadow: 0 4px 13px 0 rgba(0,0,0,0.10);
-				border-radius: 4px;
-				display: none;
-				padding: 10px 0;
-				z-index: 999;
-			}
-		}
-	}
-	li {
-	    position: relative;
-	    a {
-		    color: #2F2F2F;
-		    display: block;
-		    padding: 5px 20px;
-		}
-		&:hover > ul {
-			display: block;
-		}
-	}
-	> ul > li {
-		> ul {
-			padding: 0 0 15px 0;
-		}
-		> a {
-			font-weight: 500;
-			font-size: 12px;
-			text-transform: uppercase;
-			border-bottom: 1px solid #EDF1F4;
-			margin: 0 20px;
-			padding-left: 0;
-			padding-right: 0;
-		}
-		&:hover > a {
-			color: $main-color;
-		}
-	}
-
-	&.not-sub {
-	 	ul ul {
-			position: absolute;
-			top: -10px;
-			left: 100%;
-			width: 300px;
-			background: #fff;
-			box-shadow: 0 4px 13px 0 rgba(0,0,0,0.10);
-			border-radius: 4px;
-			display: none;
-			padding: 10px 0;
-			z-index: 999;
-		}
-		> ul > li > a {
-		    border-bottom: none;
-		}
-		li:hover > ul {
-			display:block;
-		}
-	}
-}
-
 .wrapper-header {
     background: url(../images/bg-header.jpg) center no-repeat;
     background-size: cover;
     padding: 25px 25px 35px;
-
     .header {
 		.inner {
 			display: flex;
@@ -296,6 +204,9 @@
 		    &:hover {
 				background:#2F2F2F;
 			}
+			&[disabled] {
+			    pointer-events: none;
+			}
 		}
 		.input {
 		    background: #fff;
@@ -334,9 +245,11 @@
 			}
 		}
 		.wrap-input {
+			&:hover .tp-search-result-2,
 			&:hover .tp-search-result {
 				display: block;
 			}
+			.tp-search-result-2,
 			.tp-search-result {
 			    top: calc(100% + 15px);
 			    &:before {
@@ -345,9 +258,7 @@
 			}
 			}
 		}
-
 	}
-
 }
 
 @keyframes clock {
@@ -359,172 +270,168 @@
   }
 }
 
-.landing-page .guide-discovery {
-    background: #fff;
-}
-
-.landing-page .guide-book {
-    border-bottom: 1px solid #EDF1F4;
-    .item {
-	    margin-bottom: 35px;
-	    .number {
-		    opacity: 0.3;
-		    font-size: 42px;
-		    width: 45px;
-		    line-height: .7;
-		    margin-top: 6px;
+.landing-page {
+	.guide-discovery {
+	    background: #fff;
+	}
+	.guide-book {
+	    border-bottom: 1px solid #EDF1F4;
+	    .item {
+		    margin-bottom: 35px;
+		    .number {
+			    opacity: 0.3;
+			    font-size: 42px;
+			    width: 45px;
+			    line-height: .7;
+			    margin-top: 6px;
+			}
+			.content-item {
+			    display: flex;
+			}
+			.name {
+			    font-size: 17px;
+			    padding-left: 45px;
+			    position: relative;
+			    margin-bottom: 10px;
+			    &:before {
+					content: '';
+					display: block;
+					width: 2px;
+					height: 20px;
+					background: $main-color;
+					position: absolute;
+					left: 11px;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+			.des {
+			    font-size: 13px;
+			    flex: 1 0;
+			    margin: 0;
+			}
 		}
-		.content-item {
-		    display: flex;
+	}
+	.discovery {
+	    padding-bottom: 25px;
+	    .list {
+		    margin-bottom: 5px;
 		}
-		.name {
-		    font-size: 17px;
-		    padding-left: 45px;
+		.item {
 		    position: relative;
-		    margin-bottom: 10px;
-		    &:before {
-				content: '';
-				display: block;
-				width: 2px;
-				height: 20px;
-				background: $main-color;
-				position: absolute;
-				left: 11px;
-				top: 50%;
-				transform: translateY(-50%);
+		    margin-bottom: 20px;
+		    width: 100%;
+		    figure {
+			    margin: 0;
+			    img {
+				    width: 100%;
+				}
+			}
+			.info {
+			    position: absolute;
+			    bottom: 15px;
+			    left: 20px;
+			    width: calc(100% - 40px);
+			    background: #fff;
+			    text-align: center;
+			    padding: 9px 0;
+			    h4 {
+				    margin: 0 0 5px;
+				    font-size: 17px;
+				    font-weight: normal;
+				    a {
+						color: #2F2F2F;
+						&:hover {
+						    color: $main-color;
+						}
+					}
+				}
+				span {
+				    font-size: 12px;
+				    opacity: 0.7;
+				    display: block;
+				    line-height: 1;
+				}
 			}
 		}
-		.des {
-		    font-size: 13px;
-		    flex: 1 0;
-		    margin: 0;
-		}
 	}
-}
-
-.discovery {
-    padding-bottom: 25px;
-    .list {
-	    margin-bottom: 5px;
-	}
-	.item {
-	    position: relative;
-	    margin-bottom: 20px;
-	    width: 100%;
+	.savetime {
+	    background: #F7F8FA;
+	    padding: 50px 25px;
 	    figure {
-		    margin: 0;
-		    img {
-			    width: 100%;
-			}
+		    margin: 0 0 20px 0;
+		    text-align: center;
 		}
 		.info {
-		    position: absolute;
-		    bottom: 15px;
-		    left: 20px;
-		    width: calc(100% - 40px);
-		    background: #fff;
-		    text-align: center;
-		    padding: 9px 0;
-		    h4 {
-			    margin: 0 0 5px;
+		    flex: 1 0;
+		    .name {
+			    margin: 0 0 15px 0;
+			    font-size: 24px;
+			    font-weight: 300;
+			    line-height: 1.3;
+			}
+			.des {
+			    margin: 0 0 25px 0;
+			    font-size: 13px;
+			    line-height: 1.6;
+			}
+			.register-now {
+			    display: block;
+			    background: #2F2F2F;
+			    color: #fff;
+			    text-align: center;
+			    border-radius: 4px;
 			    font-size: 17px;
-			    font-weight: normal;
+			    line-height: 46px;
+			    transition: all 0.3s;
+			    &:hover {
+					background: $main-color
+				}
+			}
+		}
+	}
+	.tricks-beautiful {
+	    background: #fff;
+	    padding-bottom: 25px;
+	    .item {
+		    margin-bottom: 25px;
+		    figure {
+			    margin: 0 0 15px 0;
+			    img {
+				    width: 100%;
+				}
+			}
+			h4 {
+			    margin: 0 0 10px 10px;
 			    a {
-					color: #2F2F2F;
-					&:hover {
-					    color: $main-color;
+				    color: #2f2f2f;
+				    font-size: 17px;
+				    font-weight: 300;
+				    line-height: 1.2;
+				    &:hover {
+						color: $main-color;
 					}
 				}
 			}
-			span {
+			.info {
 			    font-size: 12px;
-			    opacity: 0.7;
-			    display: block;
-			    line-height: 1;
-			}
-		}
-	}
-}
-
-
-
-.landing-page .savetime {
-    background: #F7F8FA;
-    padding: 50px 25px;
-    figure {
-	    margin: 0 0 20px 0;
-	    text-align: center;
-	}
-	.info {
-	    flex: 1 0;
-	    .name {
-		    margin: 0 0 15px 0;
-		    font-size: 24px;
-		    font-weight: 300;
-		    line-height: 1.3;
-		}
-		.des {
-		    margin: 0 0 25px 0;
-		    font-size: 13px;
-		    line-height: 1.6;
-		}
-		.register-now {
-		    display: block;
-		    background: #2F2F2F;
-		    color: #fff;
-		    text-align: center;
-		    border-radius: 4px;
-		    font-size: 17px;
-		    line-height: 46px;
-		    transition: all 0.3s;
-		    &:hover {
-				background: $main-color
-			}
-		}
-	}
-}
-
-.landing-page .tricks-beautiful {
-    background: #fff;
-    padding-bottom: 25px;
-    .item {
-	    margin-bottom: 25px;
-	    figure {
-		    margin: 0 0 15px 0;
-		    img {
-			    width: 100%;
-			}
-		}
-		h4 {
-		    margin: 0 0 10px 10px;
-		    a {
-			    color: #2f2f2f;
-			    font-size: 17px;
-			    font-weight: 300;
-			    line-height: 1.2;
-			    &:hover {
-					color: $main-color;
+			    opacity: 0.5;
+			    margin-left: 10px;
+			    span {
+				    border-right: 1px solid #EBF1F7;
+				    padding-right: 20px;
+				    margin-right: 20px;
+				    &:last-child {
+						border-right: none;
+					    padding-right: 0;
+					    margin-right: 0;
+					}
 				}
-			}
-		}
-		.info {
-		    font-size: 12px;
-		    opacity: 0.5;
-		    margin-left: 10px;
-		    span {
-			    border-right: 1px solid #EBF1F7;
-			    padding-right: 20px;
-			    margin-right: 20px;
-			    &:last-child {
-					border-right: none;
-				    padding-right: 0;
-				    margin-right: 0;
-				}
-			}
-			a {
-				color: #2f2f2f;
-				&:hover {
-					color: $main-color;
+				a {
+					color: #2f2f2f;
+					&:hover {
+						color: $main-color;
+					}
 				}
 			}
 		}

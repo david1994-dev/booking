@@ -2,91 +2,23 @@
 <div class="search">
   <div class="wrap-input key-type">
     <div class="input">
-      <i class="bz-search"></i> <input placeholder="Dịch vụ, Stylist, Salon..." type="search" v-model="search">
+      <i class="bz-search"></i>
+      <input placeholder="Dịch vụ, Stylist, Salon..."
+        type="search"
+        @keyup.enter="submit"
+        v-model.lazy="search">
     </div>
     <div class="tp-search-result">
-      <ul>
-        <li>
-          <a href="#">Dịch vụ</a>
-          <ul>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-              <ul>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-              <ul>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-              <ul>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-                <li>
-                  <a href="#">Cắt tóc nam</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Stylist</a>
-          <ul>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-            </li>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-            </li>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Salon</a>
-          <ul>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-            </li>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-            </li>
-            <li>
-              <a href="#">Cắt tóc nam</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <suggestion-results />
     </div>
   </div>
   <div class="wrap-input location">
     <div class="input">
-      <i class="bz-location"></i> <input placeholder="Thành phố bạn ở" type="text">
+      <i class="bz-location"></i>
+      <input placeholder="Thành phố bạn ở"
+        @keyup.enter="submit"
+        :value="selectedArea.name"
+        type="text">
     </div>
     <div class="tp-search-result not-sub">
       <location-results />
@@ -97,19 +29,38 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 const LocationResults = () => import(/* webpackChunkName: "search-bundle" */ '../partials/LocationResults')
+const SuggestionResults = () => import(/* webpackChunkName: "search-bundle" */ '../partials/SuggestionResults')
 
 export default {
   name: 'HomeSearch',
-  components: { LocationResults },
-  data () {
-    return {
-      search: ''
+  components: {
+    LocationResults,
+    SuggestionResults
+  },
+  computed: {
+    ...mapGetters(['selectedService', 'selectedArea']),
+    search: {
+      get () {
+        return this.$store.state.search.keyword
+      },
+      set (value) {
+        this.$store.dispatch('setKeyword', value)
+      }
     }
   },
   methods: {
     submit () {
-      this.$router.push({ name: 'search', query: { q: this.search } })
+      const query = { q: this.search }
+      if (this.selectedArea.id) {
+        query.area_id = this.selectedArea.id
+      }
+      if (this.selectedService.id) {
+        query.category_id = this.selectedService.id
+      }
+
+      this.$router.push({ name: 'search', query })
     }
   }
 }

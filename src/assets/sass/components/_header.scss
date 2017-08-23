@@ -95,9 +95,11 @@
 	    cursor: pointer;
 	}
 	.wrap-input {
+		&:hover .tp-search-result-2,
 		&:hover .tp-search-result {
 			display: block;
 		}
+		.tp-search-result-2,
 		.tp-search-result {
 		    top: calc(100% + 12px);
 		    &:before {

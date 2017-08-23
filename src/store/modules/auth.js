@@ -1,8 +1,7 @@
 import * as types from '../mutation-types'
-import { http, setToken, setStore } from '../../utils/http'
+import { http, setToken } from '../../utils/http'
 import moment from 'moment'
 import store from 'store2'
-import { head } from 'lodash'
 
 const state = {
   accessToken: null,
@@ -12,8 +11,7 @@ const state = {
 const getters = {
   isLogged: state => state.user.id,
   accessToken: state => state.accessToken,
-  auth: state => state.user,
-  role: state => state.role
+  auth: state => state.user
 }
 
 const actions = {
@@ -29,9 +27,8 @@ const actions = {
     }
   },
 
-  authenticate ({ commit, state }) {
-    const url = state.role === 'sales' ? 'sales/me' : 'coworking/me'
-    http.get(url).then(({ data }) => {
+  authenticate ({ commit }) {
+    http.get('me').then(({ data }) => {
       commit(types.AUTHENTICATE, data)
     }).catch(() => {
       commit(types.LOGOUT)
@@ -41,10 +38,6 @@ const actions = {
 
   logout ({ commit }) {
     commit(types.LOGOUT)
-  },
-
-  setRole ({ commit }, role) {
-    commit(types.SET_ROLE, role)
   }
 }
 
@@ -61,13 +54,6 @@ const mutations = {
       user: data,
       last_fetched: moment()
     })
-
-    if ((state.role === 'sales') && (data.merchant)) {
-      const store = head(data.merchant.stores)
-      if (store) {
-        setStore(store.id)
-      }
-    }
   },
 
   [types.LOGOUT] (state) {
@@ -75,10 +61,6 @@ const mutations = {
     state.user = {}
     store.remove('auth::access_token')
     store.remove('auth::user')
-  },
-
-  [types.SET_ROLE] (state, role) {
-    state.role = role
   }
 }
 
