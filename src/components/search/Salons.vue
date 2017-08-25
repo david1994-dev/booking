@@ -3,7 +3,7 @@
   <div class="box-salons">
     <div class="tp-salon" v-for="salon in salons">
       <div class="img-price">
-        <figure><a href="#"><img :src="salon.image_url"></a></figure>
+        <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url" /></router-link></figure>
         <div class="price-rate">
           <div class="price">
             <span>From</span>
@@ -20,7 +20,7 @@
                   <i class="bz-star"></i>
                   <i class="bz-star"></i>
                 </div>
-                <div class="number">158 Đánh giá</div>
+                <div class="number">{{ salon.review_count }} Đánh giá</div>
               </div>
             </div>
           </div>
@@ -44,8 +44,9 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-const Salon = () => import(/* webpackChunkName: "search-bundle" */ './Salon')
 import { merge } from 'lodash'
+import { stickyClassMixin } from '@/utils/mixins'
+const Salon = () => import(/* webpackChunkName: "search-bundle" */ './Salon')
 
 export default {
   name: 'SearchSalons',
@@ -53,23 +54,36 @@ export default {
     Salon,
     InfiniteLoading
   },
+  mixins: [stickyClassMixin],
   data () {
     return {
       salons: [],
       meta: {
-        pagination: {}
+        pagination: {
+          current_page: 0
+        }
       }
     }
   },
+  mounted () {
+    this.addStickyClass('.wrap-maps', 600)
+  },
   watch: {
-    '$route': 'fetchData'
+    $route () {
+      this.fetchData({}, ({ data }) => {
+        this.$nextTick(() => {
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+        })
+        this.salons = data.data
+        this.meta = data.meta
+      })
+    }
   },
   methods: {
     fetchData (query, cb, errCb) {
-      // Error here
-      const routeQuery = Object.assign({}, this.$route.query)
-      const params = merge(query, routeQuery)
+      let params = this.$route.query
       params._meta = 1
+      params = merge(query, params)
       this.$http.get('search', { params })
         .then(response => cb(response))
         .catch(error => errCb ? errCb(error) : null)

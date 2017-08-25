@@ -4,6 +4,7 @@ import Meta from 'vue-meta'
 // import Hello from '@/components/Hello'
 import Home from '@/components/Home'
 import Search from '@/components/Search'
+import Salon from '@/components/Salon'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -21,6 +22,11 @@ export default new Router({
       path: '/search',
       name: 'search',
       component: Search
+    },
+    {
+      path: '/salon/:id',
+      name: 'salon',
+      component: Salon
     },
     {
       path: '*',

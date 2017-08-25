@@ -43,6 +43,9 @@ const Blogs = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Blo
 
 export default {
   name: 'Home',
+  metaInfo: {
+    title: 'Beauty booking'
+  },
   components: {
     PageFooter,
     Search,

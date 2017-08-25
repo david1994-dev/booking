@@ -7,12 +7,14 @@ import store from './store'
 import http from './utils/http'
 import { sync } from 'vuex-router-sync'
 import BootstrapVue from 'bootstrap-vue'
+import Scrollactive from 'vue-scrollactive'
 
 Vue.config.productionTip = false
 
 sync(store, router)
 
 Vue.use(BootstrapVue)
+Vue.use(Scrollactive)
 Vue.use(http, { store, router })
 
 /* eslint-disable no-new */
