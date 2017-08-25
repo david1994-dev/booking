@@ -813,12 +813,17 @@ export default {
       this.$http.get(`salons/${this.$route.params.id}`).then(({ data }) => {
         this.salon = data
         this.$endLoading('fetching salon')
-
+        setTimeout(() => {
+          this.initSticky()
+        }, 1000)
+      })
+    },
+    initSticky () {
+      this.$nextTick(() => {
         this.addStickyClass('.wrap-menu')
         this.stickyCart()
       })
     },
-
     stickyCart () {
       const $cart = $('.detail-page .content .cart')
       const $cartInner = $('.detail-page .content .cart .inner-cart')
