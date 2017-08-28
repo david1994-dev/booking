@@ -6,7 +6,9 @@
   </div>
   <div class="wrap-stylist">
     <div class="stylist-img">
-      <div class="item" :class="{ active: selectedStylist.id === stylist.id }" v-for="stylist in salon.stylists">
+      <div class="item" v-for="stylist in salon.stylists"
+        :key="stylist.id"
+        :class="{ active: selectedStylist.id === stylist.id }">
         <figure><a @click="selectedStylist = stylist"><img :src="stylist.avatar_url"></a></figure>
         <div class="info">
           <h3><a href="#">{{ stylist.name }}</a></h3>
@@ -18,6 +20,7 @@
   </div>
   <div class="dates" v-if="salon.stylists.length">
     <div v-for="date in dates"
+      :key="date.id"
       :class="{ active: date.id == selectedDate.format('YYYY-MM-DD') }"
       @click="selectedDate = date.date"
       class="item">{{ date.label }}</div>

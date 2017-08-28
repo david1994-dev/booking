@@ -6,10 +6,11 @@
       <i class="bz-search search-icon"></i>
       <search wrapper-class="search-inner" />
     </div>
-    <ul class="account">
+    <!-- <ul class="account">
       <li class="register"><a href="">Đăng ký</a></li>
       <li class="login"><a href="">Đăng nhập</a></li>
-    </ul>
+    </ul> -->
+    <div class="account">Đăng ký</div>
   </div>
 </header>
 </template>

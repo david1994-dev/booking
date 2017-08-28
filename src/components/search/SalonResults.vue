@@ -3,7 +3,7 @@
   <div class="sub-container">
     <div class="ofhd">
       <div class="list">
-        <div class="item" v-for="salon in salons">
+        <div class="item" v-for="salon in salons" :key="salon.id">
           <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url" /></router-link></figure>
           <div class="info">
             <div class="name-adress">

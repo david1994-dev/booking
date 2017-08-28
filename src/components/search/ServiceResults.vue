@@ -8,7 +8,7 @@
     </template>
 
     <div class="list">
-      <div class="item" v-for="service in services">
+      <div class="item" v-for="service in services" :key="service.id">
         <h3><a href="#">{{ service.name }}</a></h3>
         <span>830 Salon có dịch vụ</span>
       </div>

@@ -2,7 +2,7 @@
 <div>
   <page-header />
   <div class="detail-page">
-    <cover-slider />
+    <cover-slider :images="salon.covers" />
 
     <scrollactive ref="scrollactive"
       class="content"
@@ -15,432 +15,37 @@
             <li><a href="#services" class="scrollactive-item">Dịch vụ</a></li>
             <li><a href="#stylists" class="scrollactive-item">Stylist</a></li>
             <li><a href="#images" class="scrollactive-item">Hình ảnh</a></li>
-            <li><a href="#rate" class="scrollactive-item">Đánh giá</a></li>
+            <li><a href="#reviews" class="scrollactive-item">Đánh giá</a></li>
           </ul>
         </div>
-        <div class="about-d" id="about">
-          <div class="title-address">
-            <h1 class="title">{{ salon.name }}</h1>
-            <p class="address">{{ salon.address }}</p>
-          </div>
-          <div class="rate">
-            <div class="tp-rate">
-              <div class="stars-number">
-                <div class="stars">
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                </div>
-                <div class="number">{{ salon.review_count }} Đánh giá</div>
-              </div>
-            </div>
-          </div>
 
-          <div class="link">
-            <div class="name">Liên kết</div>
-            <ul>
-              <li><a href=""><i class="bz-facebook"></i></a></li>
-              <li><a href=""><i class="bz-instagram"></i></a></li>
-            </ul>
-          </div>
-
-          <div class="time-since">
-            <div class="item"> <i class="bz-clock"></i> 09:00 - 21:00 <span class="main-color">-</span> Các ngày trong tuần</div>
-            <div class="item"> <i class="bz-calendar"></i> Thành lập ngày 17 tháng 5 2013</div>
-            <div class="item"> <i class="bz-hair-spray"></i> Hoá chất sư dụng: Davines, Moroccan Oil, Tony & Guy, L’Oreal</div>
-          </div>
-
-          <div class="des" v-if="salon.description">
-            <p>{{ salon.description }}</p>
-          </div>
+        <div id="about" >
+          <overview :salon="salon"></overview>
         </div>
 
-        <div class="service-d" id="services">
-          <div class="title">Chọn dịch vụ</div>
-          <div class="list">
-            <div class="item">
-              <div class="tp-checkbox"><input type="checkbox" /><span></span></div>
-              <div class="name-price"><strong>Cắt tóc nam</strong><div class="fl-full"></div><span class="brace">(</span><span>589.000 VNĐ - 45 phút</span><span class="brace">)</span></div>
-            </div>
-            <div class="item">
-              <div class="tp-checkbox"><input type="checkbox" /><span></span></div>
-              <div class="name-price"><strong>Cắt tóc nam</strong><div class="fl-full"></div><span class="brace">(</span><span>589.000 VNĐ - 45 phút</span><span class="brace">)</span></div>
-            </div>
-            <div class="item">
-              <div class="tp-checkbox"><input type="checkbox" /><span></span></div>
-              <div class="name-price"><strong>Cắt tóc nam</strong><div class="fl-full"></div><span class="brace">(</span><span>589.000 VNĐ - 45 phút</span><span class="brace">)</span></div>
-            </div>
-            <div class="item">
-              <div class="tp-checkbox"><input type="checkbox" /><span></span></div>
-              <div class="name-price"><strong>Cắt tóc nam</strong><div class="fl-full"></div><span class="brace">(</span><span>589.000 VNĐ - 45 phút</span><span class="brace">)</span></div>
-            </div>
-          </div>
+        <div id="services">
+          <services :salon="salon"></services>
         </div>
 
-        <div class="stylist-d" id="stylists">
-          <div class="title">Stylist</div>
-          <div class="list">
-            <div class="item active">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-            <div class="item">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-            <div class="item">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-            <div class="item">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-            <div class="item">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-            <div class="item">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-            <div class="item">
-              <figure><a href=""><img src="../assets/images/image-stylist.jpg" /></a></figure>
-            </div>
-          </div>
+        <div id="stylists">
+          <stylists :salon="salon"></stylists>
         </div>
 
-        <div class="times-d">
-          <div class="title">Chọn thời gian</div>
-          <div class="dates-times">
-            <div class="tp-datetime">
-              <div class="dates">
-                <div class="item active">Hôm nay</div>
-                <div class="item">12/07</div>
-                <div class="item">13/07</div>
-                <div class="item">14/07</div>
-                <div class="item calendar"><i class="bz-calendar-day"></i>calendar</div>
-              </div>
-              <div class="times">
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-              </div>
-            </div>
-          </div>
+        <div id="images">
+          <gallery :salon="salon"></gallery>
         </div>
 
-        <div class="images-d" id="images">
-          <div class="title">336 Hình ảnh</div>
-          <div class="list">
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item"><img src="../assets/images/image-instagram.jpg" /></div>
-            <div class="item">
-              <span class="number"><span>+336</span></span>
-              <img src="../assets/images/image-instagram.jpg" />
-            </div>
-          </div>
-        </div>
-
-        <div class="rate-d" id="rate">
-          <div class="title">
-            <div class="name">336 Đánh giá</div>
-            <div class="stars">
-              <i class="bz-star"></i>
-              <i class="bz-star"></i>
-              <i class="bz-star"></i>
-              <i class="bz-star"></i>
-              <i class="bz-star"></i>
-            </div>
-          </div>
-          <div class="list">
-            <div class="item">
-              <div class="info-rate">
-                <figure><img src="../assets/images/image-stylist.jpg"></figure>
-                <div class="info">
-                  <div class="name">Trương Hồ Quỳnh Nga</div>
-                  <div class="date-stars">
-                    <div class="date">Hôm qua</div>
-                    <div class="stars">
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="content-rate">
-                Diện tích để xe cũng không nhiều, những hôm salon đông khách thiệt tình là không biết để xe đâu luôn nên mình toàn phải bảo anh Mỹ đưa mình qua. Được cái bên này cắt rất đẹp, rất ưng.
-              </div>
-            </div>
-            <div class="item">
-              <div class="info-rate">
-                <figure><img src="../assets/images/image-stylist.jpg"></figure>
-                <div class="info">
-                  <div class="name">Trương Hồ Quỳnh Nga</div>
-                  <div class="date-stars">
-                    <div class="date">Hôm qua</div>
-                    <div class="stars">
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="content-rate">
-                Diện tích để xe cũng không nhiều, những hôm salon đông khách thiệt tình là không biết để xe đâu luôn nên mình toàn phải bảo anh Mỹ đưa mình qua. Được cái bên này cắt rất đẹp, rất ưng.
-              </div>
-            </div>
-            <div class="item">
-              <div class="info-rate">
-                <figure><img src="../assets/images/image-stylist.jpg"></figure>
-                <div class="info">
-                  <div class="name">Trương Hồ Quỳnh Nga</div>
-                  <div class="date-stars">
-                    <div class="date">Hôm qua</div>
-                    <div class="stars">
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="content-rate">
-                Diện tích để xe cũng không nhiều, những hôm salon đông khách thiệt tình là không biết để xe đâu luôn nên mình toàn phải bảo anh Mỹ đưa mình qua. Được cái bên này cắt rất đẹp, rất ưng.
-              </div>
-            </div>
-            <div class="item">
-              <div class="info-rate">
-                <figure><img src="../assets/images/image-stylist.jpg"></figure>
-                <div class="info">
-                  <div class="name">Trương Hồ Quỳnh Nga</div>
-                  <div class="date-stars">
-                    <div class="date">Hôm qua</div>
-                    <div class="stars">
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="content-rate">
-                Diện tích để xe cũng không nhiều, những hôm salon đông khách thiệt tình là không biết để xe đâu luôn nên mình toàn phải bảo anh Mỹ đưa mình qua. Được cái bên này cắt rất đẹp, rất ưng.
-              </div>
-            </div>
-          </div>
-
-          <div class="paging">
-            <ul>
-              <li class="active">1</li>
-              <li><a href="">2</a></li>
-              <li><a href="">3</a></li>
-              <li>...</li>
-              <li><a href="">13</a></li>
-              <li class="next"><a href="">Next</a></li>
-            </ul>
-          </div>
+        <div id="reviews">
+          <reviews :salon="salon"></reviews>
         </div>
 
         <div class="map-d">
           <div class="title">Bản đồ</div>
           <div class="content-map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14898.810853108052!2d105.83973442957765!3d21.004550734680084!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x499b8b613889f78a!2zVHLGsOG7nW5nIMSR4bqhaSBo4buNYyBYw6J5IEThu7FuZw!5e0!3m2!1svi!2s!4v1503242496769" width="600" height="280" frameborder="0" style="border:0" allowfullscreen></iframe></div>
         </div>
-        <!-- <v-loading loader="fetching salon">
-          <template slot="spinner">
-            <div class="text-center">
-              <v-loading-spinner height="30px" width="30px" />
-            </div>
-          </template>
-
-          loaded
-        </v-loading> -->
       </div>
 
-      <div class="cart">
-        <div class="inner-cart">
-          <div class="service-c">
-            <div class="title-service">Dịch vụ</div>
-            <div class="list">
-              <div class="tp-choice-service">
-                <div class="bullet"></div>
-                <div class="info">
-                  <div class="name"><span class="delete"></span>Cắt tóc nam</div>
-                  <div class="time-price">
-                    <div class="time">30 phút</div>
-                    <div class="price">589.000 VNĐ</div>
-                  </div>
-                </div>
-              </div>
-              <div class="tp-choice-service">
-                <div class="bullet"></div>
-                <div class="info">
-                  <div class="name"><span class="delete"></span>Cắt tóc nam</div>
-                  <div class="time-price">
-                    <div class="time">30 phút</div>
-                    <div class="price">589.000 VNĐ</div>
-                  </div>
-                </div>
-              </div>
-              <div class="tp-choice-service">
-                <div class="bullet"></div>
-                <div class="info">
-                  <div class="name"><span class="delete"></span>Cắt tóc nam</div>
-                  <div class="time-price">
-                    <div class="time">30 phút</div>
-                    <div class="price">589.000 VNĐ</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="stylist-c">
-            <div class="title-stylist">Stylist</div>
-            <div class="wrap">
-              <figure><span class="delete"></span><img src="../assets/images/image-stylist.jpg"></figure>
-              <div class="info">
-                <strong>Lê Văn Triệu</strong>
-                <span>Lê Văn Triệu</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="time-c">
-            <strong>Thời gian</strong>
-            <span>9:30 ngày 11 tháng 7</span>
-          </div>
-
-          <div class="price-book-c">
-            <div class="price-c">
-              <div class="tp-price-total">
-                <div class="price">
-                  <span>Cộng</span>
-                  <span>2.436.000 VNĐ</span>
-                </div>
-                <div class="time">
-                  <span>Thời gian thực hiện</span>
-                  <span>2 tiếng 25 phút</span>
-                </div>
-              </div>
-            </div>
-            <div class="tp-btn-book btn-book"><i class="bz-book"></i>Đặt lịch hẹn</div>
-          </div>
-
-          <div class="no-service-c">
-            <a class="tp-btn choice-service red" href="#service">Chọn dịch vụ</a>
-            <p>Bạn chưa chọn dịch vụ</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="cart-mobile">
-
-        <div class="no-choice-service">
-          <a href="#service">Chọn dịch vụ</a>
-          <p>Bạn chưa chọn dịch vụ</p>
-        </div>
-
-        <div class="wrap-book">
-          <div class="title-book">
-            <span>Đặt lịch</span>
-            <i class="bz-close close"></i>
-          </div>
-
-          <div class="content-book">
-
-            <div class="service-stylist">
-              <div class="list-service">
-                <div class="tp-choice-service">
-                  <div class="bullet"></div>
-                  <div class="info">
-                    <div class="name"><span class="delete"></span>Cắt tóc nam</div>
-                    <div class="time-price">
-                      <div class="time">30 phút</div>
-                      <div class="price">589.000 VNĐ</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tp-choice-service">
-                  <div class="bullet"></div>
-                  <div class="info">
-                    <div class="name"><span class="delete"></span>Cắt tóc nam</div>
-                    <div class="time-price">
-                      <div class="time">30 phút</div>
-                      <div class="price">589.000 VNĐ</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tp-choice-service">
-                  <div class="bullet"></div>
-                  <div class="info">
-                    <div class="name"><span class="delete"></span>Cắt tóc nam</div>
-                    <div class="time-price">
-                      <div class="time">30 phút</div>
-                      <div class="price">589.000 VNĐ</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-stylist">
-                <div class="name">Stylist</div>
-                <div class="list">
-                  <div class="item active"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                  <div class="item"><img src="../assets/images/image-stylist.jpg"></div>
-                </div>
-              </div>
-              <div class="choice-time">
-                <div class="name">Thời gian</div>
-                <div class="btn-time">Chọn thời gian</div>
-              </div>
-            </div>
-
-            <div class="btn-book">
-              <div class="tp-btn-book">
-                <i class="bz-book"></i>Đặt lịch hẹn
-              </div>
-            </div>
-
-            <div class="price-time">
-              <div class="tp-price-total">
-                <div class="price">
-                  <span>Cộng</span>
-                  <span>2.436.000 VNĐ</span>
-                </div>
-                <div class="time">
-                  <span>Thời gian thực hiện</span>
-                  <span>2 tiếng 25 phút</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <cart />
     </scrollactive>
   </div>
 
@@ -774,16 +379,27 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { stickyClassMixin } from '@/utils/mixins'
 import PageHeader from './layout/Header'
-const CoverSlider = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Slider')
+const CoverSlider = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Covers')
+const Overview = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Overview')
+const Services = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Services')
+const Stylists = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Stylists')
+const Gallery = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Gallery')
+const Reviews = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Reviews')
+const Cart = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Cart')
 
 export default {
   name: 'Salon',
   components: {
     PageHeader,
-    CoverSlider
+    CoverSlider,
+    Overview,
+    Services,
+    Stylists,
+    Gallery,
+    Reviews,
+    Cart
   },
   mixins: [stickyClassMixin],
   data () {
@@ -801,8 +417,17 @@ export default {
       vm.$store.dispatch('clearSearchQuery')
     })
   },
+  beforeRouteUpdate (to, from, next) {
+    this.$store.dispatch('clearCart').then(() => next())
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('clearCart').then(() => next())
+  },
   created () {
     this.fetchSalon()
+  },
+  mounted () {
+    this.initSticky()
   },
   watch: {
     '$route': 'fetchSalon'
@@ -810,59 +435,17 @@ export default {
   methods: {
     fetchSalon () {
       this.$startLoading('fetching salon')
-      this.$http.get(`salons/${this.$route.params.id}`).then(({ data }) => {
+      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,services.category' } }).then(({ data }) => {
         this.salon = data
         this.$endLoading('fetching salon')
-        setTimeout(() => {
-          this.initSticky()
-        }, 1000)
-      })
+      }).catch(() => this.$endLoading('fetching salon'))
     },
     initSticky () {
       this.$nextTick(() => {
-        this.addStickyClass('.wrap-menu')
-        this.stickyCart()
+        setTimeout(() => {
+          this.addStickyClass('.wrap-menu')
+        }, 1000)
       })
-    },
-    stickyCart () {
-      const $cart = $('.detail-page .content .cart')
-      const $cartInner = $('.detail-page .content .cart .inner-cart')
-      const $window = $(window)
-
-      if (!$cart.length) {
-        return
-      }
-
-      const frameHandler = () => {
-        if ($window.width() <= 1050) {
-          $cart.removeClass('fixed')
-          return
-        }
-
-        const offsetTop = $cart.offset().top
-        const scrollTop = $window.scrollTop()
-        const marginTop = 25
-
-        if (scrollTop > (offsetTop - marginTop)) {
-          $cart.addClass('fixed')
-          if (scrollTop > (offsetTop + $cart.height() - $cartInner.height()) - marginTop) {
-            $cart.addClass('fixed_bottom')
-            $cartInner.css('top', '')
-          } else {
-            $cart.removeClass('fixed_bottom')
-          }
-        } else {
-          $cart.removeClass('fixed fixed_bottom')
-          $cartInner.css('top', '')
-        }
-      }
-      const scrollHandler = () => {
-        requestAnimationFrame(frameHandler)
-      }
-
-      $window.scroll(scrollHandler)
-
-      scrollHandler()
     }
   }
 }

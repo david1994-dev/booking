@@ -25,7 +25,9 @@
             a {
                 color: #2f2f2f;
                 font-weight: 300;
-                &:hover {}
+                &:hover {
+                    color: #54B2B0;
+                }
             }
         }
         .salon-name {

@@ -17,8 +17,10 @@
     "axios": "^0.16.2",
     "bootstrap-vue": "^1.0.0-beta.5",
     "font-awesome": "^4.7.0",
+    "googlemaps-js-rich-marker": "^1.0.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "numeral": "^2.0.6",
     "perfect-scrollbar": "^0.7.1",
     "store2": "^2.5.2",
     "uiv": "^0.11.8",
@@ -28,6 +30,7 @@
     "vue-router": "^2.3.1",
     "vue-scrollactive": "^0.4.3",
     "vue-slick": "^1.1.9",
+    "vue2-google-maps": "^0.8.0",
     "vuex": "^2.3.1",
     "vuex-loading": "^0.1.12",
     "vuex-router-sync": "^4.2.0"

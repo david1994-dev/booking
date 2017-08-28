@@ -1,7 +1,7 @@
 <template>
 <div class="slide">
   <slick class="slide-inner" ref="slick" :options="slickOptions">
-    <div><img src="../../assets/images/image-slide.jpg" /></div>
+    <!-- <div v-for="image in images"><img :src="image.url" /></div> -->
     <div><img src="../../assets/images/image-slide.jpg" /></div>
     <div><img src="../../assets/images/image-slide.jpg" /></div>
   </slick>
@@ -16,7 +16,13 @@
 import Slick from 'vue-slick'
 
 export default {
-  name: 'SalonSlider',
+  name: 'SalonCovers',
+  props: {
+    images: {
+      type: Array,
+      default () { return [] }
+    }
+  },
   components: {
     Slick
   },

@@ -27,7 +27,7 @@
   <input class="btn-search"
     type="submit"
     value="Tìm kiếm"
-    :disabled="!canSubmit"
+    :class="{ disabled: !canSubmit }"
     @click="submit">
 </div>
 </template>

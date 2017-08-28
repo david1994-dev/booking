@@ -4,51 +4,14 @@
     .slide {
         position: relative;
         .control {
-            display: flex;
             position: absolute;
             top: 25px;
             left: 25px;
-            div {
-                border: 1px solid #fff;
-                border-radius: 100px;
-                text-align: center;
-                cursor: pointer;
-                transition:all 0.3s;
-                padding: 14px 0;
-                &:before {
-                    content: '';
-                    display: block;
-                    width:0px;
-                    height:0px;
-                    border-bottom: 10px solid transparent;
-                    border-top: 10px solid transparent;
-                    transition: all 0.3s;
-                }
-            }
-            .next{
-                padding-left: 18px;
-                padding-right: 16px;
-                &:before {
-                    border-left: 14px solid #fff;
-                }
-            }
-            .prev{
-                margin-right: 15px;
-                padding-left: 16px;
-                padding-right: 18px;
-                &:before {
-                    border-right: 14px solid #fff;
-                }
-            }
+            color: #fff;
             .slick-disabled,
-            div:hover {
-                border-color: rgba(255, 255, 255, 0.5);
-                &:before {
-                    border-right-color: rgba(255, 255, 255, 0.5);
-                    border-left-color: rgba(255, 255, 255, 0.5);
-                }
+            .btn:hover {
+                color: rgba(255, 255, 255, 0.5);
             }
-
         }
     }
     .content {
@@ -91,20 +54,20 @@
                 border-bottom: 1px solid $border-color;
                 justify-content: space-between;
                 li {
-                    border-bottom: 1px solid transparent;
-                    margin-bottom: -1px;
-                    transition: all 0.3s;
-                    &.active{
-                        border-bottom-color: $main-color;
-                    }
-                    &:nth-child(3) {
-                        display: none;
-                    }
                     a {
+                        border-bottom: 1px solid transparent;
+                        margin-bottom: -1px;
                         color: #2f2f2f;
                         font-size: 13px;
                         display: block;
                         padding: 19px 0;
+                        &.active{
+                            border-bottom-color: $main-color;
+                            color: $main-color;
+                        }
+                    }
+                    &:nth-child(3) {
+                        display: none;
                     }
                 }
             }
@@ -360,6 +323,7 @@
             border-top: 1px solid #EDF1F4;
             .choice-service {
                 margin: 5px 25px 0;
+                width: auto;
             }
             p {
                 font-size: 13px;
@@ -399,6 +363,14 @@
                 }
                 .service-stylist {
                     display: block;
+                }
+                .btn-book {
+                    &.book-first {
+                        display: none;
+                    }
+                    &.book-second {
+                        display: block;
+                    }
                 }
             }
             .list-service {
@@ -473,6 +445,9 @@
             .btn-book {
                 border-top: 1px solid #EDF1F4;
                 padding: 5px 25px 0;
+                &.book-second {
+                    display: none;
+                }
             }
             .price-time {
                 padding: 10px 25px;
@@ -486,47 +461,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 25px;
+            .title {
+                font-size: 17px;
+            }
             .control {
-                display: flex;
-                div {
-                    border: 1px solid #2f2f2f;
-                    border-radius: 100px;
-                    text-align: center;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    padding: 8px 0;
-                    &:before {
-                        content: '';
-                        display: block;
-                        width: 0px;
-                        height: 0px;
-                        border-bottom: 6px solid transparent;
-                        border-top: 6px solid transparent;
-                        transition: all 0.3s;
-                    }
-                }
-                .next {
-                    padding-left: 11px;
-                    padding-right: 9px;
-                    &:before {
-                        border-left: 8px solid #2f2f2f;
-                    }
-                }
-                .prev {
-                    margin-right: 15px;
-                    padding-left: 9px;
-                    padding-right: 11px;
-                    &:before {
-                        border-right: 8px solid #2f2f2f;
-                    }
-                }
-                .slick-disabled, 
-                div:hover {
-                    border-color: rgba(47, 47, 47, 0.5);
-                    &:before {
-                        border-right-color: rgba(47, 47, 47, 0.5);
-                        border-left-color: rgba(47, 47, 47, 0.5);
-                    }
+                .slick-disabled,
+                .btn:hover {
+                    color: rgba(47, 47, 47, 0.5);
                 }
             }
         }

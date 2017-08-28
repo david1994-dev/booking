@@ -8,7 +8,7 @@
     </template>
 
     <div class="list">
-      <div class="item" v-for="stylist in stylists">
+      <div class="item" v-for="stylist in stylists" :key="stylist.id">
         <figure><a href="#"><img :src="stylist.avatar_url" /></a></figure>
         <div class="info">
           <h3><a href="#">{{ stylist.name }}</a></h3>

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'bzone';
-  src:  url('../fonts/bzone.eot?dm0u9w');
-  src:  url('../fonts/bzone.eot?dm0u9w#iefix') format('embedded-opentype'),
-    url('../fonts/bzone.ttf?dm0u9w') format('truetype'),
-    url('../fonts/bzone.woff?dm0u9w') format('woff'),
-    url('../fonts/bzone.svg?dm0u9w#bzone') format('svg');
+  src:  url('../fonts/bzone.eot?aa8njt');
+  src:  url('../fonts/bzone.eot?aa8njt#iefix') format('embedded-opentype'),
+    url('../fonts/bzone.ttf?aa8njt') format('truetype'),
+    url('../fonts/bzone.woff?aa8njt') format('woff'),
+    url('../fonts/bzone.svg?aa8njt#bzone') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,8 +24,17 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bz-half-star:before {
+.bz-email:before {
   content: "\e90d";
+}
+.bz-fax:before {
+  content: "\e912";
+}
+.bz-global:before {
+  content: "\e913";
+}
+.bz-phone:before {
+  content: "\e914";
 }
 .bz-prev-2:before {
   content: "\e90e";
