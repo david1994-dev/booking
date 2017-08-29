@@ -60,7 +60,7 @@
 import InfiniteLoading from 'vue-infinite-loading'
 import { merge } from 'lodash'
 // import GmapRichMarker from '@/utils/richmarker'
-import GmapRichMarker from '@/components/richmarker'
+import GmapRichMarker from '@/components/RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "search-bundle" */ './Salon')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
