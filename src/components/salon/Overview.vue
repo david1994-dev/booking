@@ -6,16 +6,9 @@
   </div>
   <div class="rate">
     <div class="tp-rate">
-      <div class="stars-number">
-        <div class="stars">
-          <i class="bz-star"></i>
-          <i class="bz-star"></i>
-          <i class="bz-star"></i>
-          <i class="bz-star"></i>
-          <i class="bz-star"></i>
-        </div>
+      <stars v-if="salon.average_rating" :rating="salon.average_rating">
         <div class="number">{{ salon.review_count }} Đánh giá</div>
-      </div>
+      </stars>
     </div>
   </div>
 
@@ -40,6 +33,8 @@
 </template>
 
 <script>
+import Stars from '../partials/StarRating'
+
 export default {
   name: 'SalonOverview',
   props: {
@@ -47,6 +42,7 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  components: { Stars }
 }
 </script>

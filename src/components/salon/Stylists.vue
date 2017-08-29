@@ -104,7 +104,8 @@ export default {
   watch: {
     'cartServices': 'fetchStylists',
     'selectedStylist': 'fetchSlots',
-    'selectedDate': 'fetchSlots'
+    'selectedDate': 'fetchSlots',
+    'selectedSlot': 'setBookingDate'
   },
   methods: {
     fetchStylists () {
@@ -145,6 +146,14 @@ export default {
       if (this.stylists.length) {
         this.selectedStylist = head(this.stylists)
       }
+    },
+    setBookingDate () {
+      let date = null
+      if (this.selectedSlot.start) {
+        date = moment(this.selectedSlot.start)
+      }
+
+      this.$store.dispatch('setBookingDate', date)
     },
     resetState () {
       this.slots = []

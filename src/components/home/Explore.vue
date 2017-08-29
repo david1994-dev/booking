@@ -1,7 +1,7 @@
 <template>
 <div class="guide-discovery">
   <div class="guide-book tp-box">
-    <div class="wrap-title">
+    <div class="tp-wrap-title">
       <h3 class="tp-title"><strong>Làm thế nào</strong> để đặt chỗ</h3>
     </div>
     <div class="ofhd">
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="discovery tp-box">
-    <div class="wrap-title">
+    <div class="tp-wrap-title">
       <h3 class="tp-title"><strong>Khám phá</strong> các salon</h3>
       <div class="tp-view-more orange">
         <a href="#">xem thêm</a>

@@ -6,19 +6,19 @@
 			margin: 0 0 17px 0;
 			font-size: 20px;
 			font-weight: 300;
-			border-bottom: 1px solid #EDF1F4;
+			border-bottom: 1px solid $border-color;
 			line-height: 1.4;
 			padding: 35px 0 15px 0;
 		}
 		.content-text {
-			color: rgba(47, 47, 47, 0.7);
+			color: $primary-text-color;
 			font-size: 15px;
 			margin-bottom: 30px;
 		}
 	}
 	.btn-social {
-		display: flex;
-		align-items: center;
+		@include flex();
+		@include align-items(center);
 		margin-bottom: 30px;
 		.item-social {
 			margin-right: 3px;
@@ -27,9 +27,9 @@
 	.related {
 		padding-bottom: 30px;
 		.title-related {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			@include flex();
+			@include justify-content(space-between);
+			@include align-items(center);
 			padding: 20px 25px;
 			.title {
 				font-size: 17px;
@@ -48,7 +48,7 @@
 		width: 100%;
 	}
 	.content-page .comment {
-		border-bottom: 1px solid #edf1f4;
+		border-bottom: 1px solid $border-color;
 		padding-bottom: 10px;
 	}
 }

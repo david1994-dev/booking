@@ -2,12 +2,8 @@
 <div class="rate-d">
   <div class="title">
     <div class="name">{{ salon.review_count }} Đánh giá</div>
-    <div class="stars">
-      <i class="bz-star"></i>
-      <i class="bz-star"></i>
-      <i class="bz-star"></i>
-      <i class="bz-star"></i>
-      <i class="bz-star"></i>
+    <div class="tp-rate">
+      <stars v-if="salon.average_rating" :rating="salon.average_rating" />
     </div>
   </div>
   <v-loading loader="fetching reviews">
@@ -25,12 +21,8 @@
             <div class="name">{{ review.user.name }}</div>
             <div class="date-stars">
               <div class="date">Hôm qua</div>
-              <div class="stars">
-                <i class="bz-star"></i>
-                <i class="bz-star"></i>
-                <i class="bz-star"></i>
-                <i class="bz-star"></i>
-                <i class="bz-star"></i>
+              <div class="tp-rate">
+                <stars :rating="review.review.rating" />
               </div>
             </div>
           </div>
@@ -41,20 +33,20 @@
   </v-loading>
 
   <div class="paging">
-    <ul>
-      <li class="active">1</li>
-      <li><a href="">2</a></li>
-      <li><a href="">3</a></li>
-      <li>...</li>
-      <li><a href="">13</a></li>
-      <li class="next"><a href="">Next</a></li>
-    </ul>
+    <paginate
+      :click-handler="paginateReviews"
+      :page-count="meta.pagination.total_pages"
+      prev-class="prev"
+      next-class="prev">
+    </paginate>
   </div>
 </div>
 </template>
 
 <script>
 import { merge } from 'lodash'
+import Stars from '../partials/StarRating'
+import Paginate from 'vuejs-paginate'
 
 export default {
   name: 'SalonReviews',
@@ -64,6 +56,10 @@ export default {
       required: true
     }
   },
+  components: {
+    Stars,
+    Paginate
+  },
   data () {
     return {
       reviews: [],
@@ -72,7 +68,8 @@ export default {
           current_page: 0,
           total_pages: 0
         }
-      }
+      },
+      paginate: ['reviews']
     }
   },
   beforeRouteUpdate (to, from, next) {
@@ -81,7 +78,7 @@ export default {
       this.meta = data.meta
     })
   },
-  created () {
+  mounted () {
     this.fetchData({}, ({ data }) => {
       this.reviews = data.data
       this.meta = data.meta
@@ -92,7 +89,7 @@ export default {
       let params = merge(query, params)
       params._meta = 1
       this.$startLoading('fetching reviews')
-      this.$http.get(`salons/${this.salon.id}/reviews`, { params })
+      this.$http.get(`salons/${this.$route.params.id}/reviews`, { params })
         .then(response => {
           this.$endLoading('fetching reviews')
           cb(response)
@@ -101,6 +98,12 @@ export default {
           this.$endLoading('fetching reviews')
           errCb ? errCb(error) : null
         })
+    },
+    paginateReviews (page) {
+      this.fetchData({ page }, ({ data }) => {
+        this.reviews = data.data
+        this.meta = data.meta
+      })
     }
   }
 }

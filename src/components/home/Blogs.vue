@@ -1,6 +1,6 @@
 <template>
 <div class="tricks-beautiful tp-box">
-  <div class="wrap-title">
+  <div class="tp-wrap-title">
     <h3 class="tp-title"><strong>Thủ thuật</strong> làm đẹp</h3>
     <div class="tp-view-more">
       <a href="#">xem thêm</a>

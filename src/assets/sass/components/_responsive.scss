@@ -1,4 +1,3 @@
-
 @media screen and (min-width: 320px) {
 	.wrapper-header .slogan .text {
 	    max-width: 430px;
@@ -13,8 +12,8 @@
 				margin-left: -10px;
 				margin-right: -10px;
 				margin-bottom: 10px;
-				display: flex;
-				flex-wrap: wrap;
+				@include flex();
+				@include flex-wrap(wrap);
 			}
 			.item{
 				width: 50%;
@@ -39,8 +38,8 @@
     .blog-page {
     	background: transparent;
         .blog {
-            display: flex;
-            flex-wrap: wrap;
+            @include flex();
+            @include flex-wrap(wrap);
             margin: -5px -5px 0 -5px;
         }
         .tp-blogitem {
@@ -57,7 +56,7 @@
     	width: 370px;
 		margin-right: 30px;
 		.info {
-			border: 1px solid #edf1f4;
+			border: 1px solid $border-color;
 		}
     }
 
@@ -67,8 +66,8 @@
 		.guide-book {
 			.list {
 				margin: 0 -25px;
-				display: flex;
-				flex-wrap: wrap;
+				@include flex();
+				@include flex-wrap(wrap);
 			}
 			.item{
 				width: 50%;
@@ -76,8 +75,8 @@
 			}
 		}
 		.savetime {
-			display: flex;
-			align-items: center;
+			@include flex();
+			@include align-items(center);
 			figure{
 				width: 220px;
 				margin: 0 30px 0 0;
@@ -96,8 +95,8 @@
 	.searchfull-page .salons {
 		background:transparent;
 		.list {
-		    display: flex;
-		    flex-wrap: wrap;
+		    @include flex();
+		    @include flex-wrap(wrap);
 		}
 		.item {
 			width: calc(50% - 30px);
@@ -107,9 +106,9 @@
 		}
 	}
 	.searchsalon-page {
-		display: flex;
+		@include flex();
 		.wrap-maps {
-			flex: 1 0;
+			@include flex-grow("1 0");
 			display: block;
 			&.fixed .maps {
 			    position: fixed;
@@ -120,7 +119,7 @@
 			}
 			.maps {
 				height: 100vh;
-				iframe {
+				#map-canvas {
 				    width: 100%;
 				    height: 100%;
 				}
@@ -143,8 +142,8 @@
     .service-page {
         background: transparent;
         .services {
-	        display: flex;
-	        flex-wrap: wrap;
+	        @include flex();
+	        @include flex-wrap(wrap);
 	        margin-top: -5px;
 	        margin-right: -5px;
 	        margin-left: -5px;
@@ -171,10 +170,10 @@
 }
 @media screen and (min-width: 768px) {
 	.wrapper-header .search {
-    	display: flex;
+    	@include flex();
     	.wrap-input {
 			margin: 0 20px 0 0;
-			flex: 1 0;
+			@include flex-grow("1 0");
 		}
 		.btn-search {
 			width: 150px;
@@ -217,10 +216,10 @@
 			margin: 20px 0 6px 0;
 		}
 		.tp-container {
-			display: flex;
+			@include flex();
 		}
 		.full {
-			flex: 1 0;
+			@include flex-grow("1 0");
 		}
 		.instagram {
 			width: 255px;
@@ -232,8 +231,8 @@
 		}
 		.links {
 			order: 1;
-			display: flex;
-			flex-direction: column;
+			@include flex();
+			@include flex-direction(column);
 			.list-link {
 				margin-bottom: 15px
 			}
@@ -242,11 +241,11 @@
 			}
 		}
 		.savetime-footer {
-			flex: 1 0;
+			@include flex-grow("1 0");
 			margin: 0 30px;
 			order: 2;
-			display: flex;
-			flex-direction: column;
+			@include flex();
+			@include flex-direction(column);
 		}
 	}
 
@@ -256,7 +255,7 @@
 
     .stylists-page .stylists {
 		.stylist-item {
-	        display:flex;
+	        @include flex();
 	        padding: 25px 35px;
 	        border-radius: 5px;
 	        margin-bottom: 30px;
@@ -284,7 +283,7 @@
 	.contact-page {
 		background: transparent;
 		.content-page {
-			display: flex;
+			@include flex();
 			background: #fff;
 			padding: 50px;
 		}
@@ -298,11 +297,11 @@
 					margin-bottom: 24px;
 				}
 				.name-email {
-					display: flex;
+					@include flex();
 					margin: 0 -12px;
 					margin-bottom: 24px;
 					input {
-						flex: 1 0;
+						@include flex-grow("1 0");
 						margin: 0 12px;
 					}
 				}
@@ -346,7 +345,7 @@
 		    max-width: 700px;
 		    .wrap-input {
 				margin-bottom: 0;
-				flex: 1 0;
+				@include flex-grow("1 0");
 			}
 			.location .input {
 				border-left: none;
@@ -373,17 +372,17 @@
 			pointer-events: none;
 		}
 		.search-inner {
-			display: flex;
+			@include flex();
 		}
 		.account {
 			display: block;
 			color: #fff;
 			font-size: 14px;
-			transition: all 0.3s;
+			@include transition();
 			cursor: pointer;
 		}
 		.account:hover {
-			color: #54B2B0;
+			color: $main-color;
 		}
 	}
 
@@ -426,9 +425,9 @@
 
 	.landing-page {
 		.tp-box .wrap-title {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			@include flex();
+			@include justify-content(space-between);
+			@include align-items(center);
 			.tp-view-more {
 				display: block;
 			}
@@ -436,7 +435,7 @@
 		.guide-book {
 			border-bottom: none;
 			.list {
-				border-bottom: 1px solid #EDF1F4;
+				border-bottom: 1px solid $border-color;
 			}
 			.item{
 				width: 33.33%;
@@ -470,7 +469,7 @@
 		}
 		.item .info {
 			.price-rate {
-				display: flex;
+				@include flex();
 			}
 			.price {
 				border-bottom: none;
@@ -498,14 +497,14 @@
 			background: #fff;
 			max-width: 1050px;
 			margin: -135px auto 0;
-			display: flex;
+			@include flex();
 			padding: 0 50px 50px;
 			position: relative;
 			z-index: 1;
 			.main-content {
 				padding-bottom: 0;
 				.menu {
-					justify-content: normal;
+					@include justify-content(normal);
 					li {
 						margin-right: 70px;
 						&:nth-child(3) {
@@ -521,20 +520,20 @@
 				}
 
 				.service-d {
-					display: flex;
+					@include flex();
 					.title {
 						margin: 12px 0 0;
     					width: 130px;
 					}
 					.list {
 						margin: 0;
-    					flex: 1 0;
+    					@include flex-grow("1 0");
     					.item {
     						.name-price {
-    							display: flex;
-    							align-items: center;
+    							@include flex();
+    							@include align-items(center);
     							.fl-full {
-    								flex: 1 0;
+    								@include flex-grow("1 0");
     							}
     							.brace {
     								display: none;
@@ -548,19 +547,19 @@
 					}
 				}
 				.stylist-d {
-					display: flex;
-					border-bottom: 1px solid #EDF1F4;
+					@include flex();
+					border-bottom: 1px solid $border-color;
 					padding: 10px 0;
 					.title {
 						margin: 12px 0 0 0;
 						width: 130px;
 					}
 					.wrap-list {
-						flex: 1 0;
+						@include flex-grow("1 0");
 					}
 					.list {
-						display: flex;
-						flex-wrap: wrap;
+						@include flex();
+						@include flex-wrap(wrap);
 						margin: 0 -16px;
     					.item {
     						width: 16.66%;
@@ -602,15 +601,15 @@
     				}
 				}
 				.times-d {
-					display: flex;
-					border-bottom: 1px solid #EDF1F4;
+					@include flex();
+					border-bottom: 1px solid $border-color;
 					padding: 10px 0;
 					.title {
 					    margin-top: 23px;
 						width: 130px;
 					}
 					.dates-times {
-						flex: 1 0;
+						@include flex-grow("1 0");
     				}
 				}
 				.images-d {
@@ -625,7 +624,7 @@
 				.rate-d {
 					.list .item .info-rate .info {
 						position: relative;
-						.date-stars .stars {
+						.date-stars .tp-rate {
 							position: absolute;
 						    top: 5px;
 						    right: 0;
@@ -637,7 +636,7 @@
 			.wrap-cart {
 				display: block;
 				width: 335px;
-				flex: 1 0 auto;
+				@include flex-grow("1 0 auto");
 				margin: 25px 0 0 30px;
 			    &.fixed {
 			    	.inner-cart {
@@ -657,27 +656,27 @@
 			    .cart {
 					display: block;
 				    .inner-cart {
-			    		border: 1px solid #edf1f4;
+			    		border: 1px solid $border-color;
 			    		background: #fff;
 			    	}
 					.service-c {
 						padding: 20px 25px 10px;
-						border-bottom: 1px solid #edf1f4;
+						border-bottom: 1px solid $border-color;
 						.title-service {
 							margin-bottom: 10px;
 							font-size: 17px;
 						}
 					}
 					.stylist-c {
-						border-bottom: 1px solid #edf1f4;
+						border-bottom: 1px solid $border-color;
 						padding: 20px 25px;
 						.title-stylist {
 							font-size: 17px;
 							margin-bottom: 20px;
 						}
 						.wrap {
-							display: flex;
-							align-items: center;
+							@include flex();
+							@include align-items(center);
 							figure {
 								width: 56px;
 								margin: 0 20px 0 0;
@@ -689,14 +688,14 @@
 									position: absolute;
 									width: 18px;
 									height: 18px;
-									background: #2F2F2F;
+									background: $text-color;
 									border-radius: 50%;
 									top: 0;
 									left: 0;
 									cursor: pointer;
-									transition: all 0.3s;
+									@include transition();
 									&:hover {
-										background: #54b2b0;
+										background: $main-color;
 									}
 									&:before {
 										content: '';
@@ -718,16 +717,16 @@
 								span {
 									display: block;
 									font-size: 11px;
-									opacity: 0.7;
+									color: $primary-text-color;
 								}
 							}
 						}
 					}
 					.time-c {
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
-						border-bottom: 1px solid #edf1f4;
+						@include flex();
+						@include justify-content(space-between);
+						@include align-items(center);
+						border-bottom: 1px solid $border-color;
 						padding: 13px 25px;
 						strong {
 							font-size: 15px;
@@ -804,20 +803,20 @@
 	}
 	.tp-salon {
 		padding-bottom: 0;
-		display: flex;
+		@include flex();
 		border-radius: 4px;
 		.img-price {
 			width: 380px;
-			display: flex;
-			flex-direction: column;
+			@include flex();
+			@include flex-direction(column);
 			figure img {
 				border-radius: 4px 0 0 0;
 			}
 		}
 		.price-rate {
-			display: flex;
+			@include flex();
 			border-bottom: none;
-			flex: 1 0 auto;
+			@include flex-grow("1 0 auto");
 			.price {
 				position: static;
 				width: 50%;
@@ -837,17 +836,17 @@
 		.wrap-info {
 			width: calc(100% - 380px);
 			.times {
-				flex-wrap: wrap;
+				@include flex-wrap(wrap);
 				border-bottom: none;
 				padding: 0 19px 0;
 				overflow-x: visible;
 				margin-top: -6px;
 				.item {
 					margin: 6px;
-					flex: 0 1 auto;
+					@include flex-grow("0 1 auto");
 					width: calc(20% - 12px);
 					cursor: pointer;
-					transition:all 0.3s;
+					@include transition();
 					&:nth-child(n + 16) {
 						display: none;
 					}
@@ -860,26 +859,26 @@
 				}
 			}
 			.scrollup{
-				display: flex;
-				align-items: center;
+				@include flex();
+				@include align-items(center);
 				padding: 0 25px;
 				cursor: pointer;
 				&:before,
 				&:after{
 					content: '';
-					flex: 1 0 auto;
+					@include flex-grow("1 0 auto");
 					height: 1px;
-					background: #E2E2E2;
+					background: $primary-border-color;
 				}
 				i {
-					border: 1px solid #E2E2E2;
+					border: 1px solid $primary-border-color;
 					width: 20px;
 					line-height: 18px;
 					border-radius: 50px;
 					font-size: 7px;
 					text-align: center;
 					color: #6D6D6D;
-					transition: all 0.3s;
+					@include transition();
 				}
 			}
 			.wrap-stylist {
@@ -889,7 +888,7 @@
 				}
 				&.expand {
 					.stylist-img {
-						flex-wrap: wrap;
+						@include flex-wrap(wrap);
 						.number {
 							display: none;
 						}
@@ -898,7 +897,7 @@
 						}
 					}
 					.scrollup{
-						display: flex;
+						@include flex();
 					}
 				}
 			}
@@ -910,12 +909,12 @@
 			}
 			.scrollup:hover i{
 				border-color: $main-color;
-    			color: #54B2B0;
+    			color: $main-color;
 			}
 
 			.stylist-img {
-				justify-content: 
-				flex-start;padding: 3px 13px;
+				@include justify-content(flex-start);
+				padding: 3px 13px;
 				.item {
 					padding-top: 12px;
 					padding-bottom: 12px;
@@ -938,7 +937,7 @@
 			transform: translateX(-50%);
 		}
 		.content .main-content .menu li:hover {
-		  border-bottom-color: #54B2B0;
+		  border-bottom-color: $main-color;
 		}
 		.related .related-slide .tp-salon {
 			width: 770px;

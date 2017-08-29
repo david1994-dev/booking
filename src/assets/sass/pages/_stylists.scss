@@ -5,8 +5,8 @@
         margin-bottom: 10px;
     }
     .avata-info {
-        display: flex;
-        align-items: center;
+        @include flex();
+        @include align-items(center);
         margin-bottom: 30px;
         figure {
             margin: 0 25px 0 0;
@@ -16,17 +16,17 @@
             }
         }
         .info {
-            flex: 1 0;
+            @include flex-grow("1 0");
         }
         h2 {
             font-weight: 300;
             font-size: 17px;
             margin: 0;
             a {
-                color: #2f2f2f;
+                color: $text-color;
                 font-weight: 300;
                 &:hover {
-                    color: #54B2B0;
+                    color: $main-color;
                 }
             }
         }
@@ -40,9 +40,9 @@
         }
     }
     .images {
-        display: flex;
+        @include flex();
         overflow-x: auto;
-        flex: 1 0;
+        @include flex-grow("1 0");
         figure {
             margin: 0 20px 0 0;
             &:last-child {

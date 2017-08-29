@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import store from './store'
 import http from './utils/http'
+import eventbus from './utils/eventbus'
+import * as filters from './utils/filters'
 import { sync } from 'vuex-router-sync'
 import BootstrapVue from 'bootstrap-vue'
 import Scrollactive from 'vue-scrollactive'
@@ -17,11 +19,16 @@ sync(store, router)
 Vue.use(BootstrapVue)
 Vue.use(Scrollactive)
 Vue.use(http, { store, router })
+Vue.use(eventbus)
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyC4Lr23cLmL1FNhKbVZepiG6MsXcwNPvVA',
     libraries: 'places'
   }
+})
+
+Object.keys(filters).map((method) => {
+  Vue.filter(method, filters[method])
 })
 
 /* eslint-disable no-new */

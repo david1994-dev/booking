@@ -37,10 +37,10 @@ button.fancybox-arrow {
     font-size: 13px;
     padding: 15px;
     z-index: 9;
-    transition: all 0.3s;
+    @include transition();
 }
 .tp-modal-close:hover {
-	color: #54B2B0;
+	color: $main-color;
 }
 
 /*	[ Success ]
@@ -51,14 +51,14 @@ button.fancybox-arrow {
 		font-size: 22px;
 	    font-weight: 400;
 	    margin-bottom: 20px;
-	    color: #54B2B0;
+	    color: $main-color;
 	}
 	.des-success {
 	    font-size: 14px;
-	    opacity: 0.7;
+	    color: $primary-text-color;
 	    margin-bottom: 20px;
 	    padding-bottom: 20px;
-	    border-bottom: 1px solid #EDF1F4;
+	    border-bottom: 1px solid $border-color;
 	}
 	.name-mobile {
 	    font-size: 17px;
@@ -66,7 +66,7 @@ button.fancybox-arrow {
 	}
 	.des-mobile {
 		font-size: 14px;
-	    opacity: 0.7;
+	    color: $primary-text-color;
 	    margin-bottom: 12px;
 	}
 }
@@ -79,7 +79,7 @@ button.fancybox-arrow {
 	}
 	.modal-body {
 		.salon {
-			border-bottom: 1px solid #EDF1F4;
+			border-bottom: 1px solid $border-color;
 			padding-bottom: 40px;
 			.des {
 			    font-size: 18px;
@@ -94,7 +94,7 @@ button.fancybox-arrow {
 			}
 			p {
 				font-size: 14px;
-			    opacity: 0.7;
+			    color: $primary-text-color;
 			    margin: 0 0 10px 0;
 			}
 		}
@@ -117,7 +117,7 @@ button.fancybox-arrow {
 .tp-text-form {
     display: block;
     width: 100%;
-    border: 1px solid #EDF1F4;
+    border: 1px solid $border-color;
     border-radius: 4px;
     height: 50px;
     padding: 0 20px;
@@ -142,12 +142,12 @@ button.fancybox-arrow {
   color: rgba(47, 47, 47, 0.4);
 }
 .tp-gender-form {
-    display: flex;
-    align-items: center;
+    @include flex();
+    @include align-items(center);
     margin: 20px 0;
 	.gender-item {
-	    display: flex;
-	    align-items: center;
+	    @include flex();
+	    @include align-items(center);
 	    margin: 0 40px 0 0;
 	}
 	input {
@@ -156,6 +156,26 @@ button.fancybox-arrow {
 	span {
 		font-size: 13px;
 	}
+}
+
+.tp-des-form {
+    font-size: 14px;
+    color: $primary-text-color;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tp-send-form {
+	text-align: center;
+    margin-top: 15px;
+	a {
+		color: $primary-color;
+		font-size: 13px;
+	    text-align: center;
+	    &:hover {
+	    	color: $text-color;
+	    }
+    }
 }
 
 /*	[ Layout ]
@@ -177,15 +197,15 @@ button.fancybox-arrow {
 /*	[ Button ]
 - - - - - - - - - - - - - - - - - - - - */
 .tp-btn-book {
-	display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #54B2B0;
+	@include flex();
+    @include justify-content(center);
+    @include align-items(center);
+    background: $main-color;
     color: #fff;
     font-size: 17px;
     line-height: 45px;
     border-radius: 5px;
-    transition: all 0.3s;
+    @include transition();
     cursor: pointer;
     border: none;
     padding: 0 15px;
@@ -196,9 +216,11 @@ button.fancybox-arrow {
 	    margin: 0 12px 4px 0;
 	    font-size: 22px;
     }
-    &:focus,
+    &:focus {
+    	color: #fff;
+    }
     &:hover {
-    	background: #2F2F2F;
+    	background: $text-color;    	
     	color: #fff;
     }
     &.disable {
@@ -207,13 +229,13 @@ button.fancybox-arrow {
     }
 }
 .tp-btn {
-    background: #54B2B0;
+    background: $main-color;
 	display: block;
     color: #fff;
     font-size: 17px;
     line-height: 45px;
     border-radius: 5px;
-    transition: all 0.3s;
+    @include transition();
     cursor: pointer;
     border: none;
     padding: 0 15px;
@@ -223,26 +245,27 @@ button.fancybox-arrow {
     outline: none;
     width: 100%;
     &.red {
-    	background: #F2655A;
+    	background: $primary-color;
     }
-    &:focus,
+    &:focus {
+    	color: #fff;
+    }
     &:hover {
-    	background: #2F2F2F;
+    	background: $text-color;
     	color: #fff;
     }
 }
 
-
 /*	[ Control ]
 - - - - - - - - - - - - - - - - - - - - */
 .tp-control {
-    display: flex;
+    @include flex();
     .btn {
         border: 1px solid;
         border-radius: 100px;
         text-align: center;
         cursor: pointer;
-        transition:all 0.3s;
+        @include transition();
         padding: 14px 0;
         &:before {
             content: '';
@@ -315,26 +338,271 @@ button.fancybox-arrow {
 			margin: 0 0 15px 0;
 			line-height: 1.3;
 			a {
-				color: #2f2f2f;
+				color: $text-color;
 				&:hover {
-					color: #54B2B0;
+					color: $main-color;
 				}
 			}
 		}
 		.des {
 			font-size: 14px;
-			opacity: 0.7;
+			color: $primary-text-color;
 			margin-bottom: 10px;
 		}
 	}
 	.view-more a {
-		color: #54B2B0;
+		color: $main-color;
 		font-size: 13px;
 		&:hover {
-			color: #2f2f2f;
+			color: $text-color;
 		}
 	}
 }
+
+/*	[ Landing ]
+- - - - - - - - - - - - - - - - - - - - */
+.tp-box {
+    padding: 40px 25px 0;
+}
+.tp-wrap-title {
+	margin-bottom: 20px;
+	.tp-view-more {
+	    display: none;
+	}
+}
+.tp-title {
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 1.3;
+    margin: 0;
+    strong {
+		font-weight:bold;
+	}
+}
+.tp-view-more {
+	text-align: right;
+	a {
+	    color: $text-color;
+	    font-size: 15px;
+	    position: relative;
+	    display: inline-block;
+	    &:hover {
+			color: $main-color;
+		}
+		&:before {
+			content: '';
+			display:block;
+			position: absolute;
+			width: 10px;
+			height: 1px;
+			background: $main-color;
+			bottom: 7px;
+			left: -17px;
+		}
+	}
+}
+.orange.tp-view-more a:before {
+	background: #E6AD85;
+}
+.tp-view-all {
+	a {
+		color: $text-color;
+		font-size: 15px;
+		&:hover {
+			color: $main-color;
+		}
+	}
+	span {
+		display: block;
+		line-height: 1;
+	}
+	i {
+		font-size: 11px
+	}
+}
+
+/*	[ Rate ]
+- - - - - - - - - - - - - - - - - - - - */
+.tp-rate {
+	.rate-status {
+	    font-size: 12px;
+	    color: $primary-text-color;
+	}
+	.stars-number {
+	    @include flex();
+	    @include flex-wrap(wrap);
+	    @include align-items(center);
+	    .stars {
+		    font-size: 13px;
+		    color: $main-color;
+		    margin-right: 4px;
+		    @include flex();
+		    @include align-items(center);
+		    i {
+				margin-right: 2px;
+				cursor: pointer;
+			}
+
+
+			&.star-0 {
+				color: #ccc;
+			}
+
+			&.star-05 i{
+				&:nth-child(1) {
+					@include flex();
+					&:before {
+						display: block;
+						width: 7px;
+						overflow: hidden;
+					}
+					&:after {
+						content: "\e90c";
+						color: #ccc;
+						display: block;
+						width: 6px;
+						overflow: hidden;
+						position: relative;
+						direction: rtl;
+					}
+				}
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-10 i{
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-15 i{
+				&:nth-child(2) {
+					@include flex();
+					&:before {
+						display: block;
+						width: 7px;
+						overflow: hidden;
+					}
+					&:after {
+						content: "\e90c";
+						color: #ccc;
+						display: block;
+						width: 6px;
+						overflow: hidden;
+						position: relative;
+						direction: rtl;
+					}
+				}
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-20 i{
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-25 i{
+				&:nth-child(3) {
+					@include flex();
+					&:before {
+						display: block;
+						width: 7px;
+						overflow: hidden;
+					}
+					&:after {
+						content: "\e90c";
+						color: #ccc;
+						display: block;
+						width: 6px;
+						overflow: hidden;
+						position: relative;
+						direction: rtl;
+					}
+				}
+				&:nth-child(4),
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-30 i{
+				&:nth-child(4),
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-35 i{
+				&:nth-child(4) {
+					@include flex();
+					&:before {
+						display: block;
+						width: 7px;
+						overflow: hidden;
+					}
+					&:after {
+						content: "\e90c";
+						color: #ccc;
+						display: block;
+						width: 6px;
+						overflow: hidden;
+						position: relative;
+						direction: rtl;
+					}
+				}
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-40 i{
+				&:nth-child(5) {
+					color: #ccc;
+				}
+			}
+
+			&.star-45 i{
+				&:nth-child(5) {
+					@include flex();
+					&:before {
+						display: block;
+						width: 7px;
+						overflow: hidden;
+					}
+					&:after {
+						content: "\e90c";
+						color: #ccc;
+						display: block;
+						width: 6px;
+						overflow: hidden;
+						position: relative;
+						direction: rtl;
+					}
+				}
+			}
+
+		}
+		.number {
+		    font-size: 13px;
+		}
+	}
+}
+
 
 /*	[ Salon ]
 - - - - - - - - - - - - - - - - - - - - */
@@ -356,7 +624,7 @@ button.fancybox-arrow {
 		    span {
 				display: block;
 				font-size: 12px;
-				opacity: 0.7;
+				color: $primary-text-color;
 				line-height: 1;
 				margin-bottom: 5px;
 			}
@@ -385,7 +653,7 @@ button.fancybox-arrow {
 		    font-size: 17px;
 		    font-weight: 300;
 		    a {
-			    color: #2f2f2f;
+			    color: $text-color;
 			    &:hover {
 					color: $main-color;
 				}
@@ -394,7 +662,7 @@ button.fancybox-arrow {
 		.address {
 		    margin: 0;
 		    font-size: 12px;
-		    opacity: 0.7;
+		    color: $primary-text-color;
 		    text-overflow: ellipsis;
 		    white-space: nowrap;
 		    overflow: hidden;
@@ -403,7 +671,7 @@ button.fancybox-arrow {
 		    border-bottom: 1px solid #EBF1F7;
 		}
 		.stylist-img {
-		    display: flex;
+		    @include flex();
 		    padding: 6px 13px;
 		    .item {
 		    	padding: 0 12px;
@@ -467,15 +735,15 @@ button.fancybox-arrow {
 			}
 		}
 		.dates {
-		    display: flex;
-		    justify-content: space-between;
+		    @include flex();
+		    @include justify-content(space-between);
 		    color: #6D6D6C;
 		    font-size: 13px;
-		    align-items: center;
+		    @include align-items(center);
 		    padding: 11px 25px;
 		    .item {
 			    cursor: pointer;
-			    transition: all 0.3s;
+			    @include transition();
 			    &:hover {
 					color: $main-color;
 				}
@@ -496,7 +764,7 @@ button.fancybox-arrow {
 			}
 		}
 		.times {
-		    display: flex;
+		    @include flex();
 		    overflow-x: scroll;
 		    border-bottom: 1px solid #EBF1F7;
 		    padding: 0 25px 11px;
@@ -505,11 +773,11 @@ button.fancybox-arrow {
 				width: 13px;
 				height: 1px;
 				display: block;
-				flex: 1 0 auto;
+				@include flex-grow("1 0 auto");
 			}
 			.item {
 			    width: 60px;
-			    flex: 1 0 auto;
+			    @include flex-grow("1 0 auto");
 			    text-align: center;
 			    border: 1px solid rgba(109, 109, 109, 0.2);
 			    border-radius: 4px;
@@ -518,8 +786,8 @@ button.fancybox-arrow {
 			    line-height: 27px;
 			    &.active,
 			    &:hover {
-			    	border-color: #54B2B0;
-			    	color: #54B2B0;
+			    	border-color: $main-color;
+			    	color: $main-color;
 			    }
 			}
 		}
@@ -537,21 +805,21 @@ button.fancybox-arrow {
 		font-size: 15px;
 		margin-bottom: 5px;
 		position: relative;
-		display: flex;
-		align-items: center;
+		@include flex();
+		@include align-items(center);
 		.delete {
-			background: #2F2F2F;
+			background: $text-color;
 			width: 24px;
 			height: 24px;
 			border-radius: 5px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@include flex();
+			@include justify-content(center);
+			@include align-items(center);
 			margin-right: 15px;
-			transition: all 0.3s;
+			@include transition();
 			cursor: pointer;
 			&:hover {
-				background: #54b2b0;
+				background: $main-color;
 			}
 		    &:before {
 	    	    content: '';
@@ -563,10 +831,10 @@ button.fancybox-arrow {
 		}
 	}
 	.time-price {
-		display: flex;
-		justify-content: space-between;
+		@include flex();
+		@include justify-content(space-between);
 		font-size: 13px;
-		opacity: 0.7;
+		color: $primary-text-color;
 		padding-left: 40px;
 	}
 }
@@ -575,18 +843,18 @@ button.fancybox-arrow {
 - - - - - - - - - - - - - - - - - - - - */
 .tp-price-total {
 	.price {
-		display: flex;
-	    align-items: center;
+		@include flex();
+	    @include align-items(center);
 	    font-size: 17px;
-	    justify-content: space-between;
+	    @include justify-content(space-between);
 	    margin-bottom: 5px;
 	}
 	.time {
 		font-size: 13px;
-	    opacity: 0.7;
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-between;
+	    color: $primary-text-color;
+	    @include flex();
+	    @include align-items(center);
+	    @include justify-content(space-between);
 	}
 }
 
@@ -594,23 +862,23 @@ button.fancybox-arrow {
 - - - - - - - - - - - - - - - - - - - - */
 .tp-datetime {
 	.dates {
-	    display: flex;
-	    justify-content: space-between;
-	    align-items: center;
-	    color: rgba(47, 47, 47, 0.7);
+	    @include flex();
+	    @include justify-content(space-between);
+	    @include align-items(center);
+	    color: $primary-text-color;
 	    font-size: 13px;
 	    padding: 20px 0;
-        border-bottom: 1px solid #EDF1F4;
+        border-bottom: 1px solid $border-color;
 		.item {
 			cursor: pointer;
-			transition: all 0.3s;
+			@include transition();
 			&.active{
-				color: #54B2B0;
+				color: $main-color;
     			font-weight: 500;
 			}
 			&.calendar{
-				display: flex;
-			    align-items: center;
+				@include flex();
+			    @include align-items(center);
 			    border: 1px solid;
 			    border-radius: 4px;
 			    line-height: 30px;
@@ -621,31 +889,31 @@ button.fancybox-arrow {
 				}
 			}
 			&:hover {
-				color: #54B2B0;
-				border-color: #54B2B0;
+				color: $main-color;
+				border-color: $main-color;
 			}
 		}
 	}
 	.times {
-		display: flex;
-		flex-wrap: wrap;
-		color: rgba(47, 47, 47, 0.7);
+		@include flex();
+		@include flex-wrap(wrap);
+		color: $primary-text-color;
 		font-size: 12px;
 		margin: 0 -5px;
 		padding: 15px 0;
 		.item {
-			border: 1px solid #edf1f4;
+			border: 1px solid $border-color;
 		    border-radius: 4px;
 		    width: calc(16.66% - 10px);
 		    text-align: center;
 		    line-height: 27px;
 		    margin: 5px;
 		    cursor: pointer;
-		    transition: all 0.3s;
+		    @include transition();
 		    &.active,
 			&:hover {
-				color: #54B2B0;
-				border-color: #54B2B0;
+				color: $main-color;
+				border-color: $main-color;
 			}
 		}
 	}
@@ -654,7 +922,7 @@ button.fancybox-arrow {
 /*	[ Checkbox ]
 - - - - - - - - - - - - - - - - - - - - */
 .tp-checkbox {
-    border: 2px solid #54B2B0;
+    border: 2px solid $main-color;
     border-radius: 5px;
     width: 24px;
     height: 24px;
@@ -723,7 +991,7 @@ button.fancybox-arrow {
 		list-style: none;
 		ul {
 			li:hover > a {
-			    background: #EDF1F4
+			    background: $border-color
 			}
 			ul {
 				position: absolute;
@@ -742,7 +1010,7 @@ button.fancybox-arrow {
 	li {
 	    position: relative;
 	    a {
-		    color: #2F2F2F;
+		    color: $text-color;
 		    display: block;
 		    padding: 5px 20px;
 		}
@@ -758,7 +1026,7 @@ button.fancybox-arrow {
 			font-weight: 500;
 			font-size: 12px;
 			text-transform: uppercase;
-			border-bottom: 1px solid #EDF1F4;
+			border-bottom: 1px solid $border-color;
 			margin: 0 20px;
 			padding-left: 0;
 			padding-right: 0;
@@ -816,7 +1084,7 @@ button.fancybox-arrow {
 		position: relative;
 		&:hover {
 			> a {
-				background: #EDF1F4;
+				background: $border-color;
 			}	
 			> ul {
 				display: block;
@@ -825,7 +1093,7 @@ button.fancybox-arrow {
 	}
 	a {
 		display: block;
-		color: #2f2f2f;
+		color: $text-color;
 		padding: 7px 20px;
 	}
 	> ul > li > a {
@@ -850,22 +1118,22 @@ button.fancybox-arrow {
     	display: block;
     }
     .flex-datetime {
-	    display: flex;
-	    flex-direction: column;
+	    @include flex();
+	    @include flex-direction(column);
 	    height: 100%;
     }
     .close-outer {
-    	flex: 1 0;
+    	@include flex-grow("1 0");
     }
     .inner-datetime {
     	background: #fff;
 	    padding: 0 25px;
     }
     .title-datetime {
-    	display: flex;
-	    justify-content: space-between;
-	    border-bottom: 1px solid #EDF1F4;
-	    align-items: center;
+    	@include flex();
+	    @include justify-content(space-between);
+	    border-bottom: 1px solid $border-color;
+	    @include align-items(center);
 	    height: 45px;
     	span {
     		font-size: 13px;
@@ -879,7 +1147,7 @@ button.fancybox-arrow {
     	.tp-datetime {
     		.dates {
 	    		overflow-x: auto;
-	    		justify-content: normal;
+	    		@include justify-content(normal);
 	    		white-space: nowrap;
 	    		.item {
 	    			margin-right: 40px;
@@ -901,12 +1169,12 @@ button.fancybox-arrow {
     height: 100%;
     z-index: 9999;
     .modal-title {
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-between;
+	    @include flex();
+	    @include align-items(center);
+	    @include justify-content(space-between);
 	    padding: 0 25px;
 	    height: 45px;
-	    border-bottom: 1px solid #EDF1F4;
+	    border-bottom: 1px solid $border-color;
 	    .title {
 		    font-size: 13px;
 		}
@@ -914,16 +1182,16 @@ button.fancybox-arrow {
 		    font-size: 13px;
 		    cursor: pointer;
 		    padding: 10px 0 10px 10px;
-		    transition: all 0.3s;
+		    @include transition();
 		}
 	}
 	.wrap-content {
 	    overflow-y: auto;
 	    height: calc(100vh - 45px);
 	    .item {
-		    display: flex !important;
-		    align-items: center;
-		    border-bottom: 1px solid #EDF1F4;
+		    @include flex(true);
+		    @include align-items(center);
+		    border-bottom: 1px solid $border-color;
 		    padding: 10px 25px;
 		    .number {
 				display: none;
@@ -941,12 +1209,12 @@ button.fancybox-arrow {
 				    font-size: 17px;
 				    font-weight: 300;
 				    a {
-					    color: #2f2f2f;
+					    color: $text-color;
 					}
 				}
 				span {
 				    font-size: 13px;
-				    opacity: 0.7;
+				    color: $primary-text-color;
 				    display: block;
 				}
 			}

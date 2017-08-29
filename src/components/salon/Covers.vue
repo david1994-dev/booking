@@ -4,10 +4,13 @@
     <!-- <div v-for="image in images"><img :src="image.url" /></div> -->
     <div><img src="../../assets/images/image-slide.jpg" /></div>
     <div><img src="../../assets/images/image-slide.jpg" /></div>
+    <div><img src="../../assets/images/image-slide.jpg" /></div>
   </slick>
   <div class="control">
-    <div class="prev" ref="prevCover" id="prevCover"></div>
-    <div class="next" ref="nextCover" id="nextCover"></div>
+    <div class="tp-control">
+      <div class="btn prev" id="prevCover"></div>
+      <div class="btn next" id="nextCover"></div>
+    </div>
   </div>
 </div>
 </template>
@@ -31,12 +34,12 @@ export default {
       slickOptions: {
         speed: 300,
         slidesToShow: 1,
-        infinite: true,
+        infinite: false,
         // autoplay: true,
         prevArrow: document.getElementById('prevCover'),
         nextArrow: document.getElementById('nextCover')
-        // prevArrow: this.$refs.prevCover,
-        // nextArrow: this.$refs.nextCover
+        // prevArrow: $('#prevCover'),
+        // nextArrow: $('#nextCover')
       }
     }
   }

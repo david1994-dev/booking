@@ -1,10 +1,13 @@
 <template>
-<div class="stars" :class="ratingClass">
-  <i class="bz-star"></i>
-  <i class="bz-star"></i>
-  <i class="bz-star"></i>
-  <i class="bz-star"></i>
-  <i class="bz-star"></i>
+<div class="stars-number">
+  <div class="stars" v-show="ratingClass" :class="ratingClass">
+    <i class="bz-star"></i>
+    <i class="bz-star"></i>
+    <i class="bz-star"></i>
+    <i class="bz-star"></i>
+    <i class="bz-star"></i>
+  </div>
+  <slot></slot>
 </div>
 </template>
 
@@ -16,7 +19,7 @@ export default {
   },
   computed: {
     ratingClass () {
-      if (!this.rating) {
+      if (this.rating === undefined) {
         return ''
       }
 

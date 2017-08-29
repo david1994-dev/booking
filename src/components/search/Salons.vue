@@ -16,10 +16,9 @@
           <div class="rate">
             <div class="tp-rate">
               <div class="rate-status">Rất tốt</div>
-              <div class="stars-number">
-                <stars v-if="salon.average_rating" :rating="salon.average_rating" />
+              <stars :rating="salon.average_rating">
                 <div class="number">{{ salon.review_count }} Đánh giá</div>
-              </div>
+              </stars>
             </div>
           </div>
         </div>
@@ -39,11 +38,18 @@
         :zoom="14"
         :options="{ mapTypeControl: false, streetViewControl: false }"
         style="width: 100%; height: 100%">
-        <gmap-marker v-for="marker in markers"
+        <!-- <gmap-marker v-for="marker in markers"
           :key="marker.id"
           :position="marker.position"
           :clickable="true"
-        ></gmap-marker>
+        ></gmap-marker> -->
+        <gmap-rich-marker v-for="marker in markers"
+          :key="marker.id"
+          :options="{ flat: true }"
+          :position="marker.position"
+        >
+          <salon-marker :salon="marker.salon" />
+        </gmap-rich-marker>
       </gmap-map>
     </div>
   </div>
@@ -53,17 +59,21 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
 import { merge } from 'lodash'
-// import RichMarker from 'googlemaps-js-rich-marker'
+// import GmapRichMarker from '@/utils/richmarker'
+import GmapRichMarker from '@/components/richmarker'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "search-bundle" */ './Salon')
+const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
 import Stars from '../partials/StarRating'
 
 export default {
   name: 'SearchSalons',
   components: {
     Salon,
+    SalonMarker,
     Stars,
-    InfiniteLoading
+    InfiniteLoading,
+    GmapRichMarker
   },
   mixins: [stickyClassMixin],
   computed: {
@@ -73,9 +83,10 @@ export default {
         if (salon.latitude && salon.longitude) {
           const marker = {
             id: salon.id,
+            salon,
             position: { lat: salon.latitude, lng: salon.longitude }
           }
-          salon.marker = marker
+          // salon.marker = marker
           markers.push(marker)
         }
       })
@@ -126,19 +137,6 @@ export default {
         this.$refs.infiniteLoading.$emit(data.data.length ? '$InfiniteLoading:loaded' : '$InfiniteLoading:complete')
       })
     },
-    // initRichMarker () {
-    //   /* eslint-disable no-undef */
-    //   const marker = new RichMarker.RichMarker({
-    //     position: new google.maps.LatLng(21.00329000, 105.81904500),
-    //     map: this.$refs.map.$mapObject,
-    //     draggable: false,
-    //     flat: true,
-    //     anchor: RichMarker.RichMarkerPosition.BOTTOM,
-    //     content: '<i class="fa fa-star"></i>'
-    //   })
-    //   // marker.setMap(this.$refs.map.$mapObject)
-    //   console.log(marker)
-    // },
     mouseOver (salon) {
       if (salon.marker) {
         // this.center = salon.marker.position

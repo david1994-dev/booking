@@ -21,7 +21,7 @@
       <div class="stylist-c" v-show="cartStylist.id">
         <div class="title-stylist">Stylist</div>
         <div class="wrap">
-          <figure><span class="delete"></span><img :src="cartStylist.avatar_url"></figure>
+          <figure><span class="deletez"></span><img :src="cartStylist.avatar_url"></figure>
           <div class="info">
             <strong>{{ cartStylist.name }}</strong>
             <span>{{ cartStylist.name }}</span>
@@ -31,7 +31,7 @@
 
       <div class="time-c" v-show="bookingDate">
         <strong>Thời gian</strong>
-        <span>9:30 ngày 11 tháng 7</span>
+        <span>{{ bookingDate | dateFormat('H:mm D/MM/YYYY') }}</span>
       </div>
 
       <div class="price-book-c" v-show="cartServices.length">
@@ -51,10 +51,9 @@
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
-        <a class="tp-btn choice-service red" href="#services">Chọn dịch vụ</a>
+        <a class="tp-btn choice-service red" href="#service">Chọn dịch vụ</a>
         <p>Bạn chưa chọn dịch vụ</p>
       </div>
-
     </div>
   </div>
 
