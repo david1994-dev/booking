@@ -6,8 +6,7 @@
 }
 @media screen and (min-width: 480px) {
 	.landing-page {
-		.tricks-beautiful, 
-		.discovery {
+		.tricks-beautiful {
 			.list {
 				margin-left: -10px;
 				margin-right: -10px;
@@ -21,6 +20,17 @@
 			}
 		}
 	}
+	.tp-discovery {
+		margin-left: -10px;
+		margin-right: -10px;
+		@include flex();
+		@include flex-wrap(wrap);
+		.item{
+			width: 50%;
+			padding: 0 10px;
+		}
+	}
+
 	.footer .instagram li {
 		width: 25%;
 	}
@@ -156,9 +166,9 @@
 
     .blogdetail-page {
     	.content-page {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 0 50px;
+		    max-width: 750px;
+		    margin: 0 auto;
+		    padding: 0 25px;
 		}
 		.related .title-related {
 			padding-left: 50px;
@@ -180,9 +190,6 @@
 		}
  	}
 	.landing-page {
-		.discovery .item{
-			width: 33.33%;
-		}
 		.savetime {
 			max-width: 790px;
 			margin-left: auto;
@@ -193,16 +200,24 @@
 			}
 		}
 	}
+
+	.discovery-page {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.tp-discovery .item{
+		width: 33.33%;
+	}
 	.copyright.bottom {
 		display: none;
 	}
-
 	.tp-bigcontainer {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 1250px;
-		padding-left: 40px;
-		padding-right: 40px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    max-width: 1220px;
+	    padding-left: 25px;
+	    padding-right: 25px;
 	}
 
 	.tp-pagetitle {
@@ -333,6 +348,10 @@
 		margin: 0 auto;
 	}
 
+	.wrapper-header .slogan .text {
+		font-weight: 100;
+	}
+
 	.sub-header {
 		.sub-container {
 			max-width: 1220px;
@@ -367,7 +386,7 @@
 			position: absolute;
 			color: #fff;
 			top: 50%;
-			transform: translateY(-50%);
+			@include transform(translateY(-50%));
 			right: 16px;
 			pointer-events: none;
 		}
@@ -444,9 +463,23 @@
 				}
 			}
 		}
-		.discovery .item{
-			width: 25%;
+		.discovery {
+			padding-bottom: 40px;
 		}
+	}
+
+	.discovery-page {
+		background: transparent;
+    	padding: 30px 0 0 0;
+		.tp-bigcontainer {
+			background: #fff;
+		    padding: 40px 60px 40px;
+		    max-width: 1290px;
+		}
+	}
+
+	.tp-discovery .item{
+		width: 25%;
 	}
 
 	.tp-view-more.bottom {
@@ -904,7 +937,7 @@
 			.wrap-stylist,
 			.wrap-times.expand {
 				.scrollup i{
-					transform: rotate(180deg);
+					@include transform(rotate(180deg));
 				}
 			}
 			.scrollup:hover i{
@@ -934,7 +967,7 @@
 			margin: 0 auto;
 			top: 45px;
 			left: 50%;
-			transform: translateX(-50%);
+			@include transform(translateX(-50%));
 		}
 		.content .main-content .menu li:hover {
 		  border-bottom-color: $main-color;

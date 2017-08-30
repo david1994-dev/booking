@@ -40,49 +40,42 @@
   <div class="discovery tp-box">
     <div class="tp-wrap-title">
       <h3 class="tp-title"><strong>Khám phá</strong> các salon</h3>
-      <div class="tp-view-more orange">
-        <a href="#">xem thêm</a>
-      </div>
+      <div class="tp-view-more orange"><a href="#">xem thêm</a></div>
     </div>
     <div class="ofhd">
       <div class="tp-discovery">
         <div class="item">
-          <figure>
-            <a href="#"><img src="../../assets/images/image-salon.jpg"></a>
-          </figure>
+          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
           <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4><span>1.435 đã đặt</span>
+            <h4><a href="">Chăm sóc da</a></h4>
+            <span>1.435 đã đặt</span>
           </div>
         </div>
         <div class="item">
-          <figure>
-            <a href="#"><img src="../../assets/images/image-salon.jpg"></a>
-          </figure>
+          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
           <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4><span>1.435 đã đặt</span>
+            <h4><a href="">Chăm sóc da</a></h4>
+            <span>1.435 đã đặt</span>
           </div>
         </div>
         <div class="item">
-          <figure>
-            <a href="#"><img src="../../assets/images/image-salon.jpg"></a>
-          </figure>
+          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
           <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4><span>1.435 đã đặt</span>
+            <h4><a href="">Chăm sóc da</a></h4>
+            <span>1.435 đã đặt</span>
           </div>
         </div>
         <div class="item">
-          <figure>
-            <a href="#"><img src="../../assets/images/image-salon.jpg"></a>
-          </figure>
+          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
           <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4><span>1.435 đã đặt</span>
+            <h4><a href="">Chăm sóc da</a></h4>
+            <span>1.435 đã đặt</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="tp-view-more bottom orange">
-      <a href="#">xem thêm</a>
-    </div>
+
+    <div class="tp-view-more bottom orange"><a href="#">xem thêm</a></div>
   </div>
 </div>
 </template>
