@@ -41,6 +41,9 @@ export default {
     InfiniteLoading
   },
   mixins: [parseSearchQuery],
+  metaInfo: {
+    title: 'Dịch vụ'
+  },
   mounted () {
     this.setSearchData()
   },
