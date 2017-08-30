@@ -62,6 +62,9 @@ export default {
     InfiniteLoading
   },
   mixins: [parseSearchQuery],
+  metaInfo: {
+    title: 'Stylists'
+  },
   mounted () {
     this.setSearchData()
   },

@@ -2,7 +2,7 @@
 <div>
   <page-header />
   <div class="detail-page">
-    <cover-slider :images="salon.covers" />
+    <cover-slider v-if="salon.id" :images="salon.covers" />
 
     <scrollactive ref="scrollactive"
       class="content"
@@ -20,23 +20,23 @@
         </div>
 
         <div id="about" >
-          <overview :salon="salon"></overview>
+          <overview v-if="salon.id" :salon="salon"></overview>
         </div>
 
         <div id="services">
-          <services :salon="salon"></services>
+          <services v-if="salon.id" :salon="salon"></services>
         </div>
 
         <div id="stylists">
-          <stylists :salon="salon"></stylists>
+          <stylists v-if="salon.id" :salon="salon"></stylists>
         </div>
 
         <div id="images">
-          <gallery :salon="salon"></gallery>
+          <gallery v-if="salon.id" :salon="salon"></gallery>
         </div>
 
         <div id="reviews">
-          <reviews :salon="salon"></reviews>
+          <reviews v-if="salon.id" :salon="salon"></reviews>
         </div>
 
         <div class="map-d" v-if="salon.latitude && salon.longitude">
