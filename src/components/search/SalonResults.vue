@@ -18,16 +18,9 @@
               <div class="rate">
                 <div class="tp-rate">
                   <div class="rate-status">Rất tốt</div>
-                  <div class="stars-number">
-                    <div class="stars">
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                      <i class="bz-star"></i>
-                    </div>
-                    <div class="number">{{ salon.review_count }} Đánh giá</div>
-                  </div>
+                  <stars :rating="salon.average_rating">
+                    <div class="number">{{ salon.rating_count }} Đánh giá</div>
+                  </stars>
                 </div>
               </div>
             </div>
@@ -44,12 +37,16 @@
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
 import { merge } from 'lodash'
+import InfiniteLoading from 'vue-infinite-loading'
+import Stars from '../partials/StarRating'
 
 export default {
   name: 'SalonResults',
-  components: { InfiniteLoading },
+  components: {
+    InfiniteLoading,
+    Stars
+  },
   data () {
     return {
       salons: [],

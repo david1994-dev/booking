@@ -4,8 +4,8 @@
     <div class="title">Có thể bạn quan tâm</div>
     <div class="control">
       <div class="tp-control small">
-        <div class="btn prev" id="prevRelate"></div>
-        <div class="btn next" id="nextRelate"></div>
+        <div class="btn prev" id="prevRelate" @click="prev"></div>
+        <div class="btn next" id="nextRelate" @click="next"></div>
       </div>
     </div>
   </div>
@@ -363,6 +363,14 @@ export default {
           }
         ]
       }
+    }
+  },
+  methods: {
+    next () {
+      this.$refs.slick.next()
+    },
+    prev () {
+      this.$refs.slick.prev()
     }
   }
 }

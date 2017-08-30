@@ -119,7 +119,7 @@ export default {
   methods: {
     fetchSalon () {
       this.$startLoading('fetching salon')
-      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,services.category' } }).then(({ data }) => {
+      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category' } }).then(({ data }) => {
         this.salon = data
         this.$endLoading('fetching salon')
       }).catch(() => this.$endLoading('fetching salon'))

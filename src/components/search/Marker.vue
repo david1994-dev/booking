@@ -1,7 +1,7 @@
 <template>
 <div class="pin public" :class="{ active: popupOpen }">
   <div class="wrapper">
-    <div class="small" @click="popupOpen = !popupOpen">120.000</div>
+    <div class="small" @click="popupOpen = !popupOpen">{{ salon.min_price.price | numberFormat('0,0') }}</div>
     <div class="large">
       <div class="pin-close" @click="popupOpen = false"><i class="bz-close"></i></div>
       <div class="tp-map">

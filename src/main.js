@@ -11,6 +11,7 @@ import { sync } from 'vuex-router-sync'
 import BootstrapVue from 'bootstrap-vue'
 import Scrollactive from 'vue-scrollactive'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VuePreview from 'vue-preview'
 
 Vue.config.productionTip = false
 
@@ -20,6 +21,7 @@ Vue.use(BootstrapVue)
 Vue.use(Scrollactive)
 Vue.use(http, { store, router })
 Vue.use(eventbus)
+Vue.use(VuePreview)
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyC4Lr23cLmL1FNhKbVZepiG6MsXcwNPvVA',

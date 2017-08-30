@@ -4735,6 +4735,10 @@ phantomjs-prebuilt@^2.1.14, phantomjs-prebuilt@^2.1.7:
     request-progress "~2.0.1"
     which "~1.2.10"
 
+photoswipe@^4.1.1:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-4.1.2.tgz#95c20a75cea23b70d6299641cad82e03cae7f797"
+
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -6237,10 +6241,6 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
-uiv@^0.11.8:
-  version "0.11.8"
-  resolved "https://registry.yarnpkg.com/uiv/-/uiv-0.11.8.tgz#1b397189635f7eb5d352c654eeaecb482ea66c2c"
-
 ultron@1.0.x:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.0.2.tgz#ace116ab557cd197386a4e88f4685378c8b2e4fa"
@@ -6429,6 +6429,18 @@ vue-meta@^1.1.0:
     deepmerge "^1.5.0"
     lodash.isplainobject "^4.0.6"
     object-assign "^4.1.1"
+
+vue-photoswipe@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-photoswipe/-/vue-photoswipe-1.0.2.tgz#3f4ec72c5ad036a6e594206a970ffd9a6ce89ad3"
+  dependencies:
+    photoswipe "^4.1.1"
+
+vue-preview@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vue-preview/-/vue-preview-1.0.5.tgz#d503d0b5a0b1f4dc31c0ab996a10d3c3e2b20d44"
+  dependencies:
+    photoswipe "^4.1.1"
 
 vue-router@^2.3.1:
   version "2.7.0"

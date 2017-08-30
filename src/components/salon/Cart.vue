@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        <div class="tp-btn-book btn-book"><i class="bz-book"></i>Đặt lịch hẹn</div>
+        <div class="tp-btn-book btn-book" @click="checkout = true"><i class="bz-book"></i>Đặt lịch hẹn</div>
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
@@ -124,6 +124,19 @@
       </div>
     </div>
   </div>
+
+  <b-modal v-model="checkout"
+    id="modal-booking"
+    :hideHeader="true"
+    :hideFooter="true">
+    <i class="bz-close tp-modal-close" @click="checkout = false"></i>
+    <div class="modal-body-inner">
+      <div class="tp-title-form">Vui lòng nhập số điện thoại</div>
+      <div class="tp-des-form">Hệ thống sẽ gửi mã xác nhận tới số điện thoại này của bạn</div>
+      <input class="tp-text-form" type="type" placeholder="Số điện thoại" />
+      <input class="tp-btn" type="submit" value="Xác nhận đặt lịch">
+    </div>
+  </b-modal>
 </div>
 </template>
 
@@ -146,6 +159,11 @@ export default {
       }, 0)
 
       return `${numeral(total).format('0,0')} VND`
+    }
+  },
+  data () {
+    return {
+      checkout: false
     }
   },
   mounted () {

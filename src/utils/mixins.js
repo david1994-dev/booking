@@ -38,3 +38,19 @@ export const stickyClassMixin = {
     }
   }
 }
+
+export const parseSearchQuery = {
+  methods: {
+    setSearchData () {
+      if (this.$route.query.q) {
+        this.$store.dispatch('setKeyword', this.$route.query.q)
+      }
+      if (this.$route.query.category_id) {
+        this.$store.dispatch('findAndSetService', this.$route.query.category_id)
+      }
+      if (this.$route.query.area_id) {
+        this.$store.dispatch('findAndSetArea', this.$route.query.area_id)
+      }
+    }
+  }
+}

@@ -9,9 +9,9 @@
         <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url" /></router-link>
         </figure>
         <div class="price-rate">
-          <div class="price">
+          <div class="price" v-if="salon.min_price">
             <span>From</span>
-            <strong>324.000 VND</strong>
+            <strong>{{ salon.min_price.formatted_price }}</strong>
           </div>
           <div class="rate">
             <div class="tp-rate">
@@ -80,7 +80,7 @@ export default {
     markers () {
       const markers = []
       this.salons.map(salon => {
-        if (salon.latitude && salon.longitude) {
+        if (salon.latitude && salon.longitude && salon.min_price) {
           const marker = {
             id: salon.id,
             salon,

@@ -1,15 +1,15 @@
 <template>
 <div class="slide">
   <slick class="slide-inner" ref="slick" :options="slickOptions">
-    <!-- <div v-for="image in images"><img :src="image.url" /></div> -->
+    <div v-for="image in images" :key="image.id"><img :src="image.url" /></div>
+    <!-- <div><img src="../../assets/images/image-slide.jpg" /></div>
     <div><img src="../../assets/images/image-slide.jpg" /></div>
-    <div><img src="../../assets/images/image-slide.jpg" /></div>
-    <div><img src="../../assets/images/image-slide.jpg" /></div>
+    <div><img src="../../assets/images/image-slide.jpg" /></div> -->
   </slick>
   <div class="control">
     <div class="tp-control">
-      <div class="btn prev" id="prevCover"></div>
-      <div class="btn next" id="nextCover"></div>
+      <div class="btn prev" id="prevCover" @click="prev"></div>
+      <div class="btn next" id="nextCover" @click="next"></div>
     </div>
   </div>
 </div>
@@ -29,6 +29,11 @@ export default {
   components: {
     Slick
   },
+  watch: {
+    images () {
+      this.$refs.slick.reSlick()
+    }
+  },
   data () {
     return {
       slickOptions: {
@@ -41,6 +46,14 @@ export default {
         // prevArrow: $('#prevCover'),
         // nextArrow: $('#nextCover')
       }
+    }
+  },
+  methods: {
+    next () {
+      this.$refs.slick.next()
+    },
+    prev () {
+      this.$refs.slick.prev()
     }
   }
 }

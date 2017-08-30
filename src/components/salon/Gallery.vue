@@ -1,18 +1,12 @@
 <template>
-<div class="images-d" id="images">
-  <div class="title">336 Hình ảnh</div>
+<div class="images-d" v-if="salon.gallery">
+  <div class="title">{{ salon.gallery.length }} Hình ảnh</div>
   <div class="list">
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item"><img src="../../assets/images/image-instagram.jpg" /></div>
-    <div class="item">
-      <span class="number"><span>+336</span></span>
-      <img src="../../assets/images/image-instagram.jpg" />
+    <div class="item images-more" v-for="(image, index) in items"
+      :key="image.id">
+        <!-- <span class="number">+336</span> -->
+      <img :src="image.thumb" @click="$preview.open(index, items, options)"
+        class="preview-img" />
     </div>
   </div>
 </div>
@@ -26,6 +20,35 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    items () {
+      const items = []
+      this.salon.gallery.map(image => {
+        items.push({
+          id: image.id,
+          w: image.width,
+          h: image.height,
+          src: image.url,
+          msrc: image.template_url.replace('{size}', 'large'),
+          thumb: image.template_url.replace('{size}', 'square128')
+        })
+      })
+
+      return items
+    }
+  },
+  data () {
+    return {
+      options: {
+        fullscreenEl: true,
+        zoomEl: true,
+        shareEl: false
+      }
+    }
+  },
+  methods: {
+    //
   }
 }
 </script>

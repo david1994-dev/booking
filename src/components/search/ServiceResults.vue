@@ -9,15 +9,15 @@
 
     <div class="list">
       <div class="item" v-for="service in services" :key="service.id">
-        <h3><a href="#">{{ service.name }}</a></h3>
+        <h3><router-link :to="{ name: 'search', query: { category_id: service.id } }">{{ service.name }}</router-link></h3>
         <span>830 Salon có dịch vụ</span>
       </div>
     </div>
     <div class="tp-view-all" v-if="hasMore">
-      <a href="#">
+      <router-link :to="{ name: 'services', query: { q: $route.query.q } }">
         <span>View all</span>
         <i class="bz-next"></i>
-      </a>
+      </router-link>
     </div>
   </v-loading>
 </div>

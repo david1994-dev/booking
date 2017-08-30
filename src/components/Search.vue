@@ -8,6 +8,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { parseSearchQuery } from '@/utils/mixins'
 import PageHeader from './layout/Header'
 const Results = () => import(/* webpackChunkName: "search-bundle" */ './search/Results')
 const Salons = () => import(/* webpackChunkName: "search-bundle" */ './search/Salons')
@@ -19,6 +20,7 @@ export default {
     Results,
     Salons
   },
+  mixins: [parseSearchQuery],
   computed: {
     ...mapGetters(['keyword', 'selectedArea']),
     searchByService () {
@@ -36,20 +38,10 @@ export default {
     }
   },
   mounted () {
-    this.parseQueryString()
+    this.setSearchData()
   },
-  methods: {
-    parseQueryString () {
-      if (this.$route.query.q) {
-        this.$store.dispatch('setKeyword', this.$route.query.q)
-      }
-      if (this.$route.query.category_id) {
-        this.$store.dispatch('findAndSetService', this.$route.query.category_id)
-      }
-      if (this.$route.query.area_id) {
-        this.$store.dispatch('findAndSetArea', this.$route.query.area_id)
-      }
-    }
+  watch: {
+    '$route': 'setSearchData'
   }
 }
 </script>

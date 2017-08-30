@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="ofhd">
-      <div class="list">
+      <div class="tp-discovery">
         <div class="item">
           <figure>
             <a href="#"><img src="../../assets/images/image-salon.jpg"></a>
