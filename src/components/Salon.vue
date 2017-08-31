@@ -2,7 +2,7 @@
 <div>
   <page-header />
   <div class="detail-page">
-    <cover-slider v-if="salon.id" :images="salon.covers" />
+    <cover-slider v-if="salon.covers" :images="salon.covers" />
 
     <scrollactive ref="scrollactive"
       class="content"
@@ -53,10 +53,12 @@
         </div>
       </div>
 
-      <cart />
+      <cart v-if="salon.id" :salon="salon" />
     </scrollactive>
     <relate />
   </div>
+
+  <date-time-picker />
 </div>
 </template>
 
@@ -71,6 +73,7 @@ const Gallery = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Gal
 const Reviews = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Reviews')
 const Relate = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Relate')
 const Cart = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Cart')
+const DateTimePicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/DateTimePicker')
 
 export default {
   name: 'Salon',
@@ -83,7 +86,8 @@ export default {
     Gallery,
     Reviews,
     Relate,
-    Cart
+    Cart,
+    DateTimePicker
   },
   mixins: [stickyClassMixin],
   data () {
@@ -110,9 +114,6 @@ export default {
   created () {
     this.fetchSalon()
   },
-  mounted () {
-    this.initSticky()
-  },
   watch: {
     '$route': 'fetchSalon'
   },
@@ -122,6 +123,7 @@ export default {
       this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category' } }).then(({ data }) => {
         this.salon = data
         this.$endLoading('fetching salon')
+        this.initSticky()
       }).catch(() => this.$endLoading('fetching salon'))
     },
     initSticky () {

@@ -105,7 +105,10 @@ export default {
     'cartServices': 'fetchStylists',
     'selectedStylist': 'fetchSlots',
     'selectedDate': 'fetchSlots',
-    'selectedSlot': 'setBookingDate'
+    'selectedSlot': 'setBookingDate',
+    stylists (value) {
+      this.$bus.$emit('serviceStylists', value)
+    }
   },
   methods: {
     fetchStylists () {
@@ -122,7 +125,7 @@ export default {
           this.stylists = data
           this.$endLoading('fetching stylists')
           this.setSelectedStylist()
-        })
+        }).catch(() => this.$endLoading(`fetching stylists`))
       } else {
         this.stylists = []
       }
@@ -140,7 +143,7 @@ export default {
       this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params: { date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
         this.slots = data
         this.$endLoading(`fetching slots`)
-      })
+      }).catch(() => this.$endLoading(`fetching slots`))
     },
     setSelectedStylist () {
       if (this.stylists.length) {

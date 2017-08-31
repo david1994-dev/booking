@@ -328,7 +328,6 @@
             }
         }
         .wrap-book {
-            display: none;
             .title-book {
                 @include flex();
                 @include align-items(center);

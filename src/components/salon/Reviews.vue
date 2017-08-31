@@ -32,7 +32,7 @@
     </div>
   </v-loading>
 
-  <div class="paging">
+  <div class="paging" v-if="reviews.length">
     <paginate
       :click-handler="paginateReviews"
       :page-count="meta.pagination.total_pages"

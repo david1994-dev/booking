@@ -58,15 +58,16 @@
   </div>
 
   <div class="cart-mobile">
-    <div class="no-choice-service">
+    <div class="no-choice-service" v-show="!cartServices.length">
       <a class="tp-btn choice-service red" href="#service">Chọn dịch vụ</a>
       <p>Bạn chưa chọn dịch vụ</p>
     </div>
 
-    <div class="wrap-book">
+    <div class="wrap-book" v-show="cartServices.length"
+      :class="{ active: mobileCheckout }">
       <div class="title-book">
         <span>Đặt lịch</span>
-        <i class="bz-close close"></i>
+        <i @click="mobileCheckout = false" class="bz-close close"></i>
       </div>
 
       <div class="content-book">
@@ -86,25 +87,30 @@
           </div>
           <div class="list-stylist">
             <div class="name">Stylist</div>
-            <div class="list">
-              <div class="item active"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-              <div class="item"><img src="../../assets/images/image-stylist.jpg"></div>
-            </div>
+            <v-loading class="wrap-list" loader="fetching stylists">
+              <template slot="spinner">
+                <div class="text-center">
+                  <v-loading-spinner height="30px" width="30px" />
+                </div>
+              </template>
+
+              <div class="list">
+                <div class="item" v-for="stylist in stylists"
+                  :key="stylist.id"
+                  :class="{ active: cartStylist.id == stylist.id }">
+                  <img :src="stylist.avatar_url">
+                </div>
+              </div>
+            </v-loading>
           </div>
           <div class="choice-time">
             <div class="name">Thời gian</div>
-            <div class="btn-time">Chọn thời gian</div>
+            <div class="btn-time" @click="$bus.$emit('displayDateTimePopup', true)">Chọn thời gian</div>
           </div>
         </div>
 
         <div class="btn-book">
-          <div class="tp-btn-book">
+          <div class="tp-btn-book" @click="mobileCheckout = true">
             <i class="bz-book"></i>Đặt lịch hẹn
           </div>
         </div>
@@ -148,6 +154,12 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Cart',
+  props: {
+    salon: {
+      type: Object,
+      required: true
+    }
+  },
   computed: {
     ...mapGetters(['cartServices', 'cartStylist', 'bookingDate']),
     duration () {
@@ -163,7 +175,18 @@ export default {
   },
   data () {
     return {
-      checkout: false
+      checkout: false,
+      mobileCheckout: false,
+      stylists: [],
+      slots: [],
+      selectedSlot: { label: '' }
+    }
+  },
+  metaInfo () {
+    return {
+      htmlAttrs: {
+        class: this.mobileCheckout ? 'ofhd' : null
+      }
     }
   },
   mounted () {
@@ -172,9 +195,43 @@ export default {
         this.stickyCart()
       }, 1000)
     })
+
+    this.$bus.$on('serviceStylists', stylists => {
+      this.stylists = stylists
+    })
+  },
+  watch: {
+    cartServices (value) {
+      if (!value.length) {
+        this.mobileCheckout = false
+      }
+    }
   },
   methods: {
     ...mapActions(['removeServiceFromCart']),
+    // fetchStylists () {
+    //   this.$store.dispatch('removeStylist')
+    //   this.resetState()
+    //   const services = reduce(this.cartServices, (result, { id }) => {
+    //     result.push(id)
+    //     return result
+    //   }, [])
+
+    //   if (services.length) {
+    //     this.$startLoading('fetching stylists')
+    //     this.$http.get(`salons/${this.salon.id}/stylists`, { params: { services } }).then(({ data }) => {
+    //       this.stylists = data
+    //       this.$endLoading('fetching stylists')
+    //       this.setSelectedStylist()
+    //     })
+    //   } else {
+    //     this.stylists = []
+    //   }
+    // },
+    // resetState () {
+    //   this.slots = []
+    //   this.selectedSlot = { label: '' }
+    // },
     stickyCart () {
       const $cart = $('.detail-page .content .wrap-cart')
       const $cartInner = $('.detail-page .content .cart .inner-cart')
