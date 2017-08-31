@@ -12,24 +12,16 @@
       <div class="list">
         <div class="item" v-for="stylist in stylists"
           :key="stylist.id"
-          :class="{ active: selectedStylist.id == stylist.id }">
-          <figure><a @click="selectedStylist = stylist"><img :src="stylist.avatar_url" /></a></figure>
+          :class="{ active: cartStylist.id == stylist.id }">
+          <figure><a @click="setSelectedStylist(stylist)"><img :src="stylist.avatar_url" /></a></figure>
         </div>
       </div>
     </v-loading>
   </div>
   <div class="times-d"  v-show="stylists.length">
     <div class="title">Chọn thời gian</div>
-    <div class="dates-times" v-show="selectedStylist.id">
-      <div class="tp-datetime">
-        <div class="dates">
-          <div v-for="date in dates"
-            :key="date.id"
-            :class="{ active: date.id == selectedDate.format('YYYY-MM-DD') }"
-            @click="selectedDate = date.date"
-            class="item">{{ date.label }}</div>
-          <div class="item calendar"><i class="bz-calendar-day"></i>calendar</div>
-        </div>
+    <div class="dates-times" v-show="cartStylist.id">
+      <calendar v-model="selectedDate">
         <v-loading loader="fetching slots">
           <template slot="spinner">
             <div class="text-center">
@@ -43,7 +35,7 @@
               @click="selectedSlot = slot">{{ slot.label }}</div>
           </div>
         </v-loading>
-      </div>
+      </calendar>
     </div>
   </div>
 </div>
@@ -53,12 +45,16 @@
 import moment from 'moment'
 import { head, reduce } from 'lodash'
 import { mapGetters } from 'vuex'
+import Calendar from '../partials/Calendar'
 
 const today = moment()
 const DATE_FORMAT = 'YYYY-MM-DD'
 
 export default {
   name: 'SalonStylists',
+  components: {
+    Calendar
+  },
   props: {
     salon: {
       type: Object,
@@ -66,7 +62,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['cartServices']),
+    ...mapGetters(['cartServices', 'cartStylist']),
     dates () {
       const tomorrow = moment().add(1, 'd')
       const next2Days = moment().add(2, 'd')
@@ -93,7 +89,6 @@ export default {
     return {
       stylists: [],
       slots: [],
-      selectedStylist: { id: 0 },
       selectedSlot: { label: '' },
       selectedDate: today
     }
@@ -103,7 +98,7 @@ export default {
   },
   watch: {
     'cartServices': 'fetchStylists',
-    'selectedStylist': 'fetchSlots',
+    'cartStylist': 'fetchSlots',
     'selectedDate': 'fetchSlots',
     'selectedSlot': 'setBookingDate',
     stylists (value) {
@@ -124,7 +119,9 @@ export default {
         this.$http.get(`salons/${this.salon.id}/stylists`, { params: { services } }).then(({ data }) => {
           this.stylists = data
           this.$endLoading('fetching stylists')
-          this.setSelectedStylist()
+          if (this.stylists.length) {
+            this.setSelectedStylist(head(this.stylists))
+          }
         }).catch(() => this.$endLoading(`fetching stylists`))
       } else {
         this.stylists = []
@@ -132,23 +129,14 @@ export default {
     },
     fetchSlots () {
       this.resetState()
-      if (!this.selectedStylist.id) {
-        this.$store.dispatch('removeStylist')
-        return
-      }
-
-      this.$store.dispatch('setStylist', this.selectedStylist)
-
       this.$startLoading(`fetching slots`)
-      this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params: { date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
+      this.$http.get(`stylists/${this.cartStylist.id}/schedule`, { params: { date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
         this.slots = data
         this.$endLoading(`fetching slots`)
       }).catch(() => this.$endLoading(`fetching slots`))
     },
-    setSelectedStylist () {
-      if (this.stylists.length) {
-        this.selectedStylist = head(this.stylists)
-      }
+    setSelectedStylist (stylist) {
+      this.$store.dispatch('setStylist', stylist)
     },
     setBookingDate () {
       let date = null

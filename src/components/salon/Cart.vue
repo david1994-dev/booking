@@ -64,10 +64,10 @@
     </div>
 
     <div class="wrap-book" v-show="cartServices.length"
-      :class="{ active: mobileCheckout }">
+      :class="{ active: mobileCart }">
       <div class="title-book">
         <span>Đặt lịch</span>
-        <i @click="mobileCheckout = false" class="bz-close close"></i>
+        <i @click="mobileCart = false" class="bz-close close"></i>
       </div>
 
       <div class="content-book">
@@ -97,7 +97,8 @@
               <div class="list">
                 <div class="item" v-for="stylist in stylists"
                   :key="stylist.id"
-                  :class="{ active: cartStylist.id == stylist.id }">
+                  :class="{ active: cartStylist.id == stylist.id }"
+                  @click="setStylist(stylist)">
                   <img :src="stylist.avatar_url">
                 </div>
               </div>
@@ -110,7 +111,7 @@
         </div>
 
         <div class="btn-book">
-          <div class="tp-btn-book" @click="mobileCheckout = true">
+          <div class="tp-btn-book" @click="mobileCheckout">
             <i class="bz-book"></i>Đặt lịch hẹn
           </div>
         </div>
@@ -176,7 +177,7 @@ export default {
   data () {
     return {
       checkout: false,
-      mobileCheckout: false,
+      mobileCart: false,
       stylists: [],
       slots: [],
       selectedSlot: { label: '' }
@@ -185,7 +186,7 @@ export default {
   metaInfo () {
     return {
       htmlAttrs: {
-        class: this.mobileCheckout ? 'ofhd' : null
+        class: this.mobileCart ? 'ofhd' : null
       }
     }
   },
@@ -203,35 +204,20 @@ export default {
   watch: {
     cartServices (value) {
       if (!value.length) {
-        this.mobileCheckout = false
+        this.mobileCart = false
       }
     }
   },
   methods: {
-    ...mapActions(['removeServiceFromCart']),
-    // fetchStylists () {
-    //   this.$store.dispatch('removeStylist')
-    //   this.resetState()
-    //   const services = reduce(this.cartServices, (result, { id }) => {
-    //     result.push(id)
-    //     return result
-    //   }, [])
-
-    //   if (services.length) {
-    //     this.$startLoading('fetching stylists')
-    //     this.$http.get(`salons/${this.salon.id}/stylists`, { params: { services } }).then(({ data }) => {
-    //       this.stylists = data
-    //       this.$endLoading('fetching stylists')
-    //       this.setSelectedStylist()
-    //     })
-    //   } else {
-    //     this.stylists = []
-    //   }
-    // },
-    // resetState () {
-    //   this.slots = []
-    //   this.selectedSlot = { label: '' }
-    // },
+    ...mapActions(['removeServiceFromCart', 'setStylist']),
+    mobileCheckout () {
+      if (!this.mobileCart) {
+        this.mobileCart = true
+        this.checkout = false
+      } else {
+        this.checkout = true
+      }
+    },
     stickyCart () {
       const $cart = $('.detail-page .content .wrap-cart')
       const $cartInner = $('.detail-page .content .cart .inner-cart')
