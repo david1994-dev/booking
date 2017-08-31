@@ -12,7 +12,7 @@
         <div class="wrap-menu">
           <ul class="menu">
             <li><a href="#about" class="scrollactive-item">Giới thiệu</a></li>
-            <li><a href="#services" class="scrollactive-item">Dịch vụ</a></li>
+            <li><a href="#services" id="mennu-services" class="scrollactive-item">Dịch vụ</a></li>
             <li><a href="#stylists" class="scrollactive-item">Stylist</a></li>
             <li><a href="#images" class="scrollactive-item">Hình ảnh</a></li>
             <li><a href="#reviews" class="scrollactive-item">Đánh giá</a></li>

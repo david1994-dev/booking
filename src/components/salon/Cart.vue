@@ -51,7 +51,7 @@
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
-        <a class="tp-btn choice-service red" href="#service">Chọn dịch vụ</a>
+        <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">Chọn dịch vụ</a>
         <p>Bạn chưa chọn dịch vụ</p>
       </div>
     </div>
@@ -59,7 +59,7 @@
 
   <div class="cart-mobile">
     <div class="no-choice-service" v-show="!cartServices.length">
-      <a class="tp-btn choice-service red" href="#service">Chọn dịch vụ</a>
+      <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">Chọn dịch vụ</a>
       <p>Bạn chưa chọn dịch vụ</p>
     </div>
 
@@ -217,6 +217,9 @@ export default {
       } else {
         this.checkout = true
       }
+    },
+    scrollToServices () {
+      document.getElementById('mennu-services').click()
     },
     stickyCart () {
       const $cart = $('.detail-page .content .wrap-cart')
