@@ -43,6 +43,8 @@ export default {
       required: true
     }
   },
-  components: { Stars }
+  components: {
+    Stars
+  }
 }
 </script>

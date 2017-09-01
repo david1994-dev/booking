@@ -31,6 +31,7 @@
 
           <div class="times">
             <div v-for="slot in slots" class="item"
+              v-if="slot.status == 'available'"
               :class="{ active: selectedSlot.label == slot.label }"
               @click="selectedSlot = slot">{{ slot.label }}</div>
           </div>
@@ -52,14 +53,14 @@ const DATE_FORMAT = 'YYYY-MM-DD'
 
 export default {
   name: 'SalonStylists',
-  components: {
-    Calendar
-  },
   props: {
     salon: {
       type: Object,
       required: true
     }
+  },
+  components: {
+    Calendar
   },
   computed: {
     ...mapGetters(['cartServices', 'cartStylist']),
@@ -107,7 +108,7 @@ export default {
   },
   methods: {
     fetchStylists () {
-      this.$store.dispatch('removeStylist')
+      this.$store.dispatch('setStylist', {})
       this.resetState()
       const services = reduce(this.cartServices, (result, { id }) => {
         result.push(id)
@@ -129,6 +130,10 @@ export default {
     },
     fetchSlots () {
       this.resetState()
+      if (!this.cartStylist.id) {
+        return
+      }
+
       this.$startLoading(`fetching slots`)
       this.$http.get(`stylists/${this.cartStylist.id}/schedule`, { params: { date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
         this.slots = data

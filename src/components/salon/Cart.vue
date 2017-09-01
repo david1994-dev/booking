@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        <div class="tp-btn-book btn-book" @click="checkout = true"><i class="bz-book"></i>Đặt lịch hẹn</div>
+        <div class="tp-btn-book btn-book" @click="checkout"><i class="bz-book"></i>Đặt lịch hẹn</div>
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
@@ -132,17 +132,12 @@
     </div>
   </div>
 
-  <b-modal v-model="checkout"
+  <b-modal v-model="checkoutModal"
     id="modal-booking"
     :hideHeader="true"
     :hideFooter="true">
-    <i class="bz-close tp-modal-close" @click="checkout = false"></i>
-    <div class="modal-body-inner">
-      <div class="tp-title-form">Vui lòng nhập số điện thoại</div>
-      <div class="tp-des-form">Hệ thống sẽ gửi mã xác nhận tới số điện thoại này của bạn</div>
-      <input class="tp-text-form" type="type" placeholder="Số điện thoại" />
-      <input class="tp-btn" type="submit" value="Xác nhận đặt lịch">
-    </div>
+    <i class="bz-close tp-modal-close" @click="checkoutModal = false"></i>
+    <auth-modal />
   </b-modal>
 </div>
 </template>
@@ -152,9 +147,13 @@ import $ from 'jquery'
 import { reduce, sumBy } from 'lodash'
 import { default as numeral } from 'numeral'
 import { mapActions, mapGetters } from 'vuex'
+import AuthModal from '../partials/AuthModal'
 
 export default {
   name: 'Cart',
+  components: {
+    AuthModal
+  },
   props: {
     salon: {
       type: Object,
@@ -172,11 +171,14 @@ export default {
       }, 0)
 
       return `${numeral(total).format('0,0')} VND`
+    },
+    canCheckout () {
+      return (this.cartServices.length && this.cartStylist.id && this.bookingDate)
     }
   },
   data () {
     return {
-      checkout: false,
+      checkoutModal: false,
       mobileCart: false,
       stylists: [],
       slots: [],
@@ -210,12 +212,17 @@ export default {
   },
   methods: {
     ...mapActions(['removeServiceFromCart', 'setStylist']),
+    checkout () {
+      if (this.canCheckout) {
+        this.checkoutModal = true
+      }
+    },
     mobileCheckout () {
       if (!this.mobileCart) {
         this.mobileCart = true
-        this.checkout = false
+        this.checkoutModal = false
       } else {
-        this.checkout = true
+        this.checkout()
       }
     },
     scrollToServices () {

@@ -18,8 +18,9 @@
 
             <div class="times">
               <div class="item" v-for="slot in slots"
+                v-if="slot.status == 'available'"
                 :class="{ active: selectedSlot.label == slot.label }"
-                @click="selectedSlot = slot">{{ slot.label }}</div>
+                @click="setBookingDate(slot)">{{ slot.label }}</div>
             </div>
           </v-loading>
         </calendar>
@@ -86,7 +87,6 @@ export default {
   },
   watch: {
     'date': 'fetchSlots',
-    'selectedSlot': 'setBookingDate',
     cartStylist (value) {
       if (value.id) {
         this.date = moment()
@@ -108,12 +108,13 @@ export default {
         this.$endLoading(`fetching slots`)
       }).catch(() => this.$endLoading(`fetching slots`))
     },
-    setBookingDate () {
+    setBookingDate (slot) {
       let date = null
-      if (this.selectedSlot.start) {
-        date = moment(this.selectedSlot.start)
+      if (slot.start) {
+        date = moment(slot.start)
       }
 
+      this.active = false
       this.$store.dispatch('setBookingDate', date)
     }
   }

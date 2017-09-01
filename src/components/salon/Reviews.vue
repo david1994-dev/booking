@@ -72,24 +72,26 @@ export default {
       paginate: ['reviews']
     }
   },
-  beforeRouteUpdate (to, from, next) {
-    this.fetchData({}, ({ data }) => {
-      this.reviews = data.data
-      this.meta = data.meta
-    })
-  },
   mounted () {
     this.fetchData({}, ({ data }) => {
       this.reviews = data.data
       this.meta = data.meta
     })
   },
+  watch: {
+    salon () {
+      this.fetchData({}, ({ data }) => {
+        this.reviews = data.data
+        this.meta = data.meta
+      })
+    }
+  },
   methods: {
     fetchData (query, cb, errCb) {
       let params = merge(query, params)
       params._meta = 1
       this.$startLoading('fetching reviews')
-      this.$http.get(`salons/${this.$route.params.id}/reviews`, { params })
+      this.$http.get(`salons/${this.salon.id}/reviews`, { params })
         .then(response => {
           this.$endLoading('fetching reviews')
           cb(response)

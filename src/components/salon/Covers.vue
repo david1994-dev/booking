@@ -1,10 +1,8 @@
 <template>
 <div class="slide">
-  <slick class="slide-inner" ref="slick" :options="slickOptions">
-    <div v-for="image in images" :key="image.id"><img :src="image.url" /></div>
-    <!-- <div><img src="../../assets/images/image-slide.jpg" /></div>
-    <div><img src="../../assets/images/image-slide.jpg" /></div>
-    <div><img src="../../assets/images/image-slide.jpg" /></div> -->
+  <slick class="slide-inner" ref="slick" @init="$bus.$emit('coverSliderInit')" :options="slickOptions">
+    <div v-for="image in photos"
+      :key="image.id"><img :src="image.url" /></div>
   </slick>
   <div class="control">
     <div class="tp-control">
@@ -17,34 +15,50 @@
 
 <script>
 import Slick from 'vue-slick'
+const IMAGES = [{
+  id: -1,
+  url: require('../../assets/images/image-slide.jpg')
+}]
 
 export default {
   name: 'SalonCovers',
   props: {
     images: {
       type: Array,
-      default () { return [] }
+      default () { return IMAGES }
     }
   },
   components: {
     Slick
   },
+  beforeUpdate () {
+    if (this.$refs.slick) {
+      this.$refs.slick.destroy()
+    }
+  },
+  updated () {
+    if (this.$refs.slick && !this.$refs.slick.$el.classList.contains('slick-initialized')) {
+      this.$refs.slick.create()
+    }
+  },
   watch: {
-    images () {
-      this.$refs.slick.reSlick()
+    images (value) {
+      if (!value.length) {
+        this.photos = IMAGES
+      } else {
+        this.photos = value
+      }
     }
   },
   data () {
     return {
+      photos: this.images.length ? this.images : IMAGES,
       slickOptions: {
         speed: 300,
         slidesToShow: 1,
-        infinite: false,
         // autoplay: true,
         prevArrow: document.getElementById('prevCover'),
         nextArrow: document.getElementById('nextCover')
-        // prevArrow: $('#prevCover'),
-        // nextArrow: $('#nextCover')
       }
     }
   },

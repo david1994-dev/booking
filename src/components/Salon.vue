@@ -55,7 +55,7 @@
 
       <cart v-if="salon.id" :salon="salon" />
     </scrollactive>
-    <relate />
+    <related v-if="salon.id" :salon="salon" />
   </div>
 
   <date-time-picker />
@@ -71,7 +71,7 @@ const Services = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Se
 const Stylists = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Stylists')
 const Gallery = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Gallery')
 const Reviews = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Reviews')
-const Relate = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Relate')
+const Related = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Related')
 const Cart = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Cart')
 const DateTimePicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/DateTimePicker')
 
@@ -85,7 +85,7 @@ export default {
     Stylists,
     Gallery,
     Reviews,
-    Relate,
+    Related,
     Cart,
     DateTimePicker
   },
@@ -122,8 +122,9 @@ export default {
       this.$startLoading('fetching salon')
       this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category' } }).then(({ data }) => {
         this.salon = data
+        this.$store.dispatch('setSalon', data)
         this.$endLoading('fetching salon')
-        this.initSticky()
+        this.$bus.$on('coverSliderInit', () => this.initSticky())
       }).catch(() => this.$endLoading('fetching salon'))
     },
     initSticky () {

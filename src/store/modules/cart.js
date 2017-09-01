@@ -1,12 +1,14 @@
 import * as types from '../mutation-types'
 
 const state = {
+  salon: {},
   services: [],
   stylist: {},
   date: null
 }
 
 const getters = {
+  cartSalon: state => state.salon,
   cartServices: state => state.services,
   cartStylist: state => state.stylist,
   bookingDate: state => state.date
@@ -21,12 +23,12 @@ const actions = {
     commit(types.REMOVE_SERVICE_FROM_CART, service)
   },
 
-  setStylist ({ commit }, stylist) {
-    commit(types.SET_STYLIST_TO_CART, stylist)
+  setSalon ({ commit }, salon) {
+    commit(types.SET_SALON_TO_CART, salon)
   },
 
-  removeStylist ({ commit }) {
-    commit(types.REMOVE_STYLIST_FROM_CART)
+  setStylist ({ commit }, stylist) {
+    commit(types.SET_STYLIST_TO_CART, stylist)
   },
 
   setBookingDate ({ commit }, date) {
@@ -34,7 +36,11 @@ const actions = {
   },
 
   clearCart ({ commit }) {
-    commit(types.CLEAR_CART)
+    commit(types.CLEAR_CART, true)
+  },
+
+  emptyCart ({ commit }) {
+    commit(types.CLEAR_CART, false)
   }
 }
 
@@ -53,19 +59,22 @@ const mutations = {
     }
   },
 
-  [types.SET_STYLIST_TO_CART] (state, stylist) {
-    state.stylist = stylist
+  [types.SET_SALON_TO_CART] (state, salon) {
+    state.salon = salon
   },
 
-  [types.REMOVE_STYLIST_FROM_CART] (state) {
-    state.stylist = {}
+  [types.SET_STYLIST_TO_CART] (state, stylist) {
+    state.stylist = stylist
   },
 
   [types.SET_BOOKING_DATE] (state, date) {
     state.date = date
   },
 
-  [types.CLEAR_CART] (state) {
+  [types.CLEAR_CART] (state, clearSalon) {
+    if (clearSalon) {
+      state.salon = {}
+    }
     state.services = []
     state.stylist = {}
     state.date = null
