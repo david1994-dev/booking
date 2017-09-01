@@ -2,7 +2,7 @@
 <ul ref="suggestionResults">
   <li>
     <a href="#">Dịch vụ</a>
-    <ul v-show="!services.length">
+    <ul v-show="!services.length && !keyword">
       <li v-for="category in categories">
         <a class="pointer">{{ category.name }}</a>
         <ul v-if="category.children.length">
