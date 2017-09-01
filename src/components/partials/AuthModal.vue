@@ -74,6 +74,7 @@ export default {
     this.$root.$on('hidden::modal', modal => {
       if (modal === 'modal-booking') {
         this.step = 'init'
+        this.resetState()
       }
     })
   },
@@ -98,7 +99,9 @@ export default {
       this.$startLoading('booking')
       this.$http.post(`salons/${this.cartSalon.id}/book`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data }) => {
         this.$endLoading('booking')
-        this.success()
+        this.resetState()
+        this.$store.dispatch('emptyCart')
+        this.step = 'success'
       }).catch(({ response }) => {
         this.$endLoading('booking')
         if (response.status === 404) {
@@ -130,14 +133,12 @@ export default {
         this.step = 'verification'
       })
     },
-    success () {
-      this.step = 'success'
+    resetState () {
       this.phone = ''
       this.email = ''
       this.name = ''
       this.code = ''
       this.token = ''
-      this.$store.dispatch('emptyCart')
     }
   }
 }

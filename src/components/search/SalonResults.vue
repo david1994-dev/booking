@@ -17,7 +17,7 @@
               </div>
               <div class="rate">
                 <div class="tp-rate">
-                  <div class="rate-status">Rất tốt</div>
+                  <div class="rate-status">{{ salon.rating_summary }}</div>
                   <stars :rating="salon.average_rating">
                     <div class="number">{{ salon.rating_count }} Đánh giá</div>
                   </stars>

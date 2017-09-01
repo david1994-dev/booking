@@ -1,0 +1,83 @@
+.review-page {
+	background: #fff;
+	.content-page {
+		padding: 25px;
+	}
+	.booking-info {
+		width: 340px;
+		margin-right: 30px;
+		.booking-title {
+			font-size: 30px;
+			margin-bottom: 30px;
+		}
+		.info {
+			margin-bottom: 30px;
+			.item {
+				@include flex();
+				@include align-items(center);
+				margin-bottom: 20px;
+			}
+			.icon {
+				font-size: 30px;
+				color: $main-color;
+				margin-right: 20px;
+				width: 42px;
+				text-align: center;
+				i {
+					display: block;
+				}
+			}
+			.name-value {
+				@include flex-grow("1 0");
+			}
+			.name {
+				font-size: 15px;
+				margin-bottom: 3px;
+			}
+			.value {
+				font-size: 13px;
+				color: $primary-text-color;
+			}
+		}
+	}
+	.wrap-form {
+		@include flex-grow("1 0");
+		.title-form {
+			font-size: 17px;
+			margin-bottom: 15px;
+		}
+		.detail-form {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+		form {
+			.name-email {}
+			.txt-field {
+				border: 1px solid $border-color;
+				border-radius: 4px;
+				margin: 0 0 10px 0;
+				padding: 10px 13px;
+				font-weight: 300;
+				font-size: 15px;
+				display: block;
+				width: 100%;
+				outline: none;
+			}
+			.stars-review{
+				margin-bottom: 20px;
+				.bz-star{
+					font-size: 40px;
+					color: #e6e6e6;
+				}
+				.bz-star.active{
+					color: $main-color;
+				}
+			}
+			.tae-field, .btn-submit {}
+			.btn-submit {
+				width: auto;
+    			padding: 0 30px;
+			}
+		}
+	}
+}

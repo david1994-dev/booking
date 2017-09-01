@@ -1,6 +1,10 @@
 <template>
 <div class="searchsalon-page">
   <div class="box-salons">
+    <div class="salons-result" v-show="!$isLoading('fetching salons')">
+      Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ keyword }}</strong><span v-if="selectedArea.name"> tại <strong>{{ selectedArea.name }}</strong></span>.
+    </div>
+
     <div class="tp-salon" v-for="salon in salons"
       :key="salon.id"
       @mouseover="mouseOver(salon)"
@@ -15,7 +19,7 @@
           </div>
           <div class="rate">
             <div class="tp-rate">
-              <div class="rate-status">Rất tốt</div>
+              <div class="rate-status">{{ salon.rating_summary }}</div>
               <stars :rating="salon.average_rating">
                 <div class="number">{{ salon.review_count }} Đánh giá</div>
               </stars>
@@ -57,9 +61,9 @@
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
 import { merge } from 'lodash'
-// import GmapRichMarker from '@/utils/richmarker'
+import { mapGetters } from 'vuex'
+import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '@/components/RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "search-bundle" */ './Salon')
@@ -77,6 +81,7 @@ export default {
   },
   mixins: [stickyClassMixin],
   computed: {
+    ...mapGetters(['keyword', 'selectedArea']),
     markers () {
       const markers = []
       this.salons.map(salon => {
@@ -100,7 +105,9 @@ export default {
       salons: [],
       meta: {
         pagination: {
-          current_page: 0
+          current_page: 0,
+          total: 0,
+          total_pages: 0
         }
       }
     }
@@ -123,12 +130,19 @@ export default {
   },
   methods: {
     fetchData (query, cb, errCb) {
+      this.$startLoading('fetching salons')
       let params = this.$route.query
       params._meta = 1
       params = merge(query, params)
       this.$http.get('search', { params })
-        .then(response => cb(response))
-        .catch(error => errCb ? errCb(error) : null)
+        .then(response => {
+          this.$endLoading('fetching salons')
+          cb(response)
+        })
+        .catch(error => {
+          this.$endLoading('fetching salons')
+          errCb ? errCb(error) : null
+        })
     },
     onInfinite () {
       this.fetchData({ page: parseInt(this.meta.pagination.current_page) + 1 }, ({ data }) => {

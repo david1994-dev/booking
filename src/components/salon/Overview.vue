@@ -6,7 +6,7 @@
   </div>
   <div class="rate">
     <div class="tp-rate">
-      <stars v-if="salon.average_rating" :rating="salon.average_rating">
+      <stars :rating="salon.average_rating">
         <div class="number">{{ salon.review_count }} Đánh giá</div>
       </stars>
     </div>

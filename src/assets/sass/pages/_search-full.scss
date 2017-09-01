@@ -65,7 +65,6 @@
 		.list {
 		    @include flex-grow("1 0");
 		    @include flex();
-		    @include align-items(center);
 		}
 		.item {
 			width: calc(25% - 20px);

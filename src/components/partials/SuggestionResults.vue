@@ -4,9 +4,9 @@
     <a href="#">Dịch vụ</a>
     <ul v-show="!services.length">
       <li v-for="category in categories">
-        <a href="#">{{ category.name }}</a>
+        <a class="pointer">{{ category.name }}</a>
         <ul v-if="category.children.length">
-          <li v-for="service in category.children"><a @click="setSelectedService(service)">{{ service.name }}</a></li>
+          <li v-for="service in category.children"><a class="pointer" @click="setSelectedService(service)">{{ service.name }}</a></li>
         </ul>
       </li>
     </ul>

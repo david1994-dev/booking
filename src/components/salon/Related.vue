@@ -23,8 +23,8 @@
               </div>
               <div class="rate">
                 <div class="tp-rate">
-                  <div class="rate-status">Rất tốt</div>
-                  <stars v-if="salon.average_rating" :rating="salon.average_rating">
+                  <div class="rate-status">{{ salon.rating_summary }}</div>
+                  <stars :rating="salon.average_rating">
                     <div class="number">{{ salon.review_count }} Đánh giá</div>
                   </stars>
                 </div>

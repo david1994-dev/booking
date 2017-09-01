@@ -323,6 +323,34 @@
 			}
 		}
 	}
+	.review-page {
+		background: transparent;
+		.content-page {
+			@include flex();
+			background: #fff;
+			padding: 50px;
+		}
+		.wrap-form {
+			.title-form {
+				font-size: 30px;
+				margin-bottom: 30px;
+			}
+			form {
+				.txt-field {
+					margin-bottom: 24px;
+				}
+				.name-email {
+					@include flex();
+					margin: 0 -12px;
+					margin-bottom: 24px;
+					input {
+						@include flex-grow("1 0");
+						margin: 0 12px;
+					}
+				}
+			}
+		}
+	}
 }
 @media screen and (min-width: 800px) {
 	.wrapper-header .search {
@@ -531,11 +559,11 @@
 			max-width: 1050px;
 			margin: -135px auto 0;
 			@include flex();
-			padding: 0 50px 50px;
+			padding: 0 50px 0;
 			position: relative;
 			z-index: 1;
 			.main-content {
-				padding-bottom: 0;
+				padding-bottom: 50px;
 				.menu {
 					@include justify-content(normal);
 					li {
@@ -670,27 +698,33 @@
 				display: block;
 				width: 335px;
 				@include flex-grow("1 0 auto");
-				margin: 25px 0 0 30px;
+			    margin: 0 0 25px 30px;
 			    &.fixed {
-			    	.inner-cart {
+			    	.cart {
 			    		position: fixed;
-					    top: 25px;
 					    width: 335px;
+					    top: 0;
 			    	}
 			    	&.fixed_bottom {
 			    		position: relative;
-			    		.inner-cart {
+			    		.cart {
 			    			bottom: 0;
-			    			top: auto;
+			    			top: auto !important;
 			    			position: absolute;
 			    		}
 			    	}
 			    }
 			    .cart {
+			    	&:before,
+			    	&:after {
+			    		content: '';
+					    display: table;
+					    clear: both;
+			    	}
 					display: block;
 				    .inner-cart {
 			    		border: 1px solid $border-color;
-			    		background: #fff;
+			    		margin: 25px 0;
 			    	}
 					.service-c {
 						padding: 20px 25px 10px;
@@ -832,6 +866,9 @@
 		.box-salons {
 			width: 770px;
 			margin: 30px 30px 0;
+			.salons-result {
+				padding: 0 0 25px 0;
+			}
 		}
 	}
 	.tp-salon {
@@ -981,23 +1018,26 @@
 
 @media screen and (max-width: 768px) {
 	.wrapper-header {
-		.tp-search-result ul ul ul {
-			position: static;
+		.tp-search-result ul ul ul,
+		.tp-search-result-2 ul ul {
 		    display: block;
+			position: static;
 		    box-shadow: none;
 		    width: auto;
 		    margin-left: 20px;
 		    padding: 0;
 	        font-size: 13px;
 		}
-		.tp-search-result-2 ul ul {
-		    display: block;
-		    position: static;
-		    box-shadow: none;
-		    width: auto;
-		    margin-left: 20px;
-		    padding: 0;
-	        font-size: 13px;
+		.tp-search-result ul ul,
+		.tp-search-result-2 {
+			li {
+				&:hover > a {
+				    background: transparent;
+				}
+				a:hover {
+					background: #EDF1F4;
+				}
+			}
 		}
 	}
 }
