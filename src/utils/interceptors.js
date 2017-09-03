@@ -10,9 +10,9 @@ export default (http, store, router) => {
     (error) => {
       const { response } = error
 
-      if ([401, 400].indexOf(response.status) > -1) {
-        store.dispatch('logout').then(() => router.push({ name: 'login' }))
-      }
+      // if ([401].indexOf(response.status) > -1) {
+      //   store.dispatch('logout').then(() => router.push({ name: 'login' }))
+      // }
 
       store.dispatch('setError', response.data)
 

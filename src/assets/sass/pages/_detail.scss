@@ -4,6 +4,7 @@
     .slide {
         position: relative;
         .control {
+            display: none;
             position: absolute;
             top: 25px;
             left: 25px;
@@ -13,6 +14,29 @@
                 color: rgba(255, 255, 255, 0.5);
             }
         }
+        .slide-inner > div:not(:first-child) {
+            display:none;
+        }
+        .slide-inner {
+            min-height: 100px;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                background-color: #bbb;
+                border-radius: 50%;
+                -webkit-animation: linear loading-wave-dots-2 2.8s infinite;
+                animation: linear loading-wave-dots-2 2.8s infinite;
+            }
+        }
+
+        .slide-inner.slick-initialized + .control {
+            display: block;
+        }
+
     }
     .content {
         padding: 0 25px;

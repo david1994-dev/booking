@@ -268,6 +268,96 @@ export default {
 
       scrollHandler()
     }
+    // stickyCart () {
+    //   const $wrapper = $('.detail-page .content .wrap-cart')
+    //   const $cart = $('.detail-page .content .cart')
+    //   const $window = $(window)
+
+    //   if (!$wrapper.length) {
+    //     return
+    //   }
+
+    //   let lastScrollTop = 0
+    //   let fixScroll = 0
+    //   let setMarginTop = 0
+
+    //   const frameHandler = () => {
+    //     if ($window.width() <= 1050) {
+    //       $wrapper.removeClass('fixed')
+    //       $cart.css('top', '')
+    //       return
+    //     }
+
+    //     const offsetTop = parseInt($wrapper.offset().top)
+    //     const scrollTop = parseInt($window.scrollTop())
+
+    //     if (scrollTop > offsetTop) {
+    //       const broswerHeight = $window.height()
+    //       const cartTop = parseInt($cart.offset().top)
+    //       const cartHeight = parseInt($cart.height())
+    //       const cartBottom = cartTop + cartHeight
+    //       const wrapperBottom = offsetTop + $wrapper.height()
+    //       const hiddenHeight = cartHeight - broswerHeight
+
+    //       if (cartBottom >= wrapperBottom) {
+    //         if (scrollTop < cartTop) {
+    //           $wrapper.removeClass('fixed_bottom')
+    //           $cart.css('top', '')
+
+    //           setMarginTop = 0
+    //           fixScroll = 0
+    //         } else {
+    //           $wrapper.addClass('fixed_bottom')
+    //           $cart.css('top', '')
+    //         }
+    //       } else {
+    //         $wrapper.removeClass('fixed_bottom')
+
+    //         if (cartHeight > broswerHeight) {
+    //           if (!fixScroll) {
+    //             fixScroll = scrollTop
+    //           }
+
+    //           if (scrollTop >= lastScrollTop) { // Down
+    //             if (setMarginTop < hiddenHeight) {
+    //               setMarginTop = scrollTop - fixScroll
+    //             } else {
+    //               setMarginTop = hiddenHeight
+    //             }
+    //           } else { // Up
+    //             if (setMarginTop < hiddenHeight) {
+    //               setMarginTop = scrollTop - fixScroll
+    //             } else {
+    //               setMarginTop = hiddenHeight
+    //             }
+
+    //             if (-setMarginTop >= 0) {
+    //               setMarginTop = 0
+    //               fixScroll = 0
+    //             } else if (setMarginTop === hiddenHeight) {
+    //               setMarginTop -= 1
+    //               fixScroll = scrollTop - hiddenHeight
+    //             }
+    //           }
+    //           $cart.css('top', -setMarginTop)
+    //         }
+    //       }
+    //     } else {
+    //       $wrapper.removeClass('fixed fixed_bottom')
+    //       $cart.css('top', '')
+    //     }
+    //   }
+    //   const scrollHandler = () => {
+    //     requestAnimationFrame(frameHandler)
+    //   }
+
+    //   $window.scroll(scrollHandler)
+
+    //   scrollHandler()
+    //   // $window.on('load', () => {
+    //   //   scrollHandler()
+    //   // })
+    // }
   }
 }
 </script>

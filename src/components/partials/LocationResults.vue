@@ -4,10 +4,10 @@
     <a href="#">Vị trí hiện tại</a>
   </li>
   <li v-for="city in locations">
-    <a href="#">{{ city.name }}</a>
+    <a class="pointer">{{ city.name }}</a>
     <ul>
       <li v-for="area in city.areas">
-        <a @click="setSelectedArea(area)">{{ area.name }}</a>
+        <a class="pointer" @click="setSelectedArea(area)">{{ area.name }}</a>
       </li>
     </ul>
   </li>

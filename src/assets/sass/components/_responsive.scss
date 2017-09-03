@@ -36,6 +36,9 @@
 	}
 
 	.detail-page {
+		.slide .slide-inner {
+			min-height: 200px;
+		}
 		.images-d .list .item {
 		  width: calc(25% - 14px);
 		}
@@ -98,7 +101,6 @@
 			}
 		}
 	}
-
 	.footer .instagram li {
 		width: 20%;
 	}
@@ -145,10 +147,14 @@
 			}
 		}
 	}
-	.detail-page .images-d .list .item {
-	  width: calc(20% - 14px);
+	.detail-page {
+		.slide .slide-inner {
+			min-height: 250px;
+		}
+		.images-d .list .item {
+	 		width: calc(20% - 14px);
+		}
 	}
-
     .service-page {
         background: transparent;
         .services {
@@ -194,13 +200,12 @@
 			max-width: 790px;
 			margin-left: auto;
 			margin-right: auto;
-			figure{
+			figure {
 				width: 270px;
 				margin-right: 55px;
 			}
 		}
 	}
-
 	.discovery-page {
 		padding-left: 0;
 		padding-right: 0;
@@ -263,11 +268,14 @@
 			@include flex-direction(column);
 		}
 	}
-
-	.detail-page .images-d .list .item {
-	  width: calc(16.66% - 14px);
+	.detail-page {
+		.slide .slide-inner {
+		    min-height: 320px;
+		}
+		.images-d .list .item {
+	 		width: calc(16.66% - 14px);
+		}
 	}
-
     .stylists-page .stylists {
 		.stylist-item {
 	        @include flex();
@@ -357,6 +365,9 @@
     	max-width: 830px;
     	margin: 0 auto;
  	}
+	.detail-page .slide .slide-inner {
+	    min-height: 340px;
+	}
  	.landing-page .tricks-beautiful .item {
 		width: 33.33%;
 	}
@@ -432,7 +443,6 @@
 			color: $main-color;
 		}
 	}
-
 	.footer {
 		.links {
 			width: 120px;
@@ -444,8 +454,13 @@
 	.searchfull-page .salons .item {
 		width: calc(33.33% - 30px);
 	}
-	.detail-page .images-d .list .item {
-	  width: calc(14.28% - 14px);
+	.detail-page {
+		.images-d .list .item {
+		  width: calc(14.28% - 14px);
+		}
+		.slide .slide-inner {
+	        min-height: 420px;
+		}
 	}
     .service-page .service-item{
         width: calc(33.33% - 30px);
@@ -469,7 +484,6 @@
 	.tp-container.landing-page {
 		margin-top: -100px;
 	}
-
 	.landing-page {
 		.tp-box .wrap-title {
 			@include flex();
@@ -495,7 +509,6 @@
 			padding-bottom: 40px;
 		}
 	}
-
 	.discovery-page {
 		background: transparent;
     	padding: 30px 0 0 0;
@@ -505,18 +518,15 @@
 		    max-width: 1290px;
 		}
 	}
-
 	.tp-discovery .item{
 		width: 25%;
 	}
-
 	.tp-view-more.bottom {
 		display: none;
 	}
 	.footer .tp-container {
 		padding: 110px 60px;
 	}
-
 	.searchfull-page .salons {
 		padding: 40px 0;
 		.sub-container {
@@ -543,7 +553,6 @@
 			}
 		}
 	}
-
 	.detail-page {
 		background: transparent;
 		padding-bottom: 30px;
@@ -553,6 +562,12 @@
 		.stylist-d,
 		.times-d {
 		  display: block;
+		}
+		.slide .slide-inner {
+	        min-height: 460px;
+	        &:before {
+        	    top: calc(50% - 67px);
+	        }
 		}
 		.content {
 			background: #fff;
@@ -693,7 +708,6 @@
 					}
 				}
 			}
-
 			.wrap-cart {
 				display: block;
 				width: 335px;
@@ -725,6 +739,7 @@
 				    .inner-cart {
 			    		border: 1px solid $border-color;
 			    		margin: 25px 0;
+			    		background: #fff;
 			    	}
 					.service-c {
 						padding: 20px 25px 10px;
@@ -822,10 +837,7 @@
 						}
 					}
 			    }
-
 			}
-
-
 		}
 	    .related {
     	    margin: 0 30px;
@@ -842,7 +854,6 @@
 	    	}
 	    }
 	}
-
     .blogdetail-page {
         .related .title-related {
             padding-top: 42px;
@@ -855,7 +866,6 @@
             margin: 0 30px;
         }
     }
-
 }
 
 @media screen and (min-width: 1200px) {
@@ -999,12 +1009,17 @@
 	}
 
 	.detail-page {
-		.slide .control {
-			width: 1180px;
-			margin: 0 auto;
-			top: 45px;
-			left: 50%;
-			@include transform(translateX(-50%));
+		.slide {
+			.control {
+				width: 1180px;
+				margin: 0 auto;
+				top: 45px;
+				left: 50%;
+				@include transform(translateX(-50%));
+			}
+			.slide-inner {
+		        min-height: 530px;
+			}
 		}
 		.content .main-content .menu li:hover {
 		  border-bottom-color: $main-color;

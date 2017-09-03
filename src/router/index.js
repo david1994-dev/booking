@@ -8,6 +8,7 @@ import Search from '@/components/Search'
 import Services from '@/components/Services'
 import Stylists from '@/components/Stylists'
 import Salon from '@/components/Salon'
+import Review from '@/components/Review'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -40,6 +41,11 @@ export default new Router({
       path: '/salon/:id',
       name: 'salon',
       component: Salon
+    },
+    {
+      path: '/review/:id',
+      name: 'review',
+      component: Review
     },
     {
       path: '*',

@@ -6,7 +6,8 @@
       <input placeholder="Dịch vụ, Stylist, Salon..."
         type="search"
         @keyup.enter="submit"
-        v-model="search">
+        :value="keyword"
+        @input="updateKeyword">
     </div>
     <div class="tp-search-result">
       <suggestion-results />
@@ -17,8 +18,9 @@
       <i class="bz-location"></i>
       <input placeholder="Thành phố bạn ở"
         @keyup.enter="submit"
-        v-model="areaName"
-        type="text">
+        type="search"
+        :value="selectedArea.name"
+        @input="updateArea">
     </div>
     <div class="tp-search-result-2">
       <location-results />
@@ -50,27 +52,9 @@ export default {
     SuggestionResults
   },
   computed: {
-    ...mapGetters(['selectedService', 'selectedArea']),
-    search: {
-      get () {
-        return this.$store.state.search.keyword
-      },
-      set (value) {
-        this.$store.dispatch('setKeyword', value)
-      }
-    },
-    areaName: {
-      get () {
-        return this.selectedArea.name
-      },
-      set (value) {
-        if (!value) {
-          this.$store.dispatch('setSelectedArea', {})
-        }
-      }
-    },
+    ...mapGetters(['selectedService', 'selectedArea', 'keyword']),
     canSubmit () {
-      return this.search
+      return this.keyword
     }
   },
   methods: {
@@ -88,6 +72,13 @@ export default {
       }
 
       this.$router.push({ name: 'search', query })
+    },
+    updateKeyword (e) {
+      this.$store.dispatch('setKeyword', e.target.value.trim())
+    },
+    updateArea (e) {
+      const value = e.target.value.trim() || {}
+      this.$store.dispatch('setSelectedArea', value)
     }
   }
 }

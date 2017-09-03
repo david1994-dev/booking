@@ -5,6 +5,8 @@ import * as actions from './actions'
 // import * as getters from './getters'
 import modules from './modules'
 import mutations from './mutations'
+import store from 'store2'
+
 const VuexLoading = createVuexLoader({
   // The Vuex module name, 'loading' by default.
   moduleName: 'loading'
@@ -20,7 +22,7 @@ const state = {
     type: 'error',
     message: ''
   },
-  preloadData: {}
+  preloadData: store('preloadData') || {}
 }
 
 export default new Vuex.Store({

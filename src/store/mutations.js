@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import store from 'store2'
 
 export default {
   [types.SHOW_MESSAGE] (state, bool) {
@@ -15,6 +16,7 @@ export default {
   },
 
   [types.SET_PRELOAD_DATA] (state, data) {
+    store('preloadData', data)
     state.preloadData = data
   }
 }

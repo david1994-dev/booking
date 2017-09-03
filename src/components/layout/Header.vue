@@ -3,7 +3,7 @@
   <div class="sub-container">
     <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo.png" /></router-link>
     <div class="search">
-      <i class="bz-search search-icon"></i>
+      <i class="bz-search search-icon" @click="showSearchForm"></i>
       <search wrapper-class="search-inner" />
     </div>
     <!-- <ul class="account">
@@ -20,6 +20,11 @@ const Search = () => import(/* webpackChunkName: "search-bundle" */ '../partials
 
 export default {
   name: 'Header',
-  components: { Search }
+  components: { Search },
+  methods: {
+    showSearchForm () {
+      document.documentElement.classList.toggle('show-searchform')
+    }
+  }
 }
 </script>

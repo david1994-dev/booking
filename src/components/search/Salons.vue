@@ -5,10 +5,7 @@
       Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ keyword }}</strong><span v-if="selectedArea.name"> tại <strong>{{ selectedArea.name }}</strong></span>.
     </div>
 
-    <div class="tp-salon" v-for="salon in salons"
-      :key="salon.id"
-      @mouseover="mouseOver(salon)"
-      @mouseleave="mouseLeave(salon)">
+    <div class="tp-salon" v-for="salon in salons" :key="salon.id">
       <div class="img-price">
         <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url" /></router-link>
         </figure>
@@ -150,14 +147,6 @@ export default {
         this.meta = data.meta
         this.$refs.infiniteLoading.$emit(data.data.length ? '$InfiniteLoading:loaded' : '$InfiniteLoading:complete')
       })
-    },
-    mouseOver (salon) {
-      if (salon.marker) {
-        // this.center = salon.marker.position
-      }
-    },
-    mouseLeave (salon) {
-      //
     }
   }
 }
