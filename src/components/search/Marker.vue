@@ -7,7 +7,7 @@
       <div class="tp-map">
         <div class="rate">
           <div class="tp-rate">
-            <div class="rate-status">Rất tốt</div>
+            <div class="rate-status">{{ salon.rating_summary }}</div>
             <stars :rating="salon.average_rating">
               <div class="number">{{ salon.review_count }} Đánh giá</div>
             </stars>
@@ -15,7 +15,7 @@
         </div>
         <figure><img :src="salon.image_url"></figure>
         <div class="name-address">
-          <div class="name"><a href="#">{{ salon.name }}</a></div>
+          <div class="name"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">{{ salon.name }}</router-link></div>
           <div class="address">{{ salon.address }}</div>
         </div>
       </div>

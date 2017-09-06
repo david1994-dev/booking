@@ -3,48 +3,55 @@
   <div class="tp-wrap-title">
     <h3 class="tp-title"><strong>Thủ thuật</strong> làm đẹp</h3>
     <div class="tp-view-more">
-      <a href="#">xem thêm</a>
+      <router-link :to="{ name: 'blogs' }">xem thêm</router-link>
     </div>
   </div>
   <div class="ofhd">
-    <div class="list">
-      <div class="item">
-        <figure>
-          <a href="#"><img src="../../assets/images/image-tricksbeautiful.jpg"></a>
-        </figure>
-        <h4><a href="#">Mẹo dưỡng da xinh đẹp chị với dược phẩm thiên nhiên</a></h4>
-        <div class="info">
-          <span><a href="#">Chăm sóc da</a></span> <span>245 lượt xem</span>
+    <v-loading loader="fetching blogs">
+      <template slot="spinner">
+        <div class="text-center">
+          <v-loading-spinner height="30px" width="30px" />
+        </div>
+      </template>
+
+      <div class="list" v-if="blogs.length">
+        <div class="item" v-for="blog in blogs" :key="blog.id">
+          <figure>
+            <router-link :to="{ name: 'blog', params: { id: blog.slug } }"><img :src="blog.image_url"></router-link>
+          </figure>
+          <h4><router-link :to="{ name: 'blog', params: { id: blog.slug } }">{{ blog.title }}</router-link></h4>
+          <div class="info">
+            <span><a href="#">Chăm sóc da</a></span> <span>245 lượt xem</span>
+          </div>
         </div>
       </div>
-      <div class="item">
-        <figure>
-          <a href="#"><img src="../../assets/images/image-tricksbeautiful.jpg"></a>
-        </figure>
-        <h4><a href="#">Mẹo dưỡng da xinh đẹp chị với dược phẩm thiên nhiên</a></h4>
-        <div class="info">
-          <span><a href="#">Chăm sóc da</a></span> <span>245 lượt xem</span>
-        </div>
-      </div>
-      <div class="item">
-        <figure>
-          <a href="#"><img src="../../assets/images/image-tricksbeautiful.jpg"></a>
-        </figure>
-        <h4><a href="#">Mẹo dưỡng da xinh đẹp chị với dược phẩm thiên nhiên</a></h4>
-        <div class="info">
-          <span><a href="#">Chăm sóc da</a></span> <span>245 lượt xem</span>
-        </div>
-      </div>
-    </div>
+    </v-loading>
   </div>
   <div class="tp-view-more bottom">
-    <a href="#">xem thêm</a>
+    <router-link :to="{ name: 'blogs' }">xem thêm</router-link>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'Blogs'
+  name: 'Blogs',
+  data () {
+    return {
+      blogs: []
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.$startLoading('fetching blogs')
+      this.$http.get('blogs', { params: { limit: 3 } }).then(({ data }) => {
+        this.blogs = data
+        this.$endLoading('fetching blogs')
+      }).catch(() => this.$endLoading('fetching blogs'))
+    }
+  }
 }
 </script>

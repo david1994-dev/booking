@@ -46,7 +46,7 @@
               :center="{ lat: salon.latitude, lng: salon.longitude }"
               :zoom="14"
               :options="{ mapTypeControl: false, streetViewControl: false }"
-              style="width: 600px; height: 280px">
+              style="width: 100%; height: 280px">
               <gmap-marker :position="{ lat: salon.latitude, lng: salon.longitude }"></gmap-marker>
             </gmap-map>
           </div>
@@ -131,7 +131,7 @@ export default {
       this.$nextTick(() => {
         setTimeout(() => {
           this.addStickyClass('.wrap-menu')
-        }, 1000)
+        }, 500)
       })
     }
   }

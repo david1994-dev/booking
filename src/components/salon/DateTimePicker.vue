@@ -8,7 +8,7 @@
         <i class="bz-down-2 close" @click="active = false"></i>
       </div>
       <div class="content-datetime">
-        <calendar v-model="date" :dates="dates">
+        <calendar v-model="date" wrapperClass="tp-datetime">
           <v-loading loader="fetching slots">
             <template slot="spinner">
               <div class="text-center">
@@ -37,34 +37,6 @@ import Calendar from '../partials/Calendar'
 
 const DATE_FORMAT = 'YYYY-MM-DD'
 
-const today = moment()
-const tomorrow = moment().add(1, 'd')
-const next2Days = moment().add(2, 'd')
-const next3Days = moment().add(3, 'd')
-
-const DATES = [
-  {
-    id: today.format(DATE_FORMAT),
-    label: 'Hôm nay',
-    date: today
-  },
-  {
-    id: tomorrow.format(DATE_FORMAT),
-    label: tomorrow.format('DD/MM'),
-    date: tomorrow
-  },
-  {
-    id: next2Days.format(DATE_FORMAT),
-    label: next2Days.format('DD/MM'),
-    date: next2Days
-  },
-  {
-    id: next3Days.format(DATE_FORMAT),
-    label: next3Days.format('DD/MM'),
-    date: next3Days
-  }
-]
-
 export default {
   name: 'DateTimePicker',
   components: {
@@ -73,7 +45,6 @@ export default {
   computed: mapGetters(['cartStylist']),
   data () {
     return {
-      dates: DATES,
       active: false,
       date: null,
       slots: [],

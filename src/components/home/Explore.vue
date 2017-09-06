@@ -40,48 +40,52 @@
   <div class="discovery tp-box">
     <div class="tp-wrap-title">
       <h3 class="tp-title"><strong>Khám phá</strong> các salon</h3>
-      <div class="tp-view-more orange"><a href="#">xem thêm</a></div>
+      <div class="tp-view-more orange"><router-link :to="{ name: 'explore' }">xem thêm</router-link></div>
     </div>
     <div class="ofhd">
-      <div class="tp-discovery">
-        <div class="item">
-          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
-          <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4>
-            <span>1.435 đã đặt</span>
+      <v-loading loader="fetching showcases">
+        <template slot="spinner">
+          <div class="text-center">
+            <v-loading-spinner height="30px" width="30px" />
+          </div>
+        </template>
+
+        <div class="tp-discovery" v-if="showcases.length">
+          <div class="item" v-for="showcase in showcases" :key="showcase.id">
+            <figure><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }"><img :src="showcase.image_url" /></router-link></figure>
+            <div class="info">
+              <h4><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }">{{ showcase.name }}</router-link></h4>
+              <span>1.435 đã đặt</span>
+            </div>
           </div>
         </div>
-        <div class="item">
-          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
-          <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4>
-            <span>1.435 đã đặt</span>
-          </div>
-        </div>
-        <div class="item">
-          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
-          <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4>
-            <span>1.435 đã đặt</span>
-          </div>
-        </div>
-        <div class="item">
-          <figure><a href="#"><img src="../../assets/images/image-salon.jpg" /></a></figure>
-          <div class="info">
-            <h4><a href="">Chăm sóc da</a></h4>
-            <span>1.435 đã đặt</span>
-          </div>
-        </div>
-      </div>
+      </v-loading>
     </div>
 
-    <div class="tp-view-more bottom orange"><a href="#">xem thêm</a></div>
+    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore' }">xem thêm</router-link></div>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'Explore'
+  name: 'Explore',
+  data () {
+    return {
+      showcases: []
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.$startLoading('fetching showcases')
+      this.$http.get('showcases', { params: { limit: 4 } }).then(({ data }) => {
+        this.showcases = data
+        this.$endLoading('fetching showcases')
+      }).catch(() => this.$endLoading('fetching showcases'))
+    }
+  }
 }
 </script>

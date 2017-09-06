@@ -1,5 +1,5 @@
 <template>
-<div class="services">
+<div class="services" v-if="services.length">
   <v-loading class="sub-container" loader="fetching services">
     <template slot="spinner">
       <div class="text-center">

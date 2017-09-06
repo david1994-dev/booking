@@ -229,135 +229,88 @@ export default {
       document.getElementById('mennu-services').click()
     },
     stickyCart () {
-      const $cart = $('.detail-page .content .wrap-cart')
-      const $cartInner = $('.detail-page .content .cart .inner-cart')
+      const $wrapper = $('.detail-page .content .wrap-cart')
+      const $cart = $('.detail-page .content .cart')
       const $window = $(window)
 
-      if (!$cart.length) {
+      if (!$wrapper.length) {
         return
       }
+      let lastScrollTop = 0
+      let fixScroll = 0
+      let setMarginTop = 0
 
       const frameHandler = () => {
         if ($window.width() <= 1050) {
-          $cart.removeClass('fixed')
+          $wrapper.removeClass('fixed')
+          $cart.css('top', '')
           return
         }
 
-        const offsetTop = $cart.offset().top
-        const scrollTop = $window.scrollTop()
-        const marginTop = 25
+        const offsetTop = parseInt($wrapper.offset().top)
+        const scrollTop = parseInt($window.scrollTop())
 
-        if (scrollTop > (offsetTop - marginTop)) {
-          $cart.addClass('fixed')
-          if (scrollTop > (offsetTop + $cart.height() - $cartInner.height()) - marginTop) {
-            $cart.addClass('fixed_bottom')
-            $cartInner.css('top', '')
+        if (scrollTop > offsetTop) {
+          $wrapper.addClass('fixed')
+          const cartTop = parseInt($cart.offset().top)
+          const cartHeight = parseInt($cart.height())
+          const wrapperBottom = offsetTop + parseInt($wrapper.height())
+          const cartBottom = cartTop + cartHeight
+          const hiddenHeight = cartHeight - $window.height()
+
+          if (cartBottom >= wrapperBottom) {
+            if (scrollTop < cartTop) {
+              $wrapper.removeClass('fixed_bottom')
+              $cart.css('top', '')
+              setMarginTop = 0
+              fixScroll = 0
+            } else {
+              $wrapper.addClass('fixed_bottom')
+              $cart.css('top', '')
+            }
           } else {
-            $cart.removeClass('fixed_bottom')
+            $wrapper.removeClass('fixed_bottom')
+            if (cartHeight > $window.height()) {
+              if (!fixScroll) {
+                fixScroll = scrollTop
+              }
+              if (scrollTop >= lastScrollTop) { // Down
+                if (setMarginTop < hiddenHeight) {
+                  setMarginTop = scrollTop - fixScroll
+                } else {
+                  setMarginTop = hiddenHeight
+                }
+              } else { // Up
+                if (setMarginTop < hiddenHeight) {
+                  setMarginTop = scrollTop - fixScroll
+                } else {
+                  setMarginTop = hiddenHeight
+                }
+                if (-setMarginTop >= 0) {
+                  setMarginTop = 0
+                  fixScroll = 0
+                } else if (setMarginTop === hiddenHeight) {
+                  setMarginTop -= 1
+                  fixScroll = scrollTop - hiddenHeight
+                }
+              }
+              $cart.css('top', -setMarginTop)
+            }
           }
         } else {
-          $cart.removeClass('fixed fixed_bottom')
-          $cartInner.css('top', '')
+          $wrapper.removeClass('fixed fixed_bottom')
+          $cart.css('top', '')
         }
+        lastScrollTop = scrollTop
       }
+
       const scrollHandler = () => {
         requestAnimationFrame(frameHandler)
       }
 
       $window.scroll(scrollHandler)
-
       scrollHandler()
     }
-    // stickyCart () {
-    //   const $wrapper = $('.detail-page .content .wrap-cart')
-    //   const $cart = $('.detail-page .content .cart')
-    //   const $window = $(window)
-
-    //   if (!$wrapper.length) {
-    //     return
-    //   }
-
-    //   let lastScrollTop = 0
-    //   let fixScroll = 0
-    //   let setMarginTop = 0
-
-    //   const frameHandler = () => {
-    //     if ($window.width() <= 1050) {
-    //       $wrapper.removeClass('fixed')
-    //       $cart.css('top', '')
-    //       return
-    //     }
-
-    //     const offsetTop = parseInt($wrapper.offset().top)
-    //     const scrollTop = parseInt($window.scrollTop())
-
-    //     if (scrollTop > offsetTop) {
-    //       const broswerHeight = $window.height()
-    //       const cartTop = parseInt($cart.offset().top)
-    //       const cartHeight = parseInt($cart.height())
-    //       const cartBottom = cartTop + cartHeight
-    //       const wrapperBottom = offsetTop + $wrapper.height()
-    //       const hiddenHeight = cartHeight - broswerHeight
-
-    //       if (cartBottom >= wrapperBottom) {
-    //         if (scrollTop < cartTop) {
-    //           $wrapper.removeClass('fixed_bottom')
-    //           $cart.css('top', '')
-
-    //           setMarginTop = 0
-    //           fixScroll = 0
-    //         } else {
-    //           $wrapper.addClass('fixed_bottom')
-    //           $cart.css('top', '')
-    //         }
-    //       } else {
-    //         $wrapper.removeClass('fixed_bottom')
-
-    //         if (cartHeight > broswerHeight) {
-    //           if (!fixScroll) {
-    //             fixScroll = scrollTop
-    //           }
-
-    //           if (scrollTop >= lastScrollTop) { // Down
-    //             if (setMarginTop < hiddenHeight) {
-    //               setMarginTop = scrollTop - fixScroll
-    //             } else {
-    //               setMarginTop = hiddenHeight
-    //             }
-    //           } else { // Up
-    //             if (setMarginTop < hiddenHeight) {
-    //               setMarginTop = scrollTop - fixScroll
-    //             } else {
-    //               setMarginTop = hiddenHeight
-    //             }
-
-    //             if (-setMarginTop >= 0) {
-    //               setMarginTop = 0
-    //               fixScroll = 0
-    //             } else if (setMarginTop === hiddenHeight) {
-    //               setMarginTop -= 1
-    //               fixScroll = scrollTop - hiddenHeight
-    //             }
-    //           }
-    //           $cart.css('top', -setMarginTop)
-    //         }
-    //       }
-    //     } else {
-    //       $wrapper.removeClass('fixed fixed_bottom')
-    //       $cart.css('top', '')
-    //     }
-    //   }
-    //   const scrollHandler = () => {
-    //     requestAnimationFrame(frameHandler)
-    //   }
-
-    //   $window.scroll(scrollHandler)
-
-    //   scrollHandler()
-    //   // $window.on('load', () => {
-    //   //   scrollHandler()
-    //   // })
-    // }
   }
 }
 </script>

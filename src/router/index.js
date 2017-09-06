@@ -9,6 +9,11 @@ import Services from '@/components/Services'
 import Stylists from '@/components/Stylists'
 import Salon from '@/components/Salon'
 import Review from '@/components/Review'
+const Showcase = () => import(/* webpackChunkName: "explore-bundle" */ '@/components/Showcase')
+const Explore = () => import(/* webpackChunkName: "explore-bundle" */ '@/components/Explore')
+const Blogs = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/Blogs')
+const Blog = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/Blog')
+import Contact from '@/components/Contact'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -38,6 +43,26 @@ export default new Router({
       component: Stylists
     },
     {
+      path: '/explore',
+      name: 'explore',
+      component: Explore
+    },
+    {
+      path: '/blogs',
+      name: 'blogs',
+      component: Blogs
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: Contact
+    },
+    {
+      path: '/blog/:id',
+      name: 'blog',
+      component: Blog
+    },
+    {
       path: '/salon/:id',
       name: 'salon',
       component: Salon
@@ -46,6 +71,11 @@ export default new Router({
       path: '/review/:id',
       name: 'review',
       component: Review
+    },
+    {
+      path: '/showcase/:id',
+      name: 'showcase',
+      component: Showcase
     },
     {
       path: '*',

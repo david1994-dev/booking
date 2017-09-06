@@ -48,7 +48,6 @@
 <script>
 import moment from 'moment'
 import { head } from 'lodash'
-// import { Alert } from 'uiv'
 
 const today = moment()
 const DATE_FORMAT = 'YYYY-MM-DD'

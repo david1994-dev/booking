@@ -2,30 +2,16 @@
 <div class="searchsalon-page">
   <div class="box-salons">
     <div class="salons-result" v-show="!$isLoading('fetching salons')">
-      Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ keyword }}</strong><span v-if="selectedArea.name"> tại <strong>{{ selectedArea.name }}</strong></span>.
+      Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ getSearchQuery('keyword') }}</strong><span v-if="getSearchQuery('location')"> tại <strong>{{ getSearchQuery('location') }}</strong></span>.
     </div>
 
-    <div class="tp-salon" v-for="salon in salons" :key="salon.id">
-      <div class="img-price">
-        <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url" /></router-link>
-        </figure>
-        <div class="price-rate">
-          <div class="price" v-if="salon.min_price">
-            <span>From</span>
-            <strong>{{ salon.min_price.formatted_price }}</strong>
-          </div>
-          <div class="rate">
-            <div class="tp-rate">
-              <div class="rate-status">{{ salon.rating_summary }}</div>
-              <stars :rating="salon.average_rating">
-                <div class="number">{{ salon.review_count }} Đánh giá</div>
-              </stars>
-            </div>
-          </div>
-        </div>
-      </div>
-      <salon :salon="salon" />
+    <div v-if="salons.length">
+      <salon v-for="salon in salons"
+        @salonAddressClick="centerSalon"
+        :key="salon.id"
+        :salon="salon" />
     </div>
+
     <infinite-loading
       :on-infinite="onInfinite"
       spinner="waveDots"
@@ -58,12 +44,13 @@
 </template>
 
 <script>
-import { merge } from 'lodash'
+import { get, merge } from 'lodash'
 import { mapGetters } from 'vuex'
+import store from 'store2'
 import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '@/components/RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
-const Salon = () => import(/* webpackChunkName: "search-bundle" */ './Salon')
+const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
 import Stars from '../partials/StarRating'
 
@@ -134,6 +121,10 @@ export default {
       this.$http.get('search', { params })
         .then(response => {
           this.$endLoading('fetching salons')
+          store.set('searchQuery', {
+            keyword: this.keyword,
+            location: this.selectedArea.name || ''
+          })
           cb(response)
         })
         .catch(error => {
@@ -147,6 +138,14 @@ export default {
         this.meta = data.meta
         this.$refs.infiniteLoading.$emit(data.data.length ? '$InfiniteLoading:loaded' : '$InfiniteLoading:complete')
       })
+    },
+    getSearchQuery (key, fallback = null) {
+      return get(store('searchQuery'), key, fallback)
+    },
+    centerSalon (salon) {
+      if (salon.latitude && salon.longitude) {
+        this.center = { lat: salon.latitude, lng: salon.longitude }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-<div class="stylist">
+<div class="stylist" v-if="stylists.length">
   <v-loading class="sub-container" loader="fetching stylists">
     <template slot="spinner">
       <div class="text-center">

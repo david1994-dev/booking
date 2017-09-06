@@ -87,14 +87,14 @@ export default {
       const slots = reduce(this.cartServices, (result, { id }) => {
         result.push({
           service: id,
-          stylist: this.cartStylist.id,
-          date: this.bookingDate.format(DATE_FORMAT)
+          stylist: this.cartStylist.id
         })
         return result
       }, [])
       const data = {
         user: this.phone,
-        slots: JSON.stringify(slots)
+        slots: JSON.stringify(slots),
+        time: this.bookingDate.format(DATE_FORMAT)
       }
       this.$startLoading('booking')
       this.$http.post(`salons/${this.cartSalon.id}/book`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data }) => {

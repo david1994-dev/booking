@@ -754,7 +754,7 @@ button.fancybox-arrow {
 				    cursor: auto;
 				}
 			}
-			.calendar {
+			.calendar-btn {
 			  border: 1px solid;
 			  width: 30px;
 			  text-align: center;
@@ -877,7 +877,7 @@ button.fancybox-arrow {
 				color: $main-color;
     			font-weight: 500;
 			}
-			&.calendar{
+			&.calendar-btn{
 				@include flex();
 			    @include align-items(center);
 			    border: 1px solid;

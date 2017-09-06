@@ -63,7 +63,7 @@ export default {
         return
       }
 
-      const query = { q: this.search }
+      const query = { q: this.keyword }
       if (this.selectedArea.id) {
         query.area_id = this.selectedArea.id
       }

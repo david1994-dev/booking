@@ -58,7 +58,7 @@
           <a href="#">Đối tác</a>
         </li>
         <li>
-          <a href="#">Liên hệ</a>
+          <router-link :to="{ name: 'contact' }">Liên hệ</router-link>
         </li>
       </ul>
       <div class="full"></div>

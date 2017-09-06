@@ -21,7 +21,7 @@
   <div class="times-d"  v-show="stylists.length">
     <div class="title">Chọn thời gian</div>
     <div class="dates-times" v-show="cartStylist.id">
-      <calendar v-model="selectedDate">
+      <calendar v-model="selectedDate" wrapperClass="tp-datetime">
         <v-loading loader="fetching slots">
           <template slot="spinner">
             <div class="text-center">

@@ -1,7 +1,7 @@
 <template>
 <header class="sub-header">
   <div class="sub-container">
-    <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo.png" /></router-link>
+    <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
     <div class="search">
       <i class="bz-search search-icon" @click="showSearchForm"></i>
       <search wrapper-class="search-inner" />

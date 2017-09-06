@@ -1,5 +1,5 @@
 <template>
-<div class="salons">
+<div class="salons" v-if="salons.length">
   <div class="sub-container">
     <div class="ofhd">
       <div class="list">

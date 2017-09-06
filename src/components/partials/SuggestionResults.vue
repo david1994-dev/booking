@@ -1,9 +1,9 @@
 <template>
 <ul ref="suggestionResults">
-  <li>
+  <li v-show="!services.length && !keyword">
     <!-- <router-link :to="{ name: 'services' }">Dịch vụ</router-link> -->
     <a href="#">Dịch vụ</a>
-    <ul v-show="!services.length && !keyword">
+    <ul>
       <li v-for="category in categories">
         <a class="pointer">{{ category.name }}</a>
         <ul v-if="category.children.length">
@@ -11,7 +11,10 @@
         </ul>
       </li>
     </ul>
-    <ul v-show="services.length">
+  </li>
+  <li v-show="services.length">
+    <a href="#">Dịch vụ</a>
+    <ul>
       <li v-for="service in services">
         <a class="pointer" @click="setSelectedService(service)">{{ service.name }}</a>
       </li>
@@ -53,6 +56,9 @@ export default {
       stylists: [],
       services: []
     }
+  },
+  created () {
+    this.fetchData()
   },
   watch: {
     'keyword': 'fetchData'

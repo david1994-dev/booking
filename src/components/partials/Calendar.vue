@@ -1,14 +1,26 @@
 <template>
-<div class="tp-datetime">
+<div :class="wrapperClass">
   <div class="dates">
-    <div v-for="date in dates"
-      :key="date.id"
-      :class="{ active: date.id == selectedDate.format('YYYY-MM-DD') }"
-      @click="updateSelectedDate(date.date)"
-      class="item">{{ date.label }}</div>
-    <slot name="button">
-      <div class="item calendar"><i class="bz-calendar-day"></i>calendar</div>
-    </slot>
+    <div v-for="d in dates"
+      :key="d.id"
+      :class="{ active: d.id == selectedDate.format('YYYY-MM-DD') }"
+      @click="updateSelectedDate(d.date)"
+      class="item">{{ d.label }}</div>
+    <div class="item calendar-btn"
+      :class="{ active: isCalendarActive }"
+      @click="showDatePicker = true">
+      <slot name="button">
+        <i class="bz-calendar-day"></i>calendar
+      </slot>
+    </div>
+    <transition name="calendar-fade">
+      <date-picker @close="showDatePicker = false"
+        :format="formatDate"
+        :min="minDate"
+        color="#54B2B0"
+        v-if="showDatePicker"
+        v-model="datetime"></date-picker>
+    </transition>
   </div>
   <slot></slot>
 </div>
@@ -16,11 +28,13 @@
 
 <script>
 import moment from 'moment'
+import { last } from 'lodash'
+import DatePicker from 'vue-md-date-picker'
 
 const DATE_FORMAT = 'YYYY-MM-DD'
-const today = moment()
-const tomorrow = moment().add(1, 'd')
-const next2Days = moment().add(2, 'd')
+const today = moment().startOf('day')
+const tomorrow = today.clone().add(1, 'd')
+const next2Days = today.clone().startOf('day').add(2, 'd')
 
 export default {
   model: {
@@ -28,6 +42,10 @@ export default {
     event: 'dateChanged'
   },
   props: {
+    wrapperClass: {
+      type: String,
+      default: ''
+    },
     date: {
       default: today
     },
@@ -58,20 +76,35 @@ export default {
       }
     }
   },
+  components: {
+    DatePicker
+  },
+  computed: {
+    minDate () {
+      const date = last(this.dates)
+      const lastDate = date.date ? date.date : today
+
+      return lastDate.clone().add(1, 'd').format(DATE_FORMAT)
+    },
+    isCalendarActive () {
+      return this.selectedDate.isSameOrAfter(this.minDate)
+    }
+  },
   data () {
     return {
-      selectedDate: today
+      selectedDate: today,
+      showDatePicker: false,
+      datetime: null
     }
   },
   watch: {
-    date (value) {
-      if (!value) {
-        value = moment()
+    selectedDate (value) {
+      this.date = value
+    },
+    datetime (value) {
+      if (value) {
+        this.updateSelectedDate(moment(value))
       }
-      if (!moment.isMoment(value)) {
-        value = moment(value)
-      }
-      this.selectedDate = value
     }
   },
   methods: {
@@ -82,6 +115,9 @@ export default {
     updateSelectedSlot (slot) {
       this.selectedSlot = slot
       this.$emit('timeChanged', slot)
+    },
+    formatDate (date) {
+      return moment(date).format('YYYY-MM-DD')
     }
   }
 }
