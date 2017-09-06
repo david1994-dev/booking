@@ -5,10 +5,7 @@
     <div class="tp-container">
       <div class="content-page" v-if="booking.salon">
         <div class="address-info">
-          <div class="adress">
-            Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của Bzone cho lần trải nghiệm vừa qua tại salon {{ booking.salon.name }}
-          </div>
-          <div class="info">
+          <div class="info" style="margin-top: 80px">
             <div class="item" v-if="booking.salon">
               <div class="icon"><i class="bz-location"></i></div>
               <div class="name-value">
@@ -37,6 +34,9 @@
 
         <div class="wrap-form">
           <div class="title-form">Đánh giá</div>
+          <div class="adress" style="margin-bottom: 10px;">
+            Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của Bzone cho lần trải nghiệm vừa qua tại salon {{ booking.salon.name }}
+          </div>
           <b-alert :variant="alertVariant" :show="showAlert">{{ alertMessage }}</b-alert>
           <form v-if="!booking.review" @submit.prevent="submit">
             <star-rating v-model="rating"
