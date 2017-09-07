@@ -60,19 +60,23 @@ export const fbAsyncInit = {
   methods: {
     fbAsyncInit () {
       /* eslint-disable no-undef */
-      window.fbAsyncInit = () => {
-        if (typeof (FB) !== 'undefined' && FB !== null) {
-          FB.init({
-            appId: facebook.appId,
-            autoLogAppEvents: true,
-            xfbml: true,
-            version: facebook.version
-          })
-          FB.AppEvents.logPageView()
+      if (!window.fbAsyncInit) {
+        window.fbAsyncInit = () => {
+          if (typeof (FB) !== 'undefined' && FB !== null) {
+            FB.init({
+              appId: facebook.appId,
+              autoLogAppEvents: true,
+              xfbml: true,
+              version: facebook.version
+            })
+            FB.AppEvents.logPageView()
+          }
         }
+      } else {
+        window.fbAsyncInit()
       }
 
-      window.fbAsyncInit()
+      // FB.XFBML.parse()
     }
   }
 }

@@ -101,12 +101,6 @@ export default {
   created () {
     this.fetchData()
   },
-  mounted () {
-    this.fbAsyncInit()
-  },
-  update () {
-    this.fbAsyncInit()
-  },
   beforeUpdate () {
     if (this.$refs.slick) {
       this.$refs.slick.destroy()
@@ -130,6 +124,7 @@ export default {
       this.$http.get(`blogs/${this.$route.params.id}`).then(({ data }) => {
         this.blog = data
         this.$endLoading('fetching blog')
+        this.fbAsyncInit()
       }).catch(() => this.$endLoading('fetching blog'))
     },
     fetchRelated () {
