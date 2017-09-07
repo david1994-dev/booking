@@ -48,7 +48,7 @@ export default {
   data () {
     return {
       active: false,
-      date: moment(),
+      date: null,
       slots: [],
       selectedSlot: { label: '' }
     }
@@ -57,14 +57,15 @@ export default {
     this.$bus.$on('displayDateTimePopup', value => {
       this.active = value
     })
-    const cart = store.get('cart', {})
-    this.date = cart.time ? moment(cart.time) : moment()
   },
   watch: {
     'date': 'fetchSlots',
     cartStylist (value) {
       if (value.id) {
-        this.date = moment()
+        const cart = store.get('cart', {})
+        this.date = cart.time ? moment(cart.time) : moment()
+      } else {
+        this.date = null
       }
     }
   },

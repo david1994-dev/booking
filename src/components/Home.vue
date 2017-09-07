@@ -15,7 +15,7 @@
       <div class="clock-icon">
         <span class="line"></span>
       </div>
-      <h2 class="text">Tích kiệm thời gian, đặt lịch chăm sóc bản thân ngay tại đây</h2>
+      <h2 class="text">Tích kiệm thời gian, đặt lịch làm đẹp 24/7</h2>
     </div>
     <search />
   </div>

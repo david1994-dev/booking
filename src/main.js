@@ -14,6 +14,9 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VuePreview from 'vue-preview'
 import VeeValidate from 'vee-validate'
 
+import moment from 'moment-timezone'
+moment.tz.setDefault('Asia/Ho_Chi_Minh')
+
 Vue.config.productionTip = false
 
 sync(store, router)
