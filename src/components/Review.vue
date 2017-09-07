@@ -17,7 +17,7 @@
               <div class="icon"><i class="bz-clock"></i></div>
               <div class="name-value">
                 <div class="name">{{ booking.formatted_price }}</div>
-                <div class="value">{{ booking.start_date }} - {{ booking.start_date }}</div>
+                <div class="value">{{ booking.start_date | dateFormat('H:mm D/MM/YYYY') }}</div>
               </div>
             </div>
             <div class="item" v-if="booking.reservations && booking.reservations.length">
