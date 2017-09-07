@@ -98,8 +98,14 @@ export default {
     }
   },
   watch: {
-    selectedDate (value) {
-      this.date = value
+    date (value) {
+      if (!value) {
+        value = moment()
+      }
+      if (!moment.isMoment(value)) {
+        value = moment(value)
+      }
+      this.selectedDate = value
     },
     datetime (value) {
       if (value) {
