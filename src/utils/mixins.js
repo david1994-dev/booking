@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import { facebook } from '@/config'
 
 export const stickyClassMixin = {
   methods: {
@@ -51,6 +52,27 @@ export const parseSearchQuery = {
       if (this.$route.query.area_id) {
         this.$store.dispatch('findAndSetArea', this.$route.query.area_id)
       }
+    }
+  }
+}
+
+export const fbAsyncInit = {
+  methods: {
+    fbAsyncInit () {
+      /* eslint-disable no-undef */
+      window.fbAsyncInit = () => {
+        if (typeof (FB) !== 'undefined' && FB !== null) {
+          FB.init({
+            appId: facebook.appId,
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: facebook.version
+          })
+          FB.AppEvents.logPageView()
+        }
+      }
+
+      window.fbAsyncInit()
     }
   }
 }
