@@ -5,6 +5,15 @@
     <div class="content-page">
       <h1 class="main-title">{{ blog.title }}</h1>
       <div class="content-text" v-html="blog.content"></div>
+
+      <div class="btn-social">
+        <div class="item-social"><div class="fb-like" :data-href="$route.fullPath" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></div>
+        <div class="item-social"><div class="fb-send" :data-href="$route.fullPath"></div></div>
+      </div>
+
+      <div class="comment">
+        <div class="fb-comments" :data-href="$route.fullPath" data-numposts="5" data-width="100%"></div>
+      </div>
     </div>
 
     <div class="related">
@@ -27,12 +36,15 @@
       </div>
     </div>
   </div>
+
+  <div id="fb-root"></div>
 </div>
 </template>
 
 <script>
 import Slick from 'vue-slick'
 import PageHeader from './layout/Header'
+import { facebook } from '@/config'
 const BlogCard = () => import(/* webpackChunkName: "blog-bundle" */ './partials/BlogCard')
 
 export default {
@@ -67,6 +79,14 @@ export default {
           }
         ]
       }
+    }
+  },
+  metaInfo () {
+    return {
+      title: `${this.blog.title} | Blog`,
+      script: [
+        { id: 'facebook-jssdk', src: `//connect.facebook.net/${facebook.locale}/sdk.js#xfbml=1&version=${facebook.version}&appId=${facebook.appId}` }
+      ]
     }
   },
   created () {

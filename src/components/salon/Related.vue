@@ -101,7 +101,7 @@
               <div class="item active">Hôm nay</div>
               <div class="item">12/07</div>
               <div class="item">13/07</div>
-              <div class="item calendar"><i class="bz-calendar-day"></i></div>
+              <div class="item calendar-btn"><i class="bz-calendar-day"></i></div>
             </div>
             <div class="wrap-times">
               <div class="times">

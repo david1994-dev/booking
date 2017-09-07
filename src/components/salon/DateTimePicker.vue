@@ -33,20 +33,23 @@
 <script>
 import moment from 'moment'
 import { mapGetters } from 'vuex'
+import { reduce } from 'lodash'
+import store from 'store2'
 import Calendar from '../partials/Calendar'
 
 const DATE_FORMAT = 'YYYY-MM-DD'
+const cart = store.get('cart', {})
 
 export default {
   name: 'DateTimePicker',
   components: {
     Calendar
   },
-  computed: mapGetters(['cartStylist']),
+  computed: mapGetters(['cartServices', 'cartStylist']),
   data () {
     return {
       active: false,
-      date: null,
+      date: cart.time ? moment(cart.time) : moment(),
       slots: [],
       selectedSlot: { label: '' }
     }
@@ -61,8 +64,6 @@ export default {
     cartStylist (value) {
       if (value.id) {
         this.date = moment()
-      } else {
-        this.date = null
       }
     }
   },
@@ -73,8 +74,17 @@ export default {
         return
       }
 
+      const services = reduce(this.cartServices, (result, { id }) => {
+        result.push(id)
+        return result
+      }, [])
+
+      if (!services.length) {
+        return
+      }
+
       this.$startLoading(`fetching slots`)
-      this.$http.get(`stylists/${this.cartStylist.id}/schedule`, { params: { date: this.date.format(DATE_FORMAT) } }).then(({ data }) => {
+      this.$http.get(`stylists/${this.cartStylist.id}/schedule`, { params: { services, date: this.date.format(DATE_FORMAT) } }).then(({ data }) => {
         this.slots = data
         this.$endLoading(`fetching slots`)
       }).catch(() => this.$endLoading(`fetching slots`))

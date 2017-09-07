@@ -5,7 +5,7 @@
     <div class="price-rate">
       <div class="price">
         <span>From</span>
-        <strong>324.000 VND</strong>
+        <strong>{{ salon.min_price.formatted_price }}</strong>
       </div>
       <div class="rate">
         <div class="tp-rate">
@@ -62,7 +62,7 @@
             <div v-for="slot in slots" class="item"
               v-if="slot.status == 'available'"
               :class="{ active: selectedSlot.label == slot.label }"
-              @click="selectedSlot = slot">{{ slot.label }}</div>
+              @click="updateCart(slot)">{{ slot.label }}</div>
           </div>
         </v-loading>
         <div class="scrollup" v-if="slots.length" @click="expand = !expand"><i class="bz-down-2"></i></div>
@@ -73,8 +73,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import moment from 'moment'
 import { head } from 'lodash'
+import store from 'store2'
 import Calendar from './Calendar'
 import Stars from './StarRating'
 
@@ -93,6 +95,7 @@ export default {
     Calendar,
     Stars
   },
+  computed: mapGetters(['selectedService']),
   data () {
     return {
       selectedStylist: { id: 0 },
@@ -118,10 +121,27 @@ export default {
     fetchSlots () {
       this.resetState()
       this.$startLoading(`fetching stylist::${this.selectedStylist.id} slots`)
-      this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params: { date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
+      const params = { date: this.selectedDate.format(DATE_FORMAT) }
+      if (this.selectedService.id) {
+        params.categories = this.selectedService.id
+      }
+      this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params }).then(({ data }) => {
         this.slots = data
         this.$endLoading(`fetching stylist::${this.selectedStylist.id} slots`)
       })
+    },
+    updateCart (slot) {
+      this.selectedSlot = slot
+      if (!slot.start) {
+        return
+      }
+
+      store.set('cart', {
+        category: this.selectedService.id,
+        stylist: this.selectedStylist.id,
+        time: slot.start
+      })
+      this.$router.push({ name: 'salon', params: { id: this.salon.slug } })
     },
     resetState () {
       this.slots = []

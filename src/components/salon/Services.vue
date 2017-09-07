@@ -28,6 +28,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import store from 'store2'
 
 export default {
   name: 'SalonServices',
@@ -38,6 +39,9 @@ export default {
     }
   },
   computed: mapGetters(['cartServices']),
+  mounted () {
+    this.setSelectedService()
+  },
   methods: {
     isChecked (service) {
       return this.cartServices.find(s => s.id === service.id)
@@ -47,6 +51,14 @@ export default {
         this.$store.dispatch('addServiceToCart', service)
       } else {
         this.$store.dispatch('removeServiceFromCart', service)
+      }
+    },
+    setSelectedService () {
+      const cart = store.get('cart', {})
+      const category = parseInt(cart.category)
+      const service = this.salon.services.find(s => s.category_id === category)
+      if (service) {
+        this.toggleService(service, true)
       }
     }
   }

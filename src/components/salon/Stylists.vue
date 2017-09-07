@@ -46,10 +46,12 @@
 import moment from 'moment'
 import { head, reduce } from 'lodash'
 import { mapGetters } from 'vuex'
+import store from 'store2'
 import Calendar from '../partials/Calendar'
 
 const today = moment()
 const DATE_FORMAT = 'YYYY-MM-DD'
+const cart = store.get('cart', {})
 
 export default {
   name: 'SalonStylists',
@@ -87,11 +89,17 @@ export default {
     }
   },
   data () {
+    const date = cart.time
+    let selectedDate = today
+    if (date) {
+      selectedDate = moment(date)
+    }
+
     return {
       stylists: [],
       slots: [],
       selectedSlot: { label: '' },
-      selectedDate: today
+      selectedDate
     }
   },
   mounted () {
@@ -107,13 +115,16 @@ export default {
     }
   },
   methods: {
-    fetchStylists () {
-      this.$store.dispatch('setStylist', {})
-      this.resetState()
-      const services = reduce(this.cartServices, (result, { id }) => {
+    getServiceIds () {
+      return reduce(this.cartServices, (result, { id }) => {
         result.push(id)
         return result
       }, [])
+    },
+    fetchStylists () {
+      this.$store.dispatch('setStylist', {})
+      this.resetState()
+      const services = this.getServiceIds()
 
       if (services.length) {
         this.$startLoading('fetching stylists')
@@ -121,7 +132,15 @@ export default {
           this.stylists = data
           this.$endLoading('fetching stylists')
           if (this.stylists.length) {
-            this.setSelectedStylist(head(this.stylists))
+            let stylist = head(this.stylists)
+            const id = parseInt(cart.stylist)
+            if (id) {
+              const exists = this.stylists.find(s => s.id === id)
+              if (exists) {
+                stylist = exists
+              }
+            }
+            this.setSelectedStylist(stylist)
           }
         }).catch(() => this.$endLoading(`fetching stylists`))
       } else {
@@ -134,14 +153,29 @@ export default {
         return
       }
 
+      const services = this.getServiceIds()
+      if (!services.length) {
+        return
+      }
+
       this.$startLoading(`fetching slots`)
-      this.$http.get(`stylists/${this.cartStylist.id}/schedule`, { params: { date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
+      this.$http.get(`stylists/${this.cartStylist.id}/schedule`, { params: { services, date: this.selectedDate.format(DATE_FORMAT) } }).then(({ data }) => {
         this.slots = data
         this.$endLoading(`fetching slots`)
+        this.setSelectedSlot()
       }).catch(() => this.$endLoading(`fetching slots`))
     },
     setSelectedStylist (stylist) {
       this.$store.dispatch('setStylist', stylist)
+    },
+    setSelectedSlot () {
+      const time = cart.time
+      if (time) {
+        const slot = this.slots.find(s => s.start === time)
+        if (slot) {
+          this.selectedSlot = slot
+        }
+      }
     },
     setBookingDate () {
       let date = null

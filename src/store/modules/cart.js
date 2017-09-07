@@ -1,4 +1,5 @@
 import * as types from '../mutation-types'
+import store from 'store2'
 
 const state = {
   salon: {},
@@ -78,6 +79,8 @@ const mutations = {
     state.services = []
     state.stylist = {}
     state.date = null
+
+    store.remove('cart')
   }
 }
 

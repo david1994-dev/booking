@@ -92,7 +92,7 @@ export default {
   },
   data () {
     return {
-      selectedDate: today,
+      selectedDate: this.date,
       showDatePicker: false,
       datetime: null
     }
