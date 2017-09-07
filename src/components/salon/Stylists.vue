@@ -51,7 +51,6 @@ import Calendar from '../partials/Calendar'
 
 const today = moment()
 const DATE_FORMAT = 'YYYY-MM-DD'
-const cart = store.get('cart', {})
 
 export default {
   name: 'SalonStylists',
@@ -89,21 +88,16 @@ export default {
     }
   },
   data () {
-    const date = cart.time
-    let selectedDate = today
-    if (date) {
-      selectedDate = moment(date)
-    }
-
     return {
       stylists: [],
       slots: [],
       selectedSlot: { label: '' },
-      selectedDate
+      selectedDate: today
     }
   },
   mounted () {
     this.fetchStylists()
+    this.setSelectedDate()
   },
   watch: {
     'cartServices': 'fetchStylists',
@@ -133,6 +127,7 @@ export default {
           this.$endLoading('fetching stylists')
           if (this.stylists.length) {
             let stylist = head(this.stylists)
+            const cart = store.get('cart', {})
             const id = parseInt(cart.stylist)
             if (id) {
               const exists = this.stylists.find(s => s.id === id)
@@ -169,6 +164,7 @@ export default {
       this.$store.dispatch('setStylist', stylist)
     },
     setSelectedSlot () {
+      const cart = store.get('cart', {})
       const time = cart.time
       if (time) {
         const slot = this.slots.find(s => s.start === time)
@@ -176,6 +172,11 @@ export default {
           this.selectedSlot = slot
         }
       }
+    },
+    setSelectedDate () {
+      const cart = store.get('cart', {})
+      const date = cart.time ? moment(cart.time) : today
+      this.selectedDate = date
     },
     setBookingDate () {
       let date = null

@@ -2,19 +2,27 @@
 <div>
   <page-header />
   <div class="blogdetail-page">
-    <div class="content-page">
-      <h1 class="main-title">{{ blog.title }}</h1>
-      <div class="content-text" v-html="blog.content"></div>
+    <v-loading loader="fetching blog">
+      <template slot="spinner">
+        <div class="text-center">
+          <v-loading-spinner height="30px" width="30px" />
+        </div>
+      </template>
 
-      <div class="btn-social">
-        <div class="item-social"><div class="fb-like" :data-href="$route.fullPath" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></div>
-        <div class="item-social"><div class="fb-send" :data-href="$route.fullPath"></div></div>
-      </div>
+      <div class="content-page">
+        <h1 class="main-title">{{ blog.title }}</h1>
+        <div class="content-text" v-html="blog.content"></div>
 
-      <div class="comment">
-        <div class="fb-comments" :data-href="$route.fullPath" data-numposts="5" data-width="100%"></div>
+        <div class="btn-social">
+          <div class="item-social"><div class="fb-like" :data-href="url" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></div>
+          <div class="item-social"><div class="fb-send" :data-href="url"></div></div>
+        </div>
+
+        <div class="comment">
+          <div class="fb-comments" :data-href="url" data-numposts="5" data-width="100%"></div>
+        </div>
       </div>
-    </div>
+    </v-loading>
 
     <div class="related">
       <div class="title-related">
@@ -53,6 +61,11 @@ export default {
     PageHeader,
     BlogCard,
     Slick
+  },
+  computed: {
+    url () {
+      return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+    }
   },
   data () {
     return {
@@ -115,6 +128,8 @@ export default {
       this.$http.get(`blogs/${this.$route.params.id}`).then(({ data }) => {
         this.blog = data
         this.$endLoading('fetching blog')
+        /* eslint-disable no-undef */
+        FB.XFBML.parse(document.body)
       }).catch(() => this.$endLoading('fetching blog'))
     },
     fetchRelated () {
