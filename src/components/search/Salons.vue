@@ -154,11 +154,8 @@ export default {
       }
     },
     autoCenter () {
-      this.salons.map(salon => {
-        if (salon.latitude && salon.longitude) {
-          this.$bounds.extend({ lat: salon.latitude, lng: salon.longitude })
-        }
-
+      this.markers.map(marker => {
+        this.$bounds.extend(marker.position)
         this.center = this.$bounds.getCenter()
         this.$refs.map.$mapObject.fitBounds(this.$bounds)
         this.updateZoom()
