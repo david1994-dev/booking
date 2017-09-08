@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     updateSelectedDate (date) {
-      this.selectedDate = date
+      // this.selectedDate = date
       this.$emit('dateChanged', date)
     },
     updateSelectedSlot (slot) {
@@ -123,7 +123,7 @@ export default {
       this.$emit('timeChanged', slot)
     },
     formatDate (date) {
-      return moment(date).format('YYYY-MM-DD')
+      return date ? moment(date, 'YYYY-M-D').format('YYYY-MM-DD') : null
     }
   }
 }
