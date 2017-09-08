@@ -25,7 +25,7 @@ export default {
   computed: mapGetters(['keyword']),
   mounted () {
     this.$bus.$on('searchSubmitted', () => {
-      this.showSearchForm()
+      this.showSearchForm = false
     })
   },
   data () {
