@@ -24,7 +24,7 @@
       <gmap-map ref="map"
         :center="center"
         :zoom="14"
-        :options="{ mapTypeControl: false, streetViewControl: false }"
+        :options="mapOptions"
         style="width: 100%; height: 100%">
         <!-- <gmap-marker v-for="marker in markers"
           :key="marker.id"
@@ -49,6 +49,7 @@
 import { get, merge } from 'lodash'
 import { mapGetters } from 'vuex'
 import store from 'store2'
+import { googlemap } from '@/config'
 import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '@/components/RichMarker'
 import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
@@ -86,6 +87,7 @@ export default {
   },
   data () {
     return {
+      mapOptions: googlemap,
       center: { lat: 21.00329000, lng: 105.81904500 },
       salons: [],
       meta: {
