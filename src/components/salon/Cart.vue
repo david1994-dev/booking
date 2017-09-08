@@ -57,14 +57,13 @@
     </div>
   </div>
 
-  <div class="cart-mobile">
+  <div class="cart-mobile" :class="{ active: mobileCart }">
     <div class="no-choice-service" v-show="!cartServices.length">
       <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">Chọn dịch vụ</a>
       <p>Bạn chưa chọn dịch vụ</p>
     </div>
 
-    <div class="wrap-book" v-show="cartServices.length"
-      :class="{ active: mobileCart }">
+    <div class="wrap-book" v-show="cartServices.length">
       <div class="title-book">
         <span>Đặt lịch</span>
         <i @click="mobileCart = false" class="bz-close close"></i>

@@ -3,8 +3,10 @@
   <page-header />
   <div class="searchsalon-page">
     <div class="box-salons">
-      <h5>{{ showcase.name }}</h5>
-      <div class="salons-result">{{ showcase.description }}</div>
+      <div class="salons-result">
+        <h5>{{ showcase.name }}</h5>
+        <p>{{ showcase.description }}</p>
+      </div>
 
       <div v-if="showcase.salons.length">
         <salon v-for="salon in showcase.salons"
