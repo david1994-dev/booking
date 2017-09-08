@@ -81,6 +81,8 @@ export default {
         query.category_id = this.selectedService.id
       }
 
+      this.$bus.$emit('searchSubmitted')
+
       this.$router.push({ name: 'search', query })
     },
     updateKeyword (e) {

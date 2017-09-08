@@ -22,9 +22,7 @@
                 :class="{ active: selectedSlot.label == slot.label }"
                 @click="setBookingDate(slot)">{{ slot.label }}</div>
             </div>
-            <div class="text-center" v-if="!slots.length">
-              <small>Không còn lịch trống. Vui lòng chọn ngày khác hoặc stylist khác</small>
-            </div>
+            <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
           </v-loading>
         </calendar>
       </div>

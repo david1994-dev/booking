@@ -23,6 +23,11 @@ export default {
   name: 'Header',
   components: { Search },
   computed: mapGetters(['keyword']),
+  mounted () {
+    this.$bus.$on('searchSubmitted', () => {
+      this.showSearchForm()
+    })
+  },
   methods: {
     showSearchForm () {
       document.documentElement.classList.toggle('show-searchform')

@@ -792,6 +792,17 @@ button.fancybox-arrow {
 			    }
 			}
 		}
+		.wrap-times .empty {
+			color: $primary-text-color;
+		    font-weight: 300;
+		    padding: 10px 20px;
+		    display: block;
+		    text-align: center;
+		    font-size: 12px;
+			strong{
+				font-weight: 400;
+			}
+		}
 		.scrollup {
 		    display: none;
 		}
