@@ -578,6 +578,7 @@
 			position: relative;
 			z-index: 1;
 			.main-content {
+				@include flex-grow("1 0");
 				padding-bottom: 50px;
 				.menu {
 					@include justify-content(normal);
@@ -592,7 +593,7 @@
 				    width: auto;
 				    left: auto;
 				    margin: 0;
-				    padding-right: 5px;
+				    padding-right: 4px;
 				}
 
 				.service-d {
@@ -711,7 +712,6 @@
 			.wrap-cart {
 				display: block;
 				width: 335px;
-				@include flex-grow("1 0 auto");
 			    margin: 0 0 25px 30px;
 			    &.fixed {
 			    	.cart {

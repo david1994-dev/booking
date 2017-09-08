@@ -7,9 +7,11 @@
         type="search"
         @keyup.enter="submit"
         :value="keyword"
-        @input="updateKeyword">
+        @input="updateKeyword"
+        @focus="showSuggestions = true"
+        @blur="hideSugesstions">
     </div>
-    <div class="tp-search-result">
+    <div v-show="showSuggestions" class="tp-search-result">
       <suggestion-results />
     </div>
   </div>
@@ -20,9 +22,11 @@
         @keyup.enter="submit"
         type="search"
         :value="selectedArea.name"
-        @input="updateArea">
+        @input="updateArea"
+        @focus="showLocations = true"
+        @blur="hideLocations">
     </div>
-    <div class="tp-search-result-2">
+    <div v-show="showLocations" class="tp-search-result-2">
       <location-results />
     </div>
   </div>
@@ -57,6 +61,12 @@ export default {
       return this.keyword
     }
   },
+  data () {
+    return {
+      showSuggestions: false,
+      showLocations: false
+    }
+  },
   methods: {
     submit () {
       if (!this.canSubmit) {
@@ -79,6 +89,16 @@ export default {
     updateArea (e) {
       const value = e.target.value.trim() || {}
       this.$store.dispatch('setSelectedArea', value)
+    },
+    hideSugesstions () {
+      setTimeout(() => {
+        this.showSuggestions = false
+      }, 200)
+    },
+    hideLocations () {
+      setTimeout(() => {
+        this.showLocations = false
+      }, 200)
     }
   }
 }
