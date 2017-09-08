@@ -45,12 +45,12 @@
       <div class="item calendar" data-toggle><i class="bz-calendar-day"></i></div>
     </div> -->
 
-    <calendar v-model="selectedDate">
+    <calendar v-if="salon.stylists.length" v-model="selectedDate">
       <template slot="button">
         <i class="bz-calendar-day"></i>
       </template>
 
-      <div class="wrap-times" :class="{ expand }" v-if="salon.stylists.length">
+      <div class="wrap-times" :class="{ expand }">
         <v-loading :loader="`fetching stylist::${selectedStylist.id} slots`">
           <template slot="spinner">
             <div class="text-center">
