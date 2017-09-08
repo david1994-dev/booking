@@ -64,7 +64,7 @@
               :class="{ active: selectedSlot.label == slot.label }"
               @click="updateCart(slot)">{{ slot.label }}</div>
           </div>
-          <div class="scrollup" v-if="slots.length >= 15" @click="expand = !expand"><i class="bz-down-2"></i></div>
+          <div class="scrollup" v-show="slots.length >= 15" @click="expand = !expand"><i class="bz-down-2"></i></div>
           <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
         </v-loading>
       </div>
