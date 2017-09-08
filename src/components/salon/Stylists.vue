@@ -35,6 +35,9 @@
               :class="{ active: selectedSlot.label == slot.label }"
               @click="selectedSlot = slot">{{ slot.label }}</div>
           </div>
+          <div class="text-center" v-if="!slots.length">
+            <small>Không còn lịch trống. Vui lòng chọn ngày khác hoặc stylist khác</small>
+          </div>
         </v-loading>
       </calendar>
     </div>

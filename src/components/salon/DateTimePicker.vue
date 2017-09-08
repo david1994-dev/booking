@@ -22,6 +22,9 @@
                 :class="{ active: selectedSlot.label == slot.label }"
                 @click="setBookingDate(slot)">{{ slot.label }}</div>
             </div>
+            <div class="text-center" v-if="!slots.length">
+              <small>Không còn lịch trống. Vui lòng chọn ngày khác hoặc stylist khác</small>
+            </div>
           </v-loading>
         </calendar>
       </div>
@@ -103,6 +106,7 @@ export default {
         date = moment(slot.start)
       }
 
+      this.selectedSlot = slot
       this.active = false
       this.$store.dispatch('setBookingDate', date)
     }

@@ -3,7 +3,7 @@
   <div class="sub-container">
     <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
     <div class="search">
-      <i class="bz-search search-icon" @click="showSearchForm"></i>
+      <i class="bz-search search-icon" :class="{ active: keyword }" @click="showSearchForm"></i>
       <search wrapper-class="search-inner" />
     </div>
     <!-- <ul class="account">
@@ -16,11 +16,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 const Search = () => import(/* webpackChunkName: "search-bundle" */ '../partials/Search')
 
 export default {
   name: 'Header',
   components: { Search },
+  computed: mapGetters(['keyword']),
   methods: {
     showSearchForm () {
       document.documentElement.classList.toggle('show-searchform')

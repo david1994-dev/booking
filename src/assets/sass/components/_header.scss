@@ -24,6 +24,23 @@
 		display: none;
 	}
 }
+
+@media screen and (max-width: 960px) {
+	.sub-header .active.search-icon {
+		position: relative;
+		&:after {
+			position: absolute;
+			content: '';
+			width: 5px;
+			height: 5px;
+			background: $primary-color;
+			border-radius: 50%;
+			top: -3px;
+			right: -2px;
+		}
+	}
+}
+
 .show-searchform {
 	overflow-y:hidden;
 	.sub-header {

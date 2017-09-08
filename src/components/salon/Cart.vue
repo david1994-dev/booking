@@ -105,8 +105,11 @@
             </v-loading>
           </div>
           <div class="choice-time">
-            <div class="name">Thời gian</div>
-            <div class="btn-time" @click="$bus.$emit('displayDateTimePopup', true)">Chọn thời gian</div>
+            <div class="name-chose">
+              <div class="name">Thời gian</div>
+              <div class="chose" v-show="bookingDate">{{ bookingDate | dateFormat('H:mm D/MM/YYYY') }}</div>
+            </div>
+            <div class="btn-time" :class="{ active: bookingDate }" @click="$bus.$emit('displayDateTimePopup', true)">Chọn thời gian</div>
           </div>
         </div>
 

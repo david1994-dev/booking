@@ -64,8 +64,11 @@
               :class="{ active: selectedSlot.label == slot.label }"
               @click="updateCart(slot)">{{ slot.label }}</div>
           </div>
+          <div class="scrollup" v-if="slots.length" @click="expand = !expand"><i class="bz-down-2"></i></div>
+          <div class="text-center" v-else>
+            <small>Không còn lịch trống. Vui lòng chọn ngày khác hoặc stylist khác</small>
+          </div>
         </v-loading>
-        <div class="scrollup" v-if="slots.length" @click="expand = !expand"><i class="bz-down-2"></i></div>
       </div>
     </calendar>
   </div>
@@ -73,7 +76,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import moment from 'moment'
 import { head } from 'lodash'
 import store from 'store2'
@@ -89,13 +91,16 @@ export default {
     salon: {
       type: Object,
       required: true
+    },
+    category: {
+      type: Number,
+      required: true
     }
   },
   components: {
     Calendar,
     Stars
   },
-  computed: mapGetters(['selectedService']),
   data () {
     return {
       selectedStylist: { id: 0 },
@@ -122,8 +127,8 @@ export default {
       this.resetState()
       this.$startLoading(`fetching stylist::${this.selectedStylist.id} slots`)
       const params = { date: this.selectedDate.format(DATE_FORMAT) }
-      if (this.selectedService.id) {
-        params.categories = this.selectedService.id
+      if (this.category) {
+        params.categories = this.category
       }
       this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params }).then(({ data }) => {
         this.slots = data
@@ -137,7 +142,7 @@ export default {
       }
 
       store.set('cart', {
-        category: this.selectedService.id,
+        category: this.category,
         stylist: this.selectedStylist.id,
         time: slot.start
       })

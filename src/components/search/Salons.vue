@@ -7,9 +7,10 @@
 
     <div v-if="salons.length">
       <salon v-for="salon in salons"
-        @salonAddressClick="centerSalon"
+        @salonAddressClick="centerSalon(salon)"
         :key="salon.id"
-        :salon="salon" />
+        :salon="salon"
+        :category="selectedService.id" />
     </div>
 
     <infinite-loading
@@ -34,6 +35,7 @@
           :key="marker.id"
           :options="{ flat: true }"
           :position="marker.position"
+          @click="centerSalon(marker.salon)"
         >
           <salon-marker :salon="marker.salon" />
         </gmap-rich-marker>
@@ -53,20 +55,18 @@ import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
-import Stars from '../partials/StarRating'
 
 export default {
   name: 'SearchSalons',
   components: {
     Salon,
     SalonMarker,
-    Stars,
     InfiniteLoading,
     GmapRichMarker
   },
   mixins: [DeferredReadyMixin, stickyClassMixin],
   computed: {
-    ...mapGetters(['keyword', 'selectedArea']),
+    ...mapGetters(['keyword', 'selectedService', 'selectedArea']),
     markers () {
       const markers = []
       this.salons.map(salon => {

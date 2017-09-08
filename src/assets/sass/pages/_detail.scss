@@ -452,6 +452,10 @@
                 .name {
                     font-size: 15px;
                 }
+                .chose {
+                    color: $primary-text-color;
+                    font-size: 13px;
+                }
                 .btn-time {
                     font-size: 13px;
                     border: 1px solid;
@@ -460,6 +464,9 @@
                     padding: 0 12px;
                     color: $primary-text-color;
                     cursor: pointer;
+                    &.active {
+                        color: $main-color;
+                    }
                 }
             }
             .btn-book {
