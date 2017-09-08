@@ -375,23 +375,6 @@
                 overflow-y: auto;
                 display: none;
             }
-            &.active {
-                height: 100vh;
-                .title-book {
-                    @include flex();
-                }
-                .service-stylist {
-                    display: block;
-                }
-                .btn-book {
-                    &.book-first {
-                        display: none;
-                    }
-                    &.book-second {
-                        display: block;
-                    }
-                }
-            }
             .list-service {
                 margin: 0 25px;
                 padding: 10px 0;
@@ -480,6 +463,28 @@
                 padding: 10px 25px;
             }
         }
+
+        &.active {
+            height: 100%;
+            .wrap-book {
+                height: 100vh;
+                .title-book {
+                    @include flex();
+                }
+                .service-stylist {
+                    display: block;
+                }
+                .btn-book {
+                    &.book-first {
+                        display: none;
+                    }
+                    &.book-second {
+                        display: block;
+                    }
+                }
+            }
+        }
+
     }
 
     .related {

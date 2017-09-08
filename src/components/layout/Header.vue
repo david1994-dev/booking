@@ -1,9 +1,9 @@
 <template>
-<header class="sub-header">
+<header class="sub-header" :class="{ 'show-searchform': showSearchForm }">
   <div class="sub-container">
     <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
     <div class="search">
-      <i class="bz-search search-icon" :class="{ active: keyword }" @click="showSearchForm"></i>
+      <i class="bz-search search-icon" :class="{ active: keyword }" @click="showSearchForm = !showSearchForm"></i>
       <search wrapper-class="search-inner" />
     </div>
     <!-- <ul class="account">
@@ -28,9 +28,9 @@ export default {
       this.showSearchForm()
     })
   },
-  methods: {
-    showSearchForm () {
-      document.documentElement.classList.toggle('show-searchform')
+  data () {
+    return {
+      showSearchForm: false
     }
   }
 }
