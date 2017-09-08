@@ -49,6 +49,7 @@ import { mapGetters } from 'vuex'
 import store from 'store2'
 import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '@/components/RichMarker'
+import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
@@ -63,7 +64,7 @@ export default {
     InfiniteLoading,
     GmapRichMarker
   },
-  mixins: [stickyClassMixin],
+  mixins: [DeferredReadyMixin, stickyClassMixin],
   computed: {
     ...mapGetters(['keyword', 'selectedArea']),
     markers () {
@@ -96,10 +97,15 @@ export default {
       }
     }
   },
+  deferredReady () {
+    /* eslint-disable no-undef */
+    this.$bounds = new google.maps.LatLngBounds()
+  },
   mounted () {
     this.addStickyClass('.wrap-maps', 600)
   },
   watch: {
+    'salons': 'autoCenter',
     $route () {
       this.fetchData({}, ({ data }) => {
         this.$nextTick(() => {
@@ -146,6 +152,22 @@ export default {
       if (salon.latitude && salon.longitude) {
         this.center = { lat: salon.latitude, lng: salon.longitude }
       }
+    },
+    autoCenter () {
+      this.markers.map(marker => {
+        this.$bounds.extend(marker.position)
+        this.center = this.$bounds.getCenter()
+        this.$refs.map.$mapObject.fitBounds(this.$bounds)
+        this.updateZoom()
+      })
+    },
+    updateZoom () {
+      let zoom = this.$refs.map.$mapObject.getZoom()
+      if (zoom > 15) {
+        zoom = 15
+      }
+      // console.log(this.$refs.map.$mapObject)
+      this.$refs.map.$mapObject.setZoom(zoom - 1)
     }
   }
 }

@@ -13,7 +13,7 @@
               <div class="result">2000 kết quả</div>
             </div>
             <figure>
-              <img :src="service.image" />
+              <img :src="service.image_url" />
             </figure>
           </div>
         </div>

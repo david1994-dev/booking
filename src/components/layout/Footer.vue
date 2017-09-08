@@ -2,7 +2,7 @@
 <footer class="footer">
   <div class="tp-container">
     <div class="savetime-footer">
-      <h3>Tích kiệm thời gian, đặt lịch chăm sóc bản thân ngay tại đây</h3>
+      <h3>Tiết kiệm thời gian, đặt lịch chăm sóc bản thân ngay tại đây</h3>
       <p>là điểm đến trực tuyến cho các chuyên gia chăm sóc sắc đẹp và khách hàng. Chuyên gia có thể giới thiệu công việc của họ, kết nối với khách hàng mới và hiện tại và xây dựng doanh nghiệp của họ. Khách hàng có thể khám phá các dịch vụ và nhà cung cấp dịch vụ mới, đặt hẹn trực tuyến và lấy cảm hứng.</p>
       <div class="full"></div>
       <div class="copyright">

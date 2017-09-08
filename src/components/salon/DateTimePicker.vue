@@ -38,6 +38,7 @@ import store from 'store2'
 import Calendar from '../partials/Calendar'
 
 const DATE_FORMAT = 'YYYY-MM-DD'
+const today = moment()
 
 export default {
   name: 'DateTimePicker',
@@ -48,7 +49,7 @@ export default {
   data () {
     return {
       active: false,
-      date: null,
+      date: today,
       slots: [],
       selectedSlot: { label: '' }
     }
@@ -61,21 +62,15 @@ export default {
   watch: {
     'date': 'fetchSlots',
     cartStylist (value) {
+      this.$store.dispatch('setBookingDate', null)
       if (value.id) {
         const cart = store.get('cart', {})
-        this.date = cart.time ? moment(cart.time) : moment()
-      } else {
-        this.date = null
+        this.date = cart.time ? moment(cart.time) : today
       }
     }
   },
   methods: {
     fetchSlots () {
-      if (!this.date) {
-        this.$store.dispatch('setBookingDate', null)
-        return
-      }
-
       const services = reduce(this.cartServices, (result, { id }) => {
         result.push(id)
         return result

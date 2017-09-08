@@ -44,15 +44,13 @@
       </div>
     </div>
   </div>
-
-  <div id="fb-root"></div>
 </div>
 </template>
 
 <script>
 import Slick from 'vue-slick'
 import PageHeader from './layout/Header'
-import { facebook } from '@/config'
+import { fbAsyncInit } from '../utils/mixins'
 const BlogCard = () => import(/* webpackChunkName: "blog-bundle" */ './partials/BlogCard')
 
 export default {
@@ -62,6 +60,7 @@ export default {
     BlogCard,
     Slick
   },
+  mixins: [fbAsyncInit],
   computed: {
     url () {
       return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
@@ -96,10 +95,7 @@ export default {
   },
   metaInfo () {
     return {
-      title: `${this.blog.title} | Blog`,
-      script: [
-        { id: 'facebook-jssdk', src: `//connect.facebook.net/${facebook.locale}/sdk.js#xfbml=1&version=${facebook.version}&appId=${facebook.appId}` }
-      ]
+      title: `${this.blog.title} | Blog`
     }
   },
   created () {
@@ -128,8 +124,7 @@ export default {
       this.$http.get(`blogs/${this.$route.params.id}`).then(({ data }) => {
         this.blog = data
         this.$endLoading('fetching blog')
-        /* eslint-disable no-undef */
-        FB.XFBML.parse(document.body)
+        this.fbAsyncInit()
       }).catch(() => this.$endLoading('fetching blog'))
     },
     fetchRelated () {

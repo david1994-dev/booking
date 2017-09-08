@@ -8,6 +8,7 @@
 
 <script>
 import { clone } from 'lodash'
+import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 // import propsBinder from 'vue2-google-maps/src/utils/propsBinder'
 import eventsBinder from 'vue2-google-maps/src/utils/eventsBinder'
 import getPropsValuesMixin from 'vue2-google-maps/src/utils/getPropsValuesMixin'
@@ -39,7 +40,7 @@ const events = [
 ]
 
 export default {
-  mixins: [MapElementMixin, getPropsValuesMixin],
+  mixins: [DeferredReadyMixin, MapElementMixin, getPropsValuesMixin],
   replace: false,
   props: props,
 
