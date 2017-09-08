@@ -158,7 +158,7 @@ export default {
         this.$bounds.extend(marker.position)
         this.center = this.$bounds.getCenter()
         this.$refs.map.$mapObject.fitBounds(this.$bounds)
-        this.updateZoom()
+        // this.updateZoom()
       })
     },
     updateZoom () {
