@@ -9,18 +9,18 @@
 
     <div class="list">
       <div class="item" v-for="stylist in stylists" :key="stylist.id">
-        <figure><a href="#"><img :src="stylist.avatar_url" /></a></figure>
+        <figure><router-link :to="{ name: 'stylist', params: { id: stylist.id } }"><img :src="stylist.avatar_url" /></router-link></figure>
         <div class="info">
-          <h3><a href="#">{{ stylist.name }}</a></h3>
+          <h3><router-link :to="{ name: 'stylist', params: { id: stylist.id } }">{{ stylist.name }}</router-link></h3>
           <span>{{ salonNames(stylist) }}</span>
         </div>
       </div>
     </div>
     <div class="tp-view-all" v-if="hasMore">
-      <a href="#">
+      <router-link :to="{ name: 'stylists', query: { q: $route.query.q } }">
         <span>View all</span>
         <i class="bz-next"></i>
-      </a>
+      </router-link>
     </div>
   </v-loading>
 </div>

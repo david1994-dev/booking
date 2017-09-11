@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div class="stylist-d">
-    <div class="title">Stylist</div>
+  <div class="stylist-d" v-if="stylists.length">
+    <div class="title">Nhân viên</div>
     <v-loading class="wrap-list" loader="fetching stylists">
       <template slot="spinner">
         <div class="text-center">

@@ -108,7 +108,8 @@ export default {
     },
     centerSalon (salon) {
       if (salon.latitude && salon.longitude) {
-        this.center = { lat: salon.latitude, lng: salon.longitude }
+        // this.center = { lat: salon.latitude, lng: salon.longitude }
+        this.$refs.map.$mapObject.panTo({ lat: salon.latitude, lng: salon.longitude })
       }
     },
     autoCenter () {

@@ -19,7 +19,7 @@
       </div>
 
       <div class="stylist-c" v-show="cartStylist.id">
-        <div class="title-stylist">Stylist</div>
+        <div class="title-stylist">Nhân viên</div>
         <div class="wrap">
           <figure><span class="deletez"></span><img :src="cartStylist.avatar_url"></figure>
           <div class="info">
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="list-stylist">
-            <div class="name">Stylist</div>
+            <div class="name">Nhân viên</div>
             <v-loading class="wrap-list" loader="fetching stylists">
               <template slot="spinner">
                 <div class="text-center">

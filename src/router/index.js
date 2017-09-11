@@ -14,6 +14,7 @@ const Explore = () => import(/* webpackChunkName: "explore-bundle" */ '@/compone
 const Blogs = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/Blogs')
 const Blog = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/Blog')
 import Contact from '@/components/Contact'
+import Stylist from '@/components/Stylist'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -76,6 +77,11 @@ export default new Router({
       path: '/showcase/:id',
       name: 'showcase',
       component: Showcase
+    },
+    {
+      path: '/stylist/:id',
+      name: 'stylist',
+      component: Stylist
     },
     {
       path: '*',

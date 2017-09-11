@@ -8,7 +8,7 @@
           <li class="register"><a href="">Đăng ký</a></li>
           <li class="login"><a href="">Đăng nhập</a></li>
         </ul> -->
-        <div class="account">Đăng ký</div>
+        <div class="account" @click="registerModal = true">Đăng ký</div>
       </div>
     </header>
     <div class="slogan">
@@ -50,17 +50,61 @@
             <router-link class="tp-btn" :to="{ name: 'explore' }">Tìm lịch làm đẹp</router-link>
           </div>
         </div>
-        <div v-show="salonRegister">
+        <form novalidate
+          v-show="salonRegister"
+          @submit.prevent="submit">
           <div class="tp-title-form">Đăng ký chủ Salon</div>
           <div class="tp-des-form">60 giây để đăng ký một công cụ quản lý Salon chuyên nghiệp</div>
-          <input class="tp-text-form" type="type" placeholder="Tên salon" />
-          <input class="tp-text-form" type="type" placeholder="Đại chỉ salon" />
-          <input class="tp-text-form" type="type" placeholder="Người đại diện" />
-          <input class="tp-text-form" type="type" placeholder="Số điện thoại" />
-          <input class="tp-text-form" type="password" placeholder="Mật khẩu" />
-          <input class="tp-text-form" type="password" placeholder="Nhập lại mật khẩu" />
-          <input class="tp-btn" type="submit" value="Đăng ký" data-toggle="modal" data-target="#modal-success-salon">
-        </div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="name"
+            placeholder="Tên salon"
+            v-validate="'required'"
+            data-vv-as="Tên salon"
+            :class="{ 'is-invalid': errors.has('name') }" />
+          <div class="invalid-feedback">{{ errors.first('name') }}</div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="address"
+            v-validate="'required'"
+            data-vv-as="Địa chỉ salon"
+            placeholder="Địa chỉ salon"
+            :class="{ 'is-invalid': errors.has('address') }" />
+          <div class="invalid-feedback">{{ errors.first('address') }}</div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="owner"
+            v-validate="'required'"
+            data-vv-as="Người đại diện"
+            placeholder="Người đại diện"
+            :class="{ 'is-invalid': errors.has('owner') }" />
+          <div class="invalid-feedback">{{ errors.first('owner') }}</div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="phone"
+            v-validate="'required'"
+            data-vv-as="Số điện thoại"
+            placeholder="Số điện thoại"
+            :class="{ 'is-invalid': errors.has('phone') }" />
+          <div class="invalid-feedback">{{ errors.first('phone') }}</div>
+          <input class="tp-text-form form-control"
+            type="password"
+            name="password"
+            v-validate="'required|confirmed:password_confirmation'"
+            data-vv-as="Mật khẩu"
+            placeholder="Mật khẩu"
+            :class="{ 'is-invalid': errors.has('password') }" />
+          <div class="invalid-feedback">{{ errors.first('password') }}</div>
+          <input class="tp-text-form form-control"
+            type="password"
+            name="password_confirmation"
+            v-validate="'required'"
+            data-vv-as="Xác nhận mật khẩu"
+            placeholder="Nhập lại mật khẩu"
+            :class="{ 'is-invalid': errors.has('password_confirmation') }" />
+          <div class="invalid-feedback">{{ errors.first('password_confirmation') }}</div>
+          <input class="tp-btn" type="submit" value="Đăng ký">
+        </form>
       </div>
   </b-modal>
 </div>
@@ -107,9 +151,12 @@ export default {
     }
   },
   methods: {
-    explore () {
-      this.registerModal = false
-      this.$router.push({ name: 'explore' })
+    submit () {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          console.log('ok')
+        }
+      })
     }
   }
 }

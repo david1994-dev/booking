@@ -13,7 +13,7 @@
   <div class="related-slide" v-if="salons.length">
     <slick class="slide-inner" ref="slick" :options="slickOptions">
       <div v-for="salon in salons" :key="salon.id">
-        <div class="tp-salon">
+        <!-- <div class="tp-salon">
           <div class="img-price">
             <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url"></router-link></figure>
             <div class="price-rate">
@@ -121,7 +121,8 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+        <salon :salon="salon" :category="randomCategory(salon.services)" />
       </div>
     </slick>
   </div>
@@ -129,8 +130,11 @@
 </template>
 
 <script>
+import { head } from 'lodash'
 import Slick from 'vue-slick'
+import store from 'store2'
 import Stars from '../partials/StarRating'
+const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 
 export default {
   name: 'SalonRelated',
@@ -142,7 +146,8 @@ export default {
   },
   components: {
     Slick,
-    Stars
+    Stars,
+    Salon
   },
   data () {
     return {
@@ -191,11 +196,35 @@ export default {
   },
   methods: {
     fetchData () {
+      const categories = this.getCategory()
+      const params = {
+        includes: 'services,stylists'
+      }
+
+      if (categories) {
+        params.categories = categories
+      }
+
       this.$startLoading('fetching related')
-      this.$http.get(`salons/${this.salon.id}/related`).then(({ data }) => {
+      this.$http.get(`salons/${this.salon.id}/related`, { params }).then(({ data }) => {
         this.salons = data
         this.$endLoading('fetching related')
       }).catch(() => this.$endLoading('fetching related'))
+    },
+    getCategory () {
+      const cart = store.get('cart', {})
+      return parseInt(cart.category)
+    },
+    randomCategory (services) {
+      const categories = this.getCategory()
+
+      if (categories) {
+        return categories
+      }
+
+      head(services).category_id
+
+      return 0
     },
     next () {
       this.$refs.slick.next()

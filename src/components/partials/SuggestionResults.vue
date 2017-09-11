@@ -25,7 +25,7 @@
     <a href="#">Stylist</a>
     <ul>
       <li v-for="stylist in stylists">
-        <a class="pointer">{{ stylist.name }}</a>
+        <router-link :to="{ name: 'stylist', params: { id: stylist.id } }">{{ stylist.name }}</router-link>
       </li>
     </ul>
   </li>

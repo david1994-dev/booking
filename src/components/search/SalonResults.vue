@@ -58,12 +58,16 @@ export default {
       }
     }
   },
+  mounted () {
+    this.fetchData({}, ({ data }) => {
+      this.salons = data.data
+      this.meta = data.meta
+    })
+  },
   watch: {
     $route () {
       this.fetchData({}, ({ data }) => {
-        this.$nextTick(() => {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-        })
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
         this.salons = data.data
         this.meta = data.meta
       })

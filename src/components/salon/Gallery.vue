@@ -2,7 +2,7 @@
 <div class="images-d" v-if="salon.gallery">
   <div class="title">{{ salon.gallery.length }} Hình ảnh</div>
   <div class="list">
-    <div class="item images-more" v-for="(image, index) in items"
+    <div class="item" v-for="(image, index) in items"
       :key="image.id">
         <!-- <span class="number">+336</span> -->
       <img :src="image.thumb" @click="$preview.open(index, items, options)"
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   name: 'SalonGallery',
   props: {
@@ -47,8 +49,39 @@ export default {
       }
     }
   },
+  mounted () {
+    this.$nextTick(() => {
+      this.imageGrid()
+    })
+  },
   methods: {
-    //
+    imageGrid () {
+      const $list = $('.images-d .list')
+      const addActive = () => {
+        const wrapWidth = $list.width()
+        const itemWidth = $list.find('.item').outerWidth()
+        const $items = $list.find('.item')
+        let active = parseInt(wrapWidth / itemWidth) * 2
+
+        $items.removeClass('images-more')
+        $items.find('.number').remove()
+
+        if ($items.length > active) {
+          $items.eq(active - 1).addClass('images-more').prepend('<div class="number">+' + ($items.length - active + 1) + '</div>')
+        }
+
+        $.each($items, (key, val) => {
+          if (key < active) {
+            $(val).show()
+          } else {
+            $(val).hide()
+          }
+        })
+      }
+
+      $(window).resize(() => addActive())
+      addActive()
+    }
   }
 }
 </script>
