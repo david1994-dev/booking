@@ -46,7 +46,7 @@
           </div>
           <div class="user">
             <div class="des">Đăng ký với tư cách khách hàng?</div>
-            <p>Bạn hoàn toàn không cần đăng ký tài khoản mã vẫn có thể được lịch làm đẹp!</p>
+            <p>Bạn hoàn toàn không cần đăng ký tài khoản mà vẫn có thể đặt lịch làm đẹp!</p>
             <router-link class="tp-btn" :to="{ name: 'explore' }">Tìm lịch làm đẹp</router-link>
           </div>
         </div>

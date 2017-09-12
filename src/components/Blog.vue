@@ -11,6 +11,7 @@
 
       <div class="content-page">
         <h1 class="main-title">{{ blog.title }}</h1>
+        <div class="content-intro"><b>{{ blog.intro }}</b></div>
         <div class="content-text" v-html="blog.content"></div>
 
         <div class="btn-social">
@@ -95,7 +96,11 @@ export default {
   },
   metaInfo () {
     return {
-      title: `${this.blog.title} | Blog`
+      title: `${this.blog.title} | Blog`,
+      meta: [
+        { name: 'keywords', content: this.blog.meta_keyword },
+        { name: 'description', content: this.blog.meta_description }
+      ]
     }
   },
   created () {
