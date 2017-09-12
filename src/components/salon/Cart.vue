@@ -48,6 +48,7 @@
           </div>
         </div>
         <div class="tp-btn-book btn-book" @click="checkout"><i class="bz-book"></i>Đặt lịch hẹn</div>
+        <div class="not-time" v-show="!bookingDate">Bạn chưa chọn thời gian làm dịch vụ!</div>
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
@@ -85,8 +86,8 @@
             </div>
           </div>
           <div class="list-stylist">
-            <div class="name">Nhân viên</div>
-            <v-loading class="wrap-list" loader="fetching stylists">
+            <div class="name-box">Nhân viên</div>
+            <v-loading loader="fetching stylists">
               <template slot="spinner">
                 <div class="text-center">
                   <v-loading-spinner height="30px" width="30px" />
@@ -98,7 +99,8 @@
                   :key="stylist.id"
                   :class="{ active: cartStylist.id == stylist.id }"
                   @click="setStylist(stylist)">
-                  <img :src="stylist.avatar_url">
+                  <figure><img :src="stylist.avatar_url"></figure>
+                  <div class="name">{{ stylist.name }}</div>
                 </div>
               </div>
             </v-loading>

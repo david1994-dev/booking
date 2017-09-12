@@ -161,6 +161,7 @@
                 @include flex();
                 @include flex-wrap(wrap);
                 margin: 13px 0;
+                cursor: pointer;
             }
             .tp-checkbox {
                 margin-right: 18px;
@@ -381,7 +382,7 @@
                 border-bottom: 1px solid $border-color;
             }
             .list-stylist {
-                .name {
+                .name-box {
                     font-size: 15px;
                     margin: 10px 25px;
                 }
@@ -392,7 +393,24 @@
                 }
                 .item {
                     margin: 0 12px;
-                    &.active {
+                    width: 48px;
+                    figure {
+                        width: 48px;
+                        height: 48px;
+                        margin: 0 0 5px;
+                        img {
+                            border-radius: 50%;
+                            width: 100%;
+                        }
+                    }
+                    .name {
+                        font-size: 13px;
+                        text-align: center;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                    &.active figure {
                         position: relative;
                         &:before {
                             position: absolute;
@@ -416,12 +434,6 @@
                             font-size: 19px;
                             border-radius: 100px;
                         }
-                    }
-                    img {
-                        border-radius: 50%;
-                        width: 48px;
-                        height: 48px;
-                        max-width: none;
                     }
                 }
             }

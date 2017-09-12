@@ -15,15 +15,15 @@
   <div class="link">
     <div class="name">Liên kết</div>
     <ul>
-      <li><a href=""><i class="bz-facebook"></i></a></li>
-      <li><a href=""><i class="bz-instagram"></i></a></li>
+      <li><a href="#"><i class="bz-facebook"></i></a></li>
+      <li><a href="#"><i class="bz-instagram"></i></a></li>
     </ul>
   </div>
 
   <div class="time-since">
-    <div class="item"> <i class="bz-clock"></i> 09:00 - 21:00 <span class="main-color">-</span> Các ngày trong tuần</div>
-    <div class="item"> <i class="bz-calendar"></i> Thành lập ngày 17 tháng 5 2013</div>
-    <div class="item"> <i class="bz-hair-spray"></i> Hoá chất sư dụng: Davines, Moroccan Oil, Tony & Guy, L’Oreal</div>
+    <div class="item"><i class="bz-clock"></i> 09:00 - 21:00 <span class="main-color">-</span> Các ngày trong tuần</div>
+    <div class="item" v-if="salon.established"><i class="bz-calendar"></i> Thành lập ngày {{ salon.established | dateFormat('D-M-YYYY') }}</div>
+    <div class="item" v-if="chemicals"><i class="bz-hair-spray"></i> Hoá chất sử dụng: {{ chemicals }}</div>
   </div>
 
   <div class="des" v-if="salon.description">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { map } from 'lodash'
 import Stars from '../partials/StarRating'
 
 export default {
@@ -45,6 +46,15 @@ export default {
   },
   components: {
     Stars
+  },
+  computed: {
+    chemicals () {
+      if (!this.salon.chemicals || !this.salon.chemicals.length) {
+        return
+      }
+
+      return map(this.salon.chemicals, 'name').join(', ')
+    }
   }
 }
 </script>

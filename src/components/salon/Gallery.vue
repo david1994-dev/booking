@@ -51,11 +51,11 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      this.imageGrid()
+      this.collapseImages()
     })
   },
   methods: {
-    imageGrid () {
+    collapseImages () {
       const $list = $('.images-d .list')
       const addActive = () => {
         const wrapWidth = $list.width()
