@@ -5,15 +5,20 @@
 		.main-title {
 			margin: 0 0 17px 0;
 			font-size: 20px;
-			font-weight: 300;
+			font-weight: 400;
 			border-bottom: 1px solid $border-color;
 			line-height: 1.4;
 			padding: 35px 0 15px 0;
 		}
+		.content-intro,
 		.content-text {
 			color: $primary-text-color;
 			font-size: 15px;
 			margin-bottom: 30px;
+		}
+
+		.content-intro {
+			margin-bottom: 17px;	
 		}
 	}
 	.btn-social {

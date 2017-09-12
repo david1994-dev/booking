@@ -11,6 +11,7 @@
 
       <div class="content-page">
         <h1 class="main-title">{{ blog.title }}</h1>
+        <div class="content-intro">{{ blog.intro }}</div>
         <div class="content-text" v-html="blog.content"></div>
 
         <div class="btn-social">

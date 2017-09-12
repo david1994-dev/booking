@@ -11,7 +11,7 @@
 
   </v-loading> -->
   <div class="list">
-    <div class="item" v-for="service in salon.services" :key="service.id">
+    <label class="item" v-for="service in salon.services" :key="service.id">
       <div class="tp-checkbox">
         <input type="checkbox" :checked="isChecked(service)"
           @change="toggleService(service, $event.target.checked)" /><span></span>
@@ -21,7 +21,7 @@
         <div class="fl-full"></div>
         <span class="brace">(</span><span>{{ service.formatted_price }} - {{ service.duration }} phút</span><span class="brace">)</span>
       </div>
-    </div>
+    </label>
   </div>
 </div>
 </template>

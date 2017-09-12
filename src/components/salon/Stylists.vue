@@ -14,6 +14,7 @@
           :key="stylist.id"
           :class="{ active: cartStylist.id == stylist.id }">
           <figure><a @click="setSelectedStylist(stylist)"><img :src="stylist.avatar_url" /></a></figure>
+          <div class="name">{{ stylist.name }}</div>
         </div>
       </div>
     </v-loading>
