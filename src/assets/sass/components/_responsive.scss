@@ -583,7 +583,7 @@
 				.menu {
 					@include justify-content(normal);
 					li {
-						margin-right: 70px;
+						margin-right: 66px;
 						&:nth-child(3) {
 							display:block;
 						}	
@@ -593,7 +593,7 @@
 				    width: auto;
 				    left: auto;
 				    margin: 0;
-				    padding-right: 4px;
+				    padding-right: 2px;
 				}
 
 				.service-d {

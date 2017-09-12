@@ -20,7 +20,7 @@
           <div class="info">
             <div class="name">{{ review.user.name }}</div>
             <div class="date-stars">
-              <div class="date">Hôm qua</div>
+              <div class="date">{{ review.created_at | dateFormat('HH:mm DD-MM-YYYY') }}</div>
               <div class="tp-rate">
                 <stars :rating="review.review.rating" />
               </div>
