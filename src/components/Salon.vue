@@ -97,7 +97,11 @@ export default {
   },
   metaInfo () {
     return {
-      title: this.salon.name
+      title: this.salon.name,
+      meta: [
+        { name: 'keywords', content: this.salon.meta_keyword },
+        { name: 'description', content: this.salon.meta_description }
+      ]
     }
   },
   beforeRouteEnter (to, from, next) {
