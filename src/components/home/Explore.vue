@@ -2,7 +2,7 @@
 <div class="guide-discovery">
   <div class="guide-book tp-box">
     <div class="tp-wrap-title">
-      <h3 class="tp-title"><strong>Làm thế nào</strong> để đặt chỗ</h3>
+      <h3 class="tp-title"><strong>Đẹp hơn</strong> chỉ với 4 bước</h3>
     </div>
     <div class="ofhd">
       <div class="list">
@@ -10,28 +10,28 @@
           <div class="name">Tìm kiếm</div>
           <div class="content-item">
             <div class="number">1</div>
-            <p class="des">Theo tên stylist bạn quen, tên salon hoặc dịch vụ mà bạn đang cần</p>
+            <p class="des">Dễ dàng tìm kiếm dịch vụ làm đẹp theo tên spa, stylist và khu vực của bạn</p>
           </div>
         </div>
         <div class="item">
           <div class="name">Đặt lịch</div>
           <div class="content-item">
             <div class="number">2</div>
-            <p class="des">Kiểm tra lịch trống của các salon & kéo slot đó</p>
+            <p class="des">Chủ động đặt hẹn với spa phù hợp với lịch của bạn</p>
           </div>
         </div>
         <div class="item">
           <div class="name">Trải nghiệm</div>
           <div class="content-item">
             <div class="number">3</div>
-            <p class="des">Tới trước lịch hẹn 5 phút và salon sẽ chào mừng bạn theo cách bạn thích</p>
+            <p class="des">Tận hưởng dịch vụ chăm sóc chuyên nghiệp cùng với những stylist hàng đầu</p>
           </div>
         </div>
         <div class="item">
           <div class="name">Đánh giá</div>
           <div class="content-item">
             <div class="number">4</div>
-            <p class="des">Để cùng xây dựng một cộng đồng chất lượng & khách quan, bảo vệ quyền lợi cho nha</p>
+            <p class="des">Trực tiếp phản hồi trải nghiệm của bạn đến salon và chia sẻ đến mọi người</p>
           </div>
         </div>
       </div>

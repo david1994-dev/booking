@@ -46,7 +46,7 @@
       </div>
       <ul class="list-link">
         <li>
-          <a href="#">Về chúng tôi</a>
+          <a href="#">Câu chuyện Bzone</a>
         </li>
         <li>
           <a href="#">Hỗ trợ</a>
@@ -64,10 +64,10 @@
       <div class="full"></div>
       <ul class="social">
         <li>
-          <a href="#"><i class="bz-facebook"></i></a>
+          <a href="https://www.facebook.com/Bzone.vn"><i class="bz-facebook"></i></a>
         </li>
         <li>
-          <a href="#"><i class="bz-instagram"></i></a>
+          <a href="https://www.instagram.com/bzone.vn"><i class="bz-instagram"></i></a>
         </li>
       </ul>
     </div>
