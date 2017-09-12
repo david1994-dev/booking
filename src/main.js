@@ -12,9 +12,11 @@ import BootstrapVue from 'bootstrap-vue'
 import Scrollactive from 'vue-scrollactive'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VuePreview from 'vue-preview'
-import VeeValidate from 'vee-validate'
-
+import VeeValidate, { Validator } from 'vee-validate'
+import vi from 'vee-validate/dist/locale/vi'
 import moment from 'moment-timezone'
+
+Validator.addLocale(vi)
 moment.tz.setDefault('Asia/Ho_Chi_Minh')
 
 Vue.config.productionTip = false
@@ -26,7 +28,9 @@ Vue.use(Scrollactive)
 Vue.use(http, { store, router })
 Vue.use(eventbus)
 Vue.use(VuePreview)
-Vue.use(VeeValidate)
+Vue.use(VeeValidate, {
+  locale: 'vi'
+})
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyC4Lr23cLmL1FNhKbVZepiG6MsXcwNPvVA',
