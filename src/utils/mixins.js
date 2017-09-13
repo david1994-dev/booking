@@ -51,7 +51,41 @@ export const parseSearchQuery = {
       }
       if (this.$route.query.area_id) {
         this.$store.dispatch('findAndSetArea', this.$route.query.area_id)
+      } else if (this.$route.query.city_id) {
+        this.$store.dispatch('findAndSetCity', this.$route.query.city_id)
       }
+    }
+  }
+}
+
+export const collapseableImages = {
+  methods: {
+    collapseImages (list, moreClassName = 'more') {
+      const $list = $(list)
+      const addActive = () => {
+        const wrapWidth = $list.width()
+        const itemWidth = $list.find('.item').outerWidth()
+        const $items = $list.find('.item')
+        let active = parseInt(wrapWidth / itemWidth) * 2
+
+        $items.removeClass(moreClassName)
+        $items.find('.number').remove()
+
+        if ($items.length > active) {
+          $items.eq(active - 1).addClass(moreClassName).prepend('<div class="number">+' + ($items.length - active + 1) + '</div>')
+        }
+
+        $.each($items, (key, val) => {
+          if (key < active) {
+            $(val).show()
+          } else {
+            $(val).hide()
+          }
+        })
+      }
+
+      $(window).resize(() => addActive())
+      addActive()
     }
   }
 }

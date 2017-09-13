@@ -6,8 +6,7 @@
       <input placeholder="Dịch vụ, Stylist, Salon..."
         type="search"
         @keyup.enter="submit"
-        :value="keyword"
-        @input="updateKeyword"
+        v-model="keyword"
         @focus="showSuggestions = true"
         @blur="hideSugesstions">
     </div>
@@ -17,12 +16,11 @@
   </div>
   <div class="wrap-input location">
     <div class="input">
-      <i class="bz-location"></i>
+      <i class="bz-location" :class="{ 'bounce': $isLoading('geolocation') }"></i>
       <input placeholder="Thành phố bạn ở"
         @keyup.enter="submit"
         type="search"
-        :value="selectedArea.name"
-        @input="updateArea"
+        v-model="location"
         @focus="showLocations = true"
         @blur="hideLocations">
     </div>
@@ -56,7 +54,23 @@ export default {
     SuggestionResults
   },
   computed: {
-    ...mapGetters(['selectedService', 'selectedArea', 'keyword']),
+    ...mapGetters(['selectedService', 'selectedCity', 'selectedArea']),
+    keyword: {
+      get () {
+        return this.$store.state.search.keyword
+      },
+      set (value) {
+        this.$store.dispatch('setKeyword', value)
+      }
+    },
+    location: {
+      get () {
+        return this.$store.state.search.location
+      },
+      set (value) {
+        this.$store.dispatch('setLocation', value)
+      }
+    },
     canSubmit () {
       return this.keyword
     }
@@ -74,7 +88,12 @@ export default {
       }
 
       const query = { q: this.keyword }
-      if (this.selectedArea.id) {
+      if (this.location) {
+        query.l = this.location
+      }
+      if (this.selectedCity.id) {
+        query.city_id = this.selectedCity.id
+      } else if (this.selectedArea.id) {
         query.area_id = this.selectedArea.id
       }
       if (this.selectedService.id) {
@@ -84,13 +103,6 @@ export default {
       this.$bus.$emit('searchSubmitted')
 
       this.$router.push({ name: 'search', query })
-    },
-    updateKeyword (e) {
-      this.$store.dispatch('setKeyword', e.target.value.trim())
-    },
-    updateArea (e) {
-      const value = e.target.value.trim() || {}
-      this.$store.dispatch('setSelectedArea', value)
     },
     hideSugesstions () {
       setTimeout(() => {
@@ -105,3 +117,35 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+@keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -12px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -6px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.bounce {
+  animation-name: bounce;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  transform-origin: center bottom;
+}
+</style>

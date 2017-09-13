@@ -67,7 +67,7 @@ export default {
   },
   mixins: [DeferredReadyMixin, stickyClassMixin],
   computed: {
-    ...mapGetters(['keyword', 'selectedService', 'selectedArea']),
+    ...mapGetters(['keyword', 'location', 'position', 'selectedService']),
     markers () {
       const markers = []
       this.salons.map(salon => {
@@ -109,7 +109,7 @@ export default {
   watch: {
     'salons': 'autoCenter',
     $route () {
-      this.fetchData({}, ({ data }) => {
+      this.fetchData({ page: 1 }, ({ data }) => {
         this.$nextTick(() => {
           this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
         })
@@ -126,12 +126,17 @@ export default {
       let params = this.$route.query
       params._meta = 1
       params = merge(query, params)
+
+      if (this.position.latitude && this.position.longitude) {
+        params = merge(this.position, params)
+      }
+
       this.$http.get('search', { params })
         .then(response => {
           this.$endLoading('fetching salons')
           store.set('searchQuery', {
             keyword: this.keyword,
-            location: this.selectedArea.name || ''
+            location: this.location
           })
           cb(response)
         })

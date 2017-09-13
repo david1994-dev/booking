@@ -4,7 +4,7 @@
     <a class="pointer" @click="getCurrentPosition">Vị trí hiện tại</a>
   </li>
   <li v-for="city in locations">
-    <a class="pointer">{{ city.name }}</a>
+    <a class="pointer" @click="setSelectedCity(city)">{{ city.name }}</a>
     <ul>
       <li v-for="area in city.areas">
         <a class="pointer" @click="setSelectedArea(area)">{{ area.name }}</a>
@@ -23,27 +23,34 @@ export default {
     locations: state => state.preloadData.locations || []
   }),
   methods: {
-    ...mapActions(['setSelectedArea']),
+    ...mapActions(['setSelectedCity', 'setSelectedArea']),
     getCurrentPosition () {
       if (navigator.geolocation) {
+        this.$startLoading('geolocation')
         navigator.geolocation.getCurrentPosition(position => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-          this.getcode({ location: pos })
+          this.geolocation(position.coords.latitude, position.coords.longitude)
         }, () => {
+          this.$endLoading('geolocation')
           alert(`The Geolocation service failed`)
         })
       } else {
+        this.$endLoading('geolocation')
         alert(`Your browser doesn't support geolocation`)
       }
     },
-    getcode (options) {
-      // this.$geocoder.geocode(options, (results, status) => {
-      //   console.log(results)
-      //   console.log(status)
-      // })
+    geolocation (lat, lng) {
+      this.$startLoading('geolocation')
+      this.$http.get('https://maps.googleapis.com/maps/api/geocode/json', { params: { latlng: `${lat},${lng}`, sensor: false } }).then(({ data }) => {
+        if (data.status === 'OK') {
+          if (data.results[1]) {
+            this.$endLoading('geolocation')
+            this.$store.dispatch('setLocation', data.results[1].formatted_address)
+            this.$store.dispatch('setPosition', { lat, lng })
+          }
+        }
+      }).catch(() => {
+        this.$endLoading('geolocation')
+      })
     }
   }
 }
