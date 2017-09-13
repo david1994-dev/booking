@@ -1,7 +1,7 @@
 <template>
 <div class="tricks-beautiful tp-box">
   <div class="tp-wrap-title">
-    <h3 class="tp-title"><strong>Thủ thuật</strong> làm đẹp</h3>
+    <h3 class="tp-title"><strong>Bí quyết</strong> làm đẹp</h3>
     <div class="tp-view-more">
       <router-link :to="{ name: 'blogs' }">xem thêm</router-link>
     </div>

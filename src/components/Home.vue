@@ -15,7 +15,7 @@
       <div class="clock-icon">
         <span class="line"></span>
       </div>
-      <h2 class="text">Tiết kiệm thời gian, đặt lịch làm đẹp 24/7</h2>
+      <h2 class="text">Khám phá và đặt lịch làm đẹp 24/7</h2>
     </div>
     <search />
   </div>
@@ -26,8 +26,8 @@
         <a href="#"><img src="../assets/images/image-savetime.png"></a>
       </figure>
       <div class="info">
-        <h3 class="name">Tiết kiệm thời gian, đặt lịch chăm sóc bản thân ngay tại đây</h3>
-        <p class="des">Để cùng xây dựng một cộng đồng chất lượng & khách quan, bảo vệ quyền lợi cho nha</p><a class="register-now" @click="$root.$emit('show::modal', 'modal-choice-account')">Đăng ký ngay</a>
+        <h3 class="name">Booking để tận hưởng tiện ích</h3>
+        <p class="des">Bzone là nơi bạn có thể kết nối với các salon làm đẹp bất cứ lúc nào. Chúng tôi cam kết sẽ luôn mang lại cho bạn những dịch vụ chuyên nghiệp nhất.</p><a class="register-now" @click="$root.$emit('show::modal', 'modal-choice-account')">Đăng ký ngay</a>
       </div>
     </div>
     <blogs />
