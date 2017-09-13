@@ -15,7 +15,7 @@ import VuePreview from 'vue-preview'
 import VeeValidate, { Validator } from 'vee-validate'
 import vi from 'vee-validate/dist/locale/vi'
 import moment from 'moment-timezone'
-
+import { googleMapKey } from './config'
 Validator.addLocale(vi)
 moment.tz.setDefault('Asia/Ho_Chi_Minh')
 
@@ -33,7 +33,7 @@ Vue.use(VeeValidate, {
 })
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyC4Lr23cLmL1FNhKbVZepiG6MsXcwNPvVA',
+    key: googleMapKey,
     libraries: 'places'
   }
 })

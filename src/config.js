@@ -1,7 +1,9 @@
 export const apiUrl = process.env.API_URL || 'http://localhost'
+export const fbAppId = process.env.FB_APP_ID || ''
+export const googleMapKey = process.env.GOOGLE_MAP_KEY || ''
 
 export const facebook = {
-  appId: '1637966656508513',
+  appId: fbAppId,
   version: 'v2.10',
   locale: 'en_GB'
 }
