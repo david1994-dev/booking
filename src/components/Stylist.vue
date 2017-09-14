@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import store from 'store2'
+
 export default {
   name: 'Stylist',
   data () {
@@ -29,6 +31,9 @@ export default {
     },
     redirect () {
       if (this.stylist.salon) {
+        store.set('cart', {
+          stylist: this.stylist.id
+        })
         this.$router.push({ name: 'salon', params: { id: this.stylist.salon.slug } })
       } else {
         this.$router.push({ name: 'home' })

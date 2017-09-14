@@ -64,10 +64,10 @@
       <div class="full"></div>
       <ul class="social">
         <li>
-          <a href="https://www.facebook.com/Bzone.vn"><i class="bz-facebook"></i></a>
+          <a href="https://www.facebook.com/Bzone.vn" target="_blank"><i class="bz-facebook"></i></a>
         </li>
         <li>
-          <a href="https://www.instagram.com/bzone.vn"><i class="bz-instagram"></i></a>
+          <a href="https://www.instagram.com/bzone.vn" target="_blank"><i class="bz-instagram"></i></a>
         </li>
       </ul>
     </div>
