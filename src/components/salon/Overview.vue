@@ -21,7 +21,13 @@
   </div>
 
   <div class="time-since">
-    <div class="item"><i class="bz-clock"></i> 09:00 - 21:00 <span class="main-color">-</span> Các ngày trong tuần</div>
+    <div class="item date-open"> <i class="bz-clock"></i>
+      <ul>
+        <li v-for="(hours, day) in salon.opening_hours"
+          v-if="hours.open && hours.close"
+          >{{ hours.open }} - {{ hours.close }} <span class="main-color">-</span> {{ displayDate(day) }}</li>
+      </ul>
+    </div>
     <div class="item" v-if="salon.established"><i class="bz-calendar"></i> Thành lập ngày {{ salon.established | dateFormat('D-M-YYYY') }}</div>
     <div class="item" v-if="chemicals"><i class="bz-hair-spray"></i> Hoá chất sử dụng: {{ chemicals }}</div>
   </div>
@@ -54,6 +60,22 @@ export default {
       }
 
       return map(this.salon.chemicals, 'name').join(', ')
+    }
+  },
+  methods: {
+    displayDate (key) {
+      const days = {
+        monday: 'Thứ 2',
+        tuesday: 'Thứ 3',
+        wednesday: 'Thứ 4',
+        thursday: 'Thứ 5',
+        friday: 'Thứ 6',
+        saturday: 'Thứ 7',
+        sunday: 'Chủ nhật'
+      }
+      const day = key.toLowerCase()
+
+      return days[day] ? days[day] : ''
     }
   }
 }
