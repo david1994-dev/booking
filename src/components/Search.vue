@@ -1,5 +1,6 @@
 <template>
 <div>
+  <stylist-picker />
   <page-header />
   <salons v-if="searchByService" />
   <results v-else />
@@ -12,13 +13,15 @@ import { parseSearchQuery } from '@/utils/mixins'
 import PageHeader from './layout/Header'
 const Results = () => import(/* webpackChunkName: "search-bundle" */ './search/Results')
 const Salons = () => import(/* webpackChunkName: "search-bundle" */ './search/Salons')
+const StylistPicker = () => import(/* webpackChunkName: "search-bundle" */ './search/StylistPicker')
 
 export default {
   name: 'Search',
   components: {
     PageHeader,
     Results,
-    Salons
+    Salons,
+    StylistPicker
   },
   mixins: [parseSearchQuery],
   computed: {
@@ -39,6 +42,9 @@ export default {
   },
   mounted () {
     this.setSearchData()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('clearSearchQuery').then(() => next())
   },
   watch: {
     '$route': 'setSearchData'

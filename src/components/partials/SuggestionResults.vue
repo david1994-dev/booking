@@ -75,7 +75,7 @@ export default {
         this.salons = data.salons
         this.stylists = data.stylists
         this.services = data.categories
-      })
+      }).catch(() => this.resetState())
     },
     resetState () {
       this.salons = []

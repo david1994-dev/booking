@@ -893,6 +893,42 @@
 			}
 		}
 	}
+	.searchfull-page {
+		.stylist {
+			.sub-container {
+				max-width: 1220px;
+				margin: 0 auto;
+				padding: 0 25px;
+			}
+			.list {
+				@include flex-grow("1 0");
+			    padding-left: 0;
+			}
+			.item {
+				width: 25%;
+			}
+			.tp-view-all {
+				padding-right: 0;
+			}
+		}
+		.services {
+			.sub-container {
+				max-width: 1220px;
+				margin: 0 auto;
+				padding: 0 25px;
+				&:after {
+					display: none;
+				}
+			}
+			.list {
+				@include flex-grow("1 0");
+			    padding-left: 0;
+			}
+			.item {
+				width: calc(25% - 20px);
+			}
+		}
+	}
 	.tp-salon {
 		padding-bottom: 0;
 		@include flex();
@@ -1020,7 +1056,6 @@
 			}
 		}
 	}
-
 	.detail-page {
 		.slide {
 			.control {

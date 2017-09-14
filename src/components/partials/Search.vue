@@ -143,7 +143,7 @@ export default {
 
 .bounce {
   animation-name: bounce;
-  animation-duration: 2s;
+  animation-duration: 1.4s;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
   transform-origin: center bottom;

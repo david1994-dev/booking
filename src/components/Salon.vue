@@ -104,11 +104,6 @@ export default {
       ]
     }
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$store.dispatch('clearSearchQuery')
-    })
-  },
   beforeRouteUpdate (to, from, next) {
     this.$store.dispatch('clearCart').then(() => next())
   },
