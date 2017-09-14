@@ -57,7 +57,7 @@ export default {
       services: []
     }
   },
-  mounted () {
+  created () {
     this.fetchData()
   },
   watch: {

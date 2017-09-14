@@ -34,6 +34,9 @@
         <span slot="no-more">
           Không tìm thấy thêm kết quả
         </span>
+        <span slot="no-results">
+          Không tìm thấy thêm kết quả
+        </span>
       </infinite-loading>
     </div>
   </div>
