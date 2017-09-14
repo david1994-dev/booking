@@ -5,20 +5,17 @@
 		padding: 18px 0;
 		background: #fff;
 		.sub-container {
-			width: 1220px;
-			margin: 0 auto;
-			padding: 0 25px;
 			@include flex();
 			@include align-items(center);
 		}
 		.list {
-		    @include flex-grow("1 0");
 		    @include flex();
 		    @include align-items(center);
+	        padding-left: 25px;
 		}
 		.item {
-			width: 25%;
-			padding-right: 50px;
+		    width: 224px;
+			padding-right: 20px;
 			@include flex();
 			@include align-items(center);
 			figure {
@@ -46,8 +43,8 @@
 				}
 			}
 		}
-		.view-all {
-		    margin-left: 10px;
+		.tp-view-all {
+		    padding-right: 25px;
 		}
 	}
 	.services {
@@ -56,22 +53,25 @@
 		padding: 40px 0;
 		background: #F0F0F0;
 		.sub-container {
-		    width: 1220px;
-		    margin: 0 auto;
-		    padding: 0 25px;
 		    @include flex();
 		    @include align-items(center);
+		    &:after {
+				content: '.';
+				padding-left: 25px;
+				width: 0;
+				overflow: hidden;
+		    }
 		}
 		.list {
-		    @include flex-grow("1 0");
+			padding-left: 25px;
 		    @include flex();
 		}
 		.item {
-			width: calc(25% - 20px);
-			background: #fff;
-			margin-right: 20px;
-			border-radius: 5px;
-			padding: 25px;
+			width: 230px;
+		    background: #fff;
+		    margin-right: 20px;
+		    border-radius: 5px;
+		    padding: 25px;
 			h3 {
 			    margin: 0 0 8px 0;
 			    font-size: 17px;
@@ -97,8 +97,8 @@
 		    @include flex();
 		    @include flex-direction(column);
 		    @include justify-content(center);
-		    width: 170px;
 		    text-align: center;
+			padding: 0 60px;
 		}
 	}
 	.salons {

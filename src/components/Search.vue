@@ -43,6 +43,9 @@ export default {
   mounted () {
     this.setSearchData()
   },
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('clearSearchQuery').then(() => next())
+  },
   watch: {
     '$route': 'setSearchData'
   }

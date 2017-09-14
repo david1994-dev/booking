@@ -16,7 +16,11 @@
     <infinite-loading
       :on-infinite="onInfinite"
       spinner="waveDots"
-      ref="infiniteLoading"></infinite-loading>
+      ref="infiniteLoading">
+      <span slot="no-more">
+        Không tìm thấy thêm kết quả
+      </span>
+    </infinite-loading>
   </div>
 
   <div class="wrap-maps">

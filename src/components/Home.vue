@@ -58,11 +58,6 @@ export default {
     Explore,
     Blogs,
     RegisterModal
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$store.dispatch('clearSearchQuery')
-    })
   }
 }
 </script>

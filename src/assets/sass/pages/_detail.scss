@@ -131,13 +131,28 @@
             padding: 15px 0;
             .item {
                 @include flex();
+                @include align-items(center);
                 margin: 8px 0;
                 i {
                     width: 18px;
                     color: $main-color;
                     font-size: 15px;
                     text-align: center;
-                    margin: 3px 10px 0 0;
+                    margin-right: 10px;
+                }
+                .main-color {
+                    margin: 0 5px;
+                }
+                &.date-open {
+                    @include align-items(flex-start);
+                    i {
+                        margin-top: 2px;
+                    }
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                    }
                 }
             }
         }
