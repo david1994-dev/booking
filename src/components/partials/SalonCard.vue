@@ -1,3 +1,4 @@
+\
 <template>
 <div class="tp-salon">
   <div class="img-price">
