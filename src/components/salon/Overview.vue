@@ -12,11 +12,11 @@
     </div>
   </div>
 
-  <div class="link">
+  <div class="link" v-if="salon.facebook_url || salon.instagram_url">
     <div class="name">Liên kết</div>
     <ul>
-      <li><a href="#"><i class="bz-facebook"></i></a></li>
-      <li><a href="#"><i class="bz-instagram"></i></a></li>
+      <li v-if="salon.facebook_url"><a :href="salon.facebook_url"><i class="bz-facebook"></i></a></li>
+      <li v-if="salon.instagram_url"><a :href="salon.instagram_url"><i class="bz-instagram"></i></a></li>
     </ul>
   </div>
 

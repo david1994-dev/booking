@@ -123,7 +123,31 @@
             padding: 15px 0;
         }
         .link {
-            display: none;
+            border-bottom: 1px solid $border-color;
+            padding: 14px 0;
+            @include flex();
+            @include align-items(center);
+            .name {
+                font-size: 13px;
+            }
+            ul {
+                margin: 0 0 0 10px;
+                padding: 0;
+                list-style: none;
+                font-size: 20px;
+                line-height: 1;
+                @include flex();
+                @include align-items(center);
+            }
+            li {
+                margin-left: 10px;
+                a {
+                    color: $main-color;
+                    &:hover {
+                        color: $text-color;
+                    }
+                }
+            }
         }
         .time-since {
             border-bottom: 1px solid $border-color;
