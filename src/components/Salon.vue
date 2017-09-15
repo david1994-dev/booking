@@ -5,6 +5,7 @@
     <cover-slider v-if="salon.covers" :images="salon.covers" />
 
     <scrollactive ref="scrollactive"
+      v-if="salon.id"
       class="content"
       active-class="active"
       :offset="58">

@@ -42,10 +42,12 @@ const actions = {
   },
 
   setSelectedCity ({ commit }, city) {
+    commit(types.SET_SELECTED_AREA, {})
     commit(types.SET_SELECTED_CITY, city)
   },
 
   setSelectedArea ({ commit }, area) {
+    commit(types.SET_SELECTED_CITY, {})
     commit(types.SET_SELECTED_AREA, area)
   },
 
