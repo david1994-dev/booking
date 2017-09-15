@@ -2,7 +2,6 @@
   <div id="app">
     <div id="fb-root"></div>
     <router-view></router-view>
-    <vue-snotify></vue-snotify>
   </div>
 </template>
 
