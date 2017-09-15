@@ -5,8 +5,9 @@
     <div class="tp-bigcontainer">
       <h1 class="tp-pagetitle">Blog</h1>
       <div class="content-page">
-        <div class="blog">
-          <blog-card v-for="blog in blogs"
+        <div class="blog" v-masonry transition-duration="0.3s" item-selector=".tp-blogitem">
+          <blog-card v-masonry-tile
+            v-for="blog in blogs"
             :key="blog.id"
             :blog="blog"></blog-card>
         </div>

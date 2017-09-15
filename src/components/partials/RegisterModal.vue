@@ -25,6 +25,7 @@
           type="text"
           name="name"
           placeholder="Tên salon"
+          v-model="name"
           v-validate="'required'"
           data-vv-as="Tên salon"
           :class="{ 'is-invalid': errors.has('name') }" />
@@ -33,27 +34,29 @@
           type="text"
           name="address"
           v-validate="'required'"
+          v-model="address"
           data-vv-as="Địa chỉ salon"
           placeholder="Địa chỉ salon"
           :class="{ 'is-invalid': errors.has('address') }" />
         <div class="invalid-feedback">{{ errors.first('address') }}</div>
-        <input class="tp-text-form form-control"
+        <!-- <input class="tp-text-form form-control"
           type="text"
           name="owner"
           v-validate="'required'"
           data-vv-as="Người đại diện"
           placeholder="Người đại diện"
           :class="{ 'is-invalid': errors.has('owner') }" />
-        <div class="invalid-feedback">{{ errors.first('owner') }}</div>
+        <div class="invalid-feedback">{{ errors.first('owner') }}</div> -->
         <input class="tp-text-form form-control"
           type="text"
           name="phone"
           v-validate="'required'"
+          v-model="phone"
           data-vv-as="Số điện thoại"
           placeholder="Số điện thoại"
           :class="{ 'is-invalid': errors.has('phone') }" />
         <div class="invalid-feedback">{{ errors.first('phone') }}</div>
-        <input class="tp-btn" type="submit" value="Đăng ký">
+        <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" value="Đăng ký">
       </form>
     </div>
 </b-modal>
@@ -64,7 +67,10 @@ export default {
   name: 'RegisterModal',
   data () {
     return {
-      salonRegister: false
+      salonRegister: false,
+      name: '',
+      address: '',
+      phone: ''
     }
   },
   mounted () {
@@ -80,9 +86,24 @@ export default {
     submit () {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          console.log('ok')
+          const postData = {
+            name: this.name,
+            address: this.address,
+            hotline: this.phone
+          }
+          this.$startLoading('creating salon')
+          this.$http.post('salons', postData).then(() => {
+            this.$endLoading('creating salon')
+            this.resetState()
+          }).catch(() => this.$endLoading('creating salon'))
         }
       })
+    },
+    resetState () {
+      this.name = ''
+      this.address = ''
+      this.phone = ''
+      this.salonRegister = false
     },
     hide () {
       this.$refs.registerModal.hide()

@@ -13,6 +13,7 @@ import Scrollactive from 'vue-scrollactive'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VuePreview from 'vue-preview'
 import VeeValidate, { Validator } from 'vee-validate'
+import { VueMasonryPlugin } from 'vue-masonry'
 import vi from 'vee-validate/dist/locale/vi'
 import moment from 'moment-timezone'
 import { googleMapKey } from './config'
@@ -31,6 +32,7 @@ Vue.use(VuePreview)
 Vue.use(VeeValidate, {
   locale: 'vi'
 })
+Vue.use(VueMasonryPlugin)
 Vue.use(VueGoogleMaps, {
   load: {
     key: googleMapKey,
