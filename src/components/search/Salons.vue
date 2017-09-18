@@ -10,7 +10,7 @@
         @salonAddressClick="centerSalon(salon)"
         :key="salon.id"
         :salon="salon"
-        :category="selectedService.id" />
+        :category="selectedService.id || 0" />
     </div>
 
     <infinite-loading

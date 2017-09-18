@@ -1,5 +1,6 @@
 <template>
 <div>
+  <stylist-picker />
   <page-header />
   <div class="detail-page">
     <cover-slider v-if="salon.covers" :images="salon.covers" />
@@ -13,8 +14,8 @@
         <div class="wrap-menu">
           <ul class="menu">
             <li><a href="#about" class="scrollactive-item">Giới thiệu</a></li>
-            <li><a href="#services" id="mennu-services" class="scrollactive-item">Dịch vụ</a></li>
-            <li><a href="#stylists" class="scrollactive-item">Nhân viên</a></li>
+            <li><a href="#services" class="scrollactive-item" id="mennu-services" >Dịch vụ</a></li>
+            <li><a href="#stylists" class="scrollactive-item" id="mennu-stylists" >Nhân viên</a></li>
             <li><a href="#images" class="scrollactive-item">Hình ảnh</a></li>
             <li><a href="#reviews" class="scrollactive-item">Đánh giá</a></li>
           </ul>
@@ -75,6 +76,7 @@ const Reviews = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Rev
 const Related = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Related')
 const Cart = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Cart')
 const DateTimePicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/DateTimePicker')
+const StylistPicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/StylistPicker')
 
 export default {
   name: 'Salon',
@@ -88,7 +90,8 @@ export default {
     Reviews,
     Related,
     Cart,
-    DateTimePicker
+    DateTimePicker,
+    StylistPicker
   },
   mixins: [stickyClassMixin],
   data () {

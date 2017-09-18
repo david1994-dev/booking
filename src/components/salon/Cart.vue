@@ -219,6 +219,8 @@ export default {
     checkout () {
       if (this.canCheckout) {
         this.checkoutModal = true
+      } else {
+        document.getElementById('mennu-stylists').click()
       }
     },
     mobileCheckout () {

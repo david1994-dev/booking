@@ -649,11 +649,13 @@
 	    						}
 							}
 							.name {
-								font-size: 13px;
+								font-size: 10px;
 								text-align: center;
 								white-space: nowrap;
 								text-overflow: ellipsis;
 								overflow: hidden;
+								direction: rtl;
+								margin: 0 -11px;
 							}
     						&.active figure {
     							position: relative;
@@ -1103,6 +1105,16 @@
 			}
 		}
 	}
+
+	.tp-search-result > ul > li:first-child > ul > li {
+		> a {
+			display: none;
+		}
+		> ul {
+			margin-left: 0;
+		}
+	}
+
 }
 @media screen and (max-width: 960px) {
 	.sub-header {
