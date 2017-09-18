@@ -443,7 +443,9 @@
                         }
                     }
                     .name {
-                        font-size: 13px;
+                        font-size: 10px;
+                        margin: 0 -8px;
+                        direction: rtl;
                         text-align: center;
                         white-space: nowrap;
                         text-overflow: ellipsis;

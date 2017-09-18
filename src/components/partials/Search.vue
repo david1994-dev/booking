@@ -10,9 +10,7 @@
         @focus="showSuggestions = true"
         @blur="hideSugesstions">
     </div>
-    <div v-show="showSuggestions" class="tp-search-result">
-      <suggestion-results />
-    </div>
+    <suggestion-results v-show="showSuggestions" />
   </div>
   <div class="wrap-input location">
     <div class="input">
@@ -24,9 +22,7 @@
         @focus="showLocations = true"
         @blur="hideLocations">
     </div>
-    <div v-show="showLocations" class="tp-search-result-2">
-      <location-results />
-    </div>
+    <location-results v-show="showLocations"  />
   </div>
   <input class="btn-search"
     type="submit"

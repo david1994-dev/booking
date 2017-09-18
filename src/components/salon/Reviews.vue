@@ -20,7 +20,7 @@
           <div class="info">
             <div class="name">{{ review.user.name }}</div>
             <div class="date-stars">
-              <div class="date">{{ review.created_at | dateFormat('HH:mm DD-MM-YYYY') }}</div>
+              <div class="date">{{ review.review.created_at | dateFormat('HH:mm DD-MM-YYYY') }}</div>
               <div class="tp-rate">
                 <stars :rating="review.review.rating" />
               </div>
@@ -90,6 +90,7 @@ export default {
     fetchData (query, cb, errCb) {
       let params = merge(query, params)
       params._meta = 1
+      params.limit = 6
       this.$startLoading('fetching reviews')
       this.$http.get(`salons/${this.salon.id}/reviews`, { params })
         .then(response => {

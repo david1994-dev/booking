@@ -1,17 +1,19 @@
 <template>
-<ul>
-  <li>
-    <a class="pointer" @click="getCurrentPosition">Vị trí hiện tại</a>
-  </li>
-  <li v-for="city in locations">
-    <a class="pointer" @click="setSelectedCity(city)">{{ city.name }}</a>
-    <ul>
-      <li v-for="area in city.areas">
-        <a class="pointer" @click="setSelectedArea(area)">{{ area.name }}</a>
-      </li>
-    </ul>
-  </li>
-</ul>
+<div class="tp-search-result-2">
+  <ul>
+    <li>
+      <a class="pointer" @click="getCurrentPosition">Vị trí hiện tại</a>
+    </li>
+    <li v-for="city in locations">
+      <a class="pointer" @click="setSelectedCity(city)">{{ city.name }}</a>
+      <ul>
+        <li v-for="area in city.areas">
+          <a class="pointer" @click="setSelectedArea(area)">{{ area.name }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
 </template>
 
 <script>
