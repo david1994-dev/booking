@@ -13,7 +13,7 @@ import { parseSearchQuery } from '@/utils/mixins'
 import PageHeader from './layout/Header'
 const Results = () => import(/* webpackChunkName: "search-bundle" */ './search/Results')
 const Salons = () => import(/* webpackChunkName: "search-bundle" */ './search/Salons')
-const StylistPicker = () => import(/* webpackChunkName: "search-bundle" */ './search/StylistPicker')
+const StylistPicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/StylistPicker')
 
 export default {
   name: 'Search',

@@ -1,5 +1,6 @@
 <template>
 <div>
+  <stylist-picker />
   <page-header />
   <div class="detail-page">
     <cover-slider v-if="salon.covers" :images="salon.covers" />
@@ -75,6 +76,7 @@ const Reviews = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Rev
 const Related = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Related')
 const Cart = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Cart')
 const DateTimePicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/DateTimePicker')
+const StylistPicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/StylistPicker')
 
 export default {
   name: 'Salon',
@@ -88,7 +90,8 @@ export default {
     Reviews,
     Related,
     Cart,
-    DateTimePicker
+    DateTimePicker,
+    StylistPicker
   },
   mixins: [stickyClassMixin],
   data () {

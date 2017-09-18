@@ -13,115 +13,6 @@
   <div class="related-slide" v-if="salons.length">
     <slick class="slide-inner" ref="slick" :options="slickOptions">
       <div v-for="salon in salons" :key="salon.id">
-        <!-- <div class="tp-salon">
-          <div class="img-price">
-            <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url"></router-link></figure>
-            <div class="price-rate">
-              <div class="price">
-                <span>From</span>
-                <strong>324.000 VND</strong>
-              </div>
-              <div class="rate">
-                <div class="tp-rate">
-                  <div class="rate-status">{{ salon.rating_summary }}</div>
-                  <stars :rating="salon.average_rating">
-                    <div class="number">{{ salon.review_count }} Đánh giá</div>
-                  </stars>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="wrap-info">
-            <div class="name-address">
-              <h3 class="salon-name"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">{{ salon.name }}</router-link></h3>
-              <p class="address">{{ salon.address }}</p>
-            </div>
-            <div class="wrap-stylist">
-              <div class="stylist-img">
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-                <div class="item">
-                  <figure><a href="#"><img src="../../assets/images/image-stylist.jpg"></a></figure>
-                  <div class="info">
-                    <h3><a href="#">Sơn Đẹp Trai</a></h3>
-                    <span>34 Salon có dịch vụ</span>
-                  </div>
-                </div>
-              </div>
-              <div class="scrollup"><i class="bz-down-2"></i></div>
-            </div>
-            <div class="dates">
-              <div class="item active">Hôm nay</div>
-              <div class="item">12/07</div>
-              <div class="item">13/07</div>
-              <div class="item calendar-btn"><i class="bz-calendar-day"></i></div>
-            </div>
-            <div class="wrap-times">
-              <div class="times">
-                <div class="item active">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-                <div class="item">8:30</div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <salon :salon="salon" :category="randomCategory(salon.services)" />
       </div>
     </slick>
@@ -222,7 +113,9 @@ export default {
         return categories
       }
 
-      head(services).category_id
+      if (services.length) {
+        return head(services).category_id
+      }
 
       return 0
     },
