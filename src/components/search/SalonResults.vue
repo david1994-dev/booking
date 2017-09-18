@@ -13,7 +13,7 @@
             <div class="price-rate">
               <div class="price">
                 <span>From</span>
-                <strong>324.000 VND</strong>
+                <strong>{{ salon.min_price.formatted_price }}</strong>
               </div>
               <div class="rate">
                 <div class="tp-rate">

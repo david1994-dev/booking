@@ -100,8 +100,8 @@ export default {
     return {
       title: this.salon.name,
       meta: [
-        { name: 'keywords', content: this.salon.meta_keyword },
-        { name: 'description', content: this.salon.meta_description }
+        { name: 'keywords', content: this.salon.meta.keyword },
+        { name: 'description', content: this.salon.meta.description }
       ]
     }
   },

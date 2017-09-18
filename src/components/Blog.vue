@@ -96,7 +96,11 @@ export default {
   },
   metaInfo () {
     return {
-      title: `${this.blog.title} | Blog`
+      title: `${this.blog.title} | Blog`,
+      meta: [
+        { name: 'keywords', content: this.blog.meta.keyword },
+        { name: 'description', content: this.blog.meta.description }
+      ]
     }
   },
   created () {
