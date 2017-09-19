@@ -44,7 +44,8 @@ export default {
         slidesToShow: 1,
         // autoplay: true,
         prevArrow: document.getElementById('prevCover'),
-        nextArrow: document.getElementById('nextCover')
+        nextArrow: document.getElementById('nextCover'),
+        accessibility: false
       }
     }
   },

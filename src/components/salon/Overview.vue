@@ -23,9 +23,11 @@
   <div class="time-since">
     <div class="item date-open"> <i class="bz-clock"></i>
       <ul>
-        <li v-for="(hours, day) in salon.opening_hours"
+        <!-- <li v-for="(hours, day) in salon.opening_hours"
           v-if="hours.open && hours.close"
-          >{{ hours.open }} - {{ hours.close }} <span class="main-color">-</span> {{ displayDate(day) }}</li>
+          >{{ hours.open }} - {{ hours.close }} <span class="main-color">-</span> {{ displayDate(day) }}</li> -->
+        <li v-if="salon.opening_hours['monday']['open']">{{ salon.opening_hours['monday']['open'] }} - {{ salon.opening_hours['monday']['close'] }} <span class="main-color">-</span> Các ngày trong tuần</li>
+        <li v-if="salon.opening_hours['saturday']['open'] ">{{ salon.opening_hours['saturday']['open'] }} - {{ salon.opening_hours['saturday']['close'] }} <span class="main-color">-</span> {{ weekendAvaiable }}</li>
       </ul>
     </div>
     <div class="item" v-if="salon.established"><i class="bz-calendar"></i> Thành lập ngày {{ salon.established | dateFormat('D-M-YYYY') }}</div>
@@ -60,6 +62,12 @@ export default {
       }
 
       return map(this.salon.chemicals, 'name').join(', ')
+    },
+    weekendAvaiable () {
+      if (this.salon.opening_hours['saturday'] && this.salon.opening_hours['sunday']) {
+        return 'Thứ 7 - Chủ nhật'
+      }
+      return 'Thứ 7'
     }
   },
   methods: {

@@ -90,7 +90,8 @@ export default {
               variableWidth: false
             }
           }
-        ]
+        ],
+        accessibility: false
       }
     }
   },

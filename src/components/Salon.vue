@@ -96,7 +96,9 @@ export default {
   mixins: [stickyClassMixin],
   data () {
     return {
-      salon: {}
+      salon: {
+        opening_hours: []
+      }
     }
   },
   metaInfo () {
