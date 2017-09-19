@@ -1,5 +1,6 @@
 <template>
 <div>
+  <stylist-picker />
   <page-header />
   <div class="searchsalon-page">
     <div class="box-salons">
@@ -47,6 +48,7 @@ import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ './partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './search/Marker')
+const StylistPicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/StylistPicker')
 
 export default {
   name: 'Showcase',
@@ -54,7 +56,8 @@ export default {
     PageHeader,
     Salon,
     SalonMarker,
-    GmapRichMarker
+    GmapRichMarker,
+    StylistPicker
   },
   mixins: [DeferredReadyMixin, stickyClassMixin],
   computed: {

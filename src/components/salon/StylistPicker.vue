@@ -31,6 +31,13 @@ export default {
       selectedStylist: {}
     }
   },
+  metaInfo () {
+    return {
+      htmlAttrs: {
+        class: this.show ? 'ofhd' : null
+      }
+    }
+  },
   mounted () {
     this.$bus.$on('stylistPicker::show', () => {
       this.show = true

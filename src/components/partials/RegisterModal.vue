@@ -39,14 +39,6 @@
           placeholder="Địa chỉ salon"
           :class="{ 'is-invalid': errors.has('address') }" />
         <div class="invalid-feedback">{{ errors.first('address') }}</div>
-        <!-- <input class="tp-text-form form-control"
-          type="text"
-          name="owner"
-          v-validate="'required'"
-          data-vv-as="Người đại diện"
-          placeholder="Người đại diện"
-          :class="{ 'is-invalid': errors.has('owner') }" />
-        <div class="invalid-feedback">{{ errors.first('owner') }}</div> -->
         <input class="tp-text-form form-control"
           type="text"
           name="phone"
