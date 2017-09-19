@@ -68,6 +68,9 @@ export default {
       }
     }
   },
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('clearSearchQuery').then(() => next())
+  },
   methods: {
     fetchData (query, cb, errCb) {
       let params = this.$route.query

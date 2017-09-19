@@ -1,5 +1,5 @@
 <template>
-<div class="tp-search-result" v-show="hasResults">
+<div class="tp-search-result">
   <ul ref="suggestionResults">
     <li v-show="!services.length && !keyword">
       <!-- <router-link :to="{ name: 'services' }">Dịch vụ</router-link> -->
@@ -53,8 +53,8 @@ export default {
       categories: state => state.preloadData.categories || [],
       keyword: state => state.search.keyword
     }),
-    hasResults () {
-      return this.salons.length && this.stylists.length && this.services.length && this.keyword
+    noResults () {
+      return Boolean(!this.salons.length && !this.stylists.length && !this.services.length && this.keyword)
     }
   },
   data () {

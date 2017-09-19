@@ -69,7 +69,9 @@ export default {
   },
   data () {
     return {
-      blog: {},
+      blog: {
+        meta: {}
+      },
       related: [],
       slickOptions: {
         speed: 300,
