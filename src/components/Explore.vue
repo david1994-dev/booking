@@ -19,7 +19,7 @@
         </div>
 
         <infinite-loading
-          :on-infinite="onInfinite"
+          @infinite="onInfinite"
           spinner="waveDots"
           ref="infiniteLoading">
           <span slot="no-more">
@@ -70,11 +70,16 @@ export default {
         .then(response => cb(response))
         .catch(error => errCb ? errCb(error) : null)
     },
-    onInfinite () {
+    onInfinite ($state) {
       this.fetchData({ page: parseInt(this.meta.pagination.current_page) + 1 }, ({ data }) => {
         this.showcases = this.showcases.concat(data.data)
         this.meta = data.meta
-        this.$refs.infiniteLoading.$emit(data.data.length ? '$InfiniteLoading:loaded' : '$InfiniteLoading:complete')
+        // this.$refs.infiniteLoading.$emit(data.data.length ? '$InfiniteLoading:loaded' : '$InfiniteLoading:complete')
+        if (data.data.length) {
+          $state.loaded()
+        } else {
+          $state.complete()
+        }
       })
     }
   }

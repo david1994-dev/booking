@@ -97,7 +97,8 @@ export default {
   data () {
     return {
       salon: {
-        opening_hours: []
+        opening_hours: [],
+        meta: {}
       }
     }
   },

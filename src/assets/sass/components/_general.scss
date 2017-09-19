@@ -366,6 +366,9 @@ button.fancybox-arrow {
 }
 .tp-wrap-title {
 	margin-bottom: 20px;
+	@include flex();
+	@include align-items(center);
+	@include justify-content(space-between);
 	.tp-view-more {
 	    display: none;
 	}
