@@ -17,7 +17,7 @@
             <li><a href="#services" class="scrollactive-item" id="mennu-services" >Dịch vụ</a></li>
             <li><a href="#stylists" class="scrollactive-item" id="mennu-stylists" >Nhân viên</a></li>
             <li><a href="#images" class="scrollactive-item">Hình ảnh</a></li>
-            <li><a href="#reviews" class="scrollactive-item">Đánh giá</a></li>
+            <li><a href="#reviews" class="scrollactive-item" id="mennu-reviews">Đánh giá</a></li>
           </ul>
         </div>
 

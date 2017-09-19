@@ -90,7 +90,7 @@ export default {
     fetchData (query, cb, errCb) {
       let params = merge(query, params)
       params._meta = 1
-      params.limit = 6
+      params.limit = 5
       this.$startLoading('fetching reviews')
       this.$http.get(`salons/${this.salon.id}/reviews`, { params })
         .then(response => {
@@ -106,6 +106,7 @@ export default {
       this.fetchData({ page }, ({ data }) => {
         this.reviews = data.data
         this.meta = data.meta
+        document.getElementById('mennu-reviews').click()
       })
     }
   }
