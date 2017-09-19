@@ -8,23 +8,16 @@
         <div class="stylists">
           <div class="stylist-item" v-for="stylist in stylists" :key="stylist.id">
             <div class="avata-info">
-              <figure> <a href="#"><img :src="stylist.avatar_url"></a> </figure>
+              <figure><router-link :to="{ name: 'stylist', params: { id: stylist.id } }"><img :src="stylist.avatar_url"></router-link></figure>
               <div class="info">
-                <h2><a href="#">{{ stylist.name }}</a></h2>
-                <div class="salon-name">Salon tóc dài</div>
-                <div class="rate">
+                <h2><router-link :to="{ name: 'stylist', params: { id: stylist.id } }">{{ stylist.name }}</router-link></h2>
+                <div class="salon-name" v-if="getSalon(stylist.salons).id">{{ getSalon(stylist.salons).name }}</div>
+                <div class="rate" v-if="getSalon(stylist.salons).id">
                   <div class="tp-rate">
-                    <div class="rate-status">Rất tốt</div>
-                    <div class="stars-number">
-                      <div class="stars">
-                        <i class="bz-star"></i>
-                        <i class="bz-star"></i>
-                        <i class="bz-star"></i>
-                        <i class="bz-star"></i>
-                        <i class="bz-star"></i>
-                      </div>
-                      <div class="number">158 Đánh giá</div>
-                    </div>
+                    <div class="rate-status">{{ getSalon(stylist.salons).rating_summary }}</div>
+                    <stars :rating="getSalon(stylist.salons).average_rating">
+                      <div class="number">{{ getSalon(stylist.salons).review_count }} Đánh giá</div>
+                    </stars>
                   </div>
                 </div>
               </div>
@@ -57,15 +50,17 @@
 </template>
 
 <script>
-import { merge } from 'lodash'
+import { head, merge } from 'lodash'
 import { parseSearchQuery } from '@/utils/mixins'
 import InfiniteLoading from 'vue-infinite-loading'
 import PageHeader from './layout/Header'
+import Stars from './partials/StarRating'
 
 export default {
   name: 'Stylists',
   components: {
     PageHeader,
+    Stars,
     InfiniteLoading
   },
   mixins: [parseSearchQuery],
@@ -112,6 +107,13 @@ export default {
           $state.complete()
         }
       })
+    },
+    getSalon (salons) {
+      if (!salons.length) {
+        return {}
+      }
+
+      return head(salons)
     }
   }
 }
