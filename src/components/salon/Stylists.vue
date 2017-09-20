@@ -9,7 +9,7 @@
         </div>
       </template>
 
-      <div class="list">
+      <div class="list" v-if="stylists.length">
         <div class="item" v-for="stylist in stylists"
           :key="stylist.id"
           :class="{ active: cartStylist.id == stylist.id }">
@@ -17,9 +17,10 @@
           <div class="name">{{ stylist.name }}</div>
         </div>
       </div>
+      <div v-else>Không tìm thấy nhân viên phù hợp với dịch vụ được chọn</div>
     </v-loading>
   </div>
-  <div class="times-d"  v-show="stylists.length">
+  <div class="times-d" v-if="stylists.length">
     <div class="title">Chọn thời gian</div>
     <div class="dates-times" v-show="cartStylist.id">
       <calendar v-model="selectedDate" wrapperClass="tp-datetime">

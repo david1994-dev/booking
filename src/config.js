@@ -9,6 +9,7 @@ export const facebook = {
 }
 
 export const googlemap = {
+  disableDoubleClickZoom: true,
   streetViewControl: false,
   mapTypeControl: false,
   styles: [

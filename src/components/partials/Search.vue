@@ -7,7 +7,7 @@
         type="search"
         @keyup.enter="submit"
         v-model="keyword"
-        @focus="showSuggestions = true"
+        @focus="selectAndShowSuggestions"
         @blur="hideSugesstions">
     </div>
     <suggestion-results v-show="showSuggestions" />
@@ -71,6 +71,13 @@ export default {
       return this.keyword
     }
   },
+  watch: {
+    location () {
+      if (this.$isLoading('geolocation')) {
+        this.$endLoading('geolocation')
+      }
+    }
+  },
   data () {
     return {
       showSuggestions: false,
@@ -99,6 +106,10 @@ export default {
       this.$bus.$emit('searchSubmitted')
 
       this.$router.push({ name: 'search', query })
+    },
+    selectAndShowSuggestions ($event) {
+      $event.target.select()
+      this.showSuggestions = true
     },
     hideSugesstions () {
       setTimeout(() => {

@@ -30,16 +30,19 @@ export default {
       return this.$route.query.category_id
     }
   },
+  metaInfo: {
+    title: 'Tìm kiếm'
+  },
   data () {
     return {
       salons: []
     }
   },
-  metaInfo () {
-    return {
-      title: this.selectedArea.name ? `${this.keyword} - ${this.selectedArea.name}` : this.keyword
-    }
-  },
+  // metaInfo () {
+  //   return {
+  //     title: this.selectedArea.name ? `${this.keyword} - ${this.selectedArea.name}` : this.keyword
+  //   }
+  // },
   mounted () {
     this.setSearchData()
   },

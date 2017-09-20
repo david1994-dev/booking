@@ -11,12 +11,12 @@
               <figure><router-link :to="{ name: 'stylist', params: { id: stylist.id } }"><img :src="stylist.avatar_url"></router-link></figure>
               <div class="info">
                 <h2><router-link :to="{ name: 'stylist', params: { id: stylist.id } }">{{ stylist.name }}</router-link></h2>
-                <div class="salon-name" v-if="getSalon(stylist.salons).id">{{ getSalon(stylist.salons).name }}</div>
-                <div class="rate" v-if="getSalon(stylist.salons).id">
+                <div class="salon-name" v-if="stylist.salon">{{ stylist.salon.name }}</div>
+                <div class="rate" v-if="stylist.salon">
                   <div class="tp-rate">
-                    <div class="rate-status">{{ getSalon(stylist.salons).rating_summary }}</div>
-                    <stars :rating="getSalon(stylist.salons).average_rating">
-                      <div class="number">{{ getSalon(stylist.salons).review_count }} Đánh giá</div>
+                    <div class="rate-status">{{ stylist.salon.rating_summary }}</div>
+                    <stars :rating="stylist.salon.average_rating">
+                      <div class="number">{{ stylist.salon.review_count }} Đánh giá</div>
                     </stars>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { head, merge } from 'lodash'
+import { merge } from 'lodash'
 import { parseSearchQuery } from '@/utils/mixins'
 import InfiniteLoading from 'vue-infinite-loading'
 import PageHeader from './layout/Header'
@@ -107,13 +107,6 @@ export default {
           $state.complete()
         }
       })
-    },
-    getSalon (salons) {
-      if (!salons.length) {
-        return {}
-      }
-
-      return head(salons)
     }
   }
 }

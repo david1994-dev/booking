@@ -59,7 +59,6 @@ import store from 'store2'
 import { googlemap } from '@/config'
 import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '@/components/RichMarker'
-import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
@@ -72,7 +71,7 @@ export default {
     InfiniteLoading,
     GmapRichMarker
   },
-  mixins: [DeferredReadyMixin, stickyClassMixin],
+  mixins: [stickyClassMixin],
   computed: {
     ...mapGetters(['keyword', 'location', 'position', 'selectedService']),
     markers () {
@@ -106,15 +105,11 @@ export default {
       }
     }
   },
-  deferredReady () {
-    /* eslint-disable no-undef */
-    this.$bounds = new google.maps.LatLngBounds()
-  },
   mounted () {
     this.addStickyClass('.wrap-maps', 600)
   },
   watch: {
-    'salons': 'autoCenter',
+    'markers': 'autoCenter',
     $route () {
       this.fetchData({ page: 1 }, ({ data }) => {
         this.$nextTick(() => {
@@ -173,11 +168,13 @@ export default {
       }
     },
     autoCenter () {
+      /* eslint-disable no-undef */
+      const $bounds = new google.maps.LatLngBounds()
       this.markers.map(marker => {
-        this.$bounds.extend(marker.position)
-        this.center = this.$bounds.getCenter()
-        this.$refs.map.$mapObject.fitBounds(this.$bounds)
-        // this.updateZoom()
+        $bounds.extend(marker.position)
+        this.center = $bounds.getCenter()
+        this.$refs.map.$mapObject.fitBounds($bounds)
+        this.updateZoom()
       })
     },
     updateZoom () {
