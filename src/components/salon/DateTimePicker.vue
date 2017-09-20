@@ -57,6 +57,9 @@ export default {
   },
   mounted () {
     this.$bus.$on('displayDateTimePopup', value => {
+      if (value) {
+        this.fetchSlots()
+      }
       this.active = value
     })
   },
