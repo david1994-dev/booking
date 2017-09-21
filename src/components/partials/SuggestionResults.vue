@@ -1,5 +1,5 @@
 <template>
-<div class="tp-search-result" v-show="!noResults && show">
+<div class="tp-search-result" v-show="!noResults">
   <ul ref="suggestionResults">
     <li v-show="!services.length && !keyword">
       <!-- <router-link :to="{ name: 'services' }">Dịch vụ</router-link> -->
@@ -59,16 +59,12 @@ export default {
   },
   data () {
     return {
-      show: false,
       salons: [],
       stylists: [],
       services: []
     }
   },
   created () {
-    this.$bus.$on('showSuggestions', value => {
-      this.show = value
-    })
     this.fetchData()
   },
   watch: {

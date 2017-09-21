@@ -10,7 +10,9 @@
         @focus="selectAndShowSuggestions"
         @blur="hideSugesstions">
     </div>
-    <suggestion-results v-show="showSuggestions" />
+    <div v-show="showSuggestions">
+      <suggestion-results />
+    </div>
   </div>
   <div class="wrap-input location">
     <div class="input">
@@ -22,7 +24,9 @@
         @focus="showLocations = true"
         @blur="hideLocations">
     </div>
-    <location-results v-show="showLocations"  />
+    <div v-show="showLocations">
+      <location-results />
+    </div>
   </div>
   <input class="btn-search"
     type="submit"
@@ -76,12 +80,6 @@ export default {
       if (this.$isLoading('geolocation')) {
         this.$endLoading('geolocation')
       }
-    },
-    showSuggestions (value) {
-      this.$bus.$emit('showSuggestions', value)
-    },
-    showLocations (value) {
-      this.$bus.$emit('showLocations', value)
     }
   },
   data () {
