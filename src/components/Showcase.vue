@@ -44,7 +44,6 @@ import { head } from 'lodash'
 import { googlemap } from '@/config'
 import PageHeader from './layout/Header'
 import GmapRichMarker from '@/components/RichMarker'
-import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ './partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './search/Marker')
@@ -59,7 +58,7 @@ export default {
     GmapRichMarker,
     StylistPicker
   },
-  mixins: [DeferredReadyMixin, stickyClassMixin],
+  mixins: [stickyClassMixin],
   computed: {
     markers () {
       const markers = []
@@ -116,11 +115,21 @@ export default {
       }
     },
     autoCenter () {
+      /* eslint-disable no-undef */
+      const $bounds = new google.maps.LatLngBounds()
       this.markers.map(marker => {
-        this.$bounds.extend(marker.position)
-        this.center = this.$bounds.getCenter()
-        this.$refs.map.$mapObject.fitBounds(this.$bounds)
+        $bounds.extend(marker.position)
+        this.center = $bounds.getCenter()
+        this.$refs.map.$mapObject.fitBounds($bounds)
+        this.updateZoom()
       })
+    },
+    updateZoom () {
+      let zoom = this.$refs.map.$mapObject.getZoom()
+      if (zoom > 15) {
+        zoom = 15
+      }
+      this.$refs.map.$mapObject.setZoom(zoom - 1)
     },
     randomCategory (services) {
       if (!services.length) {

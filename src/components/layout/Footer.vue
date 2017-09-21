@@ -11,32 +11,8 @@
     </div>
     <div class="instagram">
       <ul>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img src="../../assets/images/image-instagram.jpg"></a>
+        <li v-for="media in instagram" :key="media.id">
+          <a :href="media.link" target="_blank" :alt="media.caption.text"><img :src="media.images.low_resolution.url"></a>
         </li>
       </ul>
     </div>
@@ -67,7 +43,7 @@
           <a href="https://www.facebook.com/Bzone.vn" target="_blank"><i class="bz-facebook"></i></a>
         </li>
         <li>
-          <a href="https://www.instagram.com/bzone.vn" target="_blank"><i class="bz-instagram"></i></a>
+          <a href="https://www.instagram.com/bzone_official" target="_blank"><i class="bz-instagram"></i></a>
         </li>
       </ul>
     </div>
@@ -79,7 +55,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  computed: mapState({
+    instagram: state => state.preloadData.instagram || []
+  })
 }
 </script>

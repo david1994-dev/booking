@@ -45,12 +45,25 @@ export default {
       popupOpen: false
     }
   },
+  watch: {
+    popupOpen (value) {
+      const event = value ? 'markerPopup::show' : 'markerPopup::hide'
+      this.$bus.$emit(event, this.salon)
+      this.$emit(event)
+    }
+  },
   mounted () {
     if (this.$parent) {
       this.$parent.$on('click', () => {
         this.popupOpen = !this.popupOpen
       })
     }
+    // Close all opened popup
+    this.$bus.$on('markerPopup::show', salon => {
+      if (salon.id !== this.salon.id) {
+        this.popupOpen = false
+      }
+    })
   }
 }
 </script>
