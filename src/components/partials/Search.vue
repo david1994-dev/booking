@@ -76,6 +76,12 @@ export default {
       if (this.$isLoading('geolocation')) {
         this.$endLoading('geolocation')
       }
+    },
+    showSuggestions (value) {
+      this.$bus.$emit('showSuggestions', value)
+    },
+    showLocations (value) {
+      this.$bus.$emit('showLocations', value)
     }
   },
   data () {
