@@ -13,7 +13,7 @@
             <figure><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }"><img :src="showcase.image_url" /></router-link></figure>
             <div class="info">
               <h4><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }">{{ showcase.name }}</router-link></h4>
-              <span>1.435 đã đặt</span>
+              <span>{{ showcase.total_booking }} đã đặt</span>
             </div>
           </div>
         </div>
@@ -65,6 +65,7 @@ export default {
       let params = this.$route.query
       params._meta = 1
       params.limit = 8
+      params.booking_count = 1
       params = merge(query, params)
       this.$http.get('showcases', { params })
         .then(response => cb(response))
