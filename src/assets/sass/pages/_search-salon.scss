@@ -134,6 +134,7 @@
 		 
 	}
 	&.active {
+		z-index: 10;
 		.small {
 			background: $text-color;
 			color: #fff;
@@ -143,9 +144,6 @@
 		}
 		.large {
 			display: block;
-		}
-		.wrapper {
-			z-index: 999;
 		}
 	}
 }

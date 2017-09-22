@@ -11,7 +11,7 @@
     </div>
     <div class="instagram">
       <ul>
-        <li v-for="media in instagram" :key="media.id">
+        <li v-for="(media, i) in instagram" :key="media.id" v-if="i < 9">
           <a :href="media.link" target="_blank" :alt="media.caption.text"><img :src="media.images.low_resolution.url"></a>
         </li>
       </ul>

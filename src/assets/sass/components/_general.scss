@@ -445,29 +445,24 @@ button.fancybox-arrow {
 		    i {
 				margin-right: 2px;
 				cursor: pointer;
+				position: relative;
 			}
-
-
 			&.star-0 {
 				color: #ccc;
 			}
 
 			&.star-05 i{
 				&:nth-child(1) {
-					@include flex();
-					&:before {
-						display: block;
-						width: 7px;
-						overflow: hidden;
-					}
 					&:after {
 						content: "\e90c";
 						color: #ccc;
-						display: block;
-						width: 6px;
+						left: 50%;
+						top: 0;
+						width: 50%;
 						overflow: hidden;
-						position: relative;
+						position: absolute;
 						direction: rtl;
+						z-index: 1;
 					}
 				}
 				&:nth-child(2),
@@ -489,20 +484,16 @@ button.fancybox-arrow {
 
 			&.star-15 i{
 				&:nth-child(2) {
-					@include flex();
-					&:before {
-						display: block;
-						width: 7px;
-						overflow: hidden;
-					}
 					&:after {
 						content: "\e90c";
 						color: #ccc;
-						display: block;
-						width: 6px;
+						left: 50%;
+						top: 0;
+						width: 50%;
 						overflow: hidden;
-						position: relative;
+						position: absolute;
 						direction: rtl;
+						z-index: 1;
 					}
 				}
 				&:nth-child(3),
@@ -522,20 +513,16 @@ button.fancybox-arrow {
 
 			&.star-25 i{
 				&:nth-child(3) {
-					@include flex();
-					&:before {
-						display: block;
-						width: 7px;
-						overflow: hidden;
-					}
 					&:after {
 						content: "\e90c";
 						color: #ccc;
-						display: block;
-						width: 6px;
+						left: 50%;
+						top: 0;
+						width: 50%;
 						overflow: hidden;
-						position: relative;
+						position: absolute;
 						direction: rtl;
+						z-index: 1;
 					}
 				}
 				&:nth-child(4),
@@ -553,20 +540,16 @@ button.fancybox-arrow {
 
 			&.star-35 i{
 				&:nth-child(4) {
-					@include flex();
-					&:before {
-						display: block;
-						width: 7px;
-						overflow: hidden;
-					}
 					&:after {
 						content: "\e90c";
 						color: #ccc;
-						display: block;
-						width: 6px;
+						left: 50%;
+						top: 0;
+						width: 50%;
 						overflow: hidden;
-						position: relative;
+						position: absolute;
 						direction: rtl;
+						z-index: 1;
 					}
 				}
 				&:nth-child(5) {
@@ -582,20 +565,16 @@ button.fancybox-arrow {
 
 			&.star-45 i{
 				&:nth-child(5) {
-					@include flex();
-					&:before {
-						display: block;
-						width: 7px;
-						overflow: hidden;
-					}
 					&:after {
 						content: "\e90c";
 						color: #ccc;
-						display: block;
-						width: 6px;
+						left: 50%;
+						top: 0;
+						width: 50%;
 						overflow: hidden;
-						position: relative;
+						position: absolute;
 						direction: rtl;
+						z-index: 1;
 					}
 				}
 			}
@@ -1220,6 +1199,7 @@ button.fancybox-arrow {
     width: 100%;
     height: 100%;
     z-index: 9999;
+    top: 0;
     .modal-title {
 	    @include flex();
 	    @include align-items(center);

@@ -98,6 +98,13 @@ export default {
     }
   },
   watch: {
+    showDatePicker (value) {
+      if (value) {
+        document.body.classList.add('calendar-slick')
+      } else {
+        document.body.classList.remove('calendar-slick')
+      }
+    },
     date (value) {
       if (!value) {
         value = moment()

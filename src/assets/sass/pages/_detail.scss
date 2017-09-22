@@ -131,7 +131,7 @@
                 font-size: 13px;
             }
             ul {
-                margin: 0 0 0 10px;
+                margin: 0 10px 0 0;
                 padding: 0;
                 list-style: none;
                 font-size: 20px;
@@ -140,7 +140,7 @@
                 @include align-items(center);
             }
             li {
-                margin-left: 10px;
+                margin-right: 10px;
                 a {
                     color: $main-color;
                     &:hover {
@@ -516,9 +516,10 @@
                 padding: 10px 25px;
             }
         }
-
         &.active {
-            height: 100%;
+            top: 0;
+            bottom: auto;
+            height: 100vh;
             .wrap-book {
                 height: 100vh;
                 .title-book {
@@ -564,4 +565,8 @@
             }
         }
     }
+}
+
+.calendar-slick .slick-track {
+    @include transform(none);
 }
