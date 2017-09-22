@@ -567,6 +567,9 @@
     }
 }
 
-.calendar-slick .slick-track {
-    @include transform(none !important);
+.calendar-slick {
+    .slick-list,
+    .slick-track {
+        @include transform(none !important);
+    }   
 }
