@@ -85,6 +85,7 @@ const actions = {
     commit(types.SET_LOCATION, '')
     commit(types.SET_POSITION, { lat: '', lng: '' })
     commit(types.SET_SELECTED_SERVICE, {})
+    commit(types.SET_SELECTED_CITY, {})
     commit(types.SET_SELECTED_AREA, {})
   }
 }
