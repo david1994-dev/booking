@@ -63,6 +63,9 @@ export default {
     next(vm => {
       vm.$store.dispatch('clearSearchQuery')
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('clearSearchQuery').then(() => next())
   }
 }
 </script>
