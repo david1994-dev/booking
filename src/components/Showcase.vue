@@ -106,6 +106,7 @@ export default {
       this.$http.get(`showcases/${this.$route.params.id}`, { params: { salon_services: 1 } }).then(({ data }) => {
         this.showcase = data
         this.$endLoading('fetching showcase')
+        this.autoCenter()
       }).catch(() => this.$endLoading('fetching showcase'))
     },
     centerSalon (salon) {
