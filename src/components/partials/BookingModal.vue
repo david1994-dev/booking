@@ -140,8 +140,10 @@ export default {
           this.step = 'success'
         }
       }).catch(({ response }) => {
-        console.log(this.$errors)
         this.$endLoading('booking')
+        if (response.data.errors) {
+          this.updateValidationMessage(response.data.errors)
+        }
         if (response.status === 404) {
           this.step = 'registration'
         }
@@ -179,6 +181,10 @@ export default {
           this.$http.post('users', data).then(({ headers }) => {
             this.token = headers['x-verification-token'] || ''
             this.step = 'verification'
+          }).catch(({ response }) => {
+            if (response.data.errors) {
+              this.updateValidationMessage(response.data.errors)
+            }
           })
         }
       })
@@ -209,6 +215,15 @@ export default {
       this.name = ''
       this.code = ''
       this.token = ''
+    },
+    updateValidationMessage (errors) {
+      errors.forEach(({ field, message }) => {
+        if (field === 'user') {
+          this.errors.add('phone', message)
+        } else {
+          this.errors.add(field, message)
+        }
+      })
     }
   }
 }
