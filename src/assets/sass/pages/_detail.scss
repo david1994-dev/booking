@@ -568,5 +568,5 @@
 }
 
 .calendar-slick .slick-track {
-    @include transform(none);
+    @include transform(none !important);
 }
