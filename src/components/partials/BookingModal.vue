@@ -86,7 +86,7 @@ import { reduce } from 'lodash'
 const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
 export default {
-  name: 'AuthModal',
+  name: 'BookingModal',
   computed: mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate']),
   data () {
     return {
@@ -140,6 +140,7 @@ export default {
           this.step = 'success'
         }
       }).catch(({ response }) => {
+        console.log(this.$errors)
         this.$endLoading('booking')
         if (response.status === 404) {
           this.step = 'registration'

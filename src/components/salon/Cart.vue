@@ -141,7 +141,7 @@
     :hideHeader="true"
     :hideFooter="true">
     <i class="bz-close tp-modal-close" @click="checkoutModal = false"></i>
-    <auth-modal />
+    <booking-modal />
   </b-modal>
 </div>
 </template>
@@ -151,12 +151,12 @@ import $ from 'jquery'
 import { reduce, sumBy } from 'lodash'
 import { default as numeral } from 'numeral'
 import { mapActions, mapGetters } from 'vuex'
-import AuthModal from '../partials/AuthModal'
+import BookingModal from '../partials/BookingModal'
 
 export default {
   name: 'Cart',
   components: {
-    AuthModal
+    BookingModal
   },
   props: {
     salon: {
