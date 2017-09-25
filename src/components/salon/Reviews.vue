@@ -16,7 +16,7 @@
     <div class="list">
       <div class="item" v-for="review in reviews" :key="review.id">
         <div class="info-rate">
-          <figure><img src="../../assets/images/image-stylist.jpg"></figure>
+          <figure><img :src="review.user.avatar_url"></figure>
           <div class="info">
             <div class="name">{{ review.user.name }}</div>
             <div class="date-stars">

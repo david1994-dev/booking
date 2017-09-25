@@ -94,7 +94,7 @@
                 </div>
               </template>
 
-              <div class="list">
+              <div class="list" v-if="stylists.length">
                 <div class="item" v-for="stylist in stylists"
                   :key="stylist.id"
                   :class="{ active: cartStylist.id == stylist.id }"
@@ -103,6 +103,7 @@
                   <div class="name">{{ stylist.name }}</div>
                 </div>
               </div>
+              <div class="text-center" v-else>Không tìm thấy nhân viên phù hợp với dịch vụ được chọn</div>
             </v-loading>
           </div>
           <div class="choice-time">
@@ -118,6 +119,7 @@
           <div class="tp-btn-book" @click="mobileCheckout">
             <i class="bz-book"></i>Đặt lịch hẹn
           </div>
+          <!-- <div class="not-time" v-show="!bookingDate">Bạn chưa chọn thời gian làm dịch vụ!</div> -->
         </div>
 
         <div class="price-time">
