@@ -21,7 +21,7 @@
           </figure>
           <h4><router-link :to="{ name: 'blog', params: { id: blog.slug } }">{{ blog.title }}</router-link></h4>
           <div class="info">
-            <span><a href="#">Chăm sóc da</a></span> <span>245 lượt xem</span>
+            <span><a href="#">Chăm sóc da</a></span> <span>{{ blog.views_count[0] ? blog.views_count[0] : 0 }} lượt xem</span>
           </div>
         </div>
       </div>
