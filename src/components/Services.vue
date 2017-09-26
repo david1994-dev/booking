@@ -10,7 +10,7 @@
             <div class="info">
               <router-link class="link" :to="{ name: 'search', query: { category_id: service.id } }"></router-link>
               <h2>{{ service.name }}</h2>
-              <div class="result">{{ service.salons_count }} kết quả</div>
+              <div class="result">{{ service.salons.length }} kết quả</div>
             </div>
             <figure>
               <img :src="service.image_url" />
