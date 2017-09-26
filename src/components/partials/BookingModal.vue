@@ -66,6 +66,7 @@
       :class="{ 'is-invalid': errors.has('code') }" />
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
     <input class="tp-btn" type="submit" value="Xác nhận">
+    <a href="#" @click.prevent="step = 'init'" class="tp-btn">Quay lại</a>
     <div class="tp-send-form"><a href="#">Gửi lại mã xác nhận</a></div>
   </form>
 

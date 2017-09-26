@@ -8,7 +8,11 @@
         <li v-for="category in categories">
           <a class="pointer">{{ category.name }}</a>
           <ul v-if="category.children.length">
-            <li v-for="service in category.children"><a class="pointer" @click="setSelectedService(service)">{{ service.name }}</a></li>
+            <li v-for="service in category.children"
+              :key="service.id"
+              v-if="service.salons_count">
+              <a class="pointer" @click="setSelectedService(service)">{{ service.name }}</a>
+            </li>
           </ul>
         </li>
       </ul>
