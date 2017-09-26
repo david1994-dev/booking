@@ -39,6 +39,7 @@ const actions = {
 
   setSelectedService ({ commit }, service) {
     commit(types.SET_SELECTED_SERVICE, service)
+    window.scrollTo(0, 0)
   },
 
   setSelectedCity ({ commit }, city) {
