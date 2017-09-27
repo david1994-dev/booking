@@ -16,40 +16,44 @@
           <router-link class="tp-btn" :to="{ name: 'explore' }">Tìm lịch làm đẹp</router-link>
         </div>
       </div>
-      <form novalidate
-        v-show="salonRegister"
-        @submit.prevent="submit">
-        <div class="tp-title-form">Đăng ký chủ Salon</div>
-        <div class="tp-des-form">60 giây để đăng ký một công cụ quản lý Salon chuyên nghiệp</div>
-        <input class="tp-text-form form-control"
-          type="text"
-          name="name"
-          placeholder="Tên salon"
-          v-model="name"
-          v-validate="'required'"
-          data-vv-as="Tên salon"
-          :class="{ 'is-invalid': errors.has('name') }" />
-        <div class="invalid-feedback">{{ errors.first('name') }}</div>
-        <input class="tp-text-form form-control"
-          type="text"
-          name="address"
-          v-validate="'required'"
-          v-model="address"
-          data-vv-as="Địa chỉ salon"
-          placeholder="Địa chỉ salon"
-          :class="{ 'is-invalid': errors.has('address') }" />
-        <div class="invalid-feedback">{{ errors.first('address') }}</div>
-        <input class="tp-text-form form-control"
-          type="text"
-          name="phone"
-          v-validate="'required'"
-          v-model="phone"
-          data-vv-as="Số điện thoại"
-          placeholder="Số điện thoại"
-          :class="{ 'is-invalid': errors.has('phone') }" />
-        <div class="invalid-feedback">{{ errors.first('phone') }}</div>
-        <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" value="Đăng ký">
-      </form>
+      <div v-show="salonRegister">
+        <div v-if="success">
+          <div class="tp-title-form">Thank you!</div>
+          <div class="tp-des-form">Cảm ơn bạn đã đăng ký. Vui lòng chờ đại diện của Bzone sẽ liên hệ & giúp bạn xác nhận thông tin trong vòng 24h làm việc sắp tới.</div>
+        </div>
+        <form novalidate v-else @submit.prevent="submit">
+          <div class="tp-title-form">Đăng ký chủ Salon</div>
+          <div class="tp-des-form">60 giây để đăng ký một công cụ quản lý Salon chuyên nghiệp</div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="name"
+            placeholder="Tên salon"
+            v-model="name"
+            v-validate="'required'"
+            data-vv-as="Tên salon"
+            :class="{ 'is-invalid': errors.has('name') }" />
+          <div class="text-left invalid-feedback">{{ errors.first('name') }}</div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="address"
+            v-validate="'required'"
+            v-model="address"
+            data-vv-as="Địa chỉ salon"
+            placeholder="Địa chỉ salon"
+            :class="{ 'is-invalid': errors.has('address') }" />
+          <div class="text-left invalid-feedback">{{ errors.first('address') }}</div>
+          <input class="tp-text-form form-control"
+            type="text"
+            name="phone"
+            v-validate="'required'"
+            v-model="phone"
+            data-vv-as="Số điện thoại"
+            placeholder="Số điện thoại"
+            :class="{ 'is-invalid': errors.has('phone') }" />
+          <div class="text-left invalid-feedback">{{ errors.first('phone') }}</div>
+          <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" value="Đăng ký">
+        </form>
+      </div>
     </div>
 </b-modal>
 </template>
@@ -60,6 +64,7 @@ export default {
   data () {
     return {
       salonRegister: false,
+      success: false,
       name: '',
       address: '',
       phone: ''
@@ -70,6 +75,7 @@ export default {
       if (modal === 'modal-choice-account') {
         setTimeout(() => {
           this.salonRegister = false
+          this.success = false
         }, 800)
       }
     })
@@ -86,8 +92,15 @@ export default {
           this.$startLoading('creating salon')
           this.$http.post('salons', postData).then(() => {
             this.$endLoading('creating salon')
+            this.success = true
             this.resetState()
-          }).catch(() => this.$endLoading('creating salon'))
+          }).catch(({ response }) => {
+            if (response.data.errors) {
+              this.updateValidationMessage(response.data.errors)
+            }
+            this.success = false
+            this.$endLoading('creating salon')
+          })
         }
       })
     },
@@ -95,10 +108,19 @@ export default {
       this.name = ''
       this.address = ''
       this.phone = ''
-      this.salonRegister = false
+      // this.salonRegister = false
     },
     hide () {
       this.$refs.registerModal.hide()
+    },
+    updateValidationMessage (errors) {
+      errors.forEach(({ field, message }) => {
+        if (field === 'hotline') {
+          this.errors.add('phone', message)
+        } else {
+          this.errors.add(field, message)
+        }
+      })
     }
   }
 }

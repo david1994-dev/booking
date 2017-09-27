@@ -34,7 +34,7 @@
     <div class="invalid-feedback">{{ errors.first('phone') }}</div>
     <input class="tp-text-form form-control" type="text"
       v-model="name"
-      v-validate="'required'"
+      v-validate="'required|min:3'"
       name="name"
       data-vv-as="Họ tên"
       placeholder="Họ tên"
@@ -66,8 +66,8 @@
       :class="{ 'is-invalid': errors.has('code') }" />
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
     <input class="tp-btn" type="submit" value="Xác nhận">
-    <a href="#" @click.prevent="step = 'init'" class="tp-btn">Quay lại</a>
     <div class="tp-send-form"><a href="#">Gửi lại mã xác nhận</a></div>
+    <div class="text-center"><a @click.prevent="step = 'init'" class="pointer"><b>Quay lại</b></a></div>
   </form>
 
   <div v-if="step == 'success'" class="tp-modal-success">
