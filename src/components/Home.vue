@@ -26,8 +26,8 @@
         <a href="#"><img src="../assets/images/image-savetime.png"></a>
       </figure>
       <div class="info">
-        <h3 class="name">Booking để tận hưởng tiện ích</h3>
-        <p class="des">Bzone là nơi bạn có thể kết nối với các salon làm đẹp bất cứ lúc nào. Chúng tôi cam kết sẽ luôn mang lại cho bạn những dịch vụ chuyên nghiệp nhất.</p><a class="register-now" @click="$root.$emit('show::modal', 'modal-choice-account')">Đăng ký ngay</a>
+        <h3 class="name">Đặt lịch để tận hưởng</h3>
+        <p class="des">Bzone là nơi bạn có thể tìm kiếm và  kết nối với các salon làm đẹp bất cứ lúc nào. Những salon và spa được yêu thích nhất và những dịch vụ tốt nhất đang chờ bạn trải nghiệm. Còn chần chừ gì mà không đăng kí cùng chúng tôi ngay bây giờ?</p><a class="register-now" @click="$root.$emit('show::modal', 'modal-choice-account')">Đăng ký ngay</a>
       </div>
     </div>
     <blogs />
