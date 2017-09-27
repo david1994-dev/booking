@@ -2,8 +2,8 @@
 <footer class="footer">
   <div class="tp-container">
     <div class="savetime-footer">
-      <h3>Tiết kiệm thời gian, đặt lịch chăm sóc bản thân ngay tại đây</h3>
-      <p>là điểm đến trực tuyến cho các chuyên gia chăm sóc sắc đẹp và khách hàng. Chuyên gia có thể giới thiệu công việc của họ, kết nối với khách hàng mới và hiện tại và xây dựng doanh nghiệp của họ. Khách hàng có thể khám phá các dịch vụ và nhà cung cấp dịch vụ mới, đặt hẹn trực tuyến và lấy cảm hứng.</p>
+      <h3>Bạn biết không?</h3>
+      <p>Thông qua việc kết nối với các salon và các chuyên gia làm đẹp trên toàn quốc, BZONE hi vọng có thể đem lại cho bạn cơ hội để thể hiện bản thân theo nhiều cách khác nhau. Không dừng lại ở đó, chúng tôi còn là một cộng đồng làm đẹp nơi bạn có thể kết nối với những tâm hồn yêu cái đẹp và có thể truyền cảm hứng cho những người xung quanh.</p>
       <div class="full"></div>
       <div class="copyright">
         ©Abby 2017
