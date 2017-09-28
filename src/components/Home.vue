@@ -8,7 +8,7 @@
           <li class="register"><a href="">Đăng ký</a></li>
           <li class="login"><a href="">Đăng nhập</a></li>
         </ul> -->
-        <div class="account" @click="$root.$emit('show::modal', 'modal-choice-account')">Đăng ký</div>
+        <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">Đăng ký</div>
       </div>
     </header>
     <div class="slogan">
@@ -27,7 +27,7 @@
       </figure>
       <div class="info">
         <h3 class="name">Đặt lịch để tận hưởng</h3>
-        <p class="des">Bzone là nơi bạn có thể tìm kiếm và  kết nối với các salon làm đẹp bất cứ lúc nào. Những salon và spa được yêu thích nhất và những dịch vụ tốt nhất đang chờ bạn trải nghiệm. Còn chần chừ gì mà không đăng kí cùng chúng tôi ngay bây giờ?</p><a class="register-now" @click="$root.$emit('show::modal', 'modal-choice-account')">Đăng ký ngay</a>
+        <p class="des">Bzone là nơi bạn có thể tìm kiếm và  kết nối với các salon làm đẹp bất cứ lúc nào. Những salon và spa được yêu thích nhất và những dịch vụ tốt nhất đang chờ bạn trải nghiệm. Còn chần chừ gì mà không đăng kí cùng chúng tôi ngay bây giờ?</p><a class="register-now" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">Đăng ký ngay</a>
       </div>
     </div>
     <blogs />
