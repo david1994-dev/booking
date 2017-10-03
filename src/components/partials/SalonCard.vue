@@ -131,7 +131,7 @@ export default {
   mounted () {
     this.setSelectedStylist()
     this.$nextTick(() => {
-      this.calculateStylistToShow()
+      this.resizeHandler()
     })
     this.$bus.$on('stylistPicker::selected', stylist => {
       this.selectedStylist = stylist
@@ -142,6 +142,7 @@ export default {
       if (this.salon.stylists.length) {
         this.selectedStylist = head(this.salon.stylists)
       }
+      this.calculateStylistToShow()
     },
     fetchSlots () {
       this.resetState()
@@ -153,7 +154,7 @@ export default {
       this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params }).then(({ data }) => {
         this.slots = data
         this.$endLoading(`fetching stylist::${this.selectedStylist.id} slots`)
-      })
+      }).catch(() => this.$endLoading(`fetching stylist::${this.selectedStylist.id} slots`))
     },
     updateCart (slot) {
       this.selectedSlot = slot
@@ -174,11 +175,15 @@ export default {
       this.expandTime = false
     },
     calculateStylistToShow () {
+      const $list = $('.wrap-info .stylist-img')
+      const wrapWidth = $list.width()
+      const itemWidth = $list.find('.item').outerWidth()
+      this.visibleStylists = parseInt(wrapWidth / itemWidth)
+    },
+    resizeHandler () {
+      const _this = this
       $(window).resize(() => {
-        const $list = $('.wrap-info .stylist-img')
-        const wrapWidth = $list.width()
-        const itemWidth = $list.find('.item').outerWidth()
-        this.visibleStylists = parseInt(wrapWidth / itemWidth)
+        _this.calculateStylistToShow()
       })
     },
     expandStylists () {
