@@ -82,7 +82,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { reduce } from 'lodash'
+import { forEach, reduce } from 'lodash'
 
 const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
@@ -205,6 +205,10 @@ export default {
           }
           this.$http.put(`users/${this.user}`, data, { headers: { 'X-Verification-Token': this.token } }).then(() => {
             this.step = 'verification'
+          }).catch(({ response }) => {
+            if (response.data.errors) {
+              this.updateValidationMessage(response.data.errors)
+            }
           })
         }
       })
@@ -218,11 +222,11 @@ export default {
       this.token = ''
     },
     updateValidationMessage (errors) {
-      errors.forEach(({ field, message }) => {
+      forEach(errors, (messages, field) => {
         if (field === 'user') {
-          this.errors.add('phone', message)
+          this.errors.add('phone', messages.join('\n'))
         } else {
-          this.errors.add(field, message)
+          this.errors.add(field, messages.join('\n'))
         }
       })
     }

@@ -48,7 +48,7 @@ export default {
       }
     }
   },
-  created () {
+  mounted () {
     this.fetchData()
   },
   watch: {
@@ -57,11 +57,11 @@ export default {
   methods: {
     fetchData () {
       this.$startLoading('fetching stylists')
-      this.$http.get('search/stylists', { params: { q: this.keyword, _meta: 1 } }).then(({ data }) => {
+      this.$http.get('search/stylists', { params: { q: this.$route.query.q, _meta: 1 } }).then(({ data }) => {
         this.stylists = data.data
         this.meta = data.meta
         this.$endLoading('fetching stylists')
-      })
+      }).catch(() => this.$endLoading('fetching stylists'))
     },
     salonNames (stylist) {
       if (!stylist.salons || !stylist.salons.length) {

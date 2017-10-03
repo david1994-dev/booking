@@ -44,7 +44,7 @@ export default {
       }
     }
   },
-  created () {
+  mounted () {
     this.fetchData()
   },
   watch: {
@@ -53,11 +53,11 @@ export default {
   methods: {
     fetchData () {
       this.$startLoading('fetching services')
-      this.$http.get('search/services', { params: { q: this.keyword, _meta: 1 } }).then(({ data }) => {
+      this.$http.get('search/services', { params: { q: this.$route.query.q, _meta: 1 } }).then(({ data }) => {
         this.services = data.data
         this.meta = data.meta
         this.$endLoading('fetching services')
-      })
+      }).catch(() => this.$endLoading('fetching services'))
     }
   }
 }

@@ -12,7 +12,7 @@
         </div>
         <div class="user">
           <div class="des">Đăng ký với tư cách khách hàng?</div>
-          <p>Bạn hoàn toàn không cần đăng ký tài khoản mã vẫn có thể được lịch làm đẹp!</p>
+          <p>Bạn hoàn toàn không cần đăng ký tài khoản mà vẫn có thể được lịch làm đẹp!</p>
           <router-link class="tp-btn" :to="{ name: 'explore' }">Tìm lịch làm đẹp</router-link>
         </div>
       </div>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import { forEach } from 'lodash'
+
 export default {
   name: 'RegisterModal',
   data () {
@@ -114,11 +116,11 @@ export default {
       this.$refs.registerModal.hide()
     },
     updateValidationMessage (errors) {
-      errors.forEach(({ field, message }) => {
+      forEach(errors, (messages, field) => {
         if (field === 'hotline') {
-          this.errors.add('phone', message)
+          this.errors.add('phone', messages.join('\n'))
         } else {
-          this.errors.add(field, message)
+          this.errors.add(field, messages.join('\n'))
         }
       })
     }
