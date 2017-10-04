@@ -73,12 +73,10 @@ export default {
     }
   },
   mounted () {
-    this.$root.$on('hidden::modal', modal => {
-      if (modal === 'modal-choice-account') {
-        setTimeout(() => {
-          this.salonRegister = false
-          this.success = false
-        }, 800)
+    this.$root.$on('bv::modal::hidden', ({ vueTarget }) => {
+      if (vueTarget.id === 'modal-choice-account') {
+        this.salonRegister = false
+        this.success = false
       }
     })
   },

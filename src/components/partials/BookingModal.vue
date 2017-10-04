@@ -101,8 +101,8 @@ export default {
     }
   },
   mounted () {
-    this.$root.$on('hidden::modal', modal => {
-      if (modal === 'modal-booking') {
+    this.$root.$on('bv::modal::hidden', ({ vueTarget }) => {
+      if (vueTarget.id === 'modal-booking') {
         this.step = 'init'
         this.resetState()
       }
