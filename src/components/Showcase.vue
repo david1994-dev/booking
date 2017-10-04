@@ -43,7 +43,7 @@
 import { head } from 'lodash'
 import { googlemap } from '@/config'
 import PageHeader from './layout/Header'
-import GmapRichMarker from '@/components/RichMarker'
+import GmapRichMarker from './RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ './partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './search/Marker')

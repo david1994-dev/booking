@@ -58,7 +58,7 @@ import { mapGetters } from 'vuex'
 import store from 'store2'
 import { googlemap } from '@/config'
 import InfiniteLoading from 'vue-infinite-loading'
-import GmapRichMarker from '@/components/RichMarker'
+import GmapRichMarker from '../RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
