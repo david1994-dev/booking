@@ -121,25 +121,34 @@ button.fancybox-arrow {
     border-radius: 4px;
     height: 50px;
     padding: 0 20px;
-    font-size: 15px;
+    font-size: 16px;
     outline: none;
     margin: 10px 0;
+    @include transition();
+}
+
+.tp-text-form:focus {
+	border-color: $main-color;
 }
 
 .tp-text-form::-webkit-input-placeholder {
   color: rgba(47, 47, 47, 0.4);
+  font-size: 15px;
 }
 
 .tp-text-form::-moz-placeholder {
   color: rgba(47, 47, 47, 0.4);
+  font-size: 15px;
 }
 
 .tp-text-form:-ms-input-placeholder {
   color: rgba(47, 47, 47, 0.4);
+  font-size: 15px;
 }
 
 .tp-text-form:-moz-placeholder {
   color: rgba(47, 47, 47, 0.4);
+  font-size: 15px;
 }
 .tp-gender-form {
     @include flex();
@@ -594,6 +603,9 @@ button.fancybox-arrow {
     padding-bottom: 60px;
 	.img-price figure {
 	    margin: 0;
+	    img {
+	    	width: 100%;
+	    }
 	}
 	.price-rate {
 		.price {

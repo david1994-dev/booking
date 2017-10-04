@@ -515,6 +515,13 @@
             .price-time {
                 padding: 10px 25px;
             }
+            .des-nochoice {
+                font-size: 13px;
+                padding: 5px 25px;
+                margin: 0;
+                color: $primary-color;
+                text-align: center;
+            }
         }
         &.active {
             top: 0;

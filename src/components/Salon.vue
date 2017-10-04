@@ -104,7 +104,7 @@ export default {
   },
   metaInfo () {
     return {
-      title: this.salon.name,
+      title: this.salon.name || 'Thương hiệu',
       meta: [
         { name: 'keywords', content: this.salon.meta.keyword },
         { name: 'description', content: this.salon.meta.description }

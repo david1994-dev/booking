@@ -119,8 +119,9 @@
           <div class="tp-btn-book" @click="mobileCheckout">
             <i class="bz-book"></i>Đặt lịch hẹn
           </div>
-          <div class="not-time" v-show="!bookingDate">Bạn chưa chọn thời gian làm dịch vụ!</div>
         </div>
+
+        <div class="des-nochoice" v-show="!bookingDate">Bạn chưa chọn thời gian làm dịch vụ!</div>
 
         <div class="price-time">
           <div class="tp-price-total">
@@ -322,14 +323,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '../../assets/sass/helpers/variables';
-
-.cart-mobile .not-time {
-  text-align: center;
-  font-size: 13px;
-  padding: 5px 0;
-  color: $primary-color;
-}
-</style>
