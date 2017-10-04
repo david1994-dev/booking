@@ -11,7 +11,7 @@ import { sync } from 'vuex-router-sync'
 import BootstrapVue from 'bootstrap-vue'
 import Scrollactive from 'vue-scrollactive'
 import * as VueGoogleMaps from 'vue2-google-maps'
-import VuePreview from 'vue-preview'
+import VuePhotoSwipe from './utils/photoswipe'
 import VeeValidate, { Validator } from 'vee-validate'
 import { VueMasonryPlugin } from 'vue-masonry'
 import vi from 'vee-validate/dist/locale/vi'
@@ -28,7 +28,7 @@ Vue.use(BootstrapVue)
 Vue.use(Scrollactive)
 Vue.use(http, { store, router })
 Vue.use(eventbus)
-Vue.use(VuePreview)
+Vue.use(VuePhotoSwipe)
 Vue.use(VeeValidate, {
   locale: 'vi'
 })

@@ -5,7 +5,7 @@
     <div class="item" v-for="(image, index) in items"
       :key="image.id">
         <!-- <span class="number">+336</span> -->
-      <img :src="image.thumb" @click="$preview.open(index, items, options)"
+      <img :src="image.thumb" @click="$photoswipe.open(index, items, options)"
         class="preview-img" />
     </div>
   </div>

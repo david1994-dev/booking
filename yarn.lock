@@ -2920,10 +2920,6 @@ globule@^1.0.0:
     lodash "~4.17.4"
     minimatch "~3.0.2"
 
-googlemaps-js-rich-marker@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/googlemaps-js-rich-marker/-/googlemaps-js-rich-marker-1.0.2.tgz#ba9584e166f8499e55d6f3dc60499c105ed9ada3"
-
 got@^5.0.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-5.7.1.tgz#5f81635a61e4a6589f180569ea4e381680a51f35"
@@ -4862,7 +4858,7 @@ phantomjs-prebuilt@^2.1.14, phantomjs-prebuilt@^2.1.7:
     request-progress "~2.0.1"
     which "~1.2.10"
 
-photoswipe@^4.1.1:
+photoswipe@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-4.1.2.tgz#95c20a75cea23b70d6299641cad82e03cae7f797"
 
@@ -6601,12 +6597,6 @@ vue-meta@^1.1.0:
     deepmerge "^1.5.0"
     lodash.isplainobject "^4.0.6"
     object-assign "^4.1.1"
-
-vue-preview@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/vue-preview/-/vue-preview-1.0.5.tgz#d503d0b5a0b1f4dc31c0ab996a10d3c3e2b20d44"
-  dependencies:
-    photoswipe "^4.1.1"
 
 vue-router@^2.3.1:
   version "2.7.0"
