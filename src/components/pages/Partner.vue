@@ -14,7 +14,7 @@
           <p class="sub-heading">Tăng nhận diện thương hiệu của salon/stylist<p>
           <p>BZONE sẽ hỗ trợ các salon xuất hiện trên các vị trí Top, chuyên mục &quot;Khám phá Salon&quot;, gợi ý địa điểm nhằm tăng độ nhận diện đến khách hàng.</p>
 
-          <p  class="sub-heading">Hỗ trợ pr</p>
+          <p  class="sub-heading">Hỗ trợ PR</p>
           <p>BZONE sẽ hỗ trợ các bài viết PR cho các salon và trực tiếp đăng lên các mục trên website BZONE (khám phá Salon, Blog) và các kênh mạng xã hội (Facebook, Instagram,...).</p>
           <p>BZONE sẽ hỗ trợ Salon/Spa trong việc xây dựng ý tưởng, đối tác thực hiện Media (video clip, photoshoot) theo nhu cầu quảng bá của Salon/Spa.</p>
           <p>BZONE cũng sẽ hỗ trợ quảng cáo, xây dựng gói ưu đãi, hợp tác nhằm mục tiêu giúp Salon/Spa tiếp cận khách hàng mới thông qua sự kiện hoặc tại gian hàng Online của BZONE trên trang web SHOPEE Việt Nam.</p>

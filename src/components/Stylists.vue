@@ -12,11 +12,11 @@
               <div class="info">
                 <h2><router-link :to="{ name: 'stylist', params: { id: stylist.id } }">{{ stylist.name }}</router-link></h2>
                 <div class="salon-name" v-if="stylist.salon">{{ stylist.salon.name }}</div>
-                <div class="rate" v-if="stylist.salon">
+                <div class="rate">
                   <div class="tp-rate">
-                    <div class="rate-status">{{ stylist.salon.rating_summary }}</div>
-                    <stars :rating="stylist.salon.average_rating">
-                      <div class="number">{{ stylist.salon.review_count }} Đánh giá</div>
+                    <div class="rate-status">{{ stylist.rating_summary }}</div>
+                    <stars :rating="stylist.average_rating">
+                      <div class="number">{{ stylist.review_count }} Đánh giá</div>
                     </stars>
                   </div>
                 </div>
