@@ -13,7 +13,10 @@ const Showcase = () => import(/* webpackChunkName: "explore-bundle" */ '@/compon
 const Explore = () => import(/* webpackChunkName: "explore-bundle" */ '@/components/Explore')
 const Blogs = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/Blogs')
 const Blog = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/Blog')
-import Contact from '@/components/Contact'
+const Contact = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Contact')
+const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/About')
+const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
+const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
 import Stylist from '@/components/Stylist'
 
 Vue.use(Router)
@@ -57,6 +60,21 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
+      path: '/faq',
+      name: 'faq',
+      component: Faq
+    },
+    {
+      path: '/partner',
+      name: 'partner',
+      component: Partner
     },
     {
       path: '/blog/:id',

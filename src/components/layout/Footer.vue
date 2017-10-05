@@ -6,7 +6,7 @@
       <p>Thông qua việc kết nối với các salon và các chuyên gia làm đẹp trên toàn quốc, BZONE hi vọng có thể đem lại cho bạn cơ hội để thể hiện bản thân theo nhiều cách khác nhau. Không dừng lại ở đó, chúng tôi còn là một cộng đồng làm đẹp nơi bạn có thể kết nối với những tâm hồn yêu cái đẹp và có thể truyền cảm hứng cho những người xung quanh.</p>
       <div class="full"></div>
       <div class="copyright">
-        ©Abby 2017
+        &copy;BZONE 2017
       </div>
     </div>
     <div class="instagram">
@@ -22,16 +22,13 @@
       </div>
       <ul class="list-link">
         <li>
-          <a href="#">Câu chuyện Bzone</a>
+          <router-link :to="{ name: 'about' }">Về chúng tôi</router-link>
         </li>
         <li>
-          <a href="#">Hỗ trợ</a>
+          <router-link :to="{ name: 'faq' }">Câu hỏi thường gặp</router-link>
         </li>
         <li>
-          <a href="#">Ảnh</a>
-        </li>
-        <li>
-          <a href="#">Đối tác</a>
+          <router-link :to="{ name: 'partner' }">Hợp tác với BZONE</router-link>
         </li>
         <li>
           <router-link :to="{ name: 'contact' }">Liên hệ</router-link>

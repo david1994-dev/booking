@@ -56,16 +56,19 @@
       </div>
     </div>
   </div>
+  <page-footer />
 </div>
 </template>
 
 <script>
-import PageHeader from './layout/Header'
+import PageHeader from '../layout/Header'
+import PageFooter from '../layout/Footer'
 
 export default {
   name: 'Contact',
   components: {
-    PageHeader
+    PageHeader,
+    PageFooter
   },
   metaInfo: {
     title: 'Liên hệ'

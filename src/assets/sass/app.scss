@@ -22,3 +22,27 @@
 .form-control:focus {
     border-color: $main-color
 }
+
+.static-page {
+    background-color: #fff;
+    .content-page {
+        padding: 15px 60px;
+    }
+    .main-title {
+        margin: 0 0 15px 0;
+        font-size: 34px;
+        font-weight: 400;
+        border-bottom: 1px solid $border-color;
+        line-height: 1.4;
+        padding: 30px 0 15px 0;
+    }
+    .content-text {
+        color: $primary-text-color;
+        font-size: 15px;
+        .sub-heading {
+            color: $text-color;
+            font-weight: 400;
+            font-size: 20px;
+        }
+    }
+}

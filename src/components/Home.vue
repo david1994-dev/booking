@@ -23,7 +23,7 @@
     <explore />
     <div class="savetime">
       <figure>
-        <a href="#"><img src="../assets/images/image-savetime.png"></a>
+        <a><img src="../assets/images/image-savetime.png"></a>
       </figure>
       <div class="info">
         <h3 class="name">Đặt lịch để tận hưởng</h3>
