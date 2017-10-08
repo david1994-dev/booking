@@ -66,8 +66,10 @@
       :class="{ 'is-invalid': errors.has('code') }" />
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
     <input class="tp-btn" type="submit" value="Xác nhận">
-    <div class="tp-send-form"><a href="#">Gửi lại mã xác nhận</a></div>
-    <div class="text-center"><a @click.prevent="step = 'init'" class="pointer"><b>Quay lại</b></a></div>
+    <div class="tp-send-form">
+      <div><a href="#">Gửi lại mã xác nhận</a></div>
+      <div><a @click.prevent="step = 'init'" class="pointer">Quay lại</a></div>
+    </div>
   </form>
 
   <div v-if="step == 'success'" class="tp-modal-success">
@@ -155,6 +157,13 @@ export default {
         if (result) {
           this.$http.post('users/verify', { token: this.token, code: this.code }).then(() => {
             this.createBooking()
+          }).catch(({ response }) => {
+            if (response.data.errors) {
+              this.updateValidationMessage(response.data.errors)
+            }
+            if (response.status === 404) {
+              this.errors.add('code', 'Mã xác nhận không hợp lệ.')
+            }
           })
         }
       })
