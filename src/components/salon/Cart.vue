@@ -155,6 +155,8 @@ import { reduce, sumBy } from 'lodash'
 import { default as numeral } from 'numeral'
 import { mapActions, mapGetters } from 'vuex'
 import BookingModal from '../partials/BookingModal'
+import { mixpanelProjectToken } from '@/config'
+import mixpanel from 'mixpanel-browser'
 
 export default {
   name: 'Cart',
@@ -222,6 +224,15 @@ export default {
     checkout () {
       if (this.canCheckout) {
         this.checkoutModal = true
+        mixpanel.init(mixpanelProjectToken)
+        mixpanel.track(
+          'Click vào đặt lịch & hiện pop-up SDT',
+          {
+            'device': 'desktop',
+            'salon_id': this.salon.id,
+            'salon_name': this.salon.name
+          }
+        )
       } else {
         document.getElementById('mennu-stylists').click()
       }
@@ -230,6 +241,15 @@ export default {
       if (!this.mobileCart) {
         this.mobileCart = true
         this.checkoutModal = false
+        mixpanel.init(mixpanelProjectToken)
+        mixpanel.track(
+          'Click vào đặt lịch & hiện pop-up SDT',
+          {
+            'device': 'mobile',
+            'salon_id': this.salon.id,
+            'salon_name': this.salon.name
+          }
+        )
       } else {
         this.checkout()
       }
