@@ -203,7 +203,8 @@ export default {
       return total
     },
     total () {
-      return this.subtotal - this.discount
+      const total = this.subtotal - this.discount
+      return total > 0 ? total : 0
     },
     canCheckout () {
       return (this.cartServices.length && this.cartStylist.id && this.bookingDate)
