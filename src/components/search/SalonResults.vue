@@ -23,8 +23,8 @@
               <h3><router-link :to="{ name: 'salon', params: { id: salon.slug } }">{{ salon.name }}</router-link></h3>
               <p>{{ salon.address }}</p>
               <div class="tp-view">
-                <div class="viewing"><i class="bz-check"></i><span>Đang có 10 người xem</span></div>
-                <div class="viewed"><i class="bz-eye"></i><span>688</span></div>
+                <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
+                <div class="viewed"><i class="bz-eye" v-b-tooltip.hover.top title="Lượt xem"></i><span>{{ salon.page_views }}</span></div>
               </div>
             </div>
             <div class="price-rate">
