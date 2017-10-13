@@ -34,12 +34,20 @@
         <span>{{ bookingDate | dateFormat('H:mm D/MM/YYYY') }}</span>
       </div>
 
+      <div class="discount-code" v-show="cartServices.length">
+        <div class="tp-discount-code">
+          <input type="search" v-model.lazy="code" placeholder="Nhập mã giảm giá" />
+          <p v-show="promoCodeStatus == 'error'" class="error">Mã giảm giá không đúng hoặc hết hạn</p>
+          <p v-show="promoCodeStatus == 'success'" class="success">Bạn được giảm {{ discount | numberFormat('0,0') }} VNĐ</p>
+        </div>
+      </div>
+
       <div class="price-book-c" v-show="cartServices.length">
         <div class="price-c">
           <div class="tp-price-total">
             <div class="price">
               <span>Cộng</span>
-              <span>{{ total }}</span>
+              <span>{{ total | numberFormat('0,0') }} VND</span>
             </div>
             <div class="time">
               <span>Thời gian thực hiện</span>
@@ -113,6 +121,13 @@
             </div>
             <div class="btn-time" :class="{ active: bookingDate }" @click="$bus.$emit('displayDateTimePopup', true)">Chọn thời gian</div>
           </div>
+          <div class="discount-code">
+            <div class="tp-discount-code">
+              <input type="search" v-model.lazy="code" placeholder="Nhập mã giảm giá" />
+              <p v-show="promoCodeStatus == 'error'" class="error">Mã giảm giá không đúng hoặc hết hạn</p>
+              <p v-show="promoCodeStatus == 'success'" class="success">Bạn được giảm {{ discount | numberFormat('0,0') }} VNĐ</p>
+            </div>
+          </div>
         </div>
 
         <div class="btn-book">
@@ -127,7 +142,7 @@
           <div class="tp-price-total">
             <div class="price">
               <span>Cộng</span>
-              <span>{{ total }}</span>
+              <span>{{ total | numberFormat('0,0') }} VND</span>
             </div>
             <div class="time">
               <span>Thời gian thực hiện</span>
@@ -152,7 +167,6 @@
 <script>
 import $ from 'jquery'
 import { reduce, sumBy } from 'lodash'
-import { default as numeral } from 'numeral'
 import { mapActions, mapGetters } from 'vuex'
 import BookingModal from '../partials/BookingModal'
 
@@ -168,16 +182,26 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['cartServices', 'cartStylist', 'bookingDate']),
+    ...mapGetters(['cartServices', 'cartStylist', 'bookingDate', 'promoCode']),
     duration () {
       return sumBy(this.cartServices, 'duration')
     },
-    total () {
+    discount () {
+      if (this.promoCode.type === 'percent') {
+        return parseInt(this.subtotal * 10 / 100)
+      }
+
+      return parseInt(this.promoCode.value)
+    },
+    subtotal () {
       const total = reduce(this.cartServices, (sum, { price }) => {
         return sum + parseInt(price)
       }, 0)
 
-      return `${numeral(total).format('0,0')} VND`
+      return total
+    },
+    total () {
+      return this.subtotal - this.discount
     },
     canCheckout () {
       return (this.cartServices.length && this.cartStylist.id && this.bookingDate)
@@ -189,7 +213,9 @@ export default {
       mobileCart: false,
       stylists: [],
       slots: [],
-      selectedSlot: { label: '' }
+      selectedSlot: { label: '' },
+      code: '',
+      promoCodeStatus: ''
     }
   },
   metaInfo () {
@@ -209,8 +235,14 @@ export default {
     this.$bus.$on('serviceStylists', stylists => {
       this.stylists = stylists
     })
+
+    this.$bus.$on('booking::completed', () => {
+      this.promoCodeStatus = ''
+      this.code = ''
+    })
   },
   watch: {
+    'code': 'applyPromoCode',
     cartServices (value) {
       if (!value.length) {
         this.mobileCart = false
@@ -233,6 +265,20 @@ export default {
       } else {
         this.checkout()
       }
+    },
+    applyPromoCode () {
+      this.promoCodeStatus = ''
+      this.$store.dispatch('removePromoCode').then(() => {
+        if (this.code) {
+          this.$http.post('promo-codes/verify', { code: this.code }).then(({ data }) => {
+            this.promoCodeStatus = 'success'
+            this.$store.dispatch('applyPromoCode', data)
+          }).catch(() => {
+            this.promoCodeStatus = 'error'
+            this.$store.dispatch('removePromoCode')
+          })
+        }
+      })
     },
     scrollToServices () {
       document.getElementById('mennu-services').click()

@@ -109,17 +109,12 @@
 		.item {
 		    margin-bottom: 30px;
 		    width: 100%;
-		    figure {
-			    margin: 0;
-			    img {
-				    width: 100%;
-				}
-			}
+		    
 			.info {
-			    border: 1px solid #EBF1F7;
+			    border: 1px solid $border-color;
 			    border-top: none;
 			    .name-adress {
-				    border-bottom: 1px solid #EBF1F7;
+				    border-bottom: 1px solid $border-color;
 				    padding: 15px 20px;
 				    h3 {
 					    margin: 0 0 5px;
@@ -133,12 +128,12 @@
 						}
 					}
 					p {
-					    margin: 0;
+					    margin: 0 0 5px;
 					    font-size: 12px;
 					}
 				}
 				.price {
-				    border-bottom: 1px solid #EBF1F7;
+				    border-bottom: 1px solid $border-color;
 				    padding: 15px 20px;
 				    strong {
 					    display: block;
@@ -151,12 +146,27 @@
 					    color: $primary-text-color;
 					    line-height: 1;
 					    margin-bottom: 1px;
+						b {
+							font-weight: 300;
+						    margin-left: 5px;
+						    text-decoration: line-through;
+						}
+					}
+					&.sale-off strong {
+						color: $primary-color;
 					}
 				}
 				.rate {
 				    padding: 15px 20px;
 				}
 			}
+
+			&.unverified {
+				.action-unverified {
+					display: none;
+				}
+			}
+
 		}
 	}
 }

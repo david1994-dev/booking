@@ -1,52 +1,57 @@
 <template>
-<div class="searchsalon-page">
-  <div class="box-salons">
-    <div class="salons-result" v-show="!$isLoading('fetching salons')">
-      Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ getSearchQuery('keyword') }}</strong><span v-if="getSearchQuery('location')"> tại <strong>{{ getSearchQuery('location') }}</strong></span>.
+<div>
+  <!-- <div class="search-filter searchsalon-filter">
+    <search-filter />
+  </div> -->
+  <div class="searchsalon-page">
+    <div class="box-salons">
+      <div class="salons-result" v-show="!$isLoading('fetching salons')">
+        Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ getSearchQuery('keyword') }}</strong><span v-if="getSearchQuery('location')"> tại <strong>{{ getSearchQuery('location') }}</strong></span>.
+      </div>
+
+      <div v-if="salons.length">
+        <salon v-for="salon in salons"
+          @salonAddressClick="centerSalon(salon, 14)"
+          :key="salon.id"
+          :salon="salon"
+          :category="selectedService.id || 0" />
+      </div>
+
+      <infinite-loading
+        @infinite="onInfinite"
+        spinner="waveDots"
+        ref="infiniteLoading">
+        <span slot="no-more">
+          Không tìm thấy thêm kết quả
+        </span>
+        <span slot="no-results">
+          Không tìm thấy thêm kết quả
+        </span>
+      </infinite-loading>
     </div>
 
-    <div v-if="salons.length">
-      <salon v-for="salon in salons"
-        @salonAddressClick="centerSalon(salon)"
-        :key="salon.id"
-        :salon="salon"
-        :category="selectedService.id || 0" />
-    </div>
-
-    <infinite-loading
-      @infinite="onInfinite"
-      spinner="waveDots"
-      ref="infiniteLoading">
-      <span slot="no-more">
-        Không tìm thấy thêm kết quả
-      </span>
-      <span slot="no-results">
-        Không tìm thấy thêm kết quả
-      </span>
-    </infinite-loading>
-  </div>
-
-  <div class="wrap-maps">
-    <div class="maps">
-      <gmap-map ref="map"
-        :center="center"
-        :zoom="14"
-        :options="mapOptions"
-        style="width: 100%; height: 100%">
-        <!-- <gmap-marker v-for="marker in markers"
-          :key="marker.id"
-          :position="marker.position"
-          :clickable="true"
-        ></gmap-marker> -->
-        <gmap-rich-marker v-for="marker in markers"
-          :key="marker.id"
-          :options="{ flat: true }"
-          :position="marker.position"
-          @click="centerSalon(marker.salon)"
-        >
-          <salon-marker :salon="marker.salon" />
-        </gmap-rich-marker>
-      </gmap-map>
+    <div class="wrap-maps">
+      <div class="maps">
+        <gmap-map ref="map"
+          :center="center"
+          :zoom="14"
+          :options="mapOptions"
+          style="width: 100%; height: 100%">
+          <!-- <gmap-marker v-for="marker in markers"
+            :key="marker.id"
+            :position="marker.position"
+            :clickable="true"
+          ></gmap-marker> -->
+          <gmap-rich-marker v-for="marker in markers"
+            :key="marker.id"
+            :options="{ flat: true }"
+            :position="marker.position"
+            @click="centerSalon(marker.salon)"
+          >
+            <salon-marker :salon="marker.salon" />
+          </gmap-rich-marker>
+        </gmap-map>
+      </div>
     </div>
   </div>
 </div>
@@ -62,10 +67,12 @@ import GmapRichMarker from '../RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
+const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
 
 export default {
   name: 'SearchSalons',
   components: {
+    SearchFilter,
     Salon,
     SalonMarker,
     InfiniteLoading,
@@ -161,10 +168,13 @@ export default {
     getSearchQuery (key, fallback = null) {
       return get(store('searchQuery'), key, fallback)
     },
-    centerSalon (salon) {
+    centerSalon (salon, zoom = null) {
       if (salon.latitude && salon.longitude) {
         // this.center = { lat: salon.latitude, lng: salon.longitude }
         this.$refs.map.$mapObject.panTo({ lat: salon.latitude, lng: salon.longitude })
+        if (zoom) {
+          this.$refs.map.$mapObject.setZoom(zoom)
+        }
       }
     },
     autoCenter () {

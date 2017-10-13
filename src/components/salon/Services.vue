@@ -17,9 +17,13 @@
           @change="toggleService(service, $event.target.checked)" /><span></span>
       </div>
       <div class="name-price">
-        <strong>{{ service.category.name }}</strong>
-        <div class="fl-full"></div>
-        <span class="brace">(</span><span>{{ service.formatted_price }} - {{ service.duration }} phút</span><span class="brace">)</span>
+        <div class="name-serivce">{{ service.category.name }}</div>
+        <div class="price-wrap">
+          <!-- <div class="sale-off">Chỉ còn 475.000 VNĐ từ 25 - 29/09</div> -->
+          <div class="price">
+            <div class="number">{{ service.formatted_price }}</div>&nbsp;-&nbsp;<div class="time">{{ service.duration }} phút</div>
+          </div>
+        </div>
       </div>
     </label>
   </div>

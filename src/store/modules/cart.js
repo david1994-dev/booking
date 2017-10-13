@@ -5,14 +5,19 @@ const state = {
   salon: {},
   services: [],
   stylist: {},
-  date: null
+  date: null,
+  promoCode: {
+    type: '',
+    value: 0
+  }
 }
 
 const getters = {
   cartSalon: state => state.salon,
   cartServices: state => state.services,
   cartStylist: state => state.stylist,
-  bookingDate: state => state.date
+  bookingDate: state => state.date,
+  promoCode: state => state.promoCode
 }
 
 const actions = {
@@ -34,6 +39,14 @@ const actions = {
 
   setBookingDate ({ commit }, date) {
     commit(types.SET_BOOKING_DATE, date)
+  },
+
+  applyPromoCode ({ commit }, promoCode) {
+    commit(types.APPLY_PROMO_CODE, promoCode)
+  },
+
+  removePromoCode ({ commit }) {
+    commit(types.REMOVE_PROMO_CODE)
   },
 
   clearCart ({ commit }) {
@@ -72,6 +85,17 @@ const mutations = {
     state.date = date
   },
 
+  [types.APPLY_PROMO_CODE] (state, promoCode) {
+    state.promoCode = promoCode
+  },
+
+  [types.REMOVE_PROMO_CODE] (state) {
+    state.promoCode = {
+      type: '',
+      value: 0
+    }
+  },
+
   [types.CLEAR_CART] (state, clearSalon) {
     if (clearSalon) {
       state.salon = {}
@@ -79,6 +103,10 @@ const mutations = {
     state.services = []
     state.stylist = {}
     state.date = null
+    state.promoCode = {
+      type: '',
+      value: 0
+    }
 
     store.remove('cart')
   }

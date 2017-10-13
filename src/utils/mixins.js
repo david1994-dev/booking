@@ -114,3 +114,17 @@ export const fbAsyncInit = {
     }
   }
 }
+
+// export const validationMessage = {
+//   methods: {
+//     updateValidationMessage (errors, mapping = {}) {
+//       errors.forEach(({ field, message }) => {
+//         if (field === 'user') {
+//           this.errors.add('phone', message)
+//         } else {
+//           this.errors.add(field, message)
+//         }
+//       })
+//     }
+//   }
+// }

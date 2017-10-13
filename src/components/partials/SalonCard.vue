@@ -1,21 +1,32 @@
-\
 <template>
-<div class="tp-salon">
+<div class="tp-salon" :class="{ unverified: !salon.verified }">
   <div class="img-price">
-    <figure><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
-      <img :src="salon.image_url" @click="setCategory">
-    </router-link></figure>
+    <div class="tp-img-slide">
+      <div v-if="salon.verified" class="slide-salon">
+        <div><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
+          <img :src="salon.image_url" @click="setCategory">
+        </router-link></div>
+      </div>
+      <div v-else class="slide-salon">
+        <div><img src="../../assets/images/verified.jpg"></div>
+      </div>
+      <div class="utilities" v-if="salon.verified && salon.amenities">
+        <i v-for="amenity in salon.amenities" :key="amenity.id"
+          :class="amenity.icon"
+          v-b-tooltip.hover.auto :title="amenity.name"></i>
+      </div>
+    </div>
     <div class="price-rate">
-      <div class="price">
-        <span>From</span>
+      <div class="price" :class="{ 'sale-off': false }">
+        <span>From <b v-if="false">290.000 VND</b></span>
         <strong>{{ salon.min_price.formatted_price }}</strong>
       </div>
-      <div class="rate">
+      <div class="rate" v-if="salon.verified">
         <div class="tp-rate">
-          <div class="rate-status">{{ salon.rating_summary }}</div>
           <stars :rating="salon.average_rating">
-            <div class="number">{{ salon.review_count }} Đánh giá</div>
+            <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
           </stars>
+          <div class="rate-status">{{ salon.review_count }} Đánh giá</div>
         </div>
       </div>
     </div>
@@ -26,54 +37,83 @@
         <span @click="setCategory">{{ salon.name }}</span>
       </router-link></h3>
       <p class="address pointer" @click="$emit('salonAddressClick', salon)">{{ salon.address }}</p>
+      <div class="tp-view">
+        <div class="viewing"><i class="bz-check"></i><span>Đang có 10 người xem</span></div>
+        <div class="viewed"><i class="bz-eye"></i><span>688</span></div>
+      </div>
     </div>
-    <div class="wrap-stylist" :class="{ expand: expandStylist }">
-      <div class="stylist-img">
-        <div class="item" v-for="(stylist, i) in salon.stylists"
-          :key="stylist.id"
-          :class="{
-            active: selectedStylist.id === stylist.id,
-            show: i <= stylistToShow,
-            'stylist-more': i === stylistToShow
-          }">
-          <figure>
-            <div class="number" v-if="i === stylistToShow && hiddenStylists > 0"
-              @click="expandStylists">+{{ hiddenStylists }}</div>
-            <a @click="selectedStylist = stylist"><img :src="stylist.avatar_url"></a>
-          </figure>
-          <div class="info">
-            <h3><a @click="selectedStylist = stylist">{{ stylist.name }}</a></h3>
-            <!-- <span>34 Salon có dịch vụ</span> -->
+    <div v-if="salon.verified">
+      <div class="wrap-stylist" :class="{ expand: expandStylist }">
+        <div class="stylist-img">
+          <div class="item" v-for="(stylist, i) in salon.stylists"
+            :key="stylist.id"
+            :class="{
+              active: selectedStylist.id === stylist.id,
+              show: i <= stylistToShow,
+              'stylist-more': i === stylistToShow
+            }">
+            <figure>
+              <div class="number" v-if="i === stylistToShow && hiddenStylists > 0"
+                @click="expandStylists">+{{ hiddenStylists }}</div>
+              <a @click="selectedStylist = stylist"><img :src="stylist.avatar_url"></a>
+            </figure>
+            <div class="info">
+              <h3><a @click="selectedStylist = stylist">{{ stylist.name }}</a></h3>
+              <!-- <span>34 Salon có dịch vụ</span> -->
+            </div>
           </div>
         </div>
+        <div class="scrollup" @click="expandStylist = !expandStylist"><i class="bz-down-2"></i></div>
       </div>
-      <div class="scrollup" @click="expandStylist = !expandStylist"><i class="bz-down-2"></i></div>
-    </div>
 
-    <calendar v-if="salon.stylists.length" v-model="selectedDate">
-      <template slot="button">
-        <i class="bz-calendar-day"></i>
-      </template>
+      <calendar v-if="salon.stylists.length" v-model="selectedDate">
+        <template slot="button">
+          <i class="bz-calendar-day"></i>
+        </template>
 
-      <div class="wrap-times" :class="{ expand: expandTime }">
-        <v-loading :loader="`fetching stylist::${selectedStylist.id} slots`">
-          <template slot="spinner">
-            <div class="text-center">
-              <v-loading-spinner height="30px" width="30px" />
+        <div class="wrap-times" :class="{ expand: expandTime }">
+          <v-loading :loader="`fetching stylist::${selectedStylist.id} slots`">
+            <template slot="spinner">
+              <div class="text-center">
+                <v-loading-spinner height="30px" width="30px" />
+              </div>
+            </template>
+
+            <div class="times">
+              <div v-for="slot in slots" class="item"
+                v-if="slot.status == 'available'"
+                :class="{ active: selectedSlot.label == slot.label }"
+                @click="updateCart(slot)">{{ slot.label }}</div>
             </div>
-          </template>
-
-          <div class="times">
-            <div v-for="slot in slots" class="item"
-              v-if="slot.status == 'available'"
-              :class="{ active: selectedSlot.label == slot.label }"
-              @click="updateCart(slot)">{{ slot.label }}</div>
-          </div>
-          <div class="scrollup" v-show="slots.length > 15" @click="expandTime = !expandTime"><i class="bz-down-2"></i></div>
-          <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
-        </v-loading>
+            <div class="scrollup" v-show="slots.length > 15" @click="expandTime = !expandTime"><i class="bz-down-2"></i></div>
+            <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
+          </v-loading>
+        </div>
+      </calendar>
+    </div>
+    <div v-else class="tp-unverified">
+      <div class="child">
+        <div class="des"><strong>Gọi trực tiếp</strong> cho salon để book lịch hẹn.</div>
+        <div class="btn-action">
+          <i class="bz-phone2"></i>
+          <span>Gọi salon</span>
+        </div>
       </div>
-    </calendar>
+      <div class="child">
+        <div class="des">Bạn thích thương hiệu này? <strong>Vote</strong> để ủng hộ thương hiệu nào!</div>
+        <div class="btn-action">
+          <i class="bz-like"></i>
+          <span>1.240</span>
+        </div>
+      </div>
+      <div class="child">
+        <div class="des">Đây là thương hiệu của bạn? Có <strong>1.204</strong> người đang quan tâm tới bạn. Kết nối ngay thôi</div>
+        <div class="btn-action">
+          <i class="bz-note"></i>
+          <span>Đăng ký</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </template>

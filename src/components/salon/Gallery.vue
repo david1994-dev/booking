@@ -2,11 +2,12 @@
 <div class="images-d" v-if="salon.gallery">
   <div class="title">{{ salon.gallery.length }} Hình ảnh</div>
   <div class="list">
-    <div class="item" v-for="(image, index) in items"
+    <div class="item pointer" v-for="(image, index) in items"
       :key="image.id">
         <!-- <span class="number">+336</span> -->
       <img :src="image.thumb" @click="$photoswipe.open(index, items, options)"
         class="preview-img" />
+      <div class="time">{{ image.created_at | dateFormat('MMM DD, YYYY') }}</div>
     </div>
   </div>
 </div>
@@ -33,7 +34,8 @@ export default {
           h: image.height,
           src: image.url,
           msrc: image.template_url.replace('{size}', 'large'),
-          thumb: image.template_url.replace('{size}', 'square128')
+          thumb: image.template_url.replace('{size}', 'square128'),
+          created_at: image.created_at
         })
       })
 

@@ -10,7 +10,8 @@ const state = {
   },
   area: {},
   city: {},
-  service: {}
+  service: {},
+  filters: []
 }
 
 const getters = {
@@ -19,7 +20,8 @@ const getters = {
   position: state => state.position,
   selectedArea: state => state.area,
   selectedCity: state => state.city,
-  selectedService: state => state.service
+  selectedService: state => state.service,
+  searchFilters: state => state.filters
 }
 
 const actions = {
@@ -88,6 +90,14 @@ const actions = {
     commit(types.SET_SELECTED_SERVICE, {})
     commit(types.SET_SELECTED_CITY, {})
     commit(types.SET_SELECTED_AREA, {})
+  },
+
+  addFilter ({ commit }, filter) {
+    commit(types.ADD_FILTER, filter)
+  },
+
+  removeFilter ({ commit }, filter) {
+    commit(types.REMOVE_FILTER, filter)
   }
 }
 
@@ -128,6 +138,20 @@ const mutations = {
     state.position = {
       latitude: '',
       longitude: ''
+    }
+  },
+
+  [types.ADD_FILTER] (state, filter) {
+    const record = state.filters.find(f => f === filter)
+    if (!record) {
+      state.filters.push(filter)
+    }
+  },
+
+  [types.REMOVE_FILTER] (state, filter) {
+    const record = state.filters.find(f => f === filter)
+    if (record) {
+      state.filters.splice(state.filters.indexOf(record), 1)
     }
   }
 }

@@ -21,7 +21,7 @@
   </div>
 
   <div class="time-since">
-    <div class="item date-open"> <i class="bz-clock"></i>
+    <div class="item date-open"><i class="bz-clock"></i>
       <ul>
         <li v-for="(hours, day) in salon.opening_hours"
           v-if="hours.open && hours.close"
@@ -31,7 +31,29 @@
       </ul>
     </div>
     <div class="item" v-if="salon.established"><i class="bz-calendar"></i> Thành lập ngày {{ salon.established | dateFormat('D-M-YYYY') }}</div>
-    <div class="item" v-if="chemicals"><i class="bz-hair-spray"></i> Hoá chất sử dụng: {{ chemicals }}</div>
+    <div class="item chemical" v-if="salon.chemicals.length">
+      <i class="bz-hair-spray"></i> Hoá chất sử dụng:
+      <ul>
+        <li v-for="chemical in salon.chemicals" :key="chemical.id">
+          <img :src="chemical.image_url" />
+          <span>{{ chemical.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="utilities" v-if="salon.amenities">
+    <div class="title">Tiện ích</div>
+    <ul :class="{ active: expand }">
+      <li v-for="amenity in salon.amenities" :key="amenity.id">
+        <i :class="amenity.icon" v-b-tooltip.hover.top :title="amenity.name"></i>
+        <span>{{ amenity.description || amenity.name }}</span>
+      </li>
+      <li class="view-all-wrap">
+        <div class="view-all expand" @click="expand = true"><span>Xem tất cả</span> <i class="bz-down-2"></i></div>
+        <div class="view-all collapse" @click="expand = false"><span>Thu gọn</span> <i class="bz-up-2"></i></div>
+      </li>
+    </ul>
   </div>
 
   <div class="des" v-if="salon.description">
@@ -41,7 +63,6 @@
 </template>
 
 <script>
-import { map } from 'lodash'
 import Stars from '../partials/StarRating'
 
 export default {
@@ -55,14 +76,12 @@ export default {
   components: {
     Stars
   },
-  computed: {
-    chemicals () {
-      if (!this.salon.chemicals || !this.salon.chemicals.length) {
-        return
-      }
-
-      return map(this.salon.chemicals, 'name').join(', ')
+  data () {
+    return {
+      expand: false
     }
+  },
+  computed: {
     // weekendAvaiable () {
     //   if (this.salon.opening_hours['saturday'] && this.salon.opening_hours['sunday']) {
     //     return 'Thứ 7 - Chủ nhật'

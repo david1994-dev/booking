@@ -46,8 +46,8 @@
           <div class="content-map">
             <gmap-map ref="map"
               :center="{ lat: salon.latitude, lng: salon.longitude }"
-              :zoom="14"
-              :options="{ mapTypeControl: false, streetViewControl: false }"
+              :zoom="15"
+              :options="mapOptions"
               style="width: 100%; height: 280px">
               <gmap-marker :position="{ lat: salon.latitude, lng: salon.longitude }"></gmap-marker>
             </gmap-map>
@@ -66,6 +66,7 @@
 
 <script>
 import { stickyClassMixin } from '@/utils/mixins'
+import { googlemap } from '@/config'
 import PageHeader from './layout/Header'
 const CoverSlider = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Covers')
 const Overview = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Overview')
@@ -99,7 +100,8 @@ export default {
       salon: {
         opening_hours: [],
         meta: {}
-      }
+      },
+      mapOptions: googlemap
     }
   },
   metaInfo () {
@@ -126,7 +128,7 @@ export default {
   methods: {
     fetchSalon () {
       this.$startLoading('fetching salon')
-      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category,chemicals' } }).then(({ data }) => {
+      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category,chemicals,amenities' } }).then(({ data }) => {
         this.salon = data
         this.$store.dispatch('setSalon', data)
         this.$endLoading('fetching salon')

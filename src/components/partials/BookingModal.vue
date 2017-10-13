@@ -67,7 +67,7 @@
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
     <input class="tp-btn" type="submit" value="Xác nhận">
     <div class="tp-send-form">
-      <div><a href="#">Gửi lại mã xác nhận</a></div>
+      <div><a href="#" @click.prevent="resendVerificationCode">Gửi lại mã xác nhận</a></div>
       <div><a @click.prevent="step = 'init'" class="pointer">Quay lại</a></div>
     </div>
   </form>
@@ -90,7 +90,7 @@ const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
 export default {
   name: 'BookingModal',
-  computed: mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate']),
+  computed: mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate', 'promoCode']),
   data () {
     return {
       user: 0,
@@ -128,6 +128,9 @@ export default {
         slots: JSON.stringify(slots),
         time: this.bookingDate.format(DATE_FORMAT)
       }
+      if (this.promoCode.id) {
+        data.promo = this.promoCode.id
+      }
       this.$startLoading('booking')
       this.$http.post(`salons/${this.cartSalon.id}/book`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data, status, headers }) => {
         this.$endLoading('booking')
@@ -141,6 +144,7 @@ export default {
           this.resetState()
           this.$store.dispatch('emptyCart')
           this.step = 'success'
+          this.$bus.$emit('booking::completed')
         }
       }).catch(({ response }) => {
         this.$endLoading('booking')
@@ -212,13 +216,23 @@ export default {
             phone_number: this.phone,
             country_code: 'VN'
           }
-          this.$http.put(`users/${this.user}`, data, { headers: { 'X-Verification-Token': this.token } }).then(() => {
+          this.$http.put(`users/${this.user}`, data, { headers: { 'X-Verification-Token': this.token } }).then(({ headers }) => {
+            this.token = headers['x-verification-token'] || ''
             this.step = 'verification'
           }).catch(({ response }) => {
             if (response.data.errors) {
               this.updateValidationMessage(response.data.errors)
             }
           })
+        }
+      })
+    },
+    resendVerificationCode () {
+      this.$http.post('users/verification-code', { token: this.token }).then(response => {
+        // Success message
+      }).catch(({ response }) => {
+        if (response.data.errors) {
+          this.updateValidationMessage(response.data.errors)
         }
       })
     },

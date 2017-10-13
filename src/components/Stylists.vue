@@ -14,10 +14,10 @@
                 <div class="salon-name" v-if="stylist.salon">{{ stylist.salon.name }}</div>
                 <div class="rate">
                   <div class="tp-rate">
-                    <div class="rate-status">{{ stylist.rating_summary }}</div>
                     <stars :rating="stylist.average_rating">
-                      <div class="number">{{ stylist.review_count }} Đánh giá</div>
+                      <div class="number" v-if="stylist.average_rating">{{ stylist.average_rating | numberFormat('0.0') }} - {{ stylist.rating_summary }}</div>
                     </stars>
+                    <div class="rate-status">{{ stylist.review_count }} Đánh giá</div>
                   </div>
                 </div>
               </div>

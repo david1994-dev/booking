@@ -1,0 +1,261 @@
+.search-filter {
+	font-size: 13px;
+	.sub-container {
+		max-width: 1220px;
+		margin: 0 auto;
+		padding: 13px 25px;
+	}
+	.container-inner {
+		@include flex();
+		@include align-items(center);
+		position: relative;
+	}
+	.item-filter:nth-child(n+2) {
+		display: none;
+	}
+	.title-filter {
+		white-space: nowrap;
+	}
+	.list-filter {
+		flex: 1 0;
+		@include flex();
+	}
+	.item-filter {
+		margin-left: 25px;
+		.selected {
+			@include flex();
+			@include align-items(center);
+			cursor: pointer;
+			padding: 10px 0;
+			@include transition();
+			white-space: nowrap;
+			.name {
+				margin-right: 5px;
+			}
+			i {
+				font-size: 7px;
+			}
+		}
+		.content-item {
+			display: none;
+			position: absolute;
+			background: #fff;
+			width: 100%;
+			border-radius: 3px;
+			top: 100%;
+			left: 0;
+			box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
+			z-index: 30;
+		}
+		&.active {
+			.content-item {
+				display: block;
+			}
+			.selected {
+				color: $main-color;
+			}
+		}
+	}
+	.list {
+		@include flex();
+		@include flex-wrap(wrap);
+		padding: 10px 5px;
+	}
+	.item {
+		padding: 10px 15px;
+		margin: 0;
+		cursor: pointer;
+		width: 100%;
+		@include flex();
+		.tp-checkbox {}
+		.name {
+			margin: 3px 0 0 10px;
+		}
+	}
+	.action {
+		@include flex();
+		@include align-items(center);
+		@include justify-content(flex-end);
+		padding: 0 20px 20px 0;
+		.cancel {
+			cursor: pointer;
+			@include transition();
+			&:hover {
+				color: $main-color;
+			}
+		}
+		.search {
+			cursor: pointer;
+			background: $main-color;
+			color: #fff;
+			padding: 8px 15px;
+			margin-left: 20px;
+			border-radius: 2px;
+			@include transition();
+			&:hover {
+				background: #1c928f;
+			}
+		}
+	}
+	.item-filter.view-more {
+		display: block;
+	}
+	.view-more {
+		.inner-viewmore {
+			overflow-y: auto;
+			height: calc(100vh - 182px);
+		}
+		.list {
+			padding: 0 5px;
+		}
+		.item {
+			display: none;
+			&:nth-child(-n+3) {
+				@include flex();
+			}
+		}
+		.list-viewmore.active .item, .list.active .item {
+			@include flex();
+		}
+		.list-viewmore.active .view-all {
+			&.expand {
+				display: none;
+			}
+			&.collapse {
+				@include flexInline();
+			}
+		}
+		.action {
+			padding: 10px 20px 10px 0;
+		}
+		.view-all {
+			&.collapse {
+				display: none;
+			}
+			color: $main-color;
+			@include flexInline();
+			@include align-items(center);
+			margin: 5px 0 0 20px;
+			cursor: pointer;
+			@include transition();
+			&:hover {
+				color: $text-color;
+			}
+			i {
+				font-size: 7px;
+				margin-left: 5px;
+			}
+		}
+	}
+	.title-item {
+		padding: 25px 10px 0 20px;
+		font-weight: 400;
+		font-size: 15px;
+	}
+	.view-more .list-viewmore.hide-view-all .view-all-wrap {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	.search-filter {
+		.item-filter:nth-child(2) {
+			display: block;
+		}
+		.view-more .list-viewmore:nth-child(1) {
+			display: none;
+		}
+		.item {
+			width: 50%;
+		}
+		.view-more .item:nth-child(-n+4) {
+			@include flex();
+		}
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.search-filter {
+		&.searchsalon-filter {
+			background: #fff;
+		}
+		.item-filter:nth-child(3) {
+			display: block;
+		}
+		.view-more .list-viewmore:nth-child(2) {
+			display: none;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.search-filter {
+		.item-filter:nth-child(4) {
+			display: block;
+		}
+		.view-more .list-viewmore:nth-child(3) {
+			display: none;
+		}
+		.item {
+			width: 33.33%;
+		}
+		.view-more .item:nth-child(-n+6) {
+			@include flex();
+		}
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.search-filter {
+		.item-filter:nth-child(5) {
+			display: block;
+		}
+		.view-more {
+			.list-viewmore:nth-child(4) {
+				display: none;
+			}
+			.item:nth-child(-n+6) {
+				@include flex();
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 960px) {
+	.search-filter {
+		.item-filter {
+			margin-left: 50px;
+		}
+		.item {
+			width: 25%;
+		}
+		.view-more .item:nth-child(-n+8) {
+			@include flex();
+		}
+	}
+}
+
+@media screen and (min-width: 1330px) {
+	.search-filter {
+		.item {
+			width: 33.33%;
+		}
+		.item-filter {
+			position: relative;
+		}
+		.view-more {
+			.item {
+				width: 25%;
+			}
+			&.item-filter {
+				position: static;
+			}
+		}
+		.item-filter .content-item {
+			width: 650px;
+		}
+		.view-more .content-item {
+			width: 100%;
+		}
+	}
+}

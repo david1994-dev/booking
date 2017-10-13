@@ -1,7 +1,7 @@
 /*	[ Header ]
 - - - - - - - - - - - - - - - - - - - - */
 .wrapper-header {
-    background: url(../images/bg-header.jpg) center no-repeat;
+    background: url(../images/bg-header.jpg) center top no-repeat;
     background-size: cover;
     padding: 25px 25px 35px;
     .header {
@@ -291,7 +291,7 @@
 			    opacity: 0.5;
 			    margin-left: 10px;
 			    span {
-				    border-right: 1px solid #EBF1F7;
+				    border-right: 1px solid $border-color;
 				    padding-right: 20px;
 				    margin-right: 20px;
 				    &:last-child {
