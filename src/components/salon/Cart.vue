@@ -190,7 +190,7 @@ export default {
     },
     discount () {
       if (this.promoCode.type === 'percent') {
-        return parseInt(this.subtotal * 10 / 100)
+        return parseInt(this.subtotal * parseInt(this.promoCode.value) / 100)
       }
 
       return parseInt(this.promoCode.value)
