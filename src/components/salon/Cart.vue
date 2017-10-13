@@ -203,7 +203,8 @@ export default {
       return total
     },
     total () {
-      return this.subtotal - this.discount
+      const total = this.subtotal - this.discount
+      return total > 0 ? total : 0
     },
     canCheckout () {
       return (this.cartServices.length && this.cartStylist.id && this.bookingDate)
@@ -290,7 +291,7 @@ export default {
       this.promoCodeStatus = ''
       this.$store.dispatch('removePromoCode').then(() => {
         if (this.code) {
-          this.$http.post('promo-codes/verify', { code: this.code }).then(({ data }) => {
+          this.$http.post('promo-codes/verify', { code: this.code, salons: this.salon.id }).then(({ data }) => {
             this.promoCodeStatus = 'success'
             this.$store.dispatch('applyPromoCode', data)
           }).catch(() => {
