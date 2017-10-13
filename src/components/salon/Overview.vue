@@ -4,11 +4,20 @@
     <h1 class="title">{{ salon.name }}</h1>
     <p class="address">{{ salon.address }}</p>
   </div>
+
+  <div class="total-view">
+    <div class="tp-view">
+      <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
+        <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div>
+    </div>
+  </div>
+
   <div class="rate">
     <div class="tp-rate">
       <stars :rating="salon.average_rating">
-        <div class="number">{{ salon.review_count }} Đánh giá</div>
+        <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
       </stars>
+      <div class="rate-status">{{ salon.review_count }} Đánh giá</div>
     </div>
   </div>
 
