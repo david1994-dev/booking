@@ -85,6 +85,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import { forEach, reduce } from 'lodash'
+import { mixpanelProjectToken } from '@/config'
+import mixpanel from 'mixpanel-browser'
 
 const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
@@ -112,6 +114,10 @@ export default {
   },
   methods: {
     createBooking () {
+      mixpanel.init(mixpanelProjectToken)
+      mixpanel.track(
+        'Click vào xác nhận đặt lịch'
+      )
       if (!this.phone) {
         return
       }
@@ -145,6 +151,8 @@ export default {
           this.$store.dispatch('emptyCart')
           this.step = 'success'
           this.$bus.$emit('booking::completed')
+          mixpanel.init(mixpanelProjectToken)
+          mixpanel.track('Pop-up thành công của SDT cũ')
         }
       }).catch(({ response }) => {
         this.$endLoading('booking')
@@ -161,6 +169,10 @@ export default {
         if (result) {
           this.$http.post('users/verify', { token: this.token, code: this.code }).then(() => {
             this.createBooking()
+            mixpanel.init(mixpanelProjectToken)
+            mixpanel.track(
+              'Pop-up thành công của SDT mới'
+            )
           }).catch(({ response }) => {
             if (response.data.errors) {
               this.updateValidationMessage(response.data.errors)
@@ -173,6 +185,10 @@ export default {
       })
     },
     createOrUpdateAccount () {
+      mixpanel.init(mixpanelProjectToken)
+      mixpanel.track(
+        'SDT mới click vào xác nhận'
+      )
       if (this.user) {
         this.updateAccount()
       } else {
