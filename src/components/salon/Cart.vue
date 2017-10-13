@@ -290,7 +290,7 @@ export default {
       this.promoCodeStatus = ''
       this.$store.dispatch('removePromoCode').then(() => {
         if (this.code) {
-          this.$http.post('promo-codes/verify', { code: this.code }).then(({ data }) => {
+          this.$http.post('promo-codes/verify', { code: this.code, salons: this.salon.id }).then(({ data }) => {
             this.promoCodeStatus = 'success'
             this.$store.dispatch('applyPromoCode', data)
           }).catch(() => {
