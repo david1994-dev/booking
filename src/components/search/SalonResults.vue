@@ -28,9 +28,9 @@
               </div>
             </div>
             <div class="price-rate">
-              <div class="price" :class="{ 'sale-off': false }">
-                <span>From <b v-if="false">290.000 VND</b></span>
-                <strong>{{ salon.min_price.formatted_price }}</strong>
+              <div class="price" :class="{ 'sale-off': salon.min_price.has_discount }">
+                <span>From <b v-if="salon.min_price.has_discount">{{ salon.min_price.formatted_price }}</b></span>
+                <strong>{{ salon.min_price.has_discount ? salon.min_price.formatted_discount_price : salon.min_price.formatted_price }}</strong>
               </div>
               <div class="rate" v-if="salon.verified">
                 <div class="tp-rate">

@@ -196,8 +196,8 @@ export default {
       return parseInt(this.promoCode.value)
     },
     subtotal () {
-      const total = reduce(this.cartServices, (sum, { price }) => {
-        return sum + parseInt(price)
+      const total = reduce(this.cartServices, (sum, { discount_price }) => {
+        return sum + parseInt(discount_price)
       }, 0)
 
       return total

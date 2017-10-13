@@ -19,7 +19,7 @@
       <div class="name-price">
         <div class="name-serivce">{{ service.category.name }}</div>
         <div class="price-wrap">
-          <!-- <div class="sale-off">Chỉ còn 475.000 VNĐ từ 25 - 29/09</div> -->
+          <div class="sale-off" v-if="service.has_discount">{{ offerDetail(service) }}</div>
           <div class="price">
             <div class="number">{{ service.formatted_price }}</div>&nbsp;-&nbsp;<div class="time">{{ service.duration }} phút</div>
           </div>
@@ -33,6 +33,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import store from 'store2'
+import moment from 'moment'
 
 export default {
   name: 'SalonServices',
@@ -64,6 +65,13 @@ export default {
       if (service) {
         this.toggleService(service, true)
       }
+    },
+    offerDetail (service) {
+      if (service.has_discount) {
+        return `Chỉ còn ${service.formatted_discount_price} từ ${moment(service.discount_starts).format('DD/MM')} - ${moment(service.discount_expires).format('DD/MM')}`
+      }
+
+      return ''
     }
   }
 }
