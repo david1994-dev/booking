@@ -1,19 +1,41 @@
 <template>
 <div class="tp-salon" :class="{ unverified: !salon.verified }">
   <div class="img-price">
-    <div class="tp-img-slide">
-      <div v-if="salon.verified" class="slide-salon">
+    <div class="tp-img-slide" v-if="salon.verified">
+      <slick v-if="salon.covers && salon.covers.length"
+        ref="slick"
+        class="slide-salon"
+        :options="slickOptions">
+        <div><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
+          <img :src="salon.image_url" @click="setCategory">
+        </router-link></div>
+        <div v-if="salon.covers" v-for="image in salon.covers"
+          :key="image.id">
+          <router-link :to="{ name: 'salon', params: { id: salon.slug } }">
+            <img :src="image.template_url.replace('{size}', 'large')" @click="setCategory">
+          </router-link>
+        </div>
+      </slick>
+      <div class="slide-salon" v-else>
         <div><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
           <img :src="salon.image_url" @click="setCategory">
         </router-link></div>
       </div>
-      <div v-else class="slide-salon">
-        <div><img src="../../assets/images/verified.jpg"></div>
+      <div v-if="salon.covers && salon.covers.length" class="slide-control">
+        <div class="tp-control small">
+          <div class="btn prev" ref="prevBtn" @click="prev"></div>
+          <div class="btn next" ref="nextBtn" @click="next"></div>
+        </div>
       </div>
-      <div class="utilities" v-if="salon.verified && salon.amenities">
+      <div class="utilities" v-if="salon.amenities">
         <i v-for="amenity in salon.amenities" :key="amenity.id"
           :class="amenity.icon"
           v-b-tooltip.hover.auto :title="amenity.name"></i>
+      </div>
+    </div>
+    <div class="tp-img-slide" v-else>
+      <div class="slide-salon">
+        <div><img src="../../assets/images/verified.jpg"></div>
       </div>
     </div>
     <div class="price-rate">
@@ -39,7 +61,7 @@
       <p class="address pointer" @click="$emit('salonAddressClick', salon)">{{ salon.address }}</p>
       <div class="tp-view">
         <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
-        <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div>
+        <!-- <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div> -->
       </div>
     </div>
     <div v-if="salon.verified">
@@ -123,6 +145,7 @@ import moment from 'moment'
 import $ from 'jquery'
 import { head } from 'lodash'
 import store from 'store2'
+import Slick from 'vue-slick'
 import Calendar from './Calendar'
 import Stars from './StarRating'
 
@@ -143,7 +166,8 @@ export default {
   },
   components: {
     Calendar,
-    Stars
+    Stars,
+    Slick
   },
   computed: {
     stylistToShow () {
@@ -161,12 +185,29 @@ export default {
       slots: [],
       expandStylist: false,
       expandTime: false,
-      visibleStylists: 5
+      visibleStylists: 5,
+      slickOptions: {
+        speed: 300,
+        slidesToShow: 1,
+        prevArrow: false,
+        nextArrow: false,
+        infinite: false
+      }
     }
   },
   watch: {
     'selectedStylist': 'fetchSlots',
     'selectedDate': 'fetchSlots'
+  },
+  beforeUpdate () {
+    if (this.$refs.slick) {
+      this.$refs.slick.destroy()
+    }
+  },
+  updated () {
+    if (this.$refs.slick && !this.$refs.slick.$el.classList.contains('slick-initialized')) {
+      this.$refs.slick.create()
+    }
   },
   mounted () {
     this.setSelectedStylist()
@@ -238,6 +279,12 @@ export default {
       store.set('cart', {
         category: this.category
       })
+    },
+    next () {
+      this.$refs.slick.next()
+    },
+    prev () {
+      this.$refs.slick.prev()
     }
   }
 }

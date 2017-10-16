@@ -8,7 +8,7 @@
   <div class="total-view">
     <div class="tp-view">
       <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
-        <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div>
+        <!-- <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div> -->
     </div>
   </div>
 

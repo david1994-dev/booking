@@ -90,7 +90,7 @@ export default {
     fetchData () {
       const categories = this.getCategory()
       const params = {
-        includes: 'services,stylists'
+        includes: 'services,stylists,covers'
       }
 
       if (categories) {
