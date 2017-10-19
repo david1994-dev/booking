@@ -43,6 +43,65 @@ button.fancybox-arrow {
 	color: $main-color;
 }
 
+/*	[ Language ]
+- - - - - - - - - - - - - - - - - - - - */
+.tp-account-lang {
+	@include flex();
+    @include align-items(center);
+
+	.account {
+		color: #fff;
+		font-size: 14px;
+		@include transition();
+		cursor: pointer;
+	}
+	.account:hover {
+		color: $main-color;
+	}
+
+	.lang {
+	    position: relative;
+	    font-size: 14px;
+	    margin-left: 10px;
+		.selected {
+			color: #fff;
+		    border: 1px solid #fff;
+		    padding: 3px 10px 2px;
+		    line-height: 1;
+		    @include transition();
+		    cursor: pointer;
+		    &:hover {
+		    	color: $main-color;
+		    	border-color: $main-color; 
+		    }
+		}
+
+		ul {
+			padding: 0;
+			list-style: none;
+			position: absolute;
+			background: #fff;
+			top: 100%;
+			right: 0;
+			width: 100%;
+			text-align: center;
+			display: none;
+		    z-index: 10;
+			a {
+				color: $text-color;
+				display: block;
+				padding: 3px 10px;
+				&:hover {
+					color: $main-color;
+				}
+			}
+		}
+		&.active ul {
+			display: block;
+		}
+	}
+}
+
 /*	[ Success ]
 - - - - - - - - - - - - - - - - - - - - */
 .tp-modal-success {

@@ -13,15 +13,6 @@
 		.logo img {
 		    width: 80px;
 		}
-		.account {
-			color: #fff;
-			font-size: 14px;
-			@include transition();
-			cursor: pointer;
-		}
-		.account:hover {
-			color: $main-color;
-		}
 	}
 
 	.slogan {

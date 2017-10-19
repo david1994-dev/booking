@@ -21,7 +21,9 @@
         <div class="price-wrap">
           <div class="sale-off" v-if="service.has_discount">{{ offerDetail(service) }}</div>
           <div class="price">
-            <div class="number">{{ service.formatted_price }}</div>&nbsp;-&nbsp;<div class="time">{{ service.duration }} phút</div>
+            <div class="number">{{ service.formatted_price }}</div>
+            <strong>trong</strong>
+            <div class="time">{{ service.duration }} phút</div>
           </div>
         </div>
       </div>

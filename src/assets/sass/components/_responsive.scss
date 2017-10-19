@@ -489,16 +489,11 @@
 		.search-inner {
 			@include flex();
 		}
-		.account {
-			display: block;
-			color: #fff;
-			font-size: 14px;
-			@include transition();
-			cursor: pointer;
+
+		.tp-account-lang {
+			@include flex();
 		}
-		.account:hover {
-			color: $main-color;
-		}
+
 	}
 	.footer {
 		.links {

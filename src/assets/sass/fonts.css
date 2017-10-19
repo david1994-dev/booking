@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'bzone';
-  src:  url('../fonts/bzone.eot?z66e4b');
-  src:  url('../fonts/bzone.eot?z66e4b#iefix') format('embedded-opentype'),
-    url('../fonts/bzone.ttf?z66e4b') format('truetype'),
-    url('../fonts/bzone.woff?z66e4b') format('woff'),
-    url('../fonts/bzone.svg?z66e4b#bzone') format('svg');
+  src:  url('../fonts/bzone.eot?980c8l');
+  src:  url('../fonts/bzone.eot?980c8l#iefix') format('embedded-opentype'),
+    url('../fonts/bzone.ttf?980c8l') format('truetype'),
+    url('../fonts/bzone.woff?980c8l') format('woff'),
+    url('../fonts/bzone.svg?980c8l#bzone') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,11 +24,14 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bz-note:before {
-  content: "\e916";
+.bz-information-button:before {
+  content: "\e918";
 }
 .bz-customer-service:before {
-  content: "\e919";
+  content: "\e917";
+}
+.bz-note:before {
+  content: "\e916";
 }
 .bz-clockwise-rotation:before {
   content: "\e91a";
@@ -119,12 +122,6 @@ i {
 }
 .bz-phone:before {
   content: "\e914";
-}
-.bz-phone2:before {
-  content: "\e917";
-}
-.bz-like:before {
-  content: "\e918";
 }
 .bz-eye:before {
   content: "\e9ce";

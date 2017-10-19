@@ -8,7 +8,7 @@
           <li class="register"><a href="">Đăng ký</a></li>
           <li class="login"><a href="">Đăng nhập</a></li>
         </ul> -->
-        <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">Đăng ký</div>
+        <right-header />
       </div>
     </header>
     <div class="slogan">
@@ -42,6 +42,7 @@ const Search = () => import(/* webpackChunkName: "search-bundle" */ './partials/
 const PageFooter = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/Footer')
 const Explore = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Explore')
 const Blogs = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Blogs')
+import RightHeader from './partials/RightHeader'
 import RegisterModal from './partials/RegisterModal'
 
 export default {
@@ -57,7 +58,8 @@ export default {
     Search,
     Explore,
     Blogs,
-    RegisterModal
+    RegisterModal,
+    RightHeader
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
