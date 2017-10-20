@@ -1,0 +1,97 @@
+{
+	"common":{
+		"see_more":"Xem thêm",
+		"search":"Tìm kiếm",
+		"at":"at",
+		"rates":"{rates} rates",
+		"recommended_for_you":"Recommended for you ",
+		"times":"Times",
+		"minutes":"minutes"
+	},
+	"home":{
+		"search_bar":{
+			"input_service":"Dịch vụ, Stylist, Salon ...",
+			"input_location":"Thành phố bạn ở",
+			"current_location":"Vị trí hiện tại"
+		},
+		"steps":{
+			"to_be_beautiful":"Đẹp hơn",
+			"in_4_steps":"Chỉ với 4 bước",
+			"step1":"Tìm kiếm",
+			"step1_detail":"Dễ dàng tìm kiếm dịch vụ làm đẹp theo tên spa, stylist và khu vực của bạn",
+			"step2":"Đặt lịch",
+			"step2_detail":"Chủ động đặt hẹn với spa phù hợp với lịch của bạn",
+			"step3":"Trải nghiệm",
+			"step3_detail":"Tận hưởng dịch vụ chăm sóc chuyên nghiệp cùng với những stylist hàng đầu",
+			"step4":"Đánh giá",
+			"step4_detail":"Trực tiếp phản hồi trải nghiệm của bạn đến salon và chia sẻ đến mọi người"
+		},
+		"explore":{
+			"exploring":"Khám phá",
+			"the_salon":"các salon",
+			"booked":"đã đặt {booking_times} lần",
+			"booking_to_enjoy":"Đặt lịch để tận hưởng",
+			"booking_to_enjoy_detail":"Bzone là nơi bạn có thể tìm kiếm và kết nối với các salon làm đẹp bất cứ lúc nào. Những salon và spa được yêu thích nhất và những dịch vụ tốt nhất đang chờ bạn trải nghiệm. Còn chần chừ gì mà không đăng kí cùng chúng tôi ngay bây giờ?",
+			"register_now":"Đăng ký ngay"
+		},
+		"blogs":{
+			"sceret":"Bí quyết",
+			"beauty":"làm đẹp",
+			"viewed_time":"Đã xem {view_count} lần",
+			"recommended_for_you ":"Gợi ý cho bạn"
+		},
+		"footer":{
+			"do_you_know":"Bạn biết không?",
+			"do_you_know_detail":"Thông qua việc kết nối với các salon và các chuyên gia làm đẹp trên toàn quốc, BZONE hi vọng có thể đem lại cho bạn cơ hội để thể hiện bản thân theo nhiều cách khác nhau. Không dừng lại ở đó, chúng tôi còn là một cộng đồng làm đẹp nơi bạn có thể kết nối với những tâm hồn yêu cái đẹp và có thể truyền cảm hứng cho những người xung quanh.",
+			"about_us":"Về chúng tôi",
+			"common_questions":"Câu hỏi thường gặp",
+			"bzone_for_bussiness":"Hợp tác với BZONE",
+			"contact":"Liên hệ"
+		}
+	},
+	"auth":{
+		"register":"Đăng ký",
+		"register_as_salon":"Đăng ký với tư cách chủ salon?",
+		"register_as_user":"Đăng ký với tư cách khách hàng?",
+		"easily_book":"Bạn hoàn toàn không cần đăng ký tài khoản mà vẫn có thể được lịch làm đẹp!",
+		"thank_for_salon_register":"Cảm ơn bạn đã đăng ký. Vui lòng chờ đại diện của Bzone sẽ liên hệ & giúp bạn xác nhận thông tin trong vòng 24h làm việc sắp tới.",
+		"register_salon_60s":"60 giây để đăng ký một công cụ quản lý Salon chuyên nghiệp",
+		"salon_name":"Tên salon",
+		"salon_address":"Địa chỉ",
+		"phone_number":"Số điện thoại"
+	},
+	"search":{
+		"no_more_results":"Không tìm thấy thêm kết quả",
+		"search_results":"Có {total_results} địa điểm phù hợp với từ khóa dịch vụ",
+		"salons_has_service":"{salons} có dịch vụ"
+	},
+	"salon":{
+		"no_available_time":"Không còn lịch trống.",
+		"choose_another":"Vui lòng chọn ngày khác hay stylist khác",
+		"introduce":"Giới thiệu",
+		"service":"Dịch vụ",
+		"staff":"Nhân viên",
+		"gallery":"Hình ảnh",
+		"ratting":"Đánh giá",
+		"map":"Bản đồ",
+		"chemicals":"Hóa chất",
+		"establishment":"Ngày thành lập",
+		"utilities":"Tiện ích",
+		"select_service":"Chọn dịch vụ",
+		"choose_the_time":"Chọn thời gian",
+		"salon_photos":"{photos} trải nghiệm khách hàng",
+		"promocode_exprided":"Mã giảm giá không đúng hoặc hết hạn",
+		"promo_code":"Nhập mã giảm giá",
+		"discounted":"Bạn được giảm",
+		"total":"Tổng",
+		"period_of_execution":"Thời gian thực hiện",
+		"make_an_appointment":"Đặt lịch hẹn",
+		"choose_service_time":"Bạn chưa chọn thời gian làm dịch vụ",
+		"choose_the_service":"Bạn chưa chọn dịch vụ",
+		"enter_the_phone_number":"Vui lòng nhập số điện thoại",
+		"sent_verified_code_to_phone":"Hệ thống sẽ gửi mã xác nhận tới số điện thoại này của bạn",
+		"first_time_booking":"Đặt lịch lần đầu?",
+		"need_more_information":"Hệ thống cần biết thêm thông tin của bạn để phục vụ tốt hơn",
+		"phone_number":"Số điện thoại"
+	}
+}

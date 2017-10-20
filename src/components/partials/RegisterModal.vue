@@ -7,30 +7,30 @@
     <div class="modal-body-inner">
       <div v-show="!salonRegister">
         <div class="salon">
-          <div class="des">Đăng ký với tư cách chủ salon?</div>
-          <div class="tp-btn" @click="salonRegister = true">Đăng ký chủ salon</div>
+          <div class="des">{{ $t('auth.register_as_salon') }}</div>
+          <div class="tp-btn" @click="salonRegister = true">{{ $t('auth.register') }}</div>
         </div>
         <div class="user">
-          <div class="des">Đăng ký với tư cách khách hàng?</div>
-          <p>Bạn hoàn toàn không cần đăng ký tài khoản mà vẫn có thể được lịch làm đẹp!</p>
-          <router-link class="tp-btn" :to="{ name: 'explore' }">Tìm lịch làm đẹp</router-link>
+          <div class="des">{{ $t('auth.register_as_user') }}</div>
+          <p>{{ $t('auth.easily_book') }}</p>
+          <router-link class="tp-btn" :to="{ name: 'explore' }">{{ $t('common.search') }}</router-link>
         </div>
       </div>
       <div v-show="salonRegister">
         <div v-if="success">
           <div class="tp-title-form">Thank you!</div>
-          <div class="tp-des-form">Cảm ơn bạn đã đăng ký. Vui lòng chờ đại diện của Bzone sẽ liên hệ & giúp bạn xác nhận thông tin trong vòng 24h làm việc sắp tới.</div>
+          <div class="tp-des-form">{{ $t('auth.thank_for_salon_register') }}</div>
         </div>
         <form novalidate v-else @submit.prevent="submit">
-          <div class="tp-title-form">Đăng ký chủ Salon</div>
-          <div class="tp-des-form">60 giây để đăng ký một công cụ quản lý Salon chuyên nghiệp</div>
+          <div class="tp-title-form">{{ $t('auth.register_as_salon') }}</div>
+          <div class="tp-des-form">{{ $t('auth.register_salon_60s') }}</div>
           <input class="tp-text-form form-control"
             type="text"
             name="name"
-            placeholder="Tên salon"
+            :placeholder="$t('auth.salon_name')"
             v-model="name"
             v-validate="'required'"
-            data-vv-as="Tên salon"
+            :data-vv-as="$t('auth.salon_name')"
             :class="{ 'is-invalid': errors.has('name') }" />
           <div class="text-left invalid-feedback">{{ errors.first('name') }}</div>
           <input class="tp-text-form form-control"
@@ -38,8 +38,8 @@
             name="address"
             v-validate="'required'"
             v-model="address"
-            data-vv-as="Địa chỉ salon"
-            placeholder="Địa chỉ salon"
+            :data-vv-as="$t('auth.salon_address')"
+            :placeholder="$t('auth.salon_address')"
             :class="{ 'is-invalid': errors.has('address') }" />
           <div class="text-left invalid-feedback">{{ errors.first('address') }}</div>
           <input class="tp-text-form form-control"
@@ -47,8 +47,8 @@
             name="phone"
             v-validate="'required'"
             v-model="phone"
-            data-vv-as="Số điện thoại"
-            placeholder="Số điện thoại"
+            :data-vv-as="$t('auth.phone_number')"
+            :placeholder="$t('auth.phone_number')"
             :class="{ 'is-invalid': errors.has('phone') }" />
           <div class="text-left invalid-feedback">{{ errors.first('phone') }}</div>
           <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" value="Đăng ký">

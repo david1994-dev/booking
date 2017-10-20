@@ -1,7 +1,7 @@
 <template>
 <div class="related">
   <div class="title-related">
-    <div class="title">Có thể bạn quan tâm</div>
+    <div class="title">{{ $t('common.recommended_for_you')}} </div>
     <div class="control">
       <div class="tp-control small">
         <div class="btn prev" id="prevRelate" @click="prev"></div>

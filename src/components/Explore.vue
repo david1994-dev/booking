@@ -4,7 +4,7 @@
   <div class="discovery-page">
     <div class="tp-bigcontainer">
       <div class="tp-wrap-title">
-        <h3 class="tp-title"><strong>Khám phá</strong> các salon</h3>
+        <h3 class="tp-title"><strong>{{ $t('home.explore.exploring') }}</strong> {{ $t('home.explore.the_salon') }}</h3>
       </div>
 
       <div class="content-page">
@@ -13,7 +13,7 @@
             <figure><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }"><img :src="showcase.image_url" /></router-link></figure>
             <div class="info">
               <h4><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }">{{ showcase.name }}</router-link></h4>
-              <span>{{ showcase.total_booking }} đã đặt</span>
+              <span>{{ $t('home.explore.booked', {'booking_times': showcase.total_booking}) }}</span>
             </div>
           </div>
         </div>
@@ -23,10 +23,10 @@
           spinner="waveDots"
           ref="infiniteLoading">
           <span slot="no-more">
-            Không tìm thấy thêm kết quả
+            {{ $t('search.no_more_results') }}
           </span>
           <span slot="no-results">
-            Không tìm thấy thêm kết quả
+            {{ $t('search.no_more_results') }}
           </span>
         </infinite-loading>
       </div>

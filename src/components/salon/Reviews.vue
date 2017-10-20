@@ -1,7 +1,7 @@
 <template>
 <div class="rate-d">
   <div class="title">
-    <div class="name">{{ salon.review_count }} Đánh giá</div>
+    <div class="name">{{ $t('common.rates',{'rates':salon.review_count}) }}</div>
     <div class="tp-rate">
       <stars v-if="salon.average_rating" :rating="salon.average_rating" />
     </div>

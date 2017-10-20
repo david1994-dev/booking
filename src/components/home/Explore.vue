@@ -2,36 +2,36 @@
 <div class="guide-discovery">
   <div class="guide-book tp-box">
     <div class="tp-wrap-title">
-      <h3 class="tp-title"><strong>Đẹp hơn</strong> chỉ với 4 bước</h3>
+      <h3 class="tp-title"><strong>{{ $t('home.steps.to_be_beautiful') }}</strong> {{ $t('home.steps.in_4_steps') }}</h3>
     </div>
     <div class="ofhd">
       <div class="list">
         <div class="item">
-          <div class="name">Tìm kiếm</div>
+          <div class="name">{{ $t('home.steps.step1') }}</div>
           <div class="content-item">
             <div class="number">1</div>
-            <p class="des">Dễ dàng tìm kiếm dịch vụ làm đẹp theo tên spa, stylist và khu vực của bạn</p>
+            <p class="des">{{ $t('home.steps.step1_detail') }}</p>
           </div>
         </div>
         <div class="item">
-          <div class="name">Đặt lịch</div>
+          <div class="name">{{ $t('home.steps.step2') }}</div>
           <div class="content-item">
             <div class="number">2</div>
-            <p class="des">Chủ động đặt hẹn với spa phù hợp với lịch của bạn</p>
+            <p class="des">{{ $t('home.steps.step2_detail') }}</p>
           </div>
         </div>
         <div class="item">
-          <div class="name">Trải nghiệm</div>
+          <div class="name">{{ $t('home.steps.step3') }}</div>
           <div class="content-item">
             <div class="number">3</div>
-            <p class="des">Tận hưởng dịch vụ chăm sóc chuyên nghiệp cùng với những stylist hàng đầu</p>
+            <p class="des">{{ $t('home.steps.step3_detail') }}</p>
           </div>
         </div>
         <div class="item">
-          <div class="name">Đánh giá</div>
+          <div class="name">{{ $t('home.steps.step4') }}</div>
           <div class="content-item">
             <div class="number">4</div>
-            <p class="des">Trực tiếp phản hồi trải nghiệm của bạn đến salon và chia sẻ đến mọi người</p>
+            <p class="des">{{ $t('home.steps.step4_detail') }}</p>
           </div>
         </div>
       </div>
@@ -39,8 +39,8 @@
   </div>
   <div class="discovery tp-box">
     <div class="tp-wrap-title">
-      <h3 class="tp-title"><strong>Khám phá</strong> các salon</h3>
-      <div class="tp-view-more orange"><router-link :to="{ name: 'explore' }">xem thêm</router-link></div>
+      <h3 class="tp-title"><strong>{{ $t('home.explore.exploring') }}</strong> {{ $t('home.explore.the_salon') }}</h3>
+      <div class="tp-view-more orange"><router-link :to="{ name: 'explore' }">{{ $t('common.see_more') }}</router-link></div>
     </div>
     <div class="ofhd">
       <v-loading loader="fetching showcases">
@@ -55,7 +55,7 @@
             <figure><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }"><img :src="showcase.image_url" /></router-link></figure>
             <div class="info">
               <h4><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }">{{ showcase.name }}</router-link></h4>
-              <span>{{ showcase.total_booking }} đã đặt</span>
+              <span>{{ $t('home.explore.booked', {'booking_times': showcase.total_booking}) }}</span>
             </div>
           </div>
         </div>

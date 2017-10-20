@@ -10,7 +10,7 @@
       <li class="register"><a href="">Đăng ký</a></li>
       <li class="login"><a href="">Đăng nhập</a></li>
     </ul> -->
-    <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">Đăng ký</div>
+    <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">{{ $t('auth.register') }}</div>
   </div>
   <register-modal />
 </header>

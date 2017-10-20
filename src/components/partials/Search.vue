@@ -3,7 +3,7 @@
   <div class="wrap-input key-type">
     <div class="input">
       <i class="bz-search"></i>
-      <input placeholder="Dịch vụ, Stylist, Salon..."
+      <input :placeholder="$t('home.search_bar.input_service')"
         type="search"
         @keyup.enter="submit"
         v-model="keyword"
@@ -17,7 +17,7 @@
   <div class="wrap-input location">
     <div class="input">
       <i class="bz-location" :class="{ 'bounce': $isLoading('geolocation') }"></i>
-      <input placeholder="Thành phố bạn ở"
+      <input :placeholder="$t('home.search_bar.input_location')"
         @keyup.enter="submit"
         type="search"
         v-model="location"
@@ -30,7 +30,7 @@
   </div>
   <input class="btn-search"
     type="submit"
-    value="Tìm kiếm"
+    :value="$t('common.search')"
     :class="{ disabled: !canSubmit }"
     @click="submit">
 </div>

@@ -48,7 +48,7 @@
           <stars :rating="salon.average_rating">
             <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
           </stars>
-          <div class="rate-status">{{ salon.review_count }} Đánh giá</div>
+          <div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}</div>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@
                 @click="updateCart(slot)">{{ slot.label }}</div>
             </div>
             <div class="scrollup" v-show="slots.length > 15" @click="expandTime = !expandTime"><i class="bz-down-2"></i></div>
-            <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
+            <div class="empty" v-if="!slots.length"><strong>{{ $t('salon.no_available_time') }}</strong><br />{{ $t('salon.choose_another') }}</div>
           </v-loading>
         </div>
       </calendar>

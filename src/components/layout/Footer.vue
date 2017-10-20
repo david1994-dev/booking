@@ -2,8 +2,8 @@
 <footer class="footer">
   <div class="tp-container">
     <div class="savetime-footer">
-      <h3>Bạn biết không?</h3>
-      <p>Thông qua việc kết nối với các salon và các chuyên gia làm đẹp trên toàn quốc, BZONE hi vọng có thể đem lại cho bạn cơ hội để thể hiện bản thân theo nhiều cách khác nhau. Không dừng lại ở đó, chúng tôi còn là một cộng đồng làm đẹp nơi bạn có thể kết nối với những tâm hồn yêu cái đẹp và có thể truyền cảm hứng cho những người xung quanh.</p>
+      <h3>{{ $t('home.footer.do_you_know') }}</h3>
+      <p>{{ $t('home.footer.do_you_know_detail') }}</p>
       <div class="full"></div>
       <div class="copyright">
         &copy;BZONE 2017
@@ -22,16 +22,16 @@
       </div>
       <ul class="list-link">
         <li>
-          <router-link :to="{ name: 'about' }">Về chúng tôi</router-link>
+          <router-link :to="{ name: 'about' }">{{ $t('home.footer.about_us') }}</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'faq' }">Câu hỏi thường gặp</router-link>
+          <router-link :to="{ name: 'faq' }">{{ $t('home.footer.common_questions') }}</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'partner' }">Hợp tác với BZONE</router-link>
+          <router-link :to="{ name: 'partner' }">{{ $t('home.footer.bzone_for_bussiness') }}</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'contact' }">Liên hệ</router-link>
+          <router-link :to="{ name: 'contact' }">{{ $t('home.footer.contact') }}</router-link>
         </li>
       </ul>
       <div class="full"></div>

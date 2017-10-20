@@ -17,10 +17,10 @@
           spinner="waveDots"
           ref="infiniteLoading">
           <span slot="no-more">
-            Không tìm thấy thêm kết quả
+            {{ $t('search.no_more_results') }}
           </span>
           <span slot="no-results">
-            Không tìm thấy thêm kết quả
+            {{ $t('search.no_more_results') }}
           </span>
         </infinite-loading>
       </div>

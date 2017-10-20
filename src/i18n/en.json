@@ -1,0 +1,97 @@
+{
+	"common":{
+		"see_more":"See more",
+		"search":"Searching",
+		"at":"at",
+		"rates":"{rates} rates",
+		"recommended_for_you":"Recommended for you ",
+		"times":"Times",
+		"minutes":"minutes"
+	},
+	"home":{
+		"search_bar":{
+			"input_service":"Service, Stylist, Salon ...",
+			"input_location":"City, District",
+			"current_location":"Current location"
+		},
+		"steps":{
+			"to_be_beautiful":"More beautiful",
+			"in_4_steps":"in 4 steps",
+			"step1":"Searching",
+			"step1_detail":"Easy to search for beauty services by name and areas",
+			"step2":"Booking",
+			"step2_detail":"Actively making an appointment with spa",
+			"step3":"Experiences",
+			"step3_detail":"Enjoy professional services with the master stylists",
+			"step4":"Rating",
+			"step4_detail":"Send feedbacks  to salons & share to everyone"
+		},
+		"explore":{
+			"exploring":"Exploring",
+			"the_salon":"the salon",
+			"booked":"Booked {booking_times} times",
+			"booking_to_enjoy":"Booking to enjoy it",
+			"booking_to_enjoy_detail":"Bzone is a beauty zone, where you'll find and connect with beauty salons anytime you want. Top lists of salons, spas and services are waiting for you. So why are you hesitating for? Let's join now.",
+			"register_now":"Register now"
+		},
+		"blogs":{
+			"sceret":"Sceret",
+			"beauty":"of beauty",
+			"viewed_time":"Viewed {view_count} times",
+			"recommended_for_you ":"Recommended for you "
+		},
+		"footer":{
+			"do_you_know":"Do you know?",
+			"do_you_know_detail":"By connecting with beauty salons and professional stylists in Vietnam, Bzone hope to bring you an opportunity to express your personality in different ways. Furthermore, Bzone plays a part as a beauty community where you can connect souls to beauty and inspire everyone.",
+			"about_us":"About us",
+			"common_questions":"Common questions",
+			"bzone_for_bussiness":"Bzone for bussiness",
+			"contact":"Contact"
+		}
+	},
+	"auth":{
+		"register":"Register",
+		"register_as_salon":"Register as a Salon manager?",
+		"register_as_user":"Register as an User?",
+		"easily_book":"You don’t really need to have account but you can easily book an appointment!",
+		"thank_for_salon_register":"We have received your registation and would like to thank you a lot. Please wait our representation will contact you within 24 working hours",
+		"register_salon_60s":"Just 60 seconds to have a professional manage tool ",
+		"salon_name":"Salon name",
+		"salon_address":"Salon address",
+		"phone_number":"Phone number"
+	},
+	"search":{
+		"no_more_results":"There is no more results",
+		"search_results":"There are {total_results} consistent results with the key word",
+		"salons_has_service":"{salons} salons are serving"
+	},
+	"salon":{
+		"no_available_time":"There is no available time.",
+		"choose_another":"Please choose another day or another stylist",
+		"introduce":"Introduce",
+		"service":"Service",
+		"staff":"Staff",
+		"gallery":"Gallery",
+		"ratting":"Ratting",
+		"map":"Map",
+		"chemicals":"Chemicals & cosmetics",
+		"establishment":"Establishment",
+		"utilities":"Utilities ",
+		"select_service":"Select service",
+		"choose_the_time":"Choose the time",
+		"salon_photos":"{photos} customer experiences",
+		"promocode_exprided":"The promocode is incorrect or exprided",
+		"promo_code":"Promo code",
+		"discounted":"You have been discounted",
+		"total":"Total",
+		"period_of_execution":"Period of execution",
+		"make_an_appointment":"Make an appointment",
+		"choose_service_time":"Please choose the service time",
+		"choose_the_service":"Please choose the service",
+		"enter_the_phone_number":"Please enter the phone number",
+		"sent_verified_code_to_phone":"We have sent a verified code to your phone number",
+		"first_time_booking":"First time booking?",
+		"need_more_information":"We need more your information to take care of you better",
+		"phone_number":"Phone number"
+	}
+}

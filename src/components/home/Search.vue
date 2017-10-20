@@ -3,7 +3,7 @@
   <div class="wrap-input key-type">
     <div class="input">
       <i class="bz-search"></i>
-      <input placeholder="Dịch vụ, Stylist, Salon..."
+      <input placeholder="{{ $t('home.search_bar.input_service') }}..."
         type="search"
         @keyup.enter="submit"
         v-model.lazy="search">
@@ -24,7 +24,7 @@
       <location-results />
     </div>
   </div>
-  <input class="btn-search" type="submit" value="Tìm kiếm" @click="submit">
+  <input class="btn-search" type="submit" value="{{ $t('common.search') }}" @click="submit">
 </div>
 </template>
 

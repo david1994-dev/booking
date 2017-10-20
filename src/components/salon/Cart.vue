@@ -3,14 +3,14 @@
   <div class="cart">
     <div class="inner-cart">
       <div class="service-c" v-show="cartServices.length">
-        <div class="title-service">Dịch vụ</div>
+        <div class="title-service">{{ $t('salon.service') }}</div>
         <div class="list">
           <div class="tp-choice-service" v-for="service in cartServices" :key="service.id">
             <div class="bullet"></div>
             <div class="info">
               <div class="name"><span class="delete" @click="removeServiceFromCart(service)"></span>{{ service.category.name }}</div>
               <div class="time-price">
-                <div class="time">{{ service.duration }} phút</div>
+                <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
                 <div class="price">{{ service.formatted_price }}</div>
               </div>
             </div>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="stylist-c" v-show="cartStylist.id">
-        <div class="title-stylist">Nhân viên</div>
+        <div class="title-stylist">{{ $t('salon.staff')}}</div>
         <div class="wrap">
           <figure><span class="deletez"></span><img :src="cartStylist.avatar_url"></figure>
           <div class="info">
@@ -30,15 +30,15 @@
       </div>
 
       <div class="time-c" v-show="bookingDate">
-        <strong>Thời gian</strong>
+        <strong>{{ $t('common.times') }}</strong>
         <span>{{ bookingDate | dateFormat('H:mm D/MM/YYYY') }}</span>
       </div>
 
       <div class="discount-code" v-show="cartServices.length">
         <div class="tp-discount-code">
-          <input type="search" v-model.lazy="code" placeholder="Nhập mã giảm giá" />
-          <p v-show="promoCodeStatus == 'error'" class="error">Mã giảm giá không đúng hoặc hết hạn</p>
-          <p v-show="promoCodeStatus == 'success'" class="success">Bạn được giảm {{ discount | numberFormat('0,0') }} VNĐ</p>
+          <input type="search" v-model.lazy="code" :placeholder="$t('salon.promo_code')" />
+          <p v-show="promoCodeStatus == 'error'" class="error">{{ $t('salon.promocode_exprided') }}</p>
+          <p v-show="promoCodeStatus == 'success'" class="success">{{ $t('salon.discounted') }} {{ discount | numberFormat('0,0') }} VNĐ</p>
         </div>
       </div>
 
@@ -46,35 +46,35 @@
         <div class="price-c">
           <div class="tp-price-total">
             <div class="price">
-              <span>Cộng</span>
+              <span>{{ $t('salon.total') }}</span>
               <span>{{ total | numberFormat('0,0') }} VND</span>
             </div>
             <div class="time">
-              <span>Thời gian thực hiện</span>
-              <span>{{ duration }} phút</span>
+              <span>{{ $t('salon.period_of_execution') }}</span>
+              <span>{{ duration }} {{ $t('common.minutes') }}</span>
             </div>
           </div>
         </div>
-        <div class="tp-btn-book btn-book" @click="checkout"><i class="bz-book"></i>Đặt lịch hẹn</div>
-        <div class="not-time" v-show="!bookingDate">Bạn chưa chọn thời gian làm dịch vụ!</div>
+        <div class="tp-btn-book btn-book" @click="checkout"><i class="bz-book"></i>{{ $t('salon.make_an_appointment') }}</div>
+        <div class="not-time" v-show="!bookingDate">{{ $t('salon.choose_service_time') }}</div>
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
-        <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">Chọn dịch vụ</a>
-        <p>Bạn chưa chọn dịch vụ</p>
+        <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
+        <p>{{ $t('salon.choose_the_service') }}</p>
       </div>
     </div>
   </div>
 
   <div class="cart-mobile" :class="{ active: mobileCart }">
     <div class="no-choice-service" v-show="!cartServices.length">
-      <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">Chọn dịch vụ</a>
-      <p>Bạn chưa chọn dịch vụ</p>
+      <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
+      <p>{{ $t('salon.choose_the_service') }}</p>
     </div>
 
     <div class="wrap-book" v-show="cartServices.length">
       <div class="title-book">
-        <span>Đặt lịch</span>
+        <span>{{ $t('salon.make_an_appointment') }}</span>
         <i @click="mobileCart = false" class="bz-close close"></i>
       </div>
 
@@ -94,7 +94,7 @@
             </div>
           </div>
           <div class="list-stylist">
-            <div class="name-box">Nhân viên</div>
+            <div class="name-box">{{ $t('salon.staff') }}</div>
             <v-loading loader="fetching stylists">
               <template slot="spinner">
                 <div class="text-center">
@@ -119,34 +119,34 @@
               <div class="name">Thời gian</div>
               <div class="chose" v-show="bookingDate">{{ bookingDate | dateFormat('H:mm D/MM/YYYY') }}</div>
             </div>
-            <div class="btn-time" :class="{ active: bookingDate }" @click="$bus.$emit('displayDateTimePopup', true)">Chọn thời gian</div>
+            <div class="btn-time" :class="{ active: bookingDate }" @click="$bus.$emit('displayDateTimePopup', true)">{{ $t('salon.choose_the_time') }}</div>
           </div>
           <div class="discount-code">
             <div class="tp-discount-code">
-              <input type="search" v-model.lazy="code" placeholder="Nhập mã giảm giá" />
-              <p v-show="promoCodeStatus == 'error'" class="error">Mã giảm giá không đúng hoặc hết hạn</p>
-              <p v-show="promoCodeStatus == 'success'" class="success">Bạn được giảm {{ discount | numberFormat('0,0') }} VNĐ</p>
+              <input type="search" v-model.lazy="code" :placeholder="$t('salon.promo_code')" />
+              <p v-show="promoCodeStatus == 'error'" class="error">{{ $t('salon.promocode_exprided') }}</p>
+              <p v-show="promoCodeStatus == 'success'" class="success">{{ $t('salon.discounted') }} {{ discount | numberFormat('0,0') }} VNĐ</p>
             </div>
           </div>
         </div>
 
         <div class="btn-book">
           <div class="tp-btn-book" @click="mobileCheckout">
-            <i class="bz-book"></i>Đặt lịch hẹn
+            <i class="bz-book"></i>{{ $t('salon.make_an_appointment') }}
           </div>
         </div>
 
-        <div class="des-nochoice" v-show="!bookingDate">Bạn chưa chọn thời gian làm dịch vụ!</div>
+        <div class="des-nochoice" v-show="!bookingDate">{{ $t('salon.choose_service_time') }}</div>
 
         <div class="price-time">
           <div class="tp-price-total">
             <div class="price">
-              <span>Cộng</span>
+              <span>{{ $t('salon.total') }}</span>
               <span>{{ total | numberFormat('0,0') }} VND</span>
             </div>
             <div class="time">
-              <span>Thời gian thực hiện</span>
-              <span>{{ duration }} phút</span>
+              <span>{{ $t('salon.period_of_execution') }}</span>
+              <span>{{ duration }} {{ $t('common.minutes') }}</span>
             </div>
           </div>
         </div>

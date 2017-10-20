@@ -10,7 +10,7 @@
     <div class="list">
       <div class="item" v-for="service in services" :key="service.id">
         <h3><router-link :to="{ name: 'search', query: { category_id: service.id } }">{{ service.name }}</router-link></h3>
-        <span>{{ service.salons.length }} Salon có dịch vụ</span>
+        <span>{{ $t('search.salons_has_service',{'salons': service.salons.length}) }}</span>
       </div>
     </div>
     <div class="tp-view-all" v-if="hasMore">

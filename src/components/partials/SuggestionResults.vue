@@ -3,7 +3,7 @@
   <ul ref="suggestionResults">
     <li v-show="!services.length && !keyword">
       <!-- <router-link :to="{ name: 'services' }">Dịch vụ</router-link> -->
-      <a href="#">Dịch vụ</a>
+      <a href="#">{{ $t('salon.service') }}</a>
       <ul>
         <li v-for="category in categories">
           <a class="pointer">{{ category.name }}</a>
@@ -18,7 +18,7 @@
       </ul>
     </li>
     <li v-show="services.length">
-      <a href="#">Dịch vụ</a>
+      <a href="#">{{ $t('salon.service') }}</a>
       <ul>
         <li v-for="service in services">
           <a class="pointer" @click="setSelectedService(service)">{{ service.name }}</a>

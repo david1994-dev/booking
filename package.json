@@ -17,6 +17,7 @@
     "axios": "^0.16.2",
     "bootstrap-vue": "^1.0.0-beta.5",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "mixpanel-browser": "^2.13.0",
     "moment": "^2.18.1",
@@ -38,6 +39,7 @@
     "vue2-google-maps": "^0.8.0",
     "vuejs-paginate": "^1.2.0",
     "vuex": "^2.3.1",
+    "vuex-i18n": "^1.7.0",
     "vuex-loading": "^0.1.12",
     "vuex-router-sync": "^4.2.0"
   },

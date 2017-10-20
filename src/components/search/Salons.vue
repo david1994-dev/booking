@@ -6,7 +6,7 @@
   <div class="searchsalon-page">
     <div class="box-salons">
       <div class="salons-result" v-show="!$isLoading('fetching salons')">
-        Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa dịch vụ <strong>{{ getSearchQuery('keyword') }}</strong><span v-if="getSearchQuery('location')"> tại <strong>{{ getSearchQuery('location') }}</strong></span>.
+        {{ $t('search.search_results',{'total_results': meta.pagination.total}) }} <strong>{{ getSearchQuery('keyword') }}</strong><span v-if="getSearchQuery('location')"> {{ $t('common.at') }} <strong>{{ getSearchQuery('location') }}</strong></span>.
       </div>
 
       <div v-if="salons.length">
@@ -22,10 +22,10 @@
         spinner="waveDots"
         ref="infiniteLoading">
         <span slot="no-more">
-          Không tìm thấy thêm kết quả
+          {{ $t('search.no_more_results') }}
         </span>
         <span slot="no-results">
-          Không tìm thấy thêm kết quả
+          {{ $t('search.no_more_results') }}
         </span>
       </infinite-loading>
     </div>

@@ -2,7 +2,7 @@
 <div class="tp-search-result-2">
   <ul>
     <li>
-      <a class="pointer" @click="getCurrentPosition">Vị trí hiện tại</a>
+      <a class="pointer" @click="getCurrentPosition">{{ $t('home.search_bar.current_location') }}</a>
     </li>
     <li v-for="city in locations">
       <a class="pointer" @click="setSelectedCity(city)">{{ city.name }}</a>

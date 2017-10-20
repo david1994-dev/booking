@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="stylist-d" v-if="stylists.length">
-    <div class="title">Nhân viên</div>
+    <div class="title">{{ $t('salon.staff') }}</div>
     <v-loading class="wrap-list" loader="fetching stylists">
       <template slot="spinner">
         <div class="text-center">
@@ -21,7 +21,7 @@
     </v-loading>
   </div>
   <div class="times-d" v-if="stylists.length">
-    <div class="title">Chọn thời gian</div>
+    <div class="title">{{ $t('salon.choose_the_time') }}</div>
     <div class="dates-times" v-show="cartStylist.id">
       <calendar v-model="selectedDate" wrapperClass="tp-datetime">
         <v-loading loader="fetching slots">
@@ -37,7 +37,7 @@
               :class="{ active: selectedSlot.label == slot.label }"
               @click="selectedSlot = slot">{{ slot.label }}</div>
           </div>
-          <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
+          <div class="empty" v-if="!slots.length"><strong>{{ $t('salon.no_available_time') }}</strong><br />{{ $t('salon.choose_another') }}</div>
         </v-loading>
       </calendar>
     </div>

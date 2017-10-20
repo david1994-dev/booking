@@ -14,11 +14,44 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VuePhotoSwipe from './utils/photoswipe'
 import { VueMasonryPlugin } from 'vue-masonry'
 import VeeValidate, { Validator } from 'vee-validate'
-import vi from 'vee-validate/dist/locale/vi'
 import moment from 'moment-timezone'
 import { googleMapKey } from './config'
-Validator.addLocale(vi)
+import vuexI18n from 'vuex-i18n'
+
+import en from 'vee-validate/dist/locale/en'  // eslint-disable-line
+import vi from 'vee-validate/dist/locale/vi'  // eslint-disable-line
+
+const availableLanguages = ['en', 'vi']
 moment.tz.setDefault('Asia/Ho_Chi_Minh')
+
+var lang = 'vi' // eslint-disable-line
+
+if (localStorage.getItem('lang')) {
+  var localLang = localStorage.getItem('lang')
+  if (availableLanguages.indexOf(localLang) > -1) {
+    lang = localLang
+  }
+}
+const translationsEn = require(/* webpackChunkName: "lang-bundle" */ './i18n/en.json')
+const translationsVi = require(/* webpackChunkName: "lang-bundle" */ './i18n/vi.json')
+if (lang === 'vi') {
+  Validator.addLocale(vi)
+  Vue.use(VeeValidate, {
+    locale: 'vi'
+  })
+  moment.locale('vi')
+} else {
+  Validator.addLocale(en)
+  Vue.use(VeeValidate, {
+    locale: 'en'
+  })
+  moment.locale('en')
+}
+
+Vue.use(vuexI18n.plugin, store)
+Vue.i18n.add('en', translationsEn)
+Vue.i18n.add('vi', translationsVi)
+Vue.i18n.set(lang)
 
 Vue.config.productionTip = false
 
@@ -29,9 +62,7 @@ Vue.use(Scrollactive)
 Vue.use(http, { store, router })
 Vue.use(eventbus)
 Vue.use(VuePhotoSwipe)
-Vue.use(VeeValidate, {
-  locale: 'vi'
-})
+
 Vue.use(VueMasonryPlugin)
 Vue.use(VueGoogleMaps, {
   load: {

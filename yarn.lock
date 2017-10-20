@@ -3571,7 +3571,7 @@ istanbul@^0.4.0:
     which "^1.1.1"
     wordwrap "^1.0.0"
 
-jquery@>=1.7.2:
+jquery@>=1.7.2, jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -6663,6 +6663,10 @@ vue@^2.0.0, vue@^2.3.3:
 vuejs-paginate@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/vuejs-paginate/-/vuejs-paginate-1.2.0.tgz#4d6b6fc5a02a611fa357a2fd2f055ed670c82a66"
+
+vuex-i18n@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/vuex-i18n/-/vuex-i18n-1.7.0.tgz#14dd805addc9be9caca4af4e900bef4c60fcbbd3"
 
 vuex-loading@^0.1.12:
   version "0.1.14"

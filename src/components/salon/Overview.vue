@@ -17,7 +17,7 @@
       <stars :rating="salon.average_rating">
         <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
       </stars>
-      <div class="rate-status">{{ salon.review_count }} Đánh giá</div>
+      <div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}</div>
     </div>
   </div>
 
@@ -39,9 +39,9 @@
         <li v-if="salon.opening_hours['saturday']['open'] ">{{ salon.opening_hours['saturday']['open'] }} - {{ salon.opening_hours['saturday']['close'] }} <span class="main-color">-</span> {{ weekendAvaiable }}</li> -->
       </ul>
     </div>
-    <div class="item" v-if="salon.established"><i class="bz-calendar"></i> Thành lập ngày {{ salon.established | dateFormat('D-M-YYYY') }}</div>
+    <div class="item" v-if="salon.established"><i class="bz-calendar"></i> {{ $t('salon.establishment') }} {{ salon.established | dateFormat('D-M-YYYY') }}</div>
     <div class="item chemical" v-if="salon.chemicals.length">
-      <i class="bz-hair-spray"></i> Hoá chất sử dụng:
+      <i class="bz-hair-spray"></i> {{ $t('salon.chemicals') }}:
       <ul>
         <li v-for="chemical in salon.chemicals" :key="chemical.id">
           <img :src="chemical.image_url" />
@@ -52,7 +52,7 @@
   </div>
 
   <div class="utilities" v-if="salon.amenities">
-    <div class="title">Tiện ích</div>
+    <div class="title">{{ $t('salon.utilities') }}</div>
     <ul :class="{ active: expand }">
       <li v-for="amenity in salon.amenities" :key="amenity.id">
         <i :class="amenity.icon" v-b-tooltip.hover.top :title="amenity.name"></i>

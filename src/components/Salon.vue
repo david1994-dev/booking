@@ -13,11 +13,11 @@
       <div class="main-content">
         <div class="wrap-menu">
           <ul class="menu">
-            <li><a href="#about" class="scrollactive-item">Giới thiệu</a></li>
-            <li><a href="#services" class="scrollactive-item" id="mennu-services" >Dịch vụ</a></li>
-            <li><a href="#stylists" class="scrollactive-item" id="mennu-stylists" >Nhân viên</a></li>
-            <li><a href="#images" class="scrollactive-item">Hình ảnh</a></li>
-            <li><a href="#reviews" class="scrollactive-item" id="mennu-reviews">Đánh giá</a></li>
+            <li><a href="#about" class="scrollactive-item">{{ $t('salon.introduce') }}</a></li>
+            <li><a href="#services" class="scrollactive-item" id="mennu-services" >{{ $t('salon.service') }}</a></li>
+            <li><a href="#stylists" class="scrollactive-item" id="mennu-stylists" >{{ $t('salon.staff') }}</a></li>
+            <li><a href="#images" class="scrollactive-item">{{ $t('salon.gallery') }}</a></li>
+            <li><a href="#reviews" class="scrollactive-item" id="mennu-reviews">{{ $t('salon.ratting') }}</a></li>
           </ul>
         </div>
 
@@ -42,7 +42,7 @@
         </div>
 
         <div class="map-d" v-if="salon.latitude && salon.longitude">
-          <div class="title">Bản đồ</div>
+          <div class="title">{{ $t('salon.map') }}</div>
           <div class="content-map">
             <gmap-map ref="map"
               :center="{ lat: salon.latitude, lng: salon.longitude }"

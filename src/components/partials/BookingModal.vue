@@ -4,31 +4,31 @@
     autocomplete="off"
     v-if="step == 'init'"
     @submit.prevent="createBooking">
-    <div class="tp-title-form">Vui lòng nhập số điện thoại</div>
-    <div class="tp-des-form">Hệ thống sẽ gửi mã xác nhận tới số điện thoại này của bạn</div>
+    <div class="tp-title-form">{{ $t('salon.enter_the_phone_number') }}</div>
+    <div class="tp-des-form">{{ $t('salon.sent_verified_code_to_phone') }}</div>
     <input class="tp-text-form form-control" type="text"
       v-model="phone"
       name="phone"
       v-validate="'required'"
-      data-vv-as="Số điện thoại"
-      placeholder="Số điện thoại"
+      :data-vv-as="$t('salon.phone_number')"
+      :placeholder="$t('salon.phone_number')"
       :class="{ 'is-invalid': errors.has('phone') }" />
     <div class="invalid-feedback">{{ errors.first('phone') }}</div>
-    <input class="tp-btn" type="submit" value="Xác nhận đặt lịch">
+    <input class="tp-btn" type="submit" :value="$t('salon.make_an_appointment')">
   </form>
 
   <form novalidate
     autocomplete="off"
     @submit.prevent="createOrUpdateAccount"
     v-if="step == 'registration'">
-    <div class="tp-title-form">Đặt lịch lần đầu?</div>
-    <div class="tp-des-form">Hệ thống cần biết thêm thông tin của bạn để phục vụ tốt hơn</div>
+    <div class="tp-title-form">{{ $t('salon.first_time_booking') }}</div>
+    <div class="tp-des-form">{{ $t('salon.need_more_information') }}</div>
     <input class="tp-text-form form-control" type="text"
       v-model="phone"
       name="phone"
       v-validate="'required'"
-      data-vv-as="Số điện thoại"
-      placeholder="Số điện thoại"
+      :data-vv-as="$t('salon.phone_number')"
+      :placeholder="$t('salon.phone_number')"
       :readonly="user"
       :class="{ 'is-invalid': errors.has('phone') }" />
     <div class="invalid-feedback">{{ errors.first('phone') }}</div>
