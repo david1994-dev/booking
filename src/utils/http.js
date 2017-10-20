@@ -10,6 +10,10 @@ export function setToken (token) {
   http.defaults.headers.common.Authorization = `Bearer ${token}`
 }
 
+export function setLocaleLang (locale) {
+  http.defaults.headers.common['Content-Language'] = locale
+}
+
 export default function install (Vue, { store, router }) {
   interceptors(http, store, router)
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty

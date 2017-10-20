@@ -6,13 +6,16 @@
 		"rates":"{rates} rates",
 		"recommended_for_you":"Recommended for you ",
 		"times":"Times",
-		"minutes":"minutes"
+		"minutes":"minutes",
+		"in":"in",
+		"just":"Just"
 	},
 	"home":{
 		"search_bar":{
 			"input_service":"Service, Stylist, Salon ...",
 			"input_location":"City, District",
-			"current_location":"Current location"
+			"current_location":"Current location",
+			"exploring_and_booking":"Exploring and Booking online 24/7"
 		},
 		"steps":{
 			"to_be_beautiful":"More beautiful",
@@ -58,7 +61,16 @@
 		"register_salon_60s":"Just 60 seconds to have a professional manage tool ",
 		"salon_name":"Salon name",
 		"salon_address":"Salon address",
-		"phone_number":"Phone number"
+		"phone_number":"Phone number",
+		"enter_verified_code":"Enter verified code to confirm",
+		"we_sent_verified":"We have sent a verified code to ",
+		"enter_the_verified_code":"Please enter the verified code in the box below",
+		"resend":"Resend",
+		"back":"Back",
+		"success":"Success",
+		"thank_and_wait":"Thank for using Bzone's service.Please arrive 5 minutes early and check your email, SMS before you go",
+		"easily_manageable_on_app":"Easily manageable on mobile app",
+		"app_comming_soon":"New app comming soon: October 2017"
 	},
 	"search":{
 		"no_more_results":"There is no more results",

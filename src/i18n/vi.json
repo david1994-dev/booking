@@ -6,13 +6,16 @@
 		"rates":"{rates} rates",
 		"recommended_for_you":"Recommended for you ",
 		"times":"Times",
-		"minutes":"minutes"
+		"minutes":"minutes",
+		"in":"trong",
+		"just":"Chỉ còn"
 	},
 	"home":{
 		"search_bar":{
 			"input_service":"Dịch vụ, Stylist, Salon ...",
 			"input_location":"Thành phố bạn ở",
-			"current_location":"Vị trí hiện tại"
+			"current_location":"Vị trí hiện tại",
+			"exploring_and_booking":"Khám phá và đặt lịch làm đẹp 24/7"
 		},
 		"steps":{
 			"to_be_beautiful":"Đẹp hơn",
@@ -58,7 +61,16 @@
 		"register_salon_60s":"60 giây để đăng ký một công cụ quản lý Salon chuyên nghiệp",
 		"salon_name":"Tên salon",
 		"salon_address":"Địa chỉ",
-		"phone_number":"Số điện thoại"
+		"phone_number":"Số điện thoại",
+		"enter_verified_code":"Nhập Code để xác nhận SĐT",
+		"we_sent_verified":"Hệ thống vừa gửi một mã xác nhận tới",
+		"enter_the_verified_code":"vui lòng xác nhận vào ô bên dưới",
+		"resend":"Gửi lại mã xác nhận",
+		"back":"Quay lại",
+		"success":"Đăng ký thành công!",
+		"thank_and_wait":"Cảm ơn bạn đã sử dụng dịch vụ của Bzone. Vui lòng kiểm tra email & SMS và tới trước lịch hẹn 5 phút",
+		"easily_manageable_on_app":"Quản lý dễ hơn với ứng dụng mobile",
+		"app_comming_soon":"Dự kiến ra mắt tháng 10.2017"
 	},
 	"search":{
 		"no_more_results":"Không tìm thấy thêm kết quả",

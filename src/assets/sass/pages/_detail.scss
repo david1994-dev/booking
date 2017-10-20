@@ -314,11 +314,23 @@
                     @include flex-direction(column-reverse);
                     .price {
                         @include flex();
+                        @include flex-wrap(wrap);
+                        font-size: 14px;
+                        line-height: 1.2;
+                        font-weight: 400;
+                        strong {
+                            margin: 0 4px;
+                            font-weight: 300;
+                        }
+                        .note {
+                            margin-left: 10px;
+                        }
                     }
                     .sale-off {
                         font-size: 12px;
                         margin-top: 5px;
                         color: $primary-color;
+                        line-height: 1.2;
                         + .price .number {
                             text-decoration: line-through;
                         }
@@ -562,9 +574,13 @@
                     @include transition();
                 }
             }
-            .service-stylist {
-                max-height: calc(100vh - 170px);
+
+            .content-book {
+                max-height: calc(100vh - 45px);
                 overflow-y: auto;
+            }
+
+            .service-stylist {
                 display: none;
             }
             .list-service {

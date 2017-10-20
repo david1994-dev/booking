@@ -55,8 +55,8 @@
     autocomplete="off"
     v-if="step == 'verification' && phone"
     @submit.prevent="verifyThenCreateBooking">
-    <div class="tp-title-form">Nhập Code để xác nhận SĐT</div>
-    <div class="tp-des-form">Hệ thống vừa gửi một mã xác nhận tới <span class="phone-number">{{ phone }}</span> vui lòng xác nhận vào ô bên dưới</div>
+    <div class="tp-title-form">{{ $t('salon.enter_verified_code') }}</div>
+    <div class="tp-des-form">{{ $t('salon.we_sent_verified') }} <span class="phone-number">{{ phone }}</span> {{ $t('salon.enter_the_verified_code') }}</div>
     <input class="tp-text-form form-control" type="text"
       v-model="code"
       v-validate="'required'"
@@ -67,16 +67,16 @@
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
     <input class="tp-btn" type="submit" value="Xác nhận">
     <div class="tp-send-form">
-      <div><a href="#" @click.prevent="resendVerificationCode">Gửi lại mã xác nhận</a></div>
-      <div><a @click.prevent="step = 'init'" class="pointer">Quay lại</a></div>
+      <div><a href="#" @click.prevent="resendVerificationCode">{{ $t('salon.resend') }}</a></div>
+      <div><a @click.prevent="step = 'init'" class="pointer">{{ $t('salon.back') }}</a></div>
     </div>
   </form>
 
   <div v-if="step == 'success'" class="tp-modal-success">
-    <div class="name-success">Đăng ký thành công!</div>
-    <div class="des-success">Cảm ơn bạn đã sử dụng dịch vụ của Bzone. Vui lòng kiểm tra email & SMS và tới trước lịch hẹn 5 phút</div>
-    <div class="name-mobile">Quản lý dễ hơn với ứng dụng mobile</div>
-    <div class="des-mobile">(Dự kiến ra mắt tháng 10.2017)</div>
+    <div class="name-success">{{ $t('salon.success') }}</div>
+    <div class="des-success">{{ $t('salon.thank_and_wait') }}</div>
+    <div class="name-mobile">{{ $t('salon.easily_manageable_on_app') }}</div>
+    <div class="des-mobile">({{ $t('salon.app_comming_soon') }})</div>
     <div class="img-mobile"><a style="pointer-events: none;" href="#"><img width="150" src="../../assets/images/app-store.png" /></a></div>
   </div>
 </div>

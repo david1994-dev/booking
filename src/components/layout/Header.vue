@@ -10,7 +10,7 @@
       <li class="register"><a href="">Đăng ký</a></li>
       <li class="login"><a href="">Đăng nhập</a></li>
     </ul> -->
-    <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">{{ $t('auth.register') }}</div>
+    <right-header />
   </div>
   <register-modal />
 </header>
@@ -19,13 +19,15 @@
 <script>
 import { mapGetters } from 'vuex'
 const Search = () => import(/* webpackChunkName: "search-bundle" */ '../partials/Search')
+import RightHeader from '../partials/RightHeader'
 import RegisterModal from '../partials/RegisterModal'
 
 export default {
   name: 'Header',
   components: {
     Search,
-    RegisterModal
+    RegisterModal,
+    RightHeader
   },
   computed: mapGetters(['keyword']),
   mounted () {

@@ -21,7 +21,10 @@
         <div class="price-wrap">
           <div class="sale-off" v-if="service.has_discount">{{ offerDetail(service) }}</div>
           <div class="price">
-            <div class="number">{{ service.formatted_price }}</div>&nbsp;-&nbsp;<div class="time">{{ service.duration }} phút</div>
+            <div class="number" v-if="service.up_to_price">{{ service.formatted_price }}&nbsp;-&nbsp;{{ service.up_to_price | numberFormat('0,0') }} {{ service.currency }}</div>
+            <div class="number" v-else>{{ service.formatted_price }}</div>
+            <strong>{{ $t('common.in') }}</strong>
+            <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
           </div>
         </div>
       </div>
