@@ -1,6 +1,5 @@
 <template>
 <div class="tp-account-lang">
-  <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">{{ $t('auth.register') }}</div>
   <div class="lang" :class="{ active: active }" @click="active = !active">
     <div class="selected">{{ selectedLanguage }}</div>
     <ul>
@@ -9,7 +8,11 @@
         <a @click="setLocale(locale)" class="pointer">{{ language }}</a>
       </li>
     </ul>
-   </div>
+  </div>
+  <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">
+    <span>{{ $t('auth.register') }}</span>
+    <i class="bz-profile-user"></i>
+  </div>
 </div>
 </template>
 

@@ -14,13 +14,17 @@
 		width: 80px;
 	}
 	.search-icon {
-	    color: $main-color;
+	    color: #fff;
 	    cursor: pointer;
 	    font-size: 18px;
 	    display: block;
+	    margin-right: 15px;
 	}
 	.search .result {
 		display: none;
+	}
+	.fx-full {
+		@include flex-grow("1 0");
 	}
 }
 

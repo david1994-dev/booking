@@ -54,39 +54,51 @@ button.fancybox-arrow {
 		font-size: 14px;
 		@include transition();
 		cursor: pointer;
-	}
-	.account:hover {
-		color: $main-color;
+		margin-left: 15px;
+		&:hover {
+			color: $main-color;
+		}
+		span {
+			display: none;
+		}
+		i {
+			font-size: 23px;
+			display: block;
+		}
 	}
 
 	.lang {
 	    position: relative;
 	    font-size: 14px;
-	    margin-left: 10px;
 		.selected {
-			color: #fff;
+		    color: #fff;
 		    border: 1px solid #fff;
-		    padding: 3px 10px 2px;
-		    line-height: 1;
 		    @include transition();
 		    cursor: pointer;
+		    border-radius: 50%;
+			width: 23px;
+			padding: 3px 0 3px;
+			text-align: center;
+			font-size: 10px;
 		    &:hover {
 		    	color: $main-color;
 		    	border-color: $main-color; 
 		    }
 		}
-
 		ul {
 			padding: 0;
+			margin: 0;
 			list-style: none;
 			position: absolute;
 			background: #fff;
-			top: 100%;
-			right: 0;
-			width: 100%;
+			top: calc(100% + 5px);
+		    width: 40px;
 			text-align: center;
 			display: none;
+			border-radius: 2px;
 		    z-index: 10;
+		    left: 50%;
+    		transform: translateX(-50%);
 			a {
 				color: $text-color;
 				display: block;

@@ -26,7 +26,7 @@
       <li v-if="salon.facebook_url"><a :href="salon.facebook_url"><i class="bz-facebook"></i></a></li>
       <li v-if="salon.instagram_url"><a :href="salon.instagram_url"><i class="bz-instagram"></i></a></li>
     </ul>
-    <div class="name">Liên kết</div>
+    <div class="name">{{ $t('salon.link') }}</div>
   </div>
 
   <div class="time-since">

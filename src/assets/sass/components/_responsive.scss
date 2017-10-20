@@ -224,6 +224,19 @@
 			margin: 0 auto;
 	    }
     }
+
+    .tp-account-lang {
+    	.account {
+    		margin-left: 20px;
+    		span {
+    			display: block;
+    		}
+    		i {
+    			display: none;
+    		}
+    	}
+    }
+
 }
 @media screen and (min-width: 768px) {
 	.wrapper-header .search {
@@ -485,6 +498,7 @@
 			@include transform(translateY(-50%));
 			right: 16px;
 			pointer-events: none;
+			margin-right: 0;
 		}
 		.search-inner {
 			@include flex();
@@ -492,6 +506,9 @@
 
 		.tp-account-lang {
 			@include flex();
+		}
+		.fx-full {
+			display: none;
 		}
 
 	}

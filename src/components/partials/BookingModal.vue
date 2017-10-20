@@ -10,7 +10,7 @@
       v-model="phone"
       name="phone"
       v-validate="'required'"
-      :data-vv-as="$t('salon.phone_number')"
+      :data-vv-as="$t('salon.validate_phone_number')"
       :placeholder="$t('salon.phone_number')"
       :class="{ 'is-invalid': errors.has('phone') }" />
     <div class="invalid-feedback">{{ errors.first('phone') }}</div>
@@ -36,8 +36,8 @@
       v-model="name"
       v-validate="'required|min:3'"
       name="name"
-      data-vv-as="Họ tên"
-      placeholder="Họ tên"
+      :data-vv-as="$t('salon.name')"
+      :placeholder="$t('salon.name')"
       :class="{ 'is-invalid': errors.has('name') }" />
     <div class="invalid-feedback">{{ errors.first('name') }}</div>
     <input class="tp-text-form form-control" type="email"
@@ -48,7 +48,7 @@
       placeholder="Email"
       :class="{ 'is-invalid': errors.has('email') }" />
     <div class="invalid-feedback">{{ errors.first('email') }}</div>
-    <input class="tp-btn" type="submit" value="Xác nhận">
+    <input class="tp-btn" type="submit" :value="$t('salon.submit')">
   </form>
 
   <form novalidate
@@ -65,7 +65,7 @@
       placeholder="Nhập code"
       :class="{ 'is-invalid': errors.has('code') }" />
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
-    <input class="tp-btn" type="submit" value="Xác nhận">
+    <input class="tp-btn" type="submit" :value="$t('salon.submit')">
     <div class="tp-send-form">
       <div><a href="#" @click.prevent="resendVerificationCode">{{ $t('salon.resend') }}</a></div>
       <div><a @click.prevent="step = 'init'" class="pointer">{{ $t('salon.back') }}</a></div>

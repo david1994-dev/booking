@@ -2,11 +2,11 @@
 	"common":{
 		"see_more":"Xem thêm",
 		"search":"Tìm kiếm",
-		"at":"at",
-		"rates":"{rates} rates",
-		"recommended_for_you":"Recommended for you ",
+		"at":"tại",
+		"rates":"{rates} đánh giá",
+		"recommended_for_you":"Gợi ý cho bạn",
 		"times":"Times",
-		"minutes":"minutes",
+		"minutes":"phút",
 		"in":"trong",
 		"just":"Chỉ còn"
 	},
@@ -86,6 +86,7 @@
 		"gallery":"Hình ảnh",
 		"ratting":"Đánh giá",
 		"map":"Bản đồ",
+		"link":"Links",
 		"chemicals":"Hóa chất",
 		"establishment":"Ngày thành lập",
 		"utilities":"Tiện ích",
@@ -104,6 +105,9 @@
 		"sent_verified_code_to_phone":"Hệ thống sẽ gửi mã xác nhận tới số điện thoại này của bạn",
 		"first_time_booking":"Đặt lịch lần đầu?",
 		"need_more_information":"Hệ thống cần biết thêm thông tin của bạn để phục vụ tốt hơn",
-		"phone_number":"Số điện thoại"
+		"phone_number":"Số điện thoại",
+		"validate_phone_number":"Số điện thoại",
+		"name":"Họ Tên",
+		"submit":"Xác nhận"
 	}
 }
