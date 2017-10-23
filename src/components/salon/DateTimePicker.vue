@@ -4,7 +4,7 @@
     <div class="close-outer" @click="active = false"></div>
     <div class="inner-datetime">
       <div class="title-datetime">
-        <span>Chọn thời gian</span>
+        <span>{{ $t('salon.choose_the_time') }}</span>
         <i class="bz-down-2 close" @click="active = false"></i>
       </div>
       <div class="content-datetime">
@@ -22,7 +22,7 @@
                 :class="{ active: selectedSlot.label == slot.label }"
                 @click="setBookingDate(slot)">{{ slot.label }}</div>
             </div>
-            <div class="empty" v-if="!slots.length"><strong>Không còn lịch trống.</strong><br />Vui lòng chọn ngày khác hoặc stylist khác</div>
+            <div class="empty" v-if="!slots.length"><strong>{{ $t('salon.no_available_time') }}</strong><br />{{ $t('salon.choose_another') }}</div>
           </v-loading>
         </calendar>
       </div>

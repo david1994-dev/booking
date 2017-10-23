@@ -60,9 +60,10 @@
        			@include align-items(flex-start);
        			.name-serivce {
        				@include flex-grow("1 0");
+       				margin-bottom: 0;
        			}
        			.price-wrap {
-       				margin-top: 6px;
+       				margin-top: 4px;
        				.price {
        					@include justify-content(flex-end);
        				}

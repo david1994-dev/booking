@@ -1,7 +1,7 @@
 <template>
 <div class="tricks-beautiful tp-box">
   <div class="tp-wrap-title">
-    <h3 class="tp-title"><strong>{{ $t('home.blogs.sceret') }}</strong> {{ $t('home.blogs.beauty') }}</h3>
+    <h3 class="tp-title"><strong>{{ $t('home.blogs.secret') }}</strong> {{ $t('home.blogs.beauty') }}</h3>
     <div class="tp-view-more">
       <router-link :to="{ name: 'blogs' }">{{ $t('common.see_more') }}</router-link>
     </div>

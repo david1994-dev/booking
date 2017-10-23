@@ -55,28 +55,28 @@
     autocomplete="off"
     v-if="step == 'verification' && phone"
     @submit.prevent="verifyThenCreateBooking">
-    <div class="tp-title-form">{{ $t('salon.enter_verified_code') }}</div>
-    <div class="tp-des-form">{{ $t('salon.we_sent_verified') }} <span class="phone-number">{{ phone }}</span> {{ $t('salon.enter_the_verified_code') }}</div>
+    <div class="tp-title-form">{{ $t('auth.enter_verified_code') }}</div>
+    <div class="tp-des-form">{{ $t('auth.we_sent_verified') }} <span class="phone-number">{{ phone }}</span> {{ $t('auth.enter_the_verified_code') }}</div>
     <input class="tp-text-form form-control" type="text"
       v-model="code"
       v-validate="'required'"
       data-vv-as="Code"
       name="code"
-      placeholder="Nhập code"
+      ::placeholder="$t('auth.enter_code')"
       :class="{ 'is-invalid': errors.has('code') }" />
     <div class="invalid-feedback">{{ errors.first('code') }}</div>
     <input class="tp-btn" type="submit" :value="$t('salon.submit')">
     <div class="tp-send-form">
-      <div><a href="#" @click.prevent="resendVerificationCode">{{ $t('salon.resend') }}</a></div>
-      <div><a @click.prevent="step = 'init'" class="pointer">{{ $t('salon.back') }}</a></div>
+      <div><a href="#" @click.prevent="resendVerificationCode">{{ $t('auth.resend') }}</a></div>
+      <div><a @click.prevent="step = 'init'" class="pointer">{{ $t('auth.back') }}</a></div>
     </div>
   </form>
 
   <div v-if="step == 'success'" class="tp-modal-success">
-    <div class="name-success">{{ $t('salon.success') }}</div>
-    <div class="des-success">{{ $t('salon.thank_and_wait') }}</div>
-    <div class="name-mobile">{{ $t('salon.easily_manageable_on_app') }}</div>
-    <div class="des-mobile">({{ $t('salon.app_comming_soon') }})</div>
+    <div class="name-success">{{ $t('auth.success') }}</div>
+    <div class="des-success">{{ $t('auth.thank_and_wait') }}</div>
+    <div class="name-mobile">{{ $t('auth.easily_manageable_on_app') }}</div>
+    <div class="des-mobile">({{ $t('auth.app_comming_soon') }})</div>
     <div class="img-mobile"><a style="pointer-events: none;" href="#"><img width="150" src="../../assets/images/app-store.png" /></a></div>
   </div>
 </div>

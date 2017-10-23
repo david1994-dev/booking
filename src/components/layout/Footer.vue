@@ -18,7 +18,7 @@
     </div>
     <div class="links">
       <div class="title">
-        Link
+        Links
       </div>
       <ul class="list-link">
         <li>

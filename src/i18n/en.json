@@ -8,7 +8,8 @@
 		"times":"Times",
 		"minutes":"minutes",
 		"in":"in",
-		"just":"Just"
+		"just":"Just",
+		"view_all":"View all"
 	},
 	"home":{
 		"search_bar":{
@@ -38,7 +39,7 @@
 			"register_now":"Register now"
 		},
 		"blogs":{
-			"sceret":"Sceret",
+			"secret":"Secret",
 			"beauty":"of beauty",
 			"viewed_time":"Viewed {view_count} times",
 			"recommended_for_you ":"Recommended for you "
@@ -70,7 +71,8 @@
 		"success":"Success",
 		"thank_and_wait":"Thank for using Bzone's service.Please arrive 5 minutes early and check your email, SMS before you go",
 		"easily_manageable_on_app":"Easily manageable on mobile app",
-		"app_comming_soon":"New app comming soon: October 2017"
+		"app_comming_soon":"New app comming soon: October 2017",
+		"enter_code":"Nhập code"
 	},
 	"search":{
 		"no_more_results":"There is no more results",
