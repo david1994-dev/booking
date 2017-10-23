@@ -17,12 +17,13 @@
 </template>
 
 <script>
+import { setLocale as setLocaleHeader } from '../../utils/http'
+import store from 'store2'
+
 const LANG = {
   'vi': 'VN',
   'en': 'EN'
 }
-
-import { setLocaleLang } from '../../utils/http'
 
 export default {
   computed: {
@@ -34,21 +35,15 @@ export default {
     return {
       active: false,
       languages: LANG,
-      selected: this.getLocale()
+      selected: this.$i18n.locale
     }
   },
   methods: {
     setLocale (locale) {
       this.selected = locale
-      localStorage.setItem('lang', locale)
-      setLocaleLang(locale)
-      location.reload()
-    },
-    getLocale () {
-      if (localStorage.getItem('lang')) {
-        return localStorage.getItem('lang')
-      }
-      return 'vi'
+      this.$i18n.locale = locale
+      setLocaleHeader(locale)
+      store.set('locale', locale)
     }
   }
 }

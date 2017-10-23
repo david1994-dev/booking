@@ -16,24 +16,17 @@ import { VueMasonryPlugin } from 'vue-masonry'
 import VeeValidate, { Validator } from 'vee-validate'
 import moment from 'moment-timezone'
 import { googleMapKey } from './config'
-import vuexI18n from 'vuex-i18n'
+import storage from 'store2'
+import VueI18n from 'vue-i18n'
 
-import en from 'vee-validate/dist/locale/en'  // eslint-disable-line
-import vi from 'vee-validate/dist/locale/vi'  // eslint-disable-line
+// eslint-disable-line
+import en from 'vee-validate/dist/locale/en'
+import vi from 'vee-validate/dist/locale/vi'
 
-const availableLanguages = ['en', 'vi']
 moment.tz.setDefault('Asia/Ho_Chi_Minh')
 
-var lang = 'vi' // eslint-disable-line
+const lang = storage.get('locale', 'vi')
 
-if (localStorage.getItem('lang')) {
-  var localLang = localStorage.getItem('lang')
-  if (availableLanguages.indexOf(localLang) > -1) {
-    lang = localLang
-  }
-}
-const translationsEn = require(/* webpackChunkName: "lang-bundle" */ './i18n/en.json')
-const translationsVi = require(/* webpackChunkName: "lang-bundle" */ './i18n/vi.json')
 if (lang === 'vi') {
   Validator.addLocale(vi)
   Vue.use(VeeValidate, {
@@ -48,15 +41,11 @@ if (lang === 'vi') {
   moment.locale('en')
 }
 
-Vue.use(vuexI18n.plugin, store)
-Vue.i18n.add('en', translationsEn)
-Vue.i18n.add('vi', translationsVi)
-Vue.i18n.set(lang)
-
 Vue.config.productionTip = false
 
 sync(store, router)
 
+Vue.use(VueI18n)
 Vue.use(BootstrapVue)
 Vue.use(Scrollactive)
 Vue.use(http, { store, router })
@@ -75,9 +64,21 @@ Object.keys(filters).map((method) => {
   Vue.filter(method, filters[method])
 })
 
+const messages = {
+  en: require(/* webpackChunkName: "lang-bundle" */ './i18n/en.json'),
+  vi: require(/* webpackChunkName: "lang-bundle" */ './i18n/vi.json')
+}
+
+const i18n = new VueI18n({
+  locale: lang,
+  fallbackLocale: lang,
+  messages
+})
+
 /* eslint-disable no-new */
 new Vue({
   store,
   router,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
