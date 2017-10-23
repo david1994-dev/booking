@@ -10,7 +10,7 @@ export function setToken (token) {
   http.defaults.headers.common.Authorization = `Bearer ${token}`
 }
 
-export function setLocaleLang (locale) {
+export function setLocale (locale) {
   http.defaults.headers.common['Content-Language'] = locale
 }
 
