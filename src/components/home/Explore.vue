@@ -62,7 +62,7 @@
       </v-loading>
     </div>
 
-    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore' }">xem thêm</router-link></div>
+    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore' }">{{ $t('common.see_more') }}</router-link></div>
   </div>
 </div>
 </template>

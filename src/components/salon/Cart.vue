@@ -87,7 +87,7 @@
               <div class="info">
                 <div class="name"><span class="delete" @click="removeServiceFromCart(service)"></span>{{ service.category.name }}</div>
                 <div class="time-price">
-                  <div class="time">{{ service.duration }} phút</div>
+                  <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
                   <div class="price">{{ service.formatted_price }}</div>
                 </div>
               </div>

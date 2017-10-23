@@ -290,50 +290,48 @@
             font-size: 17px;
             margin-bottom: 15px;
         }
-        .list {
-            .item {
+        .item {
+            @include flex();
+            @include flex-wrap(wrap);
+            margin: 13px 0;
+            cursor: pointer;
+        }
+        .tp-checkbox {
+            margin-right: 18px;
+        }
+        .name-price {
+            @include flex-grow("1 0");
+            line-height: 1.4;
+            .name-serivce {
+                font-size: 15px;
+                font-weight: 300;
+                margin: 2px 0 5px;
+            }
+            .price-wrap {
+                line-height: 1;
                 @include flex();
-                @include flex-wrap(wrap);
-                margin: 13px 0;
-                cursor: pointer;
-            }
-            .tp-checkbox {
-                margin-right: 18px;
-            }
-            .name-price {
-                @include flex-grow("1 0");
-                line-height: 1.4;
-                .name-serivce {
-                    font-size: 15px;
-                    font-weight: 300;
-                    margin: 2px 0 5px;
-                }
-                .price-wrap {
-                    line-height: 1;
+                @include flex-direction(column-reverse);
+                .price {
                     @include flex();
-                    @include flex-direction(column-reverse);
-                    .price {
-                        @include flex();
-                        @include flex-wrap(wrap);
-                        font-size: 14px;
-                        line-height: 1.2;
-                        font-weight: 400;
-                        strong {
-                            margin: 0 4px;
-                            font-weight: 300;
-                        }
-                        .note {
-                            margin-left: 10px;
-                        }
+                    @include flex-wrap(wrap);
+                    font-size: 14px;
+                    line-height: 1.2;
+                    font-weight: 400;
+                    strong {
+                        margin: 0 4px;
+                        font-weight: 300;
                     }
-                    .sale-off {
-                        font-size: 12px;
-                        margin-top: 5px;
-                        color: $primary-color;
-                        line-height: 1.2;
-                        + .price .number {
-                            text-decoration: line-through;
-                        }
+                    .note {
+                        margin-left: 10px;
+                    }
+                }
+                .sale-off {
+                    font-size: 12px;
+                    margin-top: 5px;
+                    color: $primary-color;
+                    line-height: 1.2;
+                    + .price .number {
+                        text-decoration: line-through;
                     }
                 }
             }

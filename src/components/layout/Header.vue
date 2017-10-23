@@ -2,6 +2,7 @@
 <header class="sub-header" :class="{ 'show-searchform': showSearchForm }">
   <div class="sub-container">
     <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
+    <div class="fx-full"></div>
     <div class="search">
       <i class="bz-search search-icon" :class="{ active: keyword }" @click="showSearchForm = !showSearchForm"></i>
       <search wrapper-class="search-inner" />

@@ -15,7 +15,7 @@
     </div>
     <div class="tp-view-all" v-if="hasMore">
       <router-link :to="{ name: 'services', query: { q: $route.query.q } }">
-        <span>View all</span>
+        <span>{{ $t('common.view_all') }}</span>
         <i class="bz-next"></i>
       </router-link>
     </div>
