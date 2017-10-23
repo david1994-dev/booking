@@ -18,12 +18,8 @@
 
 <script>
 import { setLocale as setLocaleHeader } from '../../utils/http'
+import { languages } from '@/config'
 import store from 'store2'
-
-const LANG = {
-  'vi': 'VN',
-  'en': 'EN'
-}
 
 export default {
   computed: {
@@ -34,8 +30,8 @@ export default {
   data () {
     return {
       active: false,
-      languages: LANG,
-      selected: this.$i18n.locale
+      selected: this.$i18n.locale,
+      languages
     }
   },
   methods: {

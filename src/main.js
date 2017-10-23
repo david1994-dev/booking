@@ -26,6 +26,7 @@ import vi from 'vee-validate/dist/locale/vi'
 moment.tz.setDefault('Asia/Ho_Chi_Minh')
 
 const lang = storage.get('locale', 'vi')
+//
 
 if (lang === 'vi') {
   Validator.addLocale(vi)
