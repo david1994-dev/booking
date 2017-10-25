@@ -19,40 +19,30 @@ import { googleMapKey } from './config'
 import storage from 'store2'
 import VueI18n from 'vue-i18n'
 
-// eslint-disable-line
+// const en = () => import(/* webpackChunkName: "lang-bundle" */ 'vee-validate/dist/locale/en')
+// const vi = () => import(/* webpackChunkName: "lang-bundle" */ 'vee-validate/dist/locale/vi')
 import en from 'vee-validate/dist/locale/en'
 import vi from 'vee-validate/dist/locale/vi'
-
-moment.tz.setDefault('Asia/Ho_Chi_Minh')
-
 const lang = storage.get('locale', 'vi')
 //
-
-if (lang === 'vi') {
-  Validator.addLocale(vi)
-  Vue.use(VeeValidate, {
-    locale: 'vi'
-  })
-  moment.locale('vi')
-} else {
-  Validator.addLocale(en)
-  Vue.use(VeeValidate, {
-    locale: 'en'
-  })
-  moment.locale('en')
-}
 
 Vue.config.productionTip = false
 
 sync(store, router)
+moment.tz.setDefault('Asia/Ho_Chi_Minh')
+moment.locale(lang)
+Validator.addLocale(vi)
+Validator.addLocale(en)
 
+Vue.use(VeeValidate, {
+  locale: lang
+})
 Vue.use(VueI18n)
 Vue.use(BootstrapVue)
 Vue.use(Scrollactive)
 Vue.use(http, { store, router })
 Vue.use(eventbus)
 Vue.use(VuePhotoSwipe)
-
 Vue.use(VueMasonryPlugin)
 Vue.use(VueGoogleMaps, {
   load: {
@@ -72,7 +62,7 @@ const messages = {
 
 const i18n = new VueI18n({
   locale: lang,
-  fallbackLocale: lang,
+  fallbackLocale: 'vi',
   messages
 })
 

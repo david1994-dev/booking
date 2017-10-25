@@ -59,7 +59,7 @@ export default {
         return [
           {
             id: today.format(DATE_FORMAT),
-            label: 'Hôm nay',
+            label: this.$t('common.today'),
             date: today
           },
           {

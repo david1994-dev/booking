@@ -59,8 +59,8 @@
         <span>{{ amenity.description || amenity.name }}</span>
       </li>
       <li class="view-all-wrap">
-        <div class="view-all expand" @click="expand = true"><span>Xem tất cả</span> <i class="bz-down-2"></i></div>
-        <div class="view-all collapse" @click="expand = false"><span>Thu gọn</span> <i class="bz-up-2"></i></div>
+        <div class="view-all expand" @click="expand = true"><span>{{ $t('common.view_all') }}</span> <i class="bz-down-2"></i></div>
+        <div class="view-all collapse" @click="expand = false"><span>{{ $t('common.collapse') }}</span> <i class="bz-up-2"></i></div>
       </li>
     </ul>
   </div>
@@ -87,7 +87,8 @@ export default {
   },
   data () {
     return {
-      expand: false
+      expand: false,
+      translateText: ''
     }
   },
   computed: {

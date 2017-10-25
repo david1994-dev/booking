@@ -1,7 +1,7 @@
 <template>
 <div class="tp-account-lang">
-  <div class="lang" :class="{ active: active }" @click="active = !active">
-    <div class="selected">{{ selectedLanguage }}</div>
+  <div class="lang" :class="{ active: active }">
+    <div class="selected" v-on-clickaway="hide" @click="active = !active">{{ selectedLanguage }}</div>
     <ul>
       <li v-for="(language, locale) in languages"
         v-show="locale !== selected">
@@ -17,11 +17,14 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway'
 import { setLocale as setLocaleHeader } from '../../utils/http'
 import { languages } from '@/config'
 import store from 'store2'
+import moment from 'moment'
 
 export default {
+  mixins: [clickaway],
   computed: {
     selectedLanguage () {
       return this.languages[this.selected]
@@ -35,9 +38,14 @@ export default {
     }
   },
   methods: {
+    hide () {
+      this.active = false
+    },
     setLocale (locale) {
       this.selected = locale
       this.$i18n.locale = locale
+      this.$validator.localize(locale)
+      moment.locale(locale)
       setLocaleHeader(locale)
       store.set('locale', locale)
     }
