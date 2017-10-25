@@ -48,6 +48,7 @@ export default {
       moment.locale(locale)
       setLocaleHeader(locale)
       store.set('locale', locale)
+      this.$bus.$emit('locale::change', locale)
     }
   }
 }

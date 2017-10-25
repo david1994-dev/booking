@@ -122,11 +122,20 @@ export default {
   created () {
     this.fetchSalon()
   },
+  mounted () {
+    this.$bus.$on('locale::change', locale => {
+      this.fetchSalon()
+    })
+  },
   watch: {
     '$route': 'fetchSalon'
   },
   methods: {
     fetchSalon () {
+      if (!this.$route.params.id) {
+        return
+      }
+
       this.$startLoading('fetching salon')
       this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category,chemicals,amenities' } }).then(({ data }) => {
         this.salon = data

@@ -20,6 +20,9 @@ export default {
   },
   created () {
     this.fetchPreloadData()
+    this.$bus.$on('locale::change', locale => {
+      this.fetchPreloadData()
+    })
   },
   methods: {
     fetchPreloadData () {

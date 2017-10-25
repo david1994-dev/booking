@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import http from './utils/http'
+import { default as http, setLocale } from './utils/http'
 import eventbus from './utils/eventbus'
 import * as filters from './utils/filters'
 import { sync } from 'vuex-router-sync'
@@ -24,7 +24,7 @@ import VueI18n from 'vue-i18n'
 import en from 'vee-validate/dist/locale/en'
 import vi from 'vee-validate/dist/locale/vi'
 const lang = storage.get('locale', 'vi')
-//
+setLocale(lang)
 
 Vue.config.productionTip = false
 
