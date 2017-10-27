@@ -28,6 +28,7 @@
           </div>
         </div>
         <div class="content-rate">{{ review.review.content }}</div>
+        <a class="pointer" style="color:#54B2B0;font-size: 12px;" @click="translateLang(review.review.content, $event)">{{ $t('salon.see_translations') }}</a>
       </div>
     </div>
   </v-loading>
@@ -107,6 +108,15 @@ export default {
         this.reviews = data.data
         this.meta = data.meta
         document.getElementById('mennu-reviews').click()
+      })
+    },
+    translateLang (text, event) {
+      this.$http.get(`salons/${this.salon.id}/translate`, { params: {text: text} }).then(({ data }) => {
+        var pTag = document.createElement('p')
+        pTag.innerHTML = data
+        pTag.setAttribute('style', 'border-left:2px solid #dcdee3; padding-left:12px; font-size: 15px; margin-top: 5px;')
+        event.target.style.display = 'none'
+        event.target.parentElement.appendChild(pTag)
       })
     }
   }

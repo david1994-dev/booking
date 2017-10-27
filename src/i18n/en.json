@@ -60,7 +60,7 @@
 		"register_as_salon": "Register as a Salon manager?",
 		"register_as_user": "Register as an User?",
 		"easily_book": "You don’t really need to have account but you can easily book an appointment!",
-		"thank_for_salon_register": "We have received your registation and would like to thank you a lot. Please wait our representation will contact you within 24 working hours",
+		"thank_for_salon_register": "We have received your registration and would like to thank you a lot. Please wait our representation will contact you within 24 working hours",
 		"register_salon_60s": "Just 60 seconds to have a professional manage tool ",
 		"salon_name": "Salon name",
 		"salon_address": "Salon address",
@@ -112,6 +112,7 @@
 		"phone_number": "Insert your phone number",
 		"validate_phone_number": "phone number",
 		"name": "Name",
-		"submit": "Submit"
+		"submit": "Submit",
+		"see_translations": "See translation"
 	}
 }

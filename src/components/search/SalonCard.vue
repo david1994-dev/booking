@@ -56,7 +56,7 @@
           <stars :rating="salon.average_rating">
             <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
           </stars>
-          <div class="rate-status">{{ salon.review_count }} Đánh giá</div>
+          <div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}</div>
         </div>
       </div>
       <div v-if="!salon.verified" class="action-unverified">

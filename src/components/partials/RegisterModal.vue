@@ -29,14 +29,14 @@
             name="name"
             :placeholder="$t('auth.salon_name')"
             v-model="name"
-            v-validate="'required'"
+            v-validate="'required|min:3'"
             :data-vv-as="$t('auth.salon_name')"
             :class="{ 'is-invalid': errors.has('name') }" />
           <div class="text-left invalid-feedback">{{ errors.first('name') }}</div>
           <input class="tp-text-form form-control"
             type="text"
             name="address"
-            v-validate="'required'"
+            v-validate="'required|min:3'"
             v-model="address"
             :data-vv-as="$t('auth.salon_address')"
             :placeholder="$t('auth.salon_address')"
@@ -51,7 +51,7 @@
             :placeholder="$t('auth.phone_number')"
             :class="{ 'is-invalid': errors.has('phone') }" />
           <div class="text-left invalid-feedback">{{ errors.first('phone') }}</div>
-          <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" value="Đăng ký">
+          <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" :value="$t('auth.register')">
         </form>
       </div>
     </div>
