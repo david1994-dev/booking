@@ -7,8 +7,8 @@
     <div class="tp-title-form">{{ $t('salon.enter_the_phone_number') }}</div>
     <div class="tp-des-form">{{ $t('salon.sent_verified_code_to_phone') }}</div>
     <input class="tp-text-form form-control" type="text"
-      v-model="phone"
-      name="phone"
+      v-model="username"
+      name="username"
       v-validate="'required'"
       :data-vv-as="$t('salon.validate_phone_number')"
       :placeholder="$t('salon.phone_number')"
@@ -26,10 +26,10 @@
     <input class="tp-text-form form-control" type="text"
       v-model="phone"
       name="phone"
-      v-validate="'required'"
+      v-validate="required == 'phone' ? 'required' : '' "
       :data-vv-as="$t('salon.phone_number')"
       :placeholder="$t('salon.phone_number')"
-      :readonly="user"
+      :readonly="required == 'phone'"
       :class="{ 'is-invalid': errors.has('phone') }" />
     <div class="invalid-feedback">{{ errors.first('phone') }}</div>
     <input class="tp-text-form form-control" type="text"
@@ -42,10 +42,11 @@
     <div class="invalid-feedback">{{ errors.first('name') }}</div>
     <input class="tp-text-form form-control" type="email"
       v-model="email"
-      v-validate="'required|email'"
+      v-validate="required == 'email' ? 'required|email' : '' "
       data-vv-as="Email"
       name="email"
       placeholder="Email"
+      :readonly="required == 'email'"
       :class="{ 'is-invalid': errors.has('email') }" />
     <div class="invalid-feedback">{{ errors.first('email') }}</div>
     <input class="tp-btn" type="submit" :value="$t('salon.submit')">
@@ -53,10 +54,11 @@
 
   <form novalidate
     autocomplete="off"
-    v-if="step == 'verification' && phone"
+    v-if="step == 'verification' && (phone || email)"
     @submit.prevent="verifyThenCreateBooking">
     <div class="tp-title-form">{{ $t('auth.enter_verified_code') }}</div>
-    <div class="tp-des-form">{{ $t('auth.we_sent_verified') }} <span class="phone-number">{{ phone }}</span> {{ $t('auth.enter_the_verified_code') }}</div>
+    <div class="tp-des-form">{{ $t('auth.we_sent_verified') }}: <strong>{{  username }}</strong>. {{ $t('auth.enter_the_verified_code') }}
+    </div>
     <input class="tp-text-form form-control" type="text"
       v-model="code"
       v-validate="'required'"
@@ -101,7 +103,9 @@ export default {
       email: '',
       name: '',
       code: '',
-      token: ''
+      token: '',
+      username: '',
+      required: ''
     }
   },
   mounted () {
@@ -118,7 +122,7 @@ export default {
       mixpanel.track(
         'Click vào xác nhận đặt lịch'
       )
-      if (!this.phone) {
+      if (!this.username) {
         return
       }
 
@@ -130,7 +134,7 @@ export default {
         return result
       }, [])
       const data = {
-        user: this.phone,
+        username: this.username,
         slots: JSON.stringify(slots),
         time: this.bookingDate.format(DATE_FORMAT)
       }
@@ -141,6 +145,13 @@ export default {
       this.$http.post(`salons/${this.cartSalon.id}/book`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data, status, headers }) => {
         this.$endLoading('booking')
         if (status === 202) {
+          if (/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm.test(this.username)) {
+            this.email = this.username
+            this.required = 'email'
+          } else {
+            this.phone = this.username
+            this.required = 'phone'
+          }
           this.token = headers['x-verification-token'] || ''
           this.email = data.email
           this.name = data.name
@@ -160,6 +171,13 @@ export default {
           this.updateValidationMessage(response.data.errors)
         }
         if (response.status === 404) {
+          if (/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm.test(this.username)) {
+            this.email = this.username
+            this.required = 'email'
+          } else {
+            this.phone = this.username
+            this.required = 'phone'
+          }
           this.step = 'registration'
         }
       })
