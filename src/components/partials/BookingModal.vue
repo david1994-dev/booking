@@ -167,7 +167,7 @@ export default {
     verifyThenCreateBooking () {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          this.$http.post('users/verify', { token: this.token, code: this.code }).then(() => {
+          this.$http.post('users/verify', { code: this.code }, { headers: { 'X-Verification-Token': this.token } }).then(() => {
             this.createBooking()
             mixpanel.init(mixpanelProjectToken)
             mixpanel.track(
@@ -244,7 +244,7 @@ export default {
       })
     },
     resendVerificationCode () {
-      this.$http.post('users/verification-code', { token: this.token }).then(response => {
+      this.$http.post('users/verification-code', {}, { headers: { 'X-Verification-Token': this.token } }).then(response => {
         // Success message
       }).catch(({ response }) => {
         if (response.data.errors) {
