@@ -68,8 +68,7 @@
   <div class="des" v-if="salon.description">
     <p>{{ salon.description }}</p>
     <a class="pointer" style="color:#54B2B0" @click="translateLang(salon.description, $event)">{{ $t('salon.see_translations') }}</a>
-    <p v-if="translateText" style="border-left: 2px solid #dcdee3;
-    padding-left: 12px;">{{ translateText }}</p>
+    <p v-if="translateText" class="translation-text">{{ translateText }}</p>
   </div>
 </div>
 </template>
@@ -118,9 +117,9 @@ export default {
       return days[day] ? days[day] : ''
     },
     translateLang (text, event) {
-      this.$http.get(`salons/${this.salon.id}/translate`, { params: {text: text} }).then(({ data }) => {
+      this.$http.post('translate', { text: text }).then(({ data }) => {
         event.target.style.display = 'none'
-        this.translateText = data
+        this.translateText = data.translation
       })
     }
   }

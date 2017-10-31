@@ -14,22 +14,9 @@
     </template>
 
     <div class="list">
-      <div class="item" v-for="review in reviews" :key="review.id">
-        <div class="info-rate">
-          <figure><img :src="review.user.avatar_url"></figure>
-          <div class="info">
-            <div class="name">{{ review.user.name }}</div>
-            <div class="date-stars">
-              <div class="date">{{ review.review.created_at | dateFormat('HH:mm DD-MM-YYYY') }}</div>
-              <div class="tp-rate">
-                <stars :rating="review.review.rating" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content-rate">{{ review.review.content }}</div>
-        <a class="pointer" style="color:#54B2B0;font-size: 12px;" @click="translateLang(review.review.content, $event)">{{ $t('salon.see_translations') }}</a>
-      </div>
+      <review  v-for="review in reviews"
+      :key="review.id"
+      :review="review"></review>
     </div>
   </v-loading>
 
@@ -47,6 +34,7 @@
 <script>
 import { merge } from 'lodash'
 import Stars from '../partials/StarRating'
+const Review = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/Review')
 import Paginate from 'vuejs-paginate'
 
 export default {
@@ -59,6 +47,7 @@ export default {
   },
   components: {
     Stars,
+    Review,
     Paginate
   },
   data () {
@@ -108,15 +97,6 @@ export default {
         this.reviews = data.data
         this.meta = data.meta
         document.getElementById('mennu-reviews').click()
-      })
-    },
-    translateLang (text, event) {
-      this.$http.get(`salons/${this.salon.id}/translate`, { params: {text: text} }).then(({ data }) => {
-        var pTag = document.createElement('p')
-        pTag.innerHTML = data
-        pTag.setAttribute('style', 'border-left:2px solid #dcdee3; padding-left:12px; font-size: 15px; margin-top: 5px;')
-        event.target.style.display = 'none'
-        event.target.parentElement.appendChild(pTag)
       })
     }
   }
