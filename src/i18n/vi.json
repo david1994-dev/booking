@@ -109,10 +109,12 @@
 		"sent_verified_code_to_phone": "Hệ thống sẽ gửi mã xác nhận tới số điện thoại/email này của bạn",
 		"first_time_booking": "Đặt lịch lần đầu?",
 		"need_more_information": "Hệ thống cần biết thêm thông tin của bạn để phục vụ tốt hơn",
-		"phone_number": "Số điện thoại/email",
-		"validate_phone_number": "Số điện thoại/email là bắt buộc",
+		"phone_number": "Số điện thoại",
+		"validate_phone_number": "Số điện thoại là bắt buộc",
 		"name": "Họ Tên",
 		"submit": "Xác nhận",
-		"see_translations": "Xem bản dịch"
+		"see_translations": "Xem bản dịch",
+		"username": "Số điện thoại/email",
+		"validate_username": "Số điện thoại/email là bắt buộc"
 	}
 }

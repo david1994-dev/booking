@@ -10,10 +10,10 @@
       v-model="username"
       name="username"
       v-validate="'required'"
-      :data-vv-as="$t('salon.validate_phone_number')"
-      :placeholder="$t('salon.phone_number')"
-      :class="{ 'is-invalid': errors.has('phone') }" />
-    <div class="invalid-feedback">{{ errors.first('phone') }}</div>
+      :data-vv-as="$t('salon.validate_username')"
+      :placeholder="$t('salon.username')"
+      :class="{ 'is-invalid': errors.has('username') }" />
+    <div class="invalid-feedback">{{ errors.first('username') }}</div>
     <input class="tp-btn" type="submit" :value="$t('salon.make_an_appointment')">
   </form>
 
