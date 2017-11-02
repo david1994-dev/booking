@@ -134,7 +134,7 @@ export default {
         return result
       }, [])
       const data = {
-        user: this.username,
+        username: this.username,
         slots: JSON.stringify(slots),
         time: this.bookingDate.format(DATE_FORMAT)
       }
