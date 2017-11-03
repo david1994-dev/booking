@@ -196,7 +196,7 @@ export default {
               this.updateValidationMessage(response.data.errors)
             }
             if (response.status === 404) {
-              this.errors.add('code', 'Mã xác nhận không hợp lệ.')
+              this.errors.add('code', this.$i18n.t('auth.invalid_code'))
             }
           })
         }
