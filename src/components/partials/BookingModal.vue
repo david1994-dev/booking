@@ -12,8 +12,8 @@
       v-validate="'required'"
       :data-vv-as="$t('salon.validate_username')"
       :placeholder="$t('salon.username')"
-      :class="{ 'is-invalid': errors.has('username') }" />
-    <div class="invalid-feedback">{{ errors.first('username') }}</div>
+      :class="{ 'is-invalid': errors.has('user') }" />
+    <div class="invalid-feedback">{{ errors.first('user') }}</div>
     <input class="tp-btn" type="submit" :value="$t('salon.make_an_appointment')">
   </form>
 
@@ -28,7 +28,7 @@
       name="phone"
       v-validate="required == 'phone' ? 'required' : '' "
       :data-vv-as="$t('salon.phone_number')"
-      :placeholder="$t('salon.phone_number')"
+      :placeholder="required == 'email' ? $t('salon.phone_number') + $t('salon.optional_text') : $t('salon.phone_number')"
       :readonly="required == 'phone'"
       :class="{ 'is-invalid': errors.has('phone') }" />
     <div class="invalid-feedback">{{ errors.first('phone') }}</div>
@@ -45,7 +45,7 @@
       v-validate="required == 'email' ? 'required|email' : '' "
       data-vv-as="Email"
       name="email"
-      placeholder="Email"
+      :placeholder="required == 'phone' ?  'Email' + $t('salon.optional_text') : 'Email'"
       :readonly="required == 'email'"
       :class="{ 'is-invalid': errors.has('email') }" />
     <div class="invalid-feedback">{{ errors.first('email') }}</div>
@@ -196,7 +196,7 @@ export default {
               this.updateValidationMessage(response.data.errors)
             }
             if (response.status === 404) {
-              this.errors.add('code', 'Mã xác nhận không hợp lệ.')
+              this.errors.add('code', this.$i18n.t('auth.invalid_code'))
             }
           })
         }
@@ -281,7 +281,7 @@ export default {
     updateValidationMessage (errors) {
       forEach(errors, (messages, field) => {
         if (field === 'user') {
-          this.errors.add('phone', messages.join('\n'))
+          this.errors.add('user', messages.join('\n'))
         } else {
           this.errors.add(field, messages.join('\n'))
         }

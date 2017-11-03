@@ -74,7 +74,8 @@
 		"thank_and_wait": "Thank for using Bzone's service.Please arrive 5 minutes early and check your email, SMS before you go",
 		"easily_manageable_on_app": "Easily manageable on mobile app",
 		"app_comming_soon": "New app comming soon: October 2017",
-		"enter_code": "Nhập code"
+		"enter_code": "Enter code",
+		"invalid_code": "The validation code is invalid"
 	},
 	"search":{
 		"no_more_results": "There is no more results",
@@ -115,6 +116,7 @@
 		"submit": "Submit",
 		"see_translations": "See translation",
 		"username": "Insert your phone number/email",
-		"validate_username": "phone number/email"
+		"validate_username": "phone number/email",
+		"optional_text": " (optional)"
 	}
 }
