@@ -115,6 +115,7 @@
 		"submit": "Xác nhận",
 		"see_translations": "Xem bản dịch",
 		"username": "Số điện thoại/email",
-		"validate_username": "Số điện thoại/email là bắt buộc"
+		"validate_username": "Số điện thoại/email là bắt buộc",
+		"optional_text": " (không bắt buộc)"
 	}
 }

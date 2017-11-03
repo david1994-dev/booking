@@ -115,6 +115,7 @@
 		"submit": "Submit",
 		"see_translations": "See translation",
 		"username": "Insert your phone number/email",
-		"validate_username": "phone number/email"
+		"validate_username": "phone number/email",
+		"optional_text": " (optional)"
 	}
 }
