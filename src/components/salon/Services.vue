@@ -11,13 +11,13 @@
 
   </v-loading> -->
   <div class="list">
-    <label class="item" v-for="service in salon.services" :key="service.id">
+    <label class="item" v-for="service in salon.services" :key="service.id" v-if="!service.is_group">
       <div class="tp-checkbox">
         <input type="checkbox" :checked="isChecked(service)"
           @change="toggleService(service, $event.target.checked)" /><span></span>
       </div>
       <div class="name-price">
-        <div class="name-serivce">{{ service.category.name }}</div>
+        <div class="name-serivce">{{ service.name }}</div>
         <div class="price-wrap">
           <div class="sale-off" v-if="service.has_discount">{{ offerDetail(service) }}</div>
           <div class="price">

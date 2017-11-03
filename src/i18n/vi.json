@@ -74,7 +74,8 @@
 		"thank_and_wait": "Cảm ơn bạn đã sử dụng dịch vụ của Bzone. Vui lòng kiểm tra email & SMS và tới trước lịch hẹn 5 phút",
 		"easily_manageable_on_app": "Quản lý dễ hơn với ứng dụng mobile",
 		"app_comming_soon": "Dự kiến ra mắt tháng 10.2017",
-		"enter_code": "Enter code"
+		"enter_code": "Nhập mã xác nhận",
+		"invalid_code": "Mã xác nhận không hợp lệ"
 	},
 	"search":{
 		"no_more_results": "Không tìm thấy thêm kết quả",
@@ -115,6 +116,7 @@
 		"submit": "Xác nhận",
 		"see_translations": "Xem bản dịch",
 		"username": "Số điện thoại/email",
-		"validate_username": "Số điện thoại/email là bắt buộc"
+		"validate_username": "Số điện thoại/email là bắt buộc",
+		"optional_text": " (không bắt buộc)"
 	}
 }

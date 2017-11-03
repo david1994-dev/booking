@@ -8,7 +8,7 @@
           <div class="tp-choice-service" v-for="service in cartServices" :key="service.id">
             <div class="bullet"></div>
             <div class="info">
-              <div class="name"><span class="delete" @click="removeServiceFromCart(service)"></span>{{ service.category.name }}</div>
+              <div class="name"><span class="delete" @click="removeServiceFromCart(service)"></span>{{ service.name }}</div>
               <div class="time-price">
                 <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
                 <div class="price">{{ service.formatted_price }}</div>
@@ -85,7 +85,7 @@
             <div class="tp-choice-service" v-for="service in cartServices" :key="service.id">
               <div class="bullet"></div>
               <div class="info">
-                <div class="name"><span class="delete" @click="removeServiceFromCart(service)"></span>{{ service.category.name }}</div>
+                <div class="name"><span class="delete" @click="removeServiceFromCart(service)"></span>{{ service.name }}</div>
                 <div class="time-price">
                   <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
                   <div class="price">{{ service.formatted_price }}</div>

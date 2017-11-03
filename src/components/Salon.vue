@@ -137,7 +137,7 @@ export default {
       }
 
       this.$startLoading('fetching salon')
-      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services.category,chemicals,amenities' } }).then(({ data }) => {
+      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services,chemicals,amenities' } }).then(({ data }) => {
         this.salon = data
         this.$store.dispatch('setSalon', data)
         this.$endLoading('fetching salon')
