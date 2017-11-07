@@ -70,14 +70,15 @@
     <div class="list-price" v-if="salon.verified && salon.services">
       <router-link class="item" v-for="(service, i) in salon.services"
         :key="service.id"
-        v-if="!service.is_group && (i < 3)"
+        v-if="i < 3"
         :to="{ name: 'salon', params: { id: salon.slug } }">
         <div class="name-time">
           <div class="name">{{ service.name }}</div>
-          <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
+          <div class="time" v-if="!service.is_group">{{ service.duration }} {{ $t('common.minutes') }}</div>
         </div>
         <div class="price-save">
-          <div class="price">{{ service.has_discount ? service.formatted_discount_price : service.formatted_price }}</div>
+          <div class="price" v-if="service.is_group">{{ cheapestService(service.children).formatted_discount_price }}</div>
+          <div class="price" v-else>{{ service.has_discount ? service.formatted_discount_price : service.formatted_price }}</div>
           <div class="save" v-if="service.has_discount">{{ service.discount_offer }}</div>
         </div>
       </router-link>
@@ -110,6 +111,7 @@
 </template>
 
 <script>
+import { minBy } from 'lodash'
 import $ from 'jquery'
 import store from 'store2'
 import Slick from 'vue-slick'
@@ -202,6 +204,9 @@ export default {
     },
     prev () {
       this.$refs.slick.prev()
+    },
+    cheapestService (services) {
+      return minBy(services, 'discount_price') || {}
     }
   }
 }

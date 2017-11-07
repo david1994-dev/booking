@@ -8,7 +8,7 @@
       <div class="time">{{ cheapestService.id ? `${cheapestService.duration} ${$t('common.minutes')}` : '&nbsp;' }}</div>
     </div>
     <div class="price-save">
-      <div class="price">{{ $t('common.from') }} {{ cheapestService.id ? cheapestService.formatted_discount_price : '&nbsp;' }}</div>
+      <div class="price" v-show="!expand">{{ $t('common.from') }} {{ cheapestService.id ? cheapestService.formatted_discount_price : '&nbsp;' }}</div>
       <div class="save">&nbsp;</div>
     </div>
     <div class="action"><i class="bz-down-2"></i></div>
