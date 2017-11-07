@@ -74,7 +74,8 @@
         :to="{ name: 'salon', params: { id: salon.slug } }">
         <div class="name-time">
           <div class="name">{{ service.name }}</div>
-          <div class="time" v-if="!service.is_group">{{ service.duration }} {{ $t('common.minutes') }}</div>
+          <div class="time" v-if="service.is_group">{{ $t('common.from') }} {{ cheapestService(service.children).duration }} {{ $t('common.minutes') }}</div>
+          <div class="time" v-else>{{ service.duration }} {{ $t('common.minutes') }}</div>
         </div>
         <div class="price-save">
           <div class="price" v-if="service.is_group">{{ $t('common.from') }} {{ cheapestService(service.children).formatted_discount_price }}</div>
