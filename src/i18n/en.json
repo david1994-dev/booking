@@ -11,7 +11,8 @@
 		"just": "Just",
 		"view_all": "View all",
 		"collapse": "Collapse",
-		"today": "Today"
+		"today": "Today",
+		"from": "From"
 	},
 	"home":{
 		"search_bar":{

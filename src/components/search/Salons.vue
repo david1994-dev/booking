@@ -11,7 +11,6 @@
 
       <div v-if="salons.length">
         <salon v-for="salon in salons"
-          @salonAddressClick="centerSalon(salon, 14)"
           :key="salon.id"
           :salon="salon"
           :category="selectedService.id || 0" />
