@@ -77,7 +77,7 @@
           <div class="time" v-if="!service.is_group">{{ service.duration }} {{ $t('common.minutes') }}</div>
         </div>
         <div class="price-save">
-          <div class="price" v-if="service.is_group">{{ cheapestService(service.children).formatted_discount_price }}</div>
+          <div class="price" v-if="service.is_group">{{ $t('common.from') }} {{ cheapestService(service.children).formatted_discount_price }}</div>
           <div class="price" v-else>{{ service.has_discount ? service.formatted_discount_price : service.formatted_price }}</div>
           <div class="save" v-if="service.has_discount">{{ service.discount_offer }}</div>
         </div>
