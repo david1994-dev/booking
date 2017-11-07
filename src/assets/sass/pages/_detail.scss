@@ -285,56 +285,115 @@
     }
 
     .service-d {
-        padding: 25px 0;
         border-bottom: 1px solid $border-color;
+        padding: 20px 0;
         .title {
+            margin-bottom: 10px;
             font-size: 17px;
-            margin-bottom: 15px;
         }
-        .item {
-            @include flex();
-            @include flex-wrap(wrap);
-            margin: 13px 0;
-            cursor: pointer;
+        .content-service {
+            font-size: 15px;
         }
-        .tp-checkbox {
-            margin-right: 18px;
+        .left {
+            display: none;
         }
-        .name-price {
-            @include flex-grow("1 0");
-            line-height: 1.4;
-            .name-serivce {
-                font-size: 15px;
-                font-weight: 300;
-                margin: 2px 0 5px;
+        .right {
+            .item {
+                &:last-child .name-item {
+                    border-bottom: none;
+                }
+                &.active .sub-service {
+                    display: block;
+                }
+                &.selected .action i.bz-check {
+                    display: inline-block;
+                }
             }
-            .price-wrap {
-                line-height: 1;
+            .name-item {
                 @include flex();
-                @include flex-direction(column-reverse);
-                .price {
-                    @include flex();
-                    @include flex-wrap(wrap);
-                    font-size: 14px;
-                    line-height: 1.2;
-                    font-weight: 400;
-                    strong {
-                        margin: 0 4px;
-                        font-weight: 300;
-                    }
-                    .note {
-                        margin-left: 10px;
+                @include align-items(center);
+                @include justify-content(space-between);
+                padding: 10px 0;
+                border-bottom: 1px solid $border-color;
+                cursor: pointer;
+                span {
+                    margin-right: 10px;
+                }
+            }
+            .item-subs.active .name-sub .bz-down-2:before, 
+            .item.active .name-item .bz-down-2:before {
+                content: "\e90f";
+            }
+            .sub-service {
+                display: none;
+                background: rgba(204, 204, 204, 0.1);
+                border-bottom: 1px solid $border-color;
+                .action {
+                    width: 24px;
+                    text-align: center;
+                }
+            }
+            .action {
+                margin-left: 10px;
+                @include flex();
+                @include align-items(center);
+                @include justify-content(center);
+                i {
+                    font-size: 13px;
+                    color: #999;
+                    &.bz-check {
+                        color: $main-color;
+                        font-size: 10px;
+                        margin-right: 10px;
+                        display: none;
                     }
                 }
-                .sale-off {
+            }
+            label {
+                cursor: pointer;
+                margin: 0;
+            }
+            .name-sub {
+                @include flex();
+                @include align-items(center);
+                padding: 10px 0;
+                margin: 0 15px;
+                border-top: 1px solid $border-color;
+                cursor: pointer;
+            }
+            .item-subs:first-child .name-sub {
+                border-top: none;
+            }
+            .sub-list {
+                padding: 0 15px 0 30px;
+                font-size: 13px;
+                display: none;
+            }
+            .item-sub {
+                @include flex();
+                @include align-items(center);
+                padding: 5px 0;
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+            .name-time {
+                @include flex-grow("1 0");
+                margin-right: 10px;
+                .time {
                     font-size: 12px;
-                    margin-top: 5px;
-                    color: $primary-color;
-                    line-height: 1.2;
-                    + .price .number {
-                        text-decoration: line-through;
-                    }
+                    color: $primary-text-color;
                 }
+            }
+            .price-save {
+                text-align: right;
+                .save {
+                    font-size: 12px;
+                    color: $main-color;
+                }
+            }
+            .item-subs.active .sub-list {
+                display: block;
             }
         }
     }

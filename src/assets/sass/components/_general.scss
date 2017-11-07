@@ -508,6 +508,31 @@ button.fancybox-arrow {
 	}
 }
 
+/*	[ Scroll up ]
+- - - - - - - - - - - - - - - - - - - - */
+.tp-scrollup {
+	@include flex();
+	@include align-items(center);
+	cursor: pointer;
+	&:before,
+	&:after{
+		content: '';
+		@include flex-grow("1 0 auto");
+		height: 1px;
+		background: $primary-border-color;
+	}
+	i {
+		border: 1px solid $primary-border-color;
+		width: 21px;
+    	line-height: 19px;
+		border-radius: 50px;
+		font-size: 7px;
+		text-align: center;
+		color: #6D6D6D;
+		@include transition();
+	}
+}
+
 /*	[ Rate ]
 - - - - - - - - - - - - - - - - - - - - */
 .tp-rate {
@@ -717,184 +742,64 @@ button.fancybox-arrow {
 		.name-address {
 		    border-bottom: 1px solid $border-color;
 		    padding: 15px 25px;
-		}
-		.salon-name {
-		    margin: 0 0 5px;
-		    font-size: 17px;
-		    font-weight: 300;
-		    a {
-			    color: $text-color;
-			    &:hover {
-					color: $main-color;
+			.salon-name {
+			    margin: 0 0 5px;
+			    font-size: 17px;
+			    font-weight: 300;
+			    a {
+				    color: $text-color;
+				    &:hover {
+						color: $main-color;
+					}
 				}
 			}
-		}
-		.address {
-		    margin: 0 0 5px;
-		    font-size: 12px;
-		    color: $primary-text-color;
-		    text-overflow: ellipsis;
-		    white-space: nowrap;
-		    overflow: hidden;
-		}
-
-		.wrap-stylist {
-		    border-bottom: 1px solid $border-color;
-		}
-		.stylist-img {
-		    @include flex();
-		    padding: 6px 13px;
-		    .item {
-		    	padding: 0 12px;
-	    	    width: 72px;
-		    	&.active figure {
-					position: relative;
-					&:before {
-						position: absolute;
-						content: "\e902";
-						font-family: 'bzone' !important;
-						speak: none;
-						font-style: normal;
-						font-weight: normal;
-						font-variant: normal;
-						text-transform: none;
-						-webkit-font-smoothing: antialiased;
-						-moz-osx-font-smoothing: grayscale;
-						top: 0;
-						left: 0;
-						width: 100%;
-						height: 100%;
-						background: rgba(53, 53, 53, 0.7);
-						color: #fff;
-						text-align: center;
-						line-height: 48px;
-						font-size: 19px;
-  						border-radius: 100px;
-					}
-				}
-				&:nth-child(n+5) {
-				    display: none;
-				}
-				&.stylist-more {
-					figure {
-					    position: relative;
-					}
-					.number {
-					    position: absolute;
-					    top: 0;
-					    left: 0;
-					    width: 100%;
-					    height: 100%;
-					    text-align: center;
-					    color: #fff;
-					    font-weight: 500;
-					    background: rgba(53, 53, 53, 0.7);
-					    border-radius: 100px;
-					    z-index: 1;
-					    cursor: pointer;
-					    line-height: 48px;
-					}
-				} 
-		    }
-		    figure {
+			.address {
 			    margin: 0 0 5px;
-			    width: 48px;
-			    height: 48px;
-			    border-radius: 100px;
+			    font-size: 12px;
+			    color: $primary-text-color;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
 			    overflow: hidden;
 			}
-			.info {
-			    margin: 0 -8px;
-				h3 {
-					font-weight: 100;
-				    font-size: 10px;
-				    text-align: center;
-				    white-space: nowrap;
-				    text-overflow: ellipsis;
-				    overflow: hidden;
-				    margin: 0;
-			     	direction:rtl;
-				    a {
-						color: $text-color;
-					}
-				} 
-				span {
-				    display: none;
-				}
+			.des {
+				font-size: 12px;
+				margin-top: 8px;
+				height: 54px;
+    			overflow: hidden;
 			}
 		}
-		.dates {
-		    @include flex();
-		    @include justify-content(space-between);
-		    color: #6D6D6C;
-		    font-size: 13px;
-		    @include align-items(center);
-		    padding: 11px 25px;
-		    .item {
-			    cursor: pointer;
-			    @include transition();
-			    &:hover {
+		.list-price {
+			font-size: 15px;
+			border-bottom: 1px solid $border-color;
+			padding: 0 25px;
+			.item {
+				@include flex();
+				border-bottom: 1px solid $border-color;
+				padding: 10px 0;
+				color: $text-color;
+				&:hover {
 					color: $main-color;
 				}
-				&.active {
-				    font-weight: 500;
-				    color: $main-color;
-				    cursor: auto;
+				&:last-child {
+					border-bottom: none;
+				}
+				.name-time {
+					@include flex-grow("1 0");
+				    margin-right: 10px;
+					.time {
+						font-size: 12px;
+						color: $primary-text-color;
+					}
+				}
+				.price-save {
+					text-align: right;
+					.save {
+						font-size: 12px;
+						color: $main-color;
+					}
 				}
 			}
-			.calendar-btn {
-			  border: 1px solid;
-			  width: 30px;
-			  text-align: center;
-			  padding: 5px 0;
-			  line-height: 1;
-			  border-radius: 4px;
-			  font-size: 16px;
-			}
 		}
-		.times {
-		    @include flex();
-		    overflow-x: scroll;
-		    border-bottom: 1px solid $border-color;
-		    padding: 0 25px 11px;
-		    &:after {
-				content: '';
-				width: 13px;
-				height: 1px;
-				display: block;
-				@include flex-grow("1 0 auto");
-			}
-			.item {
-			    min-width: 60px;
-			    text-align: center;
-			    border: 1px solid rgba(109, 109, 109, 0.2);
-			    border-radius: 4px;
-			    margin-right: 12px;
-			    font-size: 12px;
-			    line-height: 27px;
-			    &.active,
-			    &:hover {
-			    	border-color: $main-color;
-			    	color: $main-color;
-			    }
-			}
-		}
-		.wrap-times .empty {
-			color: $primary-text-color;
-		    font-weight: 300;
-		    padding: 10px 20px;
-		    display: block;
-		    text-align: center;
-		    font-size: 12px;
-			strong{
-				font-weight: 400;
-			}
-		}
-		.scrollup {
-		    display: none;
-		}
-
-
 	}
 	&.unverified {
 		padding-bottom: 0;
@@ -1239,6 +1144,29 @@ button.fancybox-arrow {
 	    padding-top: 6px;
 	    opacity: 0;
         pointer-events: none;
+        z-index: 2;
+	}
+	&.check-plus {
+		&:before,
+		&:after {
+		  content: '';
+		  position: absolute;
+		  background: #54b1af;
+		  z-index: 1;
+		  pointer-events: none;
+		}
+		&:before {
+		  width: 10px;
+		  height: 2px;
+		  left: 5px;
+		  top: 9px;
+		}
+		&:after {
+		  width: 2px;
+		  height: 10px;
+		  left: 9px;
+		  top: 5px;
+		}
 	}
 }
 
@@ -1443,69 +1371,6 @@ button.fancybox-arrow {
 	    	}
 		}
     }
-}
-
-/*	[ Modal stylist ]
-- - - - - - - - - - - - - - - - - - - - */
-.modal-stylist {
-    background: #fff;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    top: 0;
-    .modal-title {
-	    @include flex();
-	    @include align-items(center);
-	    @include justify-content(space-between);
-	    padding: 0 25px;
-	    height: 45px;
-	    border-bottom: 1px solid $border-color;
-	    .title {
-		    font-size: 13px;
-		}
-		.close {
-		    font-size: 13px;
-		    cursor: pointer;
-		    padding: 10px 0 10px 10px;
-		    @include transition();
-		}
-	}
-	.wrap-content {
-	    overflow-y: auto;
-	    height: calc(100vh - 45px);
-	    .item {
-		    @include flex(true);
-		    @include align-items(center);
-		    border-bottom: 1px solid $border-color;
-		    padding: 10px 25px;
-		    .number {
-				display: none;
-			}
-			figure {
-			    margin: 0 20px 0 0;
-			    img {
-				    width: 48px;
-				    border-radius: 100px;
-				}
-			}
-			.info {
-				h3 {
-				    margin: 0;
-				    font-size: 17px;
-				    font-weight: 300;
-				    a {
-					    color: $text-color;
-					}
-				}
-				span {
-				    font-size: 13px;
-				    color: $primary-text-color;
-				    display: block;
-				}
-			}
-		}
-	}
 }
 
 /*	[ Loading ]

@@ -58,6 +58,16 @@ export default {
         this.popupOpen = !this.popupOpen
       })
     }
+    this.$bus.$on('salonCard::mouseOver', salon => {
+      if (salon.id === this.salon.id) {
+        this.popupOpen = true
+      }
+    })
+    this.$bus.$on('salonCard::mouseLeave', salon => {
+      if (salon.id === this.salon.id) {
+        this.popupOpen = false
+      }
+    })
     // Close all opened popup
     this.$bus.$on('markerPopup::show', salon => {
       if (salon.id !== this.salon.id) {
