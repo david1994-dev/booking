@@ -57,10 +57,12 @@
   </div>
   <div class="wrap-info">
     <div class="name-address">
-      <h3 class="salon-name"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
-        <span @click="setCategory">{{ salon.name }}</span>
-      </router-link></h3>
-      <p class="address pointer">{{ salon.address }}</p>
+      <div class="salon-name-address">
+        <h3 class="salon-name"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
+          <span @click="setCategory">{{ salon.name }}</span>
+        </router-link></h3>
+        <p class="address pointer">{{ salon.address }}</p>
+      </div>
       <div class="tp-view">
         <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
         <!-- <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div> -->

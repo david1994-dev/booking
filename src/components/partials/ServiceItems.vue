@@ -16,8 +16,10 @@
   <service v-else
     :service="service"></service>
   <div class="sub-list" v-if="service.children && service.children.length">
-    <service v-for="sv in service.children" :key="sv.id"
-      :service="sv"></service>
+    <service v-for="sv in service.children"
+      :key="sv.id"
+      :service="sv"
+      label-class="item-sub"></service>
   </div>
 </div>
 </template>
