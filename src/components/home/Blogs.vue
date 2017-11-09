@@ -48,7 +48,7 @@ export default {
     fetchData () {
       this.$startLoading('fetching blogs')
       this.$http.get('blogs', { params: { limit: 6 } }).then(({ data }) => {
-        this.blogs = data
+        this.blogs = data.data
         this.$endLoading('fetching blogs')
       }).catch(() => this.$endLoading('fetching blogs'))
     }

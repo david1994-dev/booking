@@ -1131,9 +1131,17 @@
 				position: static;
 				padding-right: 0;
 				padding: 32px 0 32px 15px;
+				text-align: left;
+    			pointer-events: all;
+    			.stars-number {
+    				@include justify-content(normal);
+    				margin-bottom: 0;
+    			}
+    			.number {
+    				display: block;
+    			}
 			}
 		}
-
 
 		&.unverified .price-rate .price {
 			width: 100%;
@@ -1141,6 +1149,9 @@
 
 		.wrap-info {
 			width: calc(100% - 380px);
+			.name-address .des {
+				display: block;
+			}
 			.list-price {
 				border-bottom: none;
 			}

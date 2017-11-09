@@ -82,7 +82,7 @@ export default {
     fetchData () {
       this.$startLoading('fetching showcases')
       this.$http.get('showcases', { params: { limit: 4, booking_count: 1 } }).then(({ data }) => {
-        this.showcases = data
+        this.showcases = data.data
         this.$endLoading('fetching showcases')
       }).catch(() => this.$endLoading('fetching showcases'))
     }

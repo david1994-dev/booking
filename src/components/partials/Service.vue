@@ -1,5 +1,5 @@
 <template>
-<label class="item-sub">
+<label :class="labelClass">
   <div class="name-time">
     <div class="name">{{ service.name }}</div>
     <div class="time">{{ service.duration }} {{ $t('common.minutes') }}</div>
@@ -25,6 +25,10 @@ export default {
     service: {
       required: true,
       type: Object
+    },
+    labelClass: {
+      type: String,
+      default: 'name-sub'
     }
   },
   computed: mapGetters(['cartServices']),

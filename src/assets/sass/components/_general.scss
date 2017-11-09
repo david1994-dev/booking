@@ -547,12 +547,14 @@ button.fancybox-arrow {
 	    .stars {
 		    font-size: 13px;
 		    color: $main-color;
-		    margin-right: 4px;
 		    @include flex();
 		    @include align-items(center);
 		    i {
 				margin-right: 2px;
 				position: relative;
+				&:last-child {
+					margin-right: 0;
+				}
 			}
 			&.star-0 {
 				color: #ccc;
@@ -688,6 +690,7 @@ button.fancybox-arrow {
 		}
 		.number {
 		    font-size: 13px;
+		    margin-left: 5px;
 		}
 	}
 }
@@ -696,8 +699,9 @@ button.fancybox-arrow {
 /*	[ Salon ]
 - - - - - - - - - - - - - - - - - - - - */
 .tp-salon {
-    position: relative;
-    padding-bottom: 60px;
+    .img-price {
+    	position: relative;
+    }
 	.price-rate {
 		.price {
 		    position: absolute;
@@ -731,17 +735,30 @@ button.fancybox-arrow {
 			}
 		}
 		.rate {
-		    padding: 10px 25px;
-		    position: absolute;
-		    bottom: 0;
-		    left: 0;
-		    width: 100%;
+			position: absolute;
+			bottom: -56px;
+			right: 25px;
+			text-align: right;
+			pointer-events: none;
+		    .stars-number {
+		    	@include justify-content(flex-end);
+		    	margin-bottom: 7px;
+		    	.stars {
+		    		margin-right: 0;
+		    	}
+		    }
+		    .number {
+		    	display: none;
+		    }
 		}
 	}
 	.wrap-info {
 		.name-address {
 		    border-bottom: 1px solid $border-color;
 		    padding: 15px 25px;
+		    .salon-name-address {
+		    	margin-right: 90px;
+		    }
 			.salon-name {
 			    margin: 0 0 5px;
 			    font-size: 17px;
@@ -765,12 +782,12 @@ button.fancybox-arrow {
 				font-size: 12px;
 				margin-top: 8px;
 				height: 54px;
+		    	display: none;
     			overflow: hidden;
 			}
 		}
 		.list-price {
 			font-size: 15px;
-			border-bottom: 1px solid $border-color;
 			padding: 0 25px;
 			.item {
 				@include flex();
@@ -803,6 +820,9 @@ button.fancybox-arrow {
 	}
 	&.unverified {
 		padding-bottom: 0;
+		.wrap-info .name-address .salon-name-address {
+			margin-right: 0;
+		}
 	}
 }
 
