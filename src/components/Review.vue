@@ -24,7 +24,7 @@
               <div class="icon"><i class="bz-hair-spray"></i></div>
               <div class="name-value">
                 <div v-for="reservation in booking.reservations">
-                  <div class="name">{{ reservation.service.category.name }}</div>
+                  <div class="name">{{ reservation.service.name }}</div>
                   <!-- <div class="value">(123) 123-456</div> -->
                 </div>
               </div>
