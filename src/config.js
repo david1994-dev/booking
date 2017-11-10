@@ -8,6 +8,16 @@ export const languages = {
   'en': 'EN'
 }
 
+export const listHotels = [
+  'Hanoi Back Packers  Hostel - 13 Hàng Muối ',
+  'Hanoi Lucky - 91A Hàng Mã ',
+  'Hanoi City Back Packer - 55 Bát Sứ',
+  'Hanoi Centre Hostel - 13 Ngõ Trạm',
+  'Funky Jungle hostel - 73 Mã mây',
+  'Republic backpacers - 14A Phùng hưng',
+  'Pavilian Hotel - Hàng Buồm'
+]
+
 export const facebook = {
   appId: fbAppId,
   version: 'v2.10',
