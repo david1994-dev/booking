@@ -1,16 +1,42 @@
 <template>
 <div class="service-d">
   <div class="title">{{ $t('salon.select_service') }}</div>
-  <!-- <v-loading loader="fetching salon">
+  <v-loading loader="fetching services">
     <template slot="spinner">
       <div class="text-center">
         <v-loading-spinner height="30px" width="30px" />
       </div>
     </template>
 
-
-  </v-loading> -->
-  <div class="list">
+    <div class="content-service">
+      <div class="left">
+        <div class="item" v-for="(category, i) in categories"
+          :key="category.id"
+          :class="{ active: index === i, selected: isSelected(category) }"
+          @click="index = i">
+          {{ category.name }} ({{ category.services.length }})
+          <svg width="16px" viewBox="0 0 16 32" preserveAspectRatio="none">
+            <path d="M0,0 L16,16 L0,32 Z" fill="black"></path>
+          </svg>
+          <i class="bz-check"></i>
+        </div>
+      </div>
+      <div class="right">
+        <div class="item" v-for="(category, i) in categories"
+          :key="category.id"
+          :class="{ active: index === i, selected: isSelected(category) }"
+          @click="index = i">
+          <div class="name-item"><span>{{ category.name }} ({{ category.services.length }})</span><div class="action"><i class="bz-check"></i><i class="bz-down-2"></i></div></div>
+          <div class="sub-service">
+            <service-items v-for="service in category.services"
+              :key="service.id"
+              :service="service"></service-items>
+          </div>
+        </div>
+      </div>
+    </div>
+  </v-loading>
+  <!-- <div class="list">
     <label class="item" v-for="service in salon.services" :key="service.id" v-if="!service.is_group">
       <div class="tp-checkbox">
         <input type="checkbox" :checked="isChecked(service)"
@@ -29,44 +55,77 @@
         </div>
       </div>
     </label>
-  </div>
+  </div> -->
 </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { flatten, includes, map, uniq } from 'lodash'
 import store from 'store2'
 import moment from 'moment'
+const ServiceItems = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/ServiceItems')
 
 export default {
   name: 'SalonServices',
+  components: {
+    ServiceItems
+  },
   props: {
     salon: {
       type: Object,
       required: true
     }
   },
-  computed: mapGetters(['cartServices']),
+  computed: {
+    ...mapGetters(['cartServices']),
+    services () {
+      return flatten(this.salon.services.map(service => service.children))
+    },
+    selected () {
+      if (this.cartServices.length) {
+        return uniq(map(this.cartServices, 'category_id'))
+      }
+
+      return []
+    }
+  },
+  data () {
+    return {
+      categories: [],
+      index: 0
+    }
+  },
   mounted () {
-    this.setSelectedService()
+    // this.setSelectedService()
+    this.fetchServices()
   },
   methods: {
-    isChecked (service) {
-      return this.cartServices.find(s => s.id === service.id)
-    },
-    toggleService (service, checked) {
-      if (checked) {
-        this.$store.dispatch('addServiceToCart', service)
-      } else {
-        this.$store.dispatch('removeServiceFromCart', service)
-      }
+    fetchServices () {
+      this.$startLoading('fetching services')
+      this.$http.get(`salons/${this.salon.id}/services`, { params: { withCategories: 1 } }).then(({ data }) => {
+        this.categories = data
+        this.$endLoading('fetching services')
+        this.setSelectedService()
+      }).catch(() => this.$endLoading('fetching services'))
     },
     setSelectedService () {
       const cart = store.get('cart', {})
-      const category = parseInt(cart.category)
-      const service = this.salon.services.find(s => s.category_id === category)
-      if (service) {
-        this.toggleService(service, true)
+      const categoryId = parseInt(cart.category)
+      const serviceId = parseInt(cart.service)
+
+      if (serviceId) {
+        const service = this.salon.services.find(s => s.id === serviceId)
+        if (service && !service.is_group) {
+          this.$store.dispatch('addServiceToCart', service)
+        }
+      }
+
+      if (categoryId) {
+        const index = this.categories.findIndex(c => c.id === categoryId)
+        if (index > -1) {
+          this.index = index
+        }
       }
     },
     offerDetail (service) {
@@ -75,6 +134,9 @@ export default {
       }
 
       return ''
+    },
+    isSelected (category) {
+      return includes(this.selected, category.id)
     }
   }
 }

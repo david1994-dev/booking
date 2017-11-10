@@ -1,5 +1,7 @@
 <template>
-<div class="tp-salon" :class="{ unverified: !salon.verified }">
+<div class="tp-salon" :class="{ unverified: !salon.verified }"
+  @mouseover="mouseOver"
+  @mouseleave="mouseLeave">
   <div class="img-price">
     <div class="tp-img-slide" v-if="salon.verified">
       <slick v-if="salon.covers && salon.covers.length"
@@ -55,65 +57,36 @@
   </div>
   <div class="wrap-info">
     <div class="name-address">
-      <h3 class="salon-name"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
-        <span @click="setCategory">{{ salon.name }}</span>
-      </router-link></h3>
-      <p class="address pointer" @click="$emit('salonAddressClick', salon)">{{ salon.address }}</p>
+      <div class="salon-name-address">
+        <h3 class="salon-name"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
+          <span @click="setCategory">{{ salon.name }}</span>
+        </router-link></h3>
+        <p class="address pointer">{{ salon.address }}</p>
+      </div>
       <div class="tp-view">
         <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
         <!-- <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div> -->
       </div>
+      <div class="des" v-if="salon.verified">{{ salon.description }}</div>
     </div>
-    <div v-if="salon.verified">
-      <div class="wrap-stylist" :class="{ expand: expandStylist }">
-        <div class="stylist-img">
-          <div class="item" v-for="(stylist, i) in salon.stylists"
-            :key="stylist.id"
-            :class="{
-              active: selectedStylist.id === stylist.id,
-              show: i <= stylistToShow,
-              'stylist-more': i === stylistToShow
-            }">
-            <figure>
-              <div class="number" v-if="i === stylistToShow && hiddenStylists > 0"
-                @click="expandStylists">+{{ hiddenStylists }}</div>
-              <a @click="selectedStylist = stylist"><img :src="stylist.avatar_url"></a>
-            </figure>
-            <div class="info">
-              <h3><a @click="selectedStylist = stylist">{{ stylist.name }}</a></h3>
-              <!-- <span>34 Salon có dịch vụ</span> -->
-            </div>
-          </div>
+    <div class="list-price" v-if="salon.verified && salon.services">
+      <router-link class="item" v-for="(service, i) in salon.services"
+        :key="service.id"
+        v-if="i < 3"
+        :to="{ name: 'salon', params: { id: salon.slug } }">
+        <div class="name-time">
+          <div class="name">{{ service.name }}</div>
+          <div class="time" v-if="service.is_group">{{ $t('common.from') }} {{ cheapestService(service.children).duration }} {{ $t('common.minutes') }}</div>
+          <div class="time" v-else>{{ service.duration }} {{ $t('common.minutes') }}</div>
         </div>
-        <div class="scrollup" @click="expandStylist = !expandStylist"><i class="bz-down-2"></i></div>
-      </div>
-
-      <calendar v-if="salon.stylists.length" v-model="selectedDate">
-        <template slot="button">
-          <i class="bz-calendar-day"></i>
-        </template>
-
-        <div class="wrap-times" :class="{ expand: expandTime }">
-          <v-loading :loader="`fetching stylist::${selectedStylist.id} slots`">
-            <template slot="spinner">
-              <div class="text-center">
-                <v-loading-spinner height="30px" width="30px" />
-              </div>
-            </template>
-
-            <div class="times">
-              <div v-for="slot in slots" class="item"
-                v-if="slot.status == 'available'"
-                :class="{ active: selectedSlot.label == slot.label }"
-                @click="updateCart(slot)">{{ slot.label }}</div>
-            </div>
-            <div class="scrollup" v-show="slots.length > 15" @click="expandTime = !expandTime"><i class="bz-down-2"></i></div>
-            <div class="empty" v-if="!slots.length"><strong>{{ $t('salon.no_available_time') }}</strong><br />{{ $t('salon.choose_another') }}</div>
-          </v-loading>
+        <div class="price-save">
+          <div class="price" v-if="service.is_group">{{ $t('common.from') }} {{ cheapestService(service.children).formatted_discount_price }}</div>
+          <div class="price" v-else>{{ service.has_discount ? service.formatted_discount_price : service.formatted_price }}</div>
+          <div class="save" v-if="service.has_discount">{{ service.discount_offer }}</div>
         </div>
-      </calendar>
+      </router-link>
     </div>
-    <div v-else class="tp-unverified">
+    <div class="tp-unverified" v-else>
       <div class="child">
         <div class="des"><strong>Gọi trực tiếp</strong> cho salon để book lịch hẹn.</div>
         <div class="btn-action">
@@ -141,16 +114,11 @@
 </template>
 
 <script>
-import moment from 'moment'
+import { minBy } from 'lodash'
 import $ from 'jquery'
-import { head } from 'lodash'
 import store from 'store2'
 import Slick from 'vue-slick'
-import Calendar from './Calendar'
 import Stars from './StarRating'
-
-const today = moment()
-const DATE_FORMAT = 'YYYY-MM-DD'
 
 export default {
   name: 'SalonCard',
@@ -165,7 +133,6 @@ export default {
     }
   },
   components: {
-    Calendar,
     Stars,
     Slick
   },
@@ -179,12 +146,6 @@ export default {
   },
   data () {
     return {
-      selectedStylist: { id: 0 },
-      selectedSlot: { label: '' },
-      selectedDate: today,
-      slots: [],
-      expandStylist: false,
-      expandTime: false,
       visibleStylists: 5,
       slickOptions: {
         speed: 300,
@@ -194,10 +155,6 @@ export default {
         infinite: false
       }
     }
-  },
-  watch: {
-    'selectedStylist': 'fetchSlots',
-    'selectedDate': 'fetchSlots'
   },
   beforeUpdate () {
     if (this.$refs.slick) {
@@ -210,50 +167,18 @@ export default {
     }
   },
   mounted () {
-    this.setSelectedStylist()
     this.$nextTick(() => {
       this.resizeHandler()
     })
-    this.$bus.$on('stylistPicker::selected', stylist => {
-      this.selectedStylist = stylist
-    })
   },
   methods: {
-    setSelectedStylist () {
-      if (this.salon.stylists.length) {
-        this.selectedStylist = head(this.salon.stylists)
-      }
-      this.calculateStylistToShow()
+    mouseOver () {
+      this.$emit('mouseOver', this.salon)
+      this.$bus.$emit('salonCard::mouseOver', this.salon)
     },
-    fetchSlots () {
-      this.resetState()
-      this.$startLoading(`fetching stylist::${this.selectedStylist.id} slots`)
-      const params = { date: this.selectedDate.format(DATE_FORMAT) }
-      if (this.category) {
-        params.categories = this.category
-      }
-      this.$http.get(`stylists/${this.selectedStylist.id}/schedule`, { params }).then(({ data }) => {
-        this.slots = data
-        this.$endLoading(`fetching stylist::${this.selectedStylist.id} slots`)
-      }).catch(() => this.$endLoading(`fetching stylist::${this.selectedStylist.id} slots`))
-    },
-    updateCart (slot) {
-      this.selectedSlot = slot
-      if (!slot.start) {
-        return
-      }
-
-      store.set('cart', {
-        category: this.category,
-        stylist: this.selectedStylist.id,
-        time: slot.start
-      })
-      this.$router.push({ name: 'salon', params: { id: this.salon.slug } })
-    },
-    resetState () {
-      this.slots = []
-      this.selectedSlot = { label: '' }
-      this.expandTime = false
+    mouseLeave () {
+      this.$emit('mouseLeave', this.salon)
+      this.$bus.$emit('salonCard::mouseLeave', this.salon)
     },
     calculateStylistToShow () {
       const $list = $('.wrap-info .stylist-img')
@@ -267,17 +192,14 @@ export default {
         _this.calculateStylistToShow()
       })
     },
-    expandStylists () {
-      if (window.innerWidth < 1200) {
-        this.$bus.$emit('stylistPicker::init', { stylists: this.salon.stylists, selected: this.selectedStylist })
-        this.$bus.$emit('stylistPicker::show')
-      } else {
-        this.expandStylist = true
-      }
-    },
     setCategory () {
       store.set('cart', {
         category: this.category
+      })
+    },
+    setService (service) {
+      store.set('cart', {
+        service: service.id
       })
     },
     next () {
@@ -285,13 +207,10 @@ export default {
     },
     prev () {
       this.$refs.slick.prev()
+    },
+    cheapestService (services) {
+      return minBy(services, 'discount_price') || {}
     }
   }
 }
 </script>
-
-<style scoped>
-.show {
-  display: block !important;
-}
-</style>
