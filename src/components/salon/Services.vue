@@ -99,6 +99,9 @@ export default {
   mounted () {
     // this.setSelectedService()
     this.fetchServices()
+    this.$bus.$on('locale::change', locale => {
+      this.fetchServices()
+    })
   },
   methods: {
     fetchServices () {
