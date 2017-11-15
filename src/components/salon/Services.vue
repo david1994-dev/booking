@@ -24,9 +24,14 @@
       <div class="right">
         <div class="item" v-for="(category, i) in categories"
           :key="category.id"
-          :class="{ active: index === i, selected: isSelected(category) }"
-          @click="index = i">
-          <div class="name-item"><span>{{ category.name }} ({{ category.services.length }})</span><div class="action"><i class="bz-check"></i><i class="bz-down-2"></i></div></div>
+          :class="{ active: index === i, selected: isSelected(category) }">
+          <div class="name-item" @click="setActive(i, $event)">
+            <span>{{ category.name }} ({{ category.services.length }})</span>
+            <div class="action">
+              <i class="bz-check"></i>
+              <i class="bz-down-2"></i>
+            </div>
+          </div>
           <div class="sub-service">
             <service-items v-for="service in category.services"
               :key="service.id"
@@ -62,6 +67,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { flatten, includes, map, uniq } from 'lodash'
+import $ from 'jquery'
 import store from 'store2'
 import moment from 'moment'
 const ServiceItems = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/ServiceItems')
@@ -93,7 +99,7 @@ export default {
   data () {
     return {
       categories: [],
-      index: 0
+      index: -1
     }
   },
   mounted () {
@@ -137,6 +143,15 @@ export default {
       }
 
       return ''
+    },
+    setActive (i, e) {
+      this.index = i
+      const target = e.target || e.srcElement
+      this.$nextTick(() => {
+        $('html, body').stop().animate({
+          scrollTop: target.offsetTop - 58
+        }, 600)
+      })
     },
     isSelected (category) {
       return includes(this.selected, category.id)
