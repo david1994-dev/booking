@@ -221,13 +221,6 @@ export default {
       promoCodeStatus: ''
     }
   },
-  metaInfo () {
-    return {
-      htmlAttrs: {
-        class: this.mobileCart ? 'ofhd' : null
-      }
-    }
-  },
   mounted () {
     this.$nextTick(() => {
       setTimeout(() => {
@@ -249,6 +242,13 @@ export default {
     cartServices (value) {
       if (!value.length) {
         this.mobileCart = false
+      }
+    },
+    mobileCart (value) {
+      if (value) {
+        document.documentElement.classList.add('ofhd')
+      } else {
+        document.documentElement.classList.remove('ofhd')
       }
     }
   },

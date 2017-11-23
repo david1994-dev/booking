@@ -546,9 +546,6 @@
 				border-left: none;
 				border-right: none;
 			}
-			.input{
-				border-radius: 0;
-			}
 			.btn-search {
 				color: transparent;
 				width: 50px;
@@ -556,6 +553,9 @@
 				&:hover {
 					background: #1c928f;
 				}
+			}
+			.input input {
+				border-right: none;
 			}
 		}
 		.search-icon {

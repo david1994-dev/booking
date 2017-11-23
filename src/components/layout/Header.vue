@@ -1,5 +1,5 @@
 <template>
-<header class="sub-header" :class="{ 'show-searchform': showSearchForm }">
+<header class="sub-header">
   <div class="sub-container">
     <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
     <div class="fx-full"></div>
@@ -35,6 +35,15 @@ export default {
     this.$bus.$on('searchSubmitted', () => {
       this.showSearchForm = false
     })
+  },
+  watch: {
+    showSearchForm (value) {
+      if (value) {
+        document.documentElement.classList.add('show-searchform')
+      } else {
+        document.documentElement.classList.remove('show-searchform')
+      }
+    }
   },
   data () {
     return {

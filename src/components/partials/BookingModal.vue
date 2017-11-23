@@ -142,7 +142,7 @@ export default {
         data.promo = this.promoCode.id
       }
       this.$startLoading('booking')
-      this.$http.post(`salons/${this.cartSalon.id}/book`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data, status, headers }) => {
+      this.$http.post(`salons/${this.cartSalon.id}/order`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data, status, headers }) => {
         this.$endLoading('booking')
         if (status === 202) {
           if (/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm.test(this.username)) {
