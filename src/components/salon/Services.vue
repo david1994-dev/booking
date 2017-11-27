@@ -109,6 +109,9 @@ export default {
       this.fetchServices()
     })
   },
+  watch: {
+    salon: 'fetchServices'
+  },
   methods: {
     fetchServices () {
       this.$startLoading('fetching services')

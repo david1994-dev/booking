@@ -99,7 +99,7 @@ export default {
 
       this.$startLoading('fetching related')
       this.$http.get(`salons/${this.salon.id}/related`, { params }).then(({ data }) => {
-        this.salons = data
+        this.salons = data.data
         this.$endLoading('fetching related')
         // this.$refs.slick.reSlick()
       }).catch(() => this.$endLoading('fetching related'))
