@@ -138,7 +138,7 @@ export default {
     fetchRelated () {
       this.$startLoading('fetching related')
       this.$http.get(`blogs/${this.$route.params.id}/related`).then(({ data }) => {
-        this.related = data
+        this.related = data.data
         this.$endLoading('fetching related')
       }).catch(() => this.$endLoading('fetching related'))
     },
