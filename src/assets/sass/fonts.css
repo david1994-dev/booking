@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'bzone';
-  src:  url('../fonts/bzone.eot?ea3ilc');
-  src:  url('../fonts/bzone.eot?ea3ilc#iefix') format('embedded-opentype'),
-    url('../fonts/bzone.ttf?ea3ilc') format('truetype'),
-    url('../fonts/bzone.woff?ea3ilc') format('woff'),
-    url('../fonts/bzone.svg?ea3ilc#bzone') format('svg');
+  src:  url('../fonts/bzone.eot?5gygbt');
+  src:  url('../fonts/bzone.eot?5gygbt#iefix') format('embedded-opentype'),
+    url('../fonts/bzone.ttf?5gygbt') format('truetype'),
+    url('../fonts/bzone.woff?5gygbt') format('woff'),
+    url('../fonts/bzone.svg?5gygbt#bzone') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,44 +24,50 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bz-profile-user:before {
-  content: "\e919";
+.bz-oval:before {
+  content: "\e90b";
 }
-.bz-information-button:before {
-  content: "\e918";
+.bz-profile-user:before {
+  content: "\e91a";
+}
+.bz-search:before {
+  content: "\e91e";
+}
+.bz-air-conditioner:before {
+  content: "\e915";
+}
+.bz-clockwise-rotation:before {
+  content: "\e91c";
 }
 .bz-customer-service:before {
-  content: "\e917";
+  content: "\e91d";
+}
+.bz-no-food:before {
+  content: "\e923";
+}
+.bz-no-smoking-sign:before {
+  content: "\e924";
+}
+.bz-credit-cards:before {
+  content: "\e91b";
+}
+.bz-parking:before {
+  content: "\e92a";
+}
+.bz-pet-footprint:before {
+  content: "\e92b";
+}
+.bz-shopping-cart:before {
+  content: "\e92c";
+}
+.bz-wifi-symbol-inside-a-circle:before {
+  content: "\e92d";
+}
+.bz-information-button:before {
+  content: "\e919";
 }
 .bz-note:before {
   content: "\e916";
-}
-.bz-clockwise-rotation:before {
-  content: "\e91a";
-}
-.bz-no-food:before {
-  content: "\e91b";
-}
-.bz-shopping-cart:before {
-  content: "\e91c";
-}
-.bz-no-smoking-sign:before {
-  content: "\e91d";
-}
-.bz-wifi-symbol-inside-a-circle:before {
-  content: "\e91e";
-}
-.bz-pet-footprint:before {
-  content: "\e91f";
-}
-.bz-air-conditioner:before {
-  content: "\e920";
-}
-.bz-credit-cards:before {
-  content: "\e921";
-}
-.bz-parking:before {
-  content: "\e915";
 }
 .bz-book:before {
   content: "\e900";
@@ -96,9 +102,6 @@ i {
 .bz-location:before {
   content: "\e90a";
 }
-.bz-search:before {
-  content: "\e90b";
-}
 .bz-star:before {
   content: "\e90c";
 }
@@ -125,6 +128,12 @@ i {
 }
 .bz-phone:before {
   content: "\e914";
+}
+.bz-phone2:before {
+  content: "\e917";
+}
+.bz-like:before {
+  content: "\e918";
 }
 .bz-eye:before {
   content: "\e9ce";

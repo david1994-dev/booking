@@ -62,7 +62,7 @@ button.fancybox-arrow {
 			display: none;
 		}
 		i {
-			font-size: 23px;
+			font-size: 27px;
 			display: block;
 		}
 	}
@@ -72,7 +72,6 @@ button.fancybox-arrow {
 	    font-size: 14px;
 		.selected {
 		    color: #fff;
-		    border: 1px solid #fff;
 		    @include transition();
 		    cursor: pointer;
 		    border-radius: 50%;
@@ -84,6 +83,23 @@ button.fancybox-arrow {
 		    	color: $main-color;
 		    	border-color: $main-color; 
 		    }
+		    &:before {
+				font-family: 'bzone' !important;
+				speak: none;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				content: "\e90b";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 24px;
+			}
 		}
 		ul {
 			padding: 0;
@@ -175,6 +191,12 @@ button.fancybox-arrow {
 			margin: 0 auto;
 		}
 	}
+}
+
+/*	[ Fix bug re-install Slick slide ]
+- - - - - - - - - - - - - - - - - - - - */
+.slick-slide > div > div {
+    display: block !important;
 }
 
 /*	[ Input form ]
