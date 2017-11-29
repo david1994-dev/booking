@@ -109,6 +109,9 @@ export default {
       this.fetchServices()
     })
   },
+  watch: {
+    salon: 'fetchServices'
+  },
   methods: {
     fetchServices () {
       this.$startLoading('fetching services')
@@ -128,12 +131,14 @@ export default {
         if (service && !service.is_group) {
           this.$store.dispatch('addServiceToCart', service)
         }
-      }
-
-      if (categoryId) {
+      } else if (categoryId) {
         const index = this.categories.findIndex(c => c.id === categoryId)
         if (index > -1) {
           this.index = index
+        }
+      } else {
+        if (this.categories.length) {
+          this.index = 0
         }
       }
     },
