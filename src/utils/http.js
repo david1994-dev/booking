@@ -3,7 +3,8 @@ import interceptors from './interceptors'
 import { apiUrl } from '../config'
 
 export const http = axios.create({
-  baseURL: apiUrl
+  baseURL: apiUrl,
+  headers: { 'X-Request-Source': 'web' }
 })
 
 export function setToken (token) {
