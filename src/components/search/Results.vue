@@ -15,7 +15,7 @@
 const Stylists = () => import(/* webpackChunkName: "search-bundle" */ './StylistResults')
 const Services = () => import(/* webpackChunkName: "search-bundle" */ './ServiceResults')
 const Salons = () => import(/* webpackChunkName: "search-bundle" */ './SalonResults')
-const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
+const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filters')
 
 export default {
   name: 'SearchResults',
