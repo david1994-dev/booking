@@ -78,8 +78,8 @@
     <div class="name-success">{{ $t('auth.success') }}</div>
     <div class="des-success">{{ $t('auth.thank_and_wait') }}</div>
     <div class="name-mobile">{{ $t('auth.easily_manageable_on_app') }}</div>
-    <div class="des-mobile">({{ $t('auth.app_comming_soon') }})</div>
-    <div class="img-mobile"><a style="pointer-events: none;" href="#"><img width="150" src="../../assets/images/app-store.png" /></a></div>
+    <!-- <div class="des-mobile">({{ $t('auth.app_comming_soon') }})</div> -->
+    <div class="img-mobile"><a target="_blank" :href="userMobileAppUrl"><img width="150" src="../../assets/images/app-store.png" /></a></div>
   </div>
 </div>
 </template>
@@ -94,7 +94,12 @@ const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
 export default {
   name: 'BookingModal',
-  computed: mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate', 'promoCode']),
+  computed: {
+    ...mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate', 'promoCode']),
+    userMobileAppUrl () {
+      return `${window.location.protocol}//${window.location.host}` + '/redirect?type=user_mobile_app'
+    }
+  },
   data () {
     return {
       user: 0,
