@@ -31,8 +31,10 @@ Vue.config.productionTip = false
 sync(store, router)
 moment.tz.setDefault('Asia/Ho_Chi_Minh')
 moment.locale(lang)
-Validator.addLocale(vi)
-Validator.addLocale(en)
+// Validator.addLocale(vi)
+// Validator.addLocale(en)
+Validator.localize('vi', vi)
+Validator.localize('en', en)
 
 Vue.use(VeeValidate, {
   locale: lang

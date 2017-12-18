@@ -23,9 +23,9 @@ export default {
         return ''
       }
 
-      const rating = Math.ceil(this.rating * 10)
+      const rating = Math.round(this.rating * 2) / 2
 
-      return `star-${rating}`
+      return `star-${Math.ceil(rating * 10)}`
     }
   }
 }

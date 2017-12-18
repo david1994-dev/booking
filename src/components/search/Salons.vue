@@ -1,8 +1,8 @@
 <template>
 <div>
-  <!-- <div class="search-filter searchsalon-filter">
-    <search-filter />
-  </div> -->
+  <div class="search-filter searchsalon-filter">
+    <search-filter></search-filter>
+  </div>
   <div class="searchsalon-page">
     <div class="box-salons">
       <div class="salons-result" v-show="!$isLoading('fetching salons')">
@@ -68,7 +68,7 @@ import mixpanel from 'mixpanel-browser'
 
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
-const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
+const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filters')
 
 export default {
   name: 'SearchSalons',
