@@ -13,7 +13,8 @@
         <div class="user">
           <div class="des">{{ $t('auth.register_as_user') }}</div>
           <p>{{ $t('auth.easily_book') }}</p>
-          <router-link class="tp-btn" :to="{ name: 'explore' }">{{ $t('common.search') }}</router-link>
+          <a href="#" class="tp-btn" v-if="$route.name === 'explore'" @click.prevent="hide">{{ $t('common.search') }}</a>
+          <router-link class="tp-btn" v-else :to="{ name: 'explore' }">{{ $t('common.search') }}</router-link>
         </div>
       </div>
       <div v-show="salonRegister">
