@@ -7,9 +7,7 @@
     </slot>
   </div>
   <div class="content-item">
-    <div class="list">
-      <slot></slot>
-    </div>
+    <slot></slot>
     <div class="action">
       <slot name="action">
         <span class="cancel" @click="cancel">Hủy bỏ</span>

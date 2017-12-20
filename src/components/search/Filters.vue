@@ -8,11 +8,13 @@
         @toggle="toggleActive('chemicals')"
         @submit="submit"
         @cancel="removeFilter({ chemicals: [] })">
-        <label class="item" v-for="chemical in chemicals"
-          :key="chemical.id">
-          <div class="tp-checkbox"><input type="checkbox" v-model="filter.chemicals" :value="chemical.id"><span></span></div>
-          <div class="name">{{ chemical.name }}</div>
-        </label>
+        <div class="list">
+          <label class="item" v-for="chemical in chemicals"
+            :key="chemical.id">
+            <div class="tp-checkbox"><input type="checkbox" v-model="filter.chemicals" :value="chemical.id"><span></span></div>
+            <div class="name">{{ chemical.name }}</div>
+          </label>
+        </div>
       </search-filter>
 
       <search-filter name="Tiện ích"
@@ -20,11 +22,13 @@
         @toggle="toggleActive('amenities')"
         @submit="submit"
         @cancel="removeFilter({ amenities: [] })">
-        <label class="item" v-for="amenity in amenities"
-          :key="amenity.id">
-          <div class="tp-checkbox"><input type="checkbox" v-model="filter.amenities" :value="amenity.id"><span></span></div>
-          <div class="name"><i :class="amenity.icon" v-if="amenity.icon"></i> {{ amenity.name }}</div>
-        </label>
+        <div class="list">
+          <label class="item" v-for="amenity in amenities"
+            :key="amenity.id">
+            <div class="tp-checkbox"><input type="checkbox" v-model="filter.amenities" :value="amenity.id"><span></span></div>
+            <div class="name"><i :class="amenity.icon" v-if="amenity.icon"></i> {{ amenity.name }}</div>
+          </label>
+        </div>
       </search-filter>
 
       <search-filter name="Giá dịch vụ"
@@ -32,18 +36,39 @@
         @toggle="toggleActive('price')"
         @submit="submit"
         @cancel="active = ''">
-        <label class="item">
-          <div class="tp-checkbox"><input type="checkbox"><span></span></div>
-          <div class="name">Khu vui chơi giải trí (25)</div>
-        </label>
-        <label class="item">
-          <div class="tp-checkbox"><input type="checkbox"><span></span></div>
-          <div class="name">Khu vui chơi giải trí (25)</div>
-        </label>
-        <label class="item">
-          <div class="tp-checkbox"><input type="checkbox"><span></span></div>
-          <div class="name">Khu vui chơi giải trí (25)</div>
-        </label>
+        <div class="price-filter">
+          <vue-slider ref="priceRange" v-model="filter.price"
+            :height="4"
+            :max="1000"
+            :dot-size="32"
+            :formatter="formatPrice"
+            :bg-style="{
+              'backgroundColor': '#d8d8d8',
+            }"
+            :slider-style="[
+              {
+                'border': '1px solid #9ad9d6',
+                'backgroundColor': '#fff'
+              },
+              {
+                'border': '1px solid #1b7470',
+                'backgroundColor': '#fff'
+              }
+            ]"
+            :tooltip-style="[
+              {
+                'backgroundColor': '#9ad9d6',
+                'borderColor': '#9ad9d6'
+              },
+              {
+                'backgroundColor': '#1b7470',
+                'borderColor': '#1b7470'
+              }
+            ]"
+            :process-style="{
+              'backgroundImage': '-webkit-linear-gradient(left, #9ad9d6, #1b7470)'
+            }"></vue-slider>
+        </div>
       </search-filter>
 
       <search-filter name="Đánh giá của khách hàng"
@@ -51,10 +76,12 @@
         @toggle="toggleActive('rating')"
         @submit="submit"
         @cancel="removeFilter({ rating: '' })">
-        <label class="item" v-for="(name, value) in ratings">
-          <div class="tp-checkbox"><input type="radio" v-model="filter.rating" :value="value"><span></span></div>
-          <div class="name">{{ name }}</div>
-        </label>
+        <div class="list">
+          <label class="item" v-for="(name, value) in ratings">
+            <div class="tp-checkbox"><input type="radio" v-model="filter.rating" :value="value"><span></span></div>
+            <div class="name">{{ name }}</div>
+          </label>
+        </div>
       </search-filter>
 
       <!-- <div class="item-filter view-more" :class="{ active: active === 'more' }">
@@ -499,6 +526,8 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import { merge } from 'lodash'
+import { default as numeral } from 'numeral'
+import VueSlider from 'vue-slider-component'
 const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
 const FilterItems = () => import(/* webpackChunkName: "search-bundle" */ './FilterItems')
 
@@ -515,7 +544,8 @@ export default {
   name: 'SearchFilters',
   components: {
     SearchFilter,
-    FilterItems
+    FilterItems,
+    VueSlider
   },
   computed: {
     ...mapGetters(['searchFilters']),
@@ -531,7 +561,8 @@ export default {
       filter: {
         amenities: [],
         chemicals: [],
-        rating: ''
+        rating: '',
+        price: [0, 300]
       }
     }
   },
@@ -548,6 +579,8 @@ export default {
       } else {
         this.active = ''
       }
+
+      this.$nextTick(() => this.$refs.priceRange.refresh())
     },
     removeFilter (filter) {
       this.filter = merge(this.filter, filter)
@@ -555,14 +588,26 @@ export default {
       this.active = ''
     },
     updateFilter () {
+      let minPrice = this.$route.query.min_price || 0
+      let maxPrice = this.$route.query.max_price || 300
+
       this.filter.amenities = this.$route.query.amenities || []
       this.filter.chemicals = this.$route.query.chemicals || []
       this.filter.rating = this.$route.query.rating || ''
+      this.filter.price = [minPrice, maxPrice]
     },
     submit () {
       // const query = merge(this.$route.query, this.filter)
       const query = this.filter
+      const [minPrice, maxPrice] = this.filter.price
+      delete query.price
 
+      if (minPrice > -1) {
+        query.min_price = minPrice
+      }
+      if (maxPrice > -1) {
+        query.max_price = maxPrice
+      }
       if (this.$route.query.q) {
         query.q = this.$route.query.q
       }
@@ -583,7 +628,17 @@ export default {
 
       this.$router.push({ name: 'search', query })
       this.active = ''
+    },
+    formatPrice (value) {
+      const price = value * 10000
+      return `${numeral(price).format('0,0')} đ`
     }
   }
 }
 </script>
+
+<style scoped>
+.price-filter {
+  padding: 50px 15px;
+}
+</style>
