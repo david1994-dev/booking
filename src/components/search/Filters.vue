@@ -7,7 +7,7 @@
         :class="{ active: active === 'chemicals' }"
         @toggle="toggleActive('chemicals')"
         @submit="submit"
-        @cancel="active = ''">
+        @cancel="removeFilter({ chemicals: [] })">
         <label class="item" v-for="chemical in chemicals"
           :key="chemical.id">
           <div class="tp-checkbox"><input type="checkbox" v-model="filter.chemicals" :value="chemical.id"><span></span></div>
@@ -19,11 +19,11 @@
         :class="{ active: active === 'amenities' }"
         @toggle="toggleActive('amenities')"
         @submit="submit"
-        @cancel="active = ''">
+        @cancel="removeFilter({ amenities: [] })">
         <label class="item" v-for="amenity in amenities"
           :key="amenity.id">
           <div class="tp-checkbox"><input type="checkbox" v-model="filter.amenities" :value="amenity.id"><span></span></div>
-          <div class="name">{{ amenity.name }}</div>
+          <div class="name"><i :class="amenity.icon" v-if="amenity.icon"></i> {{ amenity.name }}</div>
         </label>
       </search-filter>
 
@@ -50,7 +50,7 @@
         :class="{ active: active === 'rating' }"
         @toggle="toggleActive('rating')"
         @submit="submit"
-        @cancel="active = ''">
+        @cancel="removeFilter({ rating: '' })">
         <label class="item" v-for="(name, value) in ratings">
           <div class="tp-checkbox"><input type="radio" v-model="filter.rating" :value="value"><span></span></div>
           <div class="name">{{ name }}</div>
@@ -498,7 +498,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-// import { merge } from 'lodash'
+import { merge } from 'lodash'
 const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
 const FilterItems = () => import(/* webpackChunkName: "search-bundle" */ './FilterItems')
 
@@ -548,6 +548,11 @@ export default {
       } else {
         this.active = ''
       }
+    },
+    removeFilter (filter) {
+      this.filter = merge(this.filter, filter)
+      this.submit()
+      this.active = ''
     },
     updateFilter () {
       this.filter.amenities = this.$route.query.amenities || []

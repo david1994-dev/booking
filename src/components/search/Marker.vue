@@ -9,7 +9,7 @@
         <div class="rate">
           <div class="tp-rate">
             <div class="rate-status">{{ salon.rating_summary }}</div>
-            <stars :rating="salon.average_rating">
+            <stars :rating="salon.average_rating_rounded">
               <div class="number">{{ $t('common.rates',{'rates':salon.review_count})}}</div>
             </stars>
           </div>
