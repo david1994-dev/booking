@@ -14,7 +14,7 @@
 
   <div class="rate">
     <div class="tp-rate">
-      <stars :rating="salon.average_rating">
+      <stars :rating="salon.average_rating_rounded">
         <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
       </stars>
       <div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}</div>

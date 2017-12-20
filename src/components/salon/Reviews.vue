@@ -3,7 +3,7 @@
   <div class="title">
     <div class="name">{{ $t('common.rates',{'rates':salon.review_count}) }}</div>
     <div class="tp-rate">
-      <stars v-if="salon.average_rating" :rating="salon.average_rating" />
+      <stars v-if="salon.average_rating" :rating="salon.average_rating_rounded" />
     </div>
   </div>
   <v-loading loader="fetching reviews">
