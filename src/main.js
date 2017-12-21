@@ -23,7 +23,15 @@ import VueI18n from 'vue-i18n'
 // const vi = () => import(/* webpackChunkName: "lang-bundle" */ 'vee-validate/dist/locale/vi')
 import en from 'vee-validate/dist/locale/en'
 import vi from 'vee-validate/dist/locale/vi'
-const lang = storage.get('locale', 'vi')
+
+let lang = storage.get('locale', 'vi')
+
+var urlParam = new URLSearchParams(window.location.search)
+if (urlParam.get('lang') && (urlParam.get('lang') === 'vi' || urlParam.get('lang') === 'en')) {
+  lang = urlParam.get('lang')
+  storage.set('locale', lang)
+}
+
 setLocale(lang)
 
 Vue.config.productionTip = false
