@@ -13,13 +13,15 @@
         <div class="user">
           <div class="des">{{ $t('auth.register_as_user') }}</div>
           <p>{{ $t('auth.easily_book') }}</p>
-          <router-link class="tp-btn" :to="{ name: 'explore' }">{{ $t('common.search') }}</router-link>
+          <a href="#" class="tp-btn" v-if="$route.name === 'explore'" @click.prevent="hide">{{ $t('common.search') }}</a>
+          <router-link class="tp-btn" v-else :to="{ name: 'explore' }">{{ $t('common.search') }}</router-link>
         </div>
       </div>
       <div v-show="salonRegister">
         <div v-if="success">
           <div class="tp-title-form">Thank you!</div>
           <div class="tp-des-form">{{ $t('auth.thank_for_salon_register') }}</div>
+          <div class="img-mobile"><a target="_blank" :href="salonMobileAppUrl"><img width="150" src="../../assets/images/app-store.png" /></a></div>
         </div>
         <form novalidate v-else @submit.prevent="submit">
           <div class="tp-title-form">{{ $t('auth.register_as_salon') }}</div>
@@ -121,6 +123,11 @@ export default {
           this.errors.add(field, messages.join('\n'))
         }
       })
+    }
+  },
+  computed: {
+    salonMobileAppUrl () {
+      return `${window.location.protocol}//${window.location.host}` + '/redirect?type=salon_mobile_app'
     }
   }
 }

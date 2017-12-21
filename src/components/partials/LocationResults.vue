@@ -18,6 +18,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'LocationResults',
@@ -42,7 +43,7 @@ export default {
     },
     geolocation (lat, lng) {
       this.$startLoading('geolocation')
-      this.$http.get('https://maps.googleapis.com/maps/api/geocode/json', { params: { latlng: `${lat},${lng}`, sensor: false } }).then(({ data }) => {
+      axios.get('https://maps.googleapis.com/maps/api/geocode/json', { params: { latlng: `${lat},${lng}`, sensor: false } }).then(({ data }) => {
         if (data.status === 'OK') {
           if (data.results[1]) {
             this.$endLoading('geolocation')

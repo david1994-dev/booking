@@ -7,7 +7,7 @@
       <div class="date-stars">
         <div class="date">{{ review.review.created_at | dateFormat('HH:mm DD-MM-YYYY') }}</div>
         <div class="tp-rate">
-          <stars :rating="review.review.rating" />
+          <stars :rating="parseFloat(review.review.rating)" />
         </div>
       </div>
     </div>

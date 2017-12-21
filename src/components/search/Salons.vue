@@ -1,8 +1,8 @@
 <template>
 <div>
-  <!-- <div class="search-filter searchsalon-filter">
-    <search-filter />
-  </div> -->
+  <div class="search-filter searchsalon-filter">
+    <search-filter></search-filter>
+  </div>
   <div class="searchsalon-page">
     <div class="box-salons">
       <div class="salons-result" v-show="!$isLoading('fetching salons')">
@@ -60,13 +60,15 @@
 import { get, merge } from 'lodash'
 import { mapGetters } from 'vuex'
 import store from 'store2'
-import { googlemap } from '@/config'
+import { googlemap, mixpanelProjectToken, listHotels } from '@/config'
 import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '../RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
+import mixpanel from 'mixpanel-browser'
+
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
-const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
+const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filters')
 
 export default {
   name: 'SearchSalons',
@@ -137,6 +139,18 @@ export default {
 
       if (this.position.latitude && this.position.longitude) {
         params = merge(this.position, params)
+      }
+
+      if (params.hotel && params.source) {
+        mixpanel.init(mixpanelProjectToken)
+        mixpanel.track(
+          'Scan QR Code Search Page',
+          {
+            'HotelId': params.hotel,
+            'HotelName': listHotels[params.hotel],
+            'source': params.source
+          }
+        )
       }
 
       this.$http.get('search', { params })

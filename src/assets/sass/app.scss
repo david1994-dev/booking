@@ -51,3 +51,16 @@
     border-left:2px solid #dcdee3;
     padding-left:12px;
 }
+
+.modal-ios-fix {
+    position: fixed;
+    width: 100%;
+}
+
+.item-filter {
+    &.has-filter {
+        .selected {
+            color: $main-color;
+        }
+    }
+}
