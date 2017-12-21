@@ -56,3 +56,11 @@
     position: fixed;
     width: 100%;
 }
+
+.item-filter {
+    &.has-filter {
+        .selected {
+            color: $main-color;
+        }
+    }
+}

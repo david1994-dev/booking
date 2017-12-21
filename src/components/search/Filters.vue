@@ -4,7 +4,7 @@
     <div class="title-filter">Bộ lọc:</div>
     <div class="list-filter">
       <search-filter name="Hoá chất"
-        :class="{ active: active === 'chemicals' }"
+        :class="{ active: active === 'chemicals', 'has-filter': filter.chemicals.length }"
         @toggle="toggleActive('chemicals')"
         @submit="submit"
         @cancel="removeFilter({ chemicals: [] })">
@@ -18,7 +18,7 @@
       </search-filter>
 
       <search-filter name="Tiện ích"
-        :class="{ active: active === 'amenities' }"
+        :class="{ active: active === 'amenities', 'has-filter': filter.amenities.length }"
         @toggle="toggleActive('amenities')"
         @submit="submit"
         @cancel="removeFilter({ amenities: [] })">
@@ -26,13 +26,13 @@
           <label class="item" v-for="amenity in amenities"
             :key="amenity.id">
             <div class="tp-checkbox"><input type="checkbox" v-model="filter.amenities" :value="amenity.id"><span></span></div>
-            <div class="name"><i :class="amenity.icon" v-if="amenity.icon"></i> {{ amenity.name }}</div>
+            <div class="name">{{ amenity.name }}</div>
           </label>
         </div>
       </search-filter>
 
       <search-filter name="Giá dịch vụ"
-        :class="{ active: active === 'price' }"
+        :class="{ active: active === 'price', 'has-filter': hasPriceFilter }"
         @toggle="toggleActive('price')"
         @submit="submit"
         @cancel="removeFilter({ price: [0, 300] })">
@@ -72,7 +72,7 @@
       </search-filter>
 
       <search-filter name="Đánh giá của khách hàng"
-        :class="{ active: active === 'rating' }"
+        :class="{ active: active === 'rating', 'has-filter': filter.rating }"
         @toggle="toggleActive('rating')"
         @submit="submit"
         @cancel="removeFilter({ rating: '' })">
@@ -525,7 +525,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { merge } from 'lodash'
+import { isArray, merge } from 'lodash'
 import { default as numeral } from 'numeral'
 import VueSlider from 'vue-slider-component'
 const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
@@ -552,7 +552,10 @@ export default {
     ...mapState({
       amenities: state => state.preloadData.amenities || [],
       chemicals: state => state.preloadData.chemicals || []
-    })
+    }),
+    hasPriceFilter () {
+      return ((this.$route.query.min_price > -1) && (this.$route.query.max_price > 0))
+    }
   },
   data () {
     return {
@@ -562,7 +565,7 @@ export default {
         amenities: [],
         chemicals: [],
         rating: '',
-        price: [0, 300]
+        price: []
       }
     }
   },
@@ -591,10 +594,17 @@ export default {
       let minPrice = this.$route.query.min_price || 0
       let maxPrice = this.$route.query.max_price || 300
 
-      this.filter.amenities = this.$route.query.amenities || []
-      this.filter.chemicals = this.$route.query.chemicals || []
+      this.filter.amenities = this.normalizeArrayFilter(this.$route.query.amenities)
+      this.filter.chemicals = this.normalizeArrayFilter(this.$route.query.chemicals)
       this.filter.rating = this.$route.query.rating || ''
       this.filter.price = [minPrice, maxPrice]
+    },
+    normalizeArrayFilter (value) {
+      if (!value) {
+        return []
+      }
+
+      return isArray(value) ? value : Array(value)
     },
     submit () {
       // const query = merge(this.$route.query, this.filter)
