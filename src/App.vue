@@ -43,12 +43,14 @@ export default {
         top = window.pageYOffset || document.documentElement.scrollTop
       })
 
-      this.$root.$on('bv::shown::modal', bvEvt => {
+      this.$root.$on('bv::modal::shown', bvEvt => {
         document.body.style.top = `${top * -1}px`
         document.body.classList.add('modal-ios-fix')
-      }).$on('bv::hidden::modal', bvEvt => {
-        document.body.style.top = '0px'
+      }).$on('bv::modal::hidden', bvEvt => {
         document.body.classList.remove('modal-ios-fix')
+        const t = parseInt(document.body.style.top) * -1
+        document.documentElement.scrollTop = t
+        document.body.style.top = ''
       })
     }
   }
