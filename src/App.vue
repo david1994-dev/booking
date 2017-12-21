@@ -26,12 +26,9 @@ export default {
     })
 
     const md = new MobileDetect(window.navigator.userAgent)
-    let debug = `is iOS: ${md.is('iOS')} | iOS Version: ${md.version('iOS')}`
     if (md.is('iOS') && parseInt(md.version('iOS')) >= 11) {
-      debug += ' | applyIosCarretFix'
-      this.applyIosCarretFix()
+      this.applyCarretFix()
     }
-    alert(debug)
   },
   methods: {
     fetchPreloadData () {
@@ -39,7 +36,7 @@ export default {
         this.$store.dispatch('setPreloadData', data)
       })
     },
-    applyIosCarretFix () {
+    applyCarretFix () {
       var top = 0
 
       window.addEventListener('scroll', () => {
