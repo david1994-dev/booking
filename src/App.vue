@@ -50,7 +50,7 @@ export default {
         document.body.classList.remove('modal-ios-fix')
         const t = parseInt(document.body.style.top) * -1
         document.documentElement.scrollTop = t
-        // document.body.style.top = ''
+        document.body.style.top = ''
       })
     }
   }
