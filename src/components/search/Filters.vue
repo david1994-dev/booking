@@ -35,7 +35,7 @@
         :class="{ active: active === 'price' }"
         @toggle="toggleActive('price')"
         @submit="submit"
-        @cancel="active = ''">
+        @cancel="removeFilter({ price: [0, 300] })">
         <div class="price-filter">
           <vue-slider ref="priceRange" v-model="filter.price"
             :height="4"
