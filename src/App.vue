@@ -26,12 +26,12 @@ export default {
     })
 
     const md = new MobileDetect(window.navigator.userAgent)
-    console.log(`is iOS: ${md.is('iOS')}`)
-    console.log(`iOS Version: ${md.version('iOS')}`)
+    let debug = `is iOS: ${md.is('iOS')} | iOS Version: ${md.version('iOS')}`
     if (md.is('iOS') && parseInt(md.version('iOS')) >= 11) {
-      console.log('applyIosCarretFix')
+      debug += ' | applyIosCarretFix'
       this.applyIosCarretFix()
     }
+    alert(debug)
   },
   methods: {
     fetchPreloadData () {
