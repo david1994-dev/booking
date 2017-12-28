@@ -616,9 +616,9 @@ const FilterItems = () => import(/* webpackChunkName: "search-bundle" */ './Filt
 
 const RATINGS = {
   lt1: 'Rất tồi: dưới 1 điểm',
-  gte1_lt2: 'Kém: 1 điểm trờ lên',
-  gte2_lt3: 'Tạm được: 2 điểm trở lên',
-  gte3_lt4: 'Tốt: 3 điểm trở lên',
+  gte1_lt2: 'Kém: từ 1 đến 2 điểm',
+  gte2_lt3: 'Tạm được: từ 2 đến 3 điểm',
+  gte3_lt4: 'Tốt: từ 3 đến 4 điểm',
   gte4_lt5: 'Tuyệt vời: 4 điểm trở lên',
   null: 'Chưa có đánh giá'
 }
