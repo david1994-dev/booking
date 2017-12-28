@@ -149,6 +149,8 @@
                   'backgroundImage': '-webkit-linear-gradient(left, #9ad9d6, #1b7470)'
                 }"></vue-slider>
             </div>
+
+            <span slot="action"></span>
           </search-filter-more>
 
           <search-filter-more name="Đánh giá của khách hàng">
@@ -607,6 +609,7 @@ import { mapState, mapGetters } from 'vuex'
 import { isArray, merge } from 'lodash'
 import { default as numeral } from 'numeral'
 import VueSlider from 'vue-slider-component'
+// import { mixin as clickaway } from 'vue-clickaway'
 const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
 const SearchFilterMore = () => import(/* webpackChunkName: "search-bundle" */ './FilterMore')
 const FilterItems = () => import(/* webpackChunkName: "search-bundle" */ './FilterItems')
@@ -622,6 +625,7 @@ const RATINGS = {
 
 export default {
   name: 'SearchFilters',
+  // mixins: [clickaway],
   components: {
     SearchFilter,
     SearchFilterMore,
