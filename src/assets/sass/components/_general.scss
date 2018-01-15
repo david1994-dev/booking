@@ -48,7 +48,6 @@ button.fancybox-arrow {
 .tp-account-lang {
 	@include flex();
     @include align-items(center);
-
 	.account {
 		color: #fff;
 		font-size: 14px;
@@ -62,7 +61,7 @@ button.fancybox-arrow {
 			display: none;
 		}
 		i {
-			font-size: 27px;
+			font-size: 28px;
 			display: block;
 		}
 	}
@@ -93,7 +92,7 @@ button.fancybox-arrow {
 				line-height: 1;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
-				content: "\e90b";
+				content: "\e90c";
 				position: absolute;
 				top: 50%;
 				left: 50%;
@@ -584,7 +583,7 @@ button.fancybox-arrow {
 			&.star-05 i{
 				&:nth-child(1) {
 					&:after {
-						content: "\e90c";
+						content: "\e90d";
 						color: #ccc;
 						left: 50%;
 						top: 0;
@@ -615,7 +614,7 @@ button.fancybox-arrow {
 			&.star-15 i{
 				&:nth-child(2) {
 					&:after {
-						content: "\e90c";
+						content: "\e90d";
 						color: #ccc;
 						left: 50%;
 						top: 0;
@@ -644,7 +643,7 @@ button.fancybox-arrow {
 			&.star-25 i{
 				&:nth-child(3) {
 					&:after {
-						content: "\e90c";
+						content: "\e90d";
 						color: #ccc;
 						left: 50%;
 						top: 0;
@@ -671,7 +670,7 @@ button.fancybox-arrow {
 			&.star-35 i{
 				&:nth-child(4) {
 					&:after {
-						content: "\e90c";
+						content: "\e90d";
 						color: #ccc;
 						left: 50%;
 						top: 0;
@@ -696,7 +695,7 @@ button.fancybox-arrow {
 			&.star-45 i{
 				&:nth-child(5) {
 					&:after {
-						content: "\e90c";
+						content: "\e90d";
 						color: #ccc;
 						left: 50%;
 						top: 0;
@@ -1165,7 +1164,7 @@ button.fancybox-arrow {
 	}
 	span:after {
 	    position: absolute;
-	    content: "\e902";
+	    content: "\e903";
 	    font-family: 'bzone' !important;
 	    speak: none;
 	    font-style: normal;

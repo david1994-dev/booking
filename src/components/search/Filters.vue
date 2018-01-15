@@ -37,7 +37,7 @@
         @submit="submit"
         @cancel="removeFilter({ price: [0, 300] })">
         <div class="price-filter">
-          <vue-slider ref="priceRange" v-model="filter.price"
+          <vue-slider ref="priceRangeMore" v-model="filter.price"
             :height="4"
             :max="1000"
             :dot-size="32"
@@ -81,6 +81,86 @@
             <div class="tp-checkbox"><input type="radio" v-model="filter.rating" :value="value"><span></span></div>
             <div class="name">{{ name }}</div>
           </label>
+        </div>
+      </search-filter>
+
+      <search-filter name="Xem thêm"
+        :class="{ active: active === 'more', 'view-more': true }"
+        @toggle="toggleActive('more')"
+        @submit="submit"
+        @cancel="removeFilter({
+          amenities: [],
+          chemicals: [],
+          rating: '',
+          price: []
+        })">
+        <div class="inner-viewmore">
+          <search-filter-more name="Hoá chất">
+            <div class="list">
+              <label class="item" v-for="chemical in chemicals"
+                :key="chemical.id">
+                <div class="tp-checkbox"><input type="checkbox" v-model="filter.chemicals" :value="chemical.id"><span></span></div>
+                <div class="name">{{ chemical.name }}</div>
+              </label>
+            </div>
+          </search-filter-more>
+
+          <search-filter-more name="Tiện ích">
+            <div class="list">
+              <label class="item" v-for="amenity in amenities"
+                :key="amenity.id">
+                <div class="tp-checkbox"><input type="checkbox" v-model="filter.amenities" :value="amenity.id"><span></span></div>
+                <div class="name">{{ amenity.name }}</div>
+              </label>
+            </div>
+          </search-filter-more>
+
+          <search-filter-more name="Giá dịch vụ">
+            <div class="price-filter">
+              <vue-slider ref="priceRange" v-model="filter.price"
+                :height="4"
+                :max="1000"
+                :dot-size="32"
+                :formatter="formatPrice"
+                :bg-style="{
+                  'backgroundColor': '#d8d8d8',
+                }"
+                :slider-style="[
+                  {
+                    'border': '1px solid #9ad9d6',
+                    'backgroundColor': '#fff'
+                  },
+                  {
+                    'border': '1px solid #1b7470',
+                    'backgroundColor': '#fff'
+                  }
+                ]"
+                :tooltip-style="[
+                  {
+                    'backgroundColor': '#9ad9d6',
+                    'borderColor': '#9ad9d6'
+                  },
+                  {
+                    'backgroundColor': '#1b7470',
+                    'borderColor': '#1b7470'
+                  }
+                ]"
+                :process-style="{
+                  'backgroundImage': '-webkit-linear-gradient(left, #9ad9d6, #1b7470)'
+                }"></vue-slider>
+            </div>
+
+            <span slot="action"></span>
+          </search-filter-more>
+
+          <search-filter-more name="Đánh giá của khách hàng">
+            <div class="list">
+              <label class="item" v-for="(name, value) in ratings">
+                <div class="tp-checkbox"><input type="radio" v-model="filter.rating" :value="value"><span></span></div>
+                <div class="name">{{ name }}</div>
+              </label>
+            </div>
+          </search-filter-more>
         </div>
       </search-filter>
 
@@ -204,6 +284,7 @@
                 <div class="view-all collapse"><span>Thu gọn</span> <i class="bz-up-2"></i></div>
               </div>
             </div>
+
             <div class="list-viewmore">
               <div class="title-item">Đánh giá của khách hàng</div>
               <div class="list">
@@ -528,22 +609,26 @@ import { mapState, mapGetters } from 'vuex'
 import { isArray, merge } from 'lodash'
 import { default as numeral } from 'numeral'
 import VueSlider from 'vue-slider-component'
+// import { mixin as clickaway } from 'vue-clickaway'
 const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filter')
+const SearchFilterMore = () => import(/* webpackChunkName: "search-bundle" */ './FilterMore')
 const FilterItems = () => import(/* webpackChunkName: "search-bundle" */ './FilterItems')
 
 const RATINGS = {
   lt1: 'Rất tồi: dưới 1 điểm',
-  gte1_lt2: 'Kém: 1 điểm trờ lên',
-  gte2_lt3: 'Tạm được: 2 điểm trở lên',
-  gte3_lt4: 'Tốt: 3 điểm trở lên',
+  gte1_lt2: 'Kém: từ 1 đến 2 điểm',
+  gte2_lt3: 'Tạm được: từ 2 đến 3 điểm',
+  gte3_lt4: 'Tốt: từ 3 đến 4 điểm',
   gte4_lt5: 'Tuyệt vời: 4 điểm trở lên',
   null: 'Chưa có đánh giá'
 }
 
 export default {
   name: 'SearchFilters',
+  // mixins: [clickaway],
   components: {
     SearchFilter,
+    SearchFilterMore,
     FilterItems,
     VueSlider
   },
@@ -583,10 +668,16 @@ export default {
         this.active = ''
       }
 
-      this.$nextTick(() => this.$refs.priceRange.refresh())
+      this.$nextTick(() => {
+        this.$refs.priceRange.refresh()
+        this.$refs.priceRangeMore.refresh()
+      })
     },
     removeFilter (filter) {
-      this.filter = merge(this.filter, filter)
+      if (filter) {
+        this.filter = merge(this.filter, filter)
+      }
+
       this.submit()
       this.active = ''
     },
