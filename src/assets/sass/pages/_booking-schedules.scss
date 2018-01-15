@@ -1,0 +1,141 @@
+.booking-page {
+	background: #fff;
+	.title-date {
+		@include flex();
+		@include align-items(center);
+		@include justify-content(space-between);
+		padding: 20px;
+		position: relative;
+		.name-address {
+			.name {
+				color: $main-color;
+				font-weight: 400;
+    			font-size: 20px;
+			}
+			.address {
+				font-size: 13px;
+			}
+		}
+		.title-time {
+			text-align: center;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			.title {
+				color: $main-color;
+				font-weight: 900;
+				font-size: 26px;
+			}
+			.time {
+				font-size: 16px;
+    			font-weight: 400;
+			}
+		}
+		.qr-code {
+			text-align: center;
+			.des {
+				font-size: 13px;
+			}
+			.qr img {
+				width: 40px;
+			}
+		}
+	}
+	.list-booking {
+		font-size: 17px;
+    	font-weight: 400;
+    	margin-bottom: 33px;
+		table {
+			width: 100%;
+			tr {
+				border-bottom: 1px solid #ccc;
+				&:nth-child(even) {
+					background: #f7f7f7;
+				}
+				&.added {
+					-webkit-animation: added 3s ease-out;
+					animation: added 3s ease-out;
+				}
+			}
+			.td-time {
+				width: 13%;
+			    padding-left: 20px;
+			}
+			.td-service {
+			    width: 32%;
+			}
+			.td-customers {
+			    width: 24%;
+				.info {
+					@include flex();
+					@include align-items(center);
+					.avata {
+						padding-right: 10px;
+						img {
+							width: 40px;
+							border-radius: 100px;
+						}
+					} 
+				}
+			}
+			.td-staffs {
+				width: 18%;
+			}
+			.td-status {
+				width: 13%;	
+			}
+			th {
+				padding: 0 10px 5px 10px;
+				font-size: 20px;
+			}
+			td {
+				vertical-align: top;
+				padding: 10px;
+			}
+			.text-small {
+				font-size: 13px;
+    			font-weight: 300;
+			}
+		}
+	}
+	.footer {
+		background: $main-color;
+		color: #fff;
+		position: fixed;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    z-index: 10;
+		.inner {
+			@include flex();
+			@include align-items(center);
+			@include justify-content(space-between);
+			font-size: 13px;
+			padding: 7px 20px;
+		}
+		.powered {
+			img {
+				height: 13px;
+			}
+		}
+	}
+}
+
+@-webkit-keyframes added {
+	from {
+		background-color: #54B2B0;
+	}
+	to {
+		background-color: #ffffff;
+	}
+}
+
+@keyframes added {
+	from {
+		background-color: #54B2B0;
+	}
+	to {
+		background-color: #ffffff;
+	}
+}

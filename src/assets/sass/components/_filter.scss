@@ -17,7 +17,7 @@
 		white-space: nowrap;
 	}
 	.list-filter {
-		flex: 1 0;
+		@include flex-grow("1 0");
 		@include flex();
 	}
 	.item-filter {
