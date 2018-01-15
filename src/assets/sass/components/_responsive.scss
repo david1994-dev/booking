@@ -337,7 +337,7 @@
 		}
 		.sale-off .list .item {
 			width: 25%;
-			&:first-child {
+			&.half-percent {
 				width: 50%;
 			}
 		}
@@ -948,7 +948,7 @@
     							position: relative;
     							&:before {
     								position: absolute;
-									content: "\e902";
+									content: "\e903";
 									font-family: 'bzone' !important;
 									speak: none;
 									font-style: normal;
