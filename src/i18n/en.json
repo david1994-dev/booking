@@ -33,6 +33,14 @@
 			"step4": "Review",
 			"step4_detail": "Send feedbacks  to salons & share your experience for other beauty lovers"
 		},
+		"block":{
+			"special": "Special ",
+			"deals": "deals",
+			"popular": "Popular ",
+			"services": "services",
+			"explore": "Explore ",
+			"locations": "locations"
+		},
 		"explore":{
 			"exploring": "Explore",
 			"the_salon": "the favourite salons",

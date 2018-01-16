@@ -44,6 +44,7 @@
       <promotion />
       <service />
       <top-salon />
+      <location />
     </div>
     <div class="savetime">
       <figure>
@@ -68,11 +69,13 @@ const Service = () => import(/* webpackChunkName: "homepage-bundle" */ './home/S
 const Promotion = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Promotion')
 const Guide = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Guide')
 const TopSalon = () => import(/* webpackChunkName: "homepage-bundle" */ './home/TopSalon')
+const Location = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Location')
 const Blogs = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Blogs')
 import RightHeader from './partials/RightHeader'
 import RegisterModal from './partials/RegisterModal'
 
 import { mapState } from 'vuex'
+import $ from 'jquery'
 
 export default {
   name: 'Home',
@@ -89,6 +92,7 @@ export default {
     Guide,
     TopSalon,
     Service,
+    Location,
     Blogs,
     RegisterModal,
     RightHeader
@@ -103,6 +107,39 @@ export default {
   },
   computed: mapState({
     categories: state => state.preloadData.categories || []
-  })
+  }),
+  mounted () {
+    this.$nextTick(() => this.menuMobile())
+  },
+  methods: {
+    menuMobile () {
+      $('.main-header .menu li').each((index, item) => {
+        var _this = $(item)
+        var count = _this.find('ul').length
+        if (count) {
+          _this.addClass('bullet')
+          $('<i class="bullet-icon bz-down-2"></i>').insertAfter(_this.children('a'))
+        }
+      })
+      $('.main-header .menu .icon, .main-header .menu .overlay, .main-header .menu .close-menu').click(() => {
+        $('.main-header .menu').toggleClass('active-menu')
+      })
+
+      $('.main-header .menu .bullet-icon').each((index, item) => {
+        $(item).click(() => {
+          if ($('.main-header .menu.active-menu').length) {
+            var parent = $(item).parent()
+
+            if (parent.hasClass('active-down')) {
+              $(item).siblings('ul').stop(true, true).slideUp()
+            } else {
+              $(item).siblings('ul').stop(true, true).slideDown()
+            }
+            parent.toggleClass('active-down')
+          }
+        })
+      })
+    }
+  }
 }
 </script>

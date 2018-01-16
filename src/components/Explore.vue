@@ -9,7 +9,7 @@
 
       <div class="content-page">
         <div class="tp-discovery" v-if="showcases.length">
-          <div class="item" v-for="showcase in showcases" :key="showcase.id">
+          <div :class="classImage(showcase.image_type)" v-for="showcase in showcases" :key="showcase.id">
             <figure><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }"><img :src="showcase.image_url" /></router-link></figure>
             <div class="info">
               <h4><router-link :to="{ name: 'showcase', params: { id: showcase.slug } }">{{ showcase.name }}</router-link></h4>
@@ -70,6 +70,12 @@ export default {
       this.$http.get('showcases', { params })
         .then(response => cb(response))
         .catch(error => errCb ? errCb(error) : null)
+    },
+    classImage (imageType) {
+      if (imageType === 2) {
+        return 'item half-percent'
+      }
+      return 'item'
     },
     onInfinite ($state) {
       this.fetchData({ page: parseInt(this.meta.pagination.current_page) + 1 }, ({ data }) => {

@@ -33,6 +33,14 @@
 			"step4": "Đánh giá",
 			"step4_detail": "Trực tiếp phản hồi trải nghiệm của bạn đến salon và chia sẻ đến mọi người"
 		},
+		"block":{
+			"special": "Khuyễn mại",
+			"deals": "hấp dẫn",
+			"popular": "Top dịch vụ",
+			"services": "hấp dẫn",
+			"explore": "Khám phá",
+			"locations": "địa điểm làm đẹp"
+		},
 		"explore":{
 			"exploring": "Khám phá",
 			"the_salon": "các salon",

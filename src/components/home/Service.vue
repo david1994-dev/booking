@@ -1,8 +1,8 @@
 <template>
   <div class="discovery tp-box" v-if="services.length">
     <div class="tp-wrap-title">
-      <h3 class="tp-title"><strong>Top dịch vụ</strong> Phổ biến</h3>
-      <!-- <div class="tp-view-more orange"><router-link :to="{ name: 'explore' }">{{ $t('common.see_more') }}</router-link></div> -->
+      <h3 class="tp-title"><strong>{{ $t('home.block.popular') }}</strong> {{ $t('home.block.services') }}</h3>
+      <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 1 } }">{{ $t('common.see_more') }}</router-link></div>
     </div>
     <div class="ofhd">
       <v-loading loader="fetching showcases">
@@ -23,7 +23,7 @@
       </v-loading>
     </div>
 
-    <!-- <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore' }">{{ $t('common.see_more') }}</router-link></div> -->
+    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 1 } }">{{ $t('common.see_more') }}</router-link></div>
   </div>
 </template>
 
