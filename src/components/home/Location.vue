@@ -1,8 +1,8 @@
 <template>
 <div class="beautify-place tp-box" v-if="locations.length">
   <div class="tp-wrap-title">
-    <h3 class="tp-title"><strong>Khám phá địa điểm</strong> làm đẹp</h3>
-    <div class="tp-view-more orange"><a href="#">xem thêm</a></div>
+    <h3 class="tp-title"><strong>{{ $t('home.block.explore') }}</strong> {{ $t('home.block.locations') }}</h3>
+    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 3 } }">{{ $t('common.see_more') }}</router-link></div>
   </div>
   <div class="ofhd">
     <div class="list">
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="tp-view-more bottom orange"><a href="#">xem thêm</a></div>
+  <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 3 } }">{{ $t('common.see_more') }}</router-link></div>
 </div>
 </template>
 <script>
