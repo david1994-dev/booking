@@ -44,6 +44,7 @@
       <promotion />
       <service />
       <top-salon />
+      <location />
     </div>
     <div class="savetime">
       <figure>
@@ -68,6 +69,7 @@ const Service = () => import(/* webpackChunkName: "homepage-bundle" */ './home/S
 const Promotion = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Promotion')
 const Guide = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Guide')
 const TopSalon = () => import(/* webpackChunkName: "homepage-bundle" */ './home/TopSalon')
+const Location = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Location')
 const Blogs = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Blogs')
 import RightHeader from './partials/RightHeader'
 import RegisterModal from './partials/RegisterModal'
@@ -89,6 +91,7 @@ export default {
     Guide,
     TopSalon,
     Service,
+    Location,
     Blogs,
     RegisterModal,
     RightHeader
