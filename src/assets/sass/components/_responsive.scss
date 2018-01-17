@@ -358,6 +358,9 @@
 
 	.tp-discovery .item{
 		width: 33.33%;
+		&.half-percent {
+			width: 66.66%;
+		}
 	}
 	.copyright.bottom {
 		display: none;
@@ -641,6 +644,14 @@
 		.inner {
 			max-width: 1220px;
     		margin: 0 auto;
+			@include flex();
+			@include align-items(center);
+			@include justify-content(space-between);
+		}
+		.logo,
+		.tp-account-lang {
+			position: static;
+   			transform: none;
 		}
 		.menu {
 			.icon,
