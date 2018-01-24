@@ -1,5 +1,5 @@
 @media screen and (min-width: 320px) {
-	.wrapper-header .slogan .text {
+	.slogan-search .slogan .text {
 	    max-width: 430px;
 	    margin: 0 auto;
 	}
@@ -25,6 +25,19 @@
 				padding: 0 10px;
 			}
 		}
+		.top-barbershop,
+		.beautify-place {
+			.list {
+				@include flex();
+				@include flex-wrap(wrap);
+				margin: -10px -10px 10px -10px;
+				.item {
+					width: 50%;
+				    margin-bottom: 0;
+				    padding: 10px;
+				}
+			}
+		}
 	}
 	.tp-discovery {
 		margin-left: -10px;
@@ -34,6 +47,9 @@
 		.item{
 			width: 50%;
 			padding: 0 10px;
+			&.half-percent {
+				width: 100%;
+			}
 		}
 	}
 
@@ -302,7 +318,7 @@
 
 }
 @media screen and (min-width: 768px) {
-	.wrapper-header .search {
+	.slogan-search .search {
     	@include flex();
     	.wrap-input {
 			margin: 0 20px 0 0;
@@ -322,6 +338,18 @@
 				margin-right: 55px;
 			}
 		}
+		.sale-off .list .item {
+			width: 25%;
+			&.half-percent {
+				width: 50%;
+			}
+		}
+		.top-barbershop,
+		.beautify-place {
+			.list .item {
+				width: 33.33%;
+			}	
+		}
 	}
 	.discovery-page {
 		padding-left: 0;
@@ -330,6 +358,9 @@
 
 	.tp-discovery .item{
 		width: 33.33%;
+		&.half-percent {
+			width: 66.66%;
+		}
 	}
 	.copyright.bottom {
 		display: none;
@@ -498,7 +529,7 @@
 	}
 }
 @media screen and (min-width: 800px) {
-	.wrapper-header .search {
+	.slogan-search .search {
     	max-width: 830px;
     	margin: 0 auto;
  	}
@@ -524,7 +555,7 @@
 		margin: 0 auto;
 	}
 
-	.wrapper-header .slogan .text {
+	.slogan-search .slogan .text {
 		font-weight: 100;
 	}
 
@@ -609,11 +640,7 @@
     }
 }
 @media screen and (min-width: 1050px) {
-	.wrapper-header .header {
-		max-width: 1170px;
-		margin: 0 auto;
-	}
-	.wrapper-header .search {
+	.slogan-search .search {
 		margin-bottom: 100px;
 	}
 	.tp-box {
@@ -644,8 +671,11 @@
 				}
 			}
 		}
-		.discovery {
-			padding-bottom: 40px;
+		.top-barbershop,
+		.beautify-place {
+			.list .item {
+				width: 25%;
+			}	
 		}
 	}
 	.discovery-page {
@@ -659,6 +689,9 @@
 	}
 	.tp-discovery .item{
 		width: 25%;
+		&.half-percent {
+			width: 50%;
+		}
 	}
 	.tp-view-more.bottom {
 		display: none;
@@ -818,7 +851,7 @@
     							position: relative;
     							&:before {
     								position: absolute;
-									content: "\e902";
+									content: "\e903";
 									font-family: 'bzone' !important;
 									speak: none;
 									font-style: normal;
@@ -1048,6 +1081,122 @@
 }
 
 @media screen and (min-width: 1200px) {
+	.main-header {
+		.inner {
+		    max-width: 1200px;
+    		padding: 0 15px;
+		    margin: 0 auto;
+			@include flex();
+			@include align-items(center);
+			@include justify-content(space-between);
+		}
+		.logo,
+		.tp-account-lang {
+			position: static;
+   			transform: none;
+		}
+		.menu {
+			.icon,
+			.close-menu {
+				display: none;
+			}
+
+			.inner-menu {
+				position: static;
+			    width: auto;
+			    height: auto;
+			}
+			.content-menu {
+				height: auto;
+    			overflow-y: visible;
+    			> ul {
+    				@include flex();
+    				> li {
+    					padding: 0 17px;
+						> ul {
+	    					top: 100%;
+						    left: 0;
+						    padding-left: 0;
+	    				}
+	    				> .bullet-icon {
+	    					display: none;
+	    				}
+					}
+    			}
+    			ul {
+    				font-weight: 300;
+    				font-size: 15px;
+    				ul {
+    					display: block;
+    					opacity: 0;
+    					visibility: hidden;
+						border-top: none;
+						position: absolute;
+						@include transition();
+					    background: #fff;
+					    width: 220px;
+					    box-shadow: 0 3px 5px rgba(105, 105, 105, 0.2);
+						a {
+							padding: 10px 20px;
+						}
+						li.bullet {
+				    		@include justify-content(space-between);
+				    		> a {
+				    	 		padding-right: 0;
+				    	 		@include flex-grow("1 0");
+				    		}
+				    		.bullet-icon {
+				    			margin: 0 15px 0 0;
+				    		}
+						}
+						ul {
+							top: 0;
+							left: 100%;
+						}
+					}
+					a {
+						padding: 26px 0;
+					}
+    			}
+				li {
+				    border-bottom: none;
+				    &.bullet {
+				    	@include flex();
+				    	@include align-items(center);
+			    	 	> a {
+			    	 		margin-right: 0;
+			    	 	}
+				    }
+				    &:hover {
+				    	> i,
+				    	> a {
+				    		color: $main-color;
+				    	}
+
+				    	> ul {
+	    					opacity: 1;
+	    					visibility: visible;
+				    	}
+				    }
+				}
+				.bullet-icon {
+					background: none;
+				    position: static;
+				    color: $text-color;
+				    border-radius: 0;
+				    width: auto;
+				    padding: 0;
+				    font-size: 9px;
+				    margin-left: 5px;
+				    &:before {
+					    content: "\e912";
+					}
+				}
+
+			}
+		}
+	}
+
 	.searchsalon-page {
 		.wrap-maps.fixed .maps{
 			width: calc(100% - 830px);
@@ -1176,7 +1325,7 @@
 }
 
 @media screen and (max-width: 768px) {
-	.wrapper-header {
+	.slogan-search {
 		.tp-search-result ul ul ul,
 		.tp-search-result-2 ul ul {
 		    display: block;

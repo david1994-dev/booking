@@ -103,7 +103,12 @@ export default {
   methods: {
     fetchData () {
       this.$startLoading('fetching showcase')
-      this.$http.get(`showcases/${this.$route.params.id}`, { params: { salon_services: 1 } }).then(({ data }) => {
+      let params = this.$route.query
+      let categoryId = ''
+      if (params.category_id) {
+        categoryId = params.category_id
+      }
+      this.$http.get(`showcases/${this.$route.params.id}`, { params: { salon_services: 1, category_id: categoryId } }).then(({ data }) => {
         this.showcase = data
         this.$endLoading('fetching showcase')
         this.autoCenter()

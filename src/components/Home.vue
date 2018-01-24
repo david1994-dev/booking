@@ -1,26 +1,51 @@
 <template>
 <div>
   <div class="wrapper-header">
-    <header class="header">
+    <header class="main-header">
       <div class="inner">
-        <router-link class="logo" :to="{ name: 'home' }"><img src="../assets/images/logo_beta.png" /></router-link>
-        <!-- <ul class="account">
-          <li class="register"><a href="">Đăng ký</a></li>
-          <li class="login"><a href="">Đăng nhập</a></li>
-        </ul> -->
+        <router-link class="logo" :to="{ name: 'home' }"><img src="../assets/images/logo-blue.png" /></router-link>
+        <div class="menu">
+        <div class="icon"><i class="bz-menu"></i></div>
+        <div class="overlay"></div>
+        <div class="inner-menu">
+          <div class="close-menu"><i class="bz-close"></i></div>
+            <div class="content-menu">
+              <ul>
+                <li v-for="category in categories"><a class="pointer">{{ category.name }}</a>
+                  <ul v-if="category.children.length">
+                    <li v-for="service in category.children"
+                      :key="service.id"
+                      v-if="service.salons_count">
+                      <router-link :to="{ name:'search', query: { q: service.name, category_id: service.id  } }">{{ service.name }}</router-link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <right-header />
       </div>
     </header>
-    <div class="slogan">
-      <div class="clock-icon">
-        <span class="line"></span>
+    <div class="slogan-search">
+      <div class="slogan">
+        <div class="clock-icon">
+          <span class="line"></span>
+        </div>
+        <h2 class="text">{{ $t('home.search_bar.exploring_and_booking') }}</h2>
       </div>
-      <h2 class="text">{{ $t('home.search_bar.exploring_and_booking') }}</h2>
+      <search />
     </div>
-    <search />
+    
   </div>
   <div class="tp-container landing-page">
-    <explore />
+    <div class="guide-discovery">
+      <guide />
+      <promotion />
+      <service />
+      <top-salon />
+      <location />
+    </div>
     <div class="savetime">
       <figure>
         <a><img src="../assets/images/image-savetime.png"></a>
@@ -40,10 +65,17 @@
 <script>
 const Search = () => import(/* webpackChunkName: "search-bundle" */ './partials/Search')
 const PageFooter = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/Footer')
-const Explore = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Explore')
+const Service = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Service')
+const Promotion = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Promotion')
+const Guide = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Guide')
+const TopSalon = () => import(/* webpackChunkName: "homepage-bundle" */ './home/TopSalon')
+const Location = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Location')
 const Blogs = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Blogs')
 import RightHeader from './partials/RightHeader'
 import RegisterModal from './partials/RegisterModal'
+
+import { mapState } from 'vuex'
+import $ from 'jquery'
 
 export default {
   name: 'Home',
@@ -56,7 +88,11 @@ export default {
   components: {
     PageFooter,
     Search,
-    Explore,
+    Promotion,
+    Guide,
+    TopSalon,
+    Service,
+    Location,
     Blogs,
     RegisterModal,
     RightHeader
@@ -68,6 +104,42 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.$store.dispatch('clearSearchQuery').then(() => next())
+  },
+  computed: mapState({
+    categories: state => state.preloadData.categories || []
+  }),
+  mounted () {
+    this.$nextTick(() => this.menuMobile())
+  },
+  methods: {
+    menuMobile () {
+      $('.main-header .menu li').each((index, item) => {
+        var _this = $(item)
+        var count = _this.find('ul').length
+        if (count) {
+          _this.addClass('bullet')
+          $('<i class="bullet-icon bz-down-2"></i>').insertAfter(_this.children('a'))
+        }
+      })
+      $('.main-header .menu .icon, .main-header .menu .overlay, .main-header .menu .close-menu').click(() => {
+        $('.main-header .menu').toggleClass('active-menu')
+      })
+
+      $('.main-header .menu .bullet-icon').each((index, item) => {
+        $(item).click(() => {
+          if ($('.main-header .menu.active-menu').length) {
+            var parent = $(item).parent()
+
+            if (parent.hasClass('active-down')) {
+              $(item).siblings('ul').stop(true, true).slideUp()
+            } else {
+              $(item).siblings('ul').stop(true, true).slideDown()
+            }
+            parent.toggleClass('active-down')
+          }
+        })
+      })
+    }
   }
 }
 </script>

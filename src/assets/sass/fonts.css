@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'bzone';
-  src:  url('../fonts/bzone.eot?lyeh6m');
-  src:  url('../fonts/bzone.eot?lyeh6m#iefix') format('embedded-opentype'),
-    url('../fonts/bzone.ttf?lyeh6m') format('truetype'),
-    url('../fonts/bzone.woff?lyeh6m') format('woff'),
-    url('../fonts/bzone.svg?lyeh6m#bzone') format('svg');
+  src:  url('../fonts/bzone.eot?pr3bd');
+  src:  url('../fonts/bzone.eot?pr3bd#iefix') format('embedded-opentype'),
+    url('../fonts/bzone.ttf?pr3bd') format('truetype'),
+    url('../fonts/bzone.woff?pr3bd') format('woff'),
+    url('../fonts/bzone.svg?pr3bd#bzone') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,116 +24,119 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bz-air-conditioner:before {
-  content: "\e915";
-}
-.bz-clockwise-rotation:before {
-  content: "\e91b";
-}
-.bz-credit-cards:before {
-  content: "\e91c";
-}
-.bz-customer-service:before {
-  content: "\e91d";
-}
-.bz-no-food:before {
-  content: "\e91f";
-}
-.bz-no-smoking-sign:before {
-  content: "\e920";
-}
-.bz-parking:before {
-  content: "\e921";
-}
-.bz-pet-footprint:before {
-  content: "\e922";
-}
-.bz-shopping-cart:before {
-  content: "\e923";
-}
-.bz-wifi-symbol-inside-a-circle:before {
-  content: "\e924";
-}
-.bz-oval:before {
-  content: "\e90b";
-}
-.bz-profile-user:before {
-  content: "\e91a";
-}
-.bz-search:before {
-  content: "\e91e";
-}
-.bz-information-button:before {
-  content: "\e919";
-}
-.bz-note:before {
-  content: "\e916";
-}
-.bz-book:before {
+.bz-menu:before {
   content: "\e900";
 }
-.bz-calendar:before {
+.bz-book:before {
   content: "\e901";
 }
-.bz-check:before {
+.bz-calendar:before {
   content: "\e902";
 }
-.bz-clock:before {
+.bz-check:before {
   content: "\e903";
 }
-.bz-close:before {
+.bz-clock:before {
   content: "\e904";
 }
-.bz-facebook:before {
+.bz-close:before {
   content: "\e905";
 }
-.bz-hair-spray:before {
+.bz-facebook:before {
   content: "\e906";
 }
-.bz-instagram:before {
+.bz-hair-spray:before {
   content: "\e907";
 }
-.bz-next:before {
+.bz-instagram:before {
   content: "\e908";
 }
-.bz-calendar-day:before {
+.bz-next:before {
   content: "\e909";
 }
-.bz-location:before {
+.bz-calendar-day:before {
   content: "\e90a";
 }
-.bz-star:before {
+.bz-location:before {
+  content: "\e90b";
+}
+.bz-oval:before {
   content: "\e90c";
 }
-.bz-email:before {
+.bz-star:before {
   content: "\e90d";
 }
-.bz-prev-2:before {
+.bz-email:before {
   content: "\e90e";
 }
-.bz-up-2:before {
+.bz-prev-2:before {
   content: "\e90f";
 }
-.bz-down-2:before {
+.bz-up-2:before {
   content: "\e910";
 }
-.bz-prev-23:before {
+.bz-down-2:before {
   content: "\e911";
 }
-.bz-fax:before {
+.bz-next-2:before {
   content: "\e912";
 }
-.bz-global:before {
+.bz-fax:before {
   content: "\e913";
 }
-.bz-phone:before {
+.bz-global:before {
   content: "\e914";
 }
-.bz-phone2:before {
+.bz-phone:before {
+  content: "\e915";
+}
+.bz-air-conditioner:before {
+  content: "\e916";
+}
+.bz-note:before {
   content: "\e917";
 }
-.bz-like:before {
+.bz-phone2:before {
   content: "\e918";
+}
+.bz-like:before {
+  content: "\e919";
+}
+.bz-information-button:before {
+  content: "\e91a";
+}
+.bz-profile-user:before {
+  content: "\e91b";
+}
+.bz-clockwise-rotation:before {
+  content: "\e91c";
+}
+.bz-credit-cards:before {
+  content: "\e91d";
+}
+.bz-customer-service:before {
+  content: "\e91e";
+}
+.bz-search:before {
+  content: "\e91f";
+}
+.bz-no-food:before {
+  content: "\e920";
+}
+.bz-no-smoking-sign:before {
+  content: "\e921";
+}
+.bz-parking:before {
+  content: "\e922";
+}
+.bz-pet-footprint:before {
+  content: "\e923";
+}
+.bz-shopping-cart:before {
+  content: "\e924";
+}
+.bz-wifi-symbol-inside-a-circle:before {
+  content: "\e925";
 }
 .bz-eye:before {
   content: "\e9ce";
