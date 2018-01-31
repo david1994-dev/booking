@@ -162,6 +162,10 @@ export default {
           this.name = data.name
           this.user = data.id
           this.step = 'registration'
+          /* eslint-disable no-undef */
+          // GA Tracking virtual pageviews
+          ga('set', 'page', '/thankyou')
+          ga('send', 'pageview')
         } else {
           this.resetState()
           this.$store.dispatch('emptyCart')
