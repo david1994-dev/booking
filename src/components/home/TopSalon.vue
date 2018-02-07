@@ -18,7 +18,7 @@
 						<div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}
 						</div>
 					</div>
-					<div class="price">Giá {{ salon.min_price.has_discount ? salon.min_price.formatted_discount_price : salon.min_price.formatted_price }}/lần
+					<div class="price">{{ $t('common.from')  }} {{ salon.min_price.has_discount ? salon.min_price.formatted_discount_price : salon.min_price.formatted_price }}/lần
 					</div>
 				</div>
 			</div>
