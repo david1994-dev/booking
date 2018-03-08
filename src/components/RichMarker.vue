@@ -63,8 +63,12 @@ export default {
     /* eslint-disable no-undef */
     options.position = new google.maps.LatLng(this.position.lat, this.position.lng)
     options.map = this.$map
-
-    this.createMarker(options)
+    const search = this.$findAncestor(ans => {
+      return ans.$mapCreated
+    })
+    search.$mapCreated.then(() => {
+      this.createMarker(options)
+    })
   },
 
   methods: {
