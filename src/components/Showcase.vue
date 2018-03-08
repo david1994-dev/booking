@@ -6,7 +6,7 @@
     <div class="box-salons">
       <div class="salons-result">
         <h5>{{ showcase.name }}</h5>
-        <p>{{ showcase.description }}</p>
+        <p class="showcase-description" v-html="showcase.description"></p>
       </div>
 
       <div v-if="showcase.salons.length">
@@ -147,3 +147,8 @@ export default {
   }
 }
 </script>
+<style>
+.showcase-description img {
+  height: auto;
+}
+</style>
