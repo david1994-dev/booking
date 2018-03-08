@@ -13,7 +13,7 @@ import { DeferredReadyMixin } from 'vue2-google-maps/src/utils/deferredReady'
 import eventsBinder from 'vue2-google-maps/src/utils/eventsBinder'
 import getPropsValuesMixin from 'vue2-google-maps/src/utils/getPropsValuesMixin'
 import MapElementMixin from 'vue2-google-maps/src/components/mapElementMixin'
-import { RichMarker } from '../utils/richmarker'
+// import { RichMarker } from '../utils/richmarker'
 
 const props = {
   options: {
@@ -73,6 +73,7 @@ export default {
 
   methods: {
     createMarker (options) {
+      const { RichMarker } = require('../utils/richmarker')
       this.$markerObject = new RichMarker(options)
       // propsBinder(this, this.$markerObject, omit(props, ['options']))
       eventsBinder(this, this.$markerObject, events)
