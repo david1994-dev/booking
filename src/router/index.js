@@ -17,6 +17,7 @@ const Contact = () => import(/* webpackChunkName: "static-page-bundle" */ '@/com
 const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/About')
 const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
 const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
+const News = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/News')
 import Stylist from '@/components/Stylist'
 
 Vue.use(Router)
@@ -100,6 +101,11 @@ export default new Router({
       path: '/stylist/:id',
       name: 'stylist',
       component: Stylist
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: News
     },
     {
       path: '*',

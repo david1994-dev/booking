@@ -1,0 +1,175 @@
+@mixin transition($transition:default) {
+	@if $transition == "default" {
+		-webkit-transition: all 0.3s;
+        transition: all 0.3s;
+	} @else {
+		-webkit-transition: $transition;
+        transition: $transition;
+	}
+}
+
+// Flexbox
+@mixin flex($important:false) {
+	@if $important {
+		display: -ms-flexbox !important;
+		display: flex !important;
+		display: -webkit-box !important;
+		display: -webkit-flex !important;
+	} @else {
+		display: -ms-flexbox;
+		display: flex;
+		display: -webkit-box;
+		display: -webkit-flex;
+	}
+}
+// Flexbox
+@mixin flexInline($important:false) {
+	@if $important {
+		display: -webkit-inline-box !important;
+		display: -webkit-inline-flex !important;
+		display: -ms-inline-flexbox !important;
+		display: inline-flex !important;
+	} @else {
+		display: -webkit-inline-box;
+		display: -webkit-inline-flex;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+	}
+}
+
+@mixin align-items($value) {
+	@if $value == center {
+		-ms-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-align-items: center;
+		-webkit-box-align: center;
+	} @else if $value == flex-start {
+		-ms-align-items: flex-start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+		-webkit-align-items: flex-start;
+		-webkit-box-align: start;
+	} @else if $value == flex-end {
+		-ms-align-items: flex-end;
+		-ms-flex-align: end;
+		align-items: flex-end;
+		-webkit-align-items: flex-end;
+		-webkit-box-align: end;			
+	}	
+}
+
+@mixin flex-wrap($value) {
+	@if $value == wrap {
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+	} @else if $value == nowrap {
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		-webkit-flex-wrap: nowrap;
+	}
+}
+
+@mixin justify-content($value) {
+	@if $value == center {
+		-ms-justify-content: center;
+		-ms-flex-pack: distribute;
+		justify-content: center;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+	} @else if $value == space-between {
+		-ms-justify-content: space-between;
+		justify-content: space-between;
+		-ms-flex-pack: justify;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+	} @else if $value == normal {
+		-ms-justify-content: normal;
+		justify-content: normal;
+		-ms-flex-pack: normal;
+		-webkit-box-pack: normal;
+		-webkit-justify-content: normal;
+	} @else if $value == flex-start {
+		-ms-justify-content: flex-start;
+		justify-content: flex-start;
+		-ms-flex-pack: start;
+		-webkit-box-pack: start;
+		-webkit-justify-content: flex-start;
+	} @else if $value == flex-end {
+		-ms-justify-content: flex-end;
+		justify-content: flex-end;
+		-ms-flex-pack: end;
+		-webkit-box-pack: end;
+		-webkit-justify-content: flex-end;
+	}
+}
+
+@mixin flex-direction($value) {
+	@if $value == column {
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-webkit-flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+	} @else if $value == column-reverse {
+		-ms-flex-direction: column-reverse;
+		flex-direction: column-reverse;
+		-webkit-flex-direction: column-reverse;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+	} @else if $value == row-reverse {
+		-ms-flex-direction: row-reverse;
+		flex-direction: row-reverse;
+		-webkit-flex-direction: row-reverse;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: reverse;
+	}
+}
+
+@mixin align-self($value) {
+	@if $value == stretch {
+		-webkit-align-self: stretch;
+		-ms-flex-item-align: stretch;
+		align-self: stretch;
+	} @else if $value == center {
+		-webkit-align-self: center;
+		-ms-flex-item-align: center;
+		align-self: center;
+	} @else if $value == flex-start {
+		-webkit-align-self: flex-start;
+		-ms-flex-item-align: start;
+		align-self: flex-start;
+	}
+}
+
+@mixin flex-grow($value) {
+	@if $value == "1 0 auto" {
+		flex: 1 0 auto; 
+		-webkit-box-flex: 1;
+		-ms-flex: 1 0 auto;
+		-webkit-flex: 1 0 auto;
+	} @else if $value == "1 0" {
+		flex: 1 0;
+		-webkit-box-flex: 1;
+		-ms-flex: 1 0;
+		-webkit-flex: 1 0;
+	} @else if $value == "0 1 auto" {
+		flex: 0 1 auto;
+		-webkit-box-flex: 0;
+		-ms-flex: 0 1 auto;
+		-webkit-flex: 0 1 auto;
+	}
+}
+
+@mixin order($value) {
+	-webkit-box-ordinal-group: $value + 1;
+	-ms-flex-order: $value;
+	order: $value;
+}
+
+// Transform
+@mixin transform($value) {
+	-webkit-transform: $value;
+	    transform: $value;
+}
