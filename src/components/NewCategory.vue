@@ -250,62 +250,309 @@
 
 	<div id="main-content">
 		<div class="left-content">
+			<div class="tp-title">
+				<h2 class="main-title"><a href="#"></a>HOT NEWS</h2>
+			</div>
+			<div class="hot-news-ads">
+        <hotnews />
+			</div>
 
-			<div id="news-detail">
+			<div class="ads-full"><a href="#"><img src="../assets/news/images/ads-3.jpg" /></a></div>
 
-				<h1 class="main-title">{{ news.title }}</h1>
+      <hair />
+      
+      <nail />
 
-				<div class="time">Hair - Đăng bởi {{ news.author }}, {{ news.created_at }}</div>
+      <beauty />
 
-				<div class="social-detail">
-					<div class="social">
-						<a href="#"><img src="../assets/news/images/icon-facebook.svg" /></a>
-						<a href="#"><img src="../assets/news/images/icon-twitter.svg" /></a>
-						<a href="#"><img src="../assets/news/images/icon-linkedin.svg" /></a>
-					</div>
-					<div class="detail-content">
-						<div class="des">{{ news.intro }}</div>
-						<div class="list-relate">
-							<a href="#">Tổng thống Trump được đề cử giải Nobel Hòa bình</a>
-							<a href="#">Thăm Trung Quốc trước thềm cuộc gặp dự kiến với Tổng thống Donald Trump cho thấy ông Kim Jong-un đang tìm cách cân bằng quan hệ với 2 nước lớn.</a>
+			<div class="news-seciton">
+				<div class="tp-title">
+					<h2 class="main-title"><a href="#"></a>VIDEO CHỌN LỌC</h2>
+					<a class="view-more" href=""><span>xem thêm</span><i class="bz-next"></i></a>
+				</div>
+				<div class="video-section">
+					<div class="video-feature">
+						<div class="img"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/6vbFe6F48Uo"><img src="https://img.youtube.com/vi/6vbFe6F48Uo/maxresdefault.jpg" /></a></div>
+						<div class="info">
+							<div class="name"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/6vbFe6F48Uo">Titanium dioxide lại được ví như “cứu tinh chống tia tử ngoại” của mỹ phẩm bảo vệ da</a> </div>
+							<div class="time">Beauty - 10 phút trước, đăng bởi Meolun</div>
 						</div>
-						<div class="main-content" v-html="news.content"></div>
+					</div>
+					<div class="list">
+						<div class="item">
+							<div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
+							</div>
+							<div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
+							</div>
+							<div class="time">Beauti - 1h trước</div>
+						</div>
+						<div class="item">
+							<div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
+							</div>
+							<div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
+							</div>
+							<div class="time">Beauti - 1h trước</div>
+						</div>
+						<div class="item">
+							<div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
+							</div>
+							<div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
+							</div>
+							<div class="time">Beauti - 1h trước</div>
+						</div>
+						<div class="item">
+							<div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
+							</div>
+							<div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
+							</div>
+							<div class="time">Beauti - 1h trước</div>
+						</div>
+						<div class="item">
+							<div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
+							</div>
+							<div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
+							</div>
+							<div class="time">Beauti - 1h trước</div>
+						</div>
 					</div>
 				</div>
+			</div>
 
-				<div class="news-relate">
-
-					<div class="title-relate">Tin liên quan:</div>
-
-					<div class="list-relate" v-if="related.length">
-						<div class="item" v-for="item in related" :key="item.id">
-							<div class="img"><a href="#"><img :src="item.image_url"></a></div>
+			<div class="news-seciton">
+				<div class="tp-title">
+					<h2 class="main-title"><a href="#"></a>ĐỊA ĐIỂM LÀM ĐẸP</h2>
+					<a class="view-more" href=""><span>xem thêm</span><i class="bz-next"></i></a>
+				</div>
+				<div class="salon-section">
+					<div class="feature-ads">
+						<div class="video-feature">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
 							<div class="info">
-								<div class="name">
-                  <router-link :to="{ name: 'new', params: { id: item.slug } }">{{ item.title }}</router-link>
-                </div>
-								<div class="creat-by">Hair - Tin mới, đăng bởi {{ news.author }}</div>
-								<div class="des">{{ item.intro  }}</div>
+								<div class="name"> <a href="#">Hoàng Tuấn Hairdressing</a> </div>
+								<div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+								<div class="tp-rate">
+									<div class="stars-number">
+										<div class="stars star-35">
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+										</div>
+										<div class="number">8.0 Rất tốt</div>
+									</div>
+									<div class="dash">-</div>
+									<div class="rate-status">2 Đánh giá</div>
+								</div>
+							</div>
+						</div>
+						<div class="ads">
+							<div class="btn-style order">ĐẶT LỊCH</div>
+							<div class="btn-style online">LÀM ĐẸP ONLINE</div>
+							<div class="salon-image">
+								<div><img src="../assets/news/images/salon-image-1.jpg" /></div>
+								<div><img src="../assets/news/images/salon-image-2.jpg" /></div>
+								<div><img src="../assets/news/images/salon-image-3.jpg" /></div>
+							</div>
+							<div class="des">Với hơn 200 salons hàng đầu tại Hà Nội</div>
+							<a class="discovery" href="#">KHÁM PHÁ NGAY</a>
+						</div>
+					</div>
+					<div class="list">
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Top of the barber shop</a> </div>
+								<div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+								<div class="tp-rate">
+									<div class="stars-number">
+										<div class="stars star-35">
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+										</div>
+										<div class="number">8.0 Rất tốt</div>
+									</div>
+									<div class="dash">-</div>
+									<div class="rate-status">2 Đánh giá</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Top of the barber shop</a> </div>
+								<div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+								<div class="tp-rate">
+									<div class="stars-number">
+										<div class="stars star-35">
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+										</div>
+										<div class="number">8.0 Rất tốt</div>
+									</div>
+									<div class="dash">-</div>
+									<div class="rate-status">2 Đánh giá</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Top of the barber shop</a> </div>
+								<div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+								<div class="tp-rate">
+									<div class="stars-number">
+										<div class="stars star-35">
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+										</div>
+										<div class="number">8.0 Rất tốt</div>
+									</div>
+									<div class="dash">-</div>
+									<div class="rate-status">2 Đánh giá</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Top of the barber shop</a> </div>
+								<div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+								<div class="tp-rate">
+									<div class="stars-number">
+										<div class="stars star-35">
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+										</div>
+										<div class="number">8.0 Rất tốt</div>
+									</div>
+									<div class="dash">-</div>
+									<div class="rate-status">2 Đánh giá</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Top of the barber shop</a> </div>
+								<div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+								<div class="tp-rate">
+									<div class="stars-number">
+										<div class="stars star-35">
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+											<i class="bz-star"></i>
+										</div>
+										<div class="number">8.0 Rất tốt</div>
+									</div>
+									<div class="dash">-</div>
+									<div class="rate-status">2 Đánh giá</div>
+								</div>
 							</div>
 						</div>
 					</div>
-
-
-					<div class="paging">
-						<ul>
-							<li class="active">1</li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li class="dots">...</li>
-							<li><a href="">13</a></li>
-							<li class="prev"><a href="#">Prev</a></li>
-							<li class="next"><a href="#">Next</a></li>
-						</ul>
-					</div>
-
 				</div>
-
 			</div>
+
+			<div class="news-seciton">
+				<div class="tp-title">
+					<h2 class="main-title"><a href="#"></a>SẢN PHẨM</h2>
+					<a class="view-more" href=""><span>xem thêm</span><i class="bz-next"></i></a>
+				</div>
+				<div class="product-section">
+					<div class="product-feature">
+						<div class="item first-product">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="des">Titanium dioxide lại được ví như “cứu tinh chống tia tử ngoại” của mỹ phẩm bảo vệ da. bảo vệ da khỏi tia UVA , UVB và không có nguy cơ kích ứng da</div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="des">Titanium dioxide lại được ví như “cứu tinh chống tia tử ngoại” của mỹ phẩm bảo vệ da. bảo vệ da khỏi tia UVA , UVB và không có nguy cơ kích ứng da</div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+					</div>
+					<div class="list">
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="img"><a href="#"><img src="../assets/news/images/img-place.jpg" /></a></div>
+							<div class="info">
+								<div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
+								<div class="time">Product - 1 giờ trước</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 
 		</div>
 		<div class="right-content">
@@ -569,100 +816,71 @@
 </template>
 
 <script>
-import Slick from 'vue-slick'
-import PageHeader from './layout/Header'
-import { fbAsyncInit } from '../utils/mixins'
-const BlogCard = () => import(/* webpackChunkName: "blog-bundle" */ './partials/BlogCard')
+
+const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hotnews')
+const Hair = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hair')
+const Nail = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Nail')
+const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
+
+import { mapState } from 'vuex'
+import $ from 'jquery'
 
 export default {
-  name: 'Blog',
+  name: 'news',
+  metaInfo: {
+    title: 'Bzone News',
+    bodyAttrs: {
+      class: null
+    }
+  },
   components: {
-    PageHeader,
-    BlogCard,
-    Slick
+    Hotnews,
+    Hair,
+    Nail,
+    Beauty
   },
-  mixins: [fbAsyncInit],
-  computed: {
-    url () {
-      return `${window.location.protocol}//${window.location.host}${window.location.pathname}`
-    }
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.$store.dispatch('clearSearchQuery')
+    })
   },
-  data () {
-    return {
-      news: {
-        meta: {}
-      },
-      related: [],
-      slickOptions: {
-        speed: 300,
-        slidesToShow: 1,
-        infinite: false,
-        prevArrow: document.getElementById('prevRelate'),
-        nextArrow: document.getElementById('nextRelate'),
-        responsive: [
-          {
-            breakpoint: 5000,
-            settings: {
-              variableWidth: true
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              variableWidth: false
-            }
-          }
-        ],
-        accessibility: false
-      }
-    }
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('clearSearchQuery').then(() => next())
   },
-  metaInfo () {
-    return {
-      title: `${this.News.title} | Bzone News`
-    }
-  },
-  created () {
-    this.fetchData()
-  },
-  beforeUpdate () {
-    if (this.$refs.slick) {
-      this.$refs.slick.destroy()
-    }
-  },
-  updated () {
-    if (this.$refs.slick && !this.$refs.slick.$el.classList.contains('slick-initialized')) {
-      this.$refs.slick.create()
-    }
-  },
-  watch: {
-    '$route': 'fetchData'
+  computed: mapState({
+    categories: state => state.preloadData.categories || []
+  }),
+  mounted () {
+    this.$nextTick(() => this.menuMobile())
   },
   methods: {
-    fetchData () {
-      this.fetchBlog()
-      this.fetchRelated()
-    },
-    fetchBlog () {
-      this.$startLoading('fetching news')
-      this.$http.get(`news/${this.$route.params.id}`).then(({ data }) => {
-        this.news = data
-        this.$endLoading('fetching news')
-        this.fbAsyncInit()
-      }).catch(() => this.$endLoading('fetching news'))
-    },
-    fetchRelated () {
-      this.$startLoading('fetching related')
-      this.$http.get(`news/${this.$route.params.id}/related`).then(({ data }) => {
-        this.related = data.data
-        this.$endLoading('fetching related')
-      }).catch(() => this.$endLoading('fetching related'))
-    },
-    next () {
-      this.$refs.slick.next()
-    },
-    prev () {
-      this.$refs.slick.prev()
+    menuMobile () {
+      $('.main-header .menu li').each((index, item) => {
+        var _this = $(item)
+        var count = _this.find('ul').length
+        if (count) {
+          _this.addClass('bullet')
+          $('<i class="bullet-icon bz-down-2"></i>').insertAfter(_this.children('a'))
+        }
+      })
+      $('.main-header .menu .icon, .main-header .menu .overlay, .main-header .menu .close-menu').click(() => {
+        $('.main-header .menu').toggleClass('active-menu')
+      })
+
+      $('.main-header .menu .bullet-icon').each((index, item) => {
+        $(item).click(() => {
+          if ($('.main-header .menu.active-menu').length) {
+            var parent = $(item).parent()
+
+            if (parent.hasClass('active-down')) {
+              $(item).siblings('ul').stop(true, true).slideUp()
+            } else {
+              $(item).siblings('ul').stop(true, true).slideDown()
+            }
+            parent.toggleClass('active-down')
+          }
+        })
+      })
     }
   }
 }

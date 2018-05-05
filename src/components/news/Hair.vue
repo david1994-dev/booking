@@ -15,7 +15,8 @@
               
           </div>
           <div class="creat-by">Hair - Tin mới, đăng bởi {{ first.author}}</div>
-          <div class="des">{{ first.intro}}</div>
+          <div class="des" v-if="first.intro.length<190">Welcome, {{ first.intro }}</div>
+          <div class="des" v-if="first.intro.length>=190">Welcome, {{ first.intro.substring(0,190)+".." }}</div>
         </div>
       </div>
       <div class="tp-list">

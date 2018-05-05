@@ -1,24 +1,34 @@
 <template>
 <div class="hot-news-ads">
-  <div class="news-feature">
-    <div class="img"> <a href="#"> <img src="../../assets/news/images/img-thumb-big.jpg" /> </a> </div>
-    <div class="name"><a href="#">Justin Mạnh's Collection 2018</a></div>
-    <div class="des">Kiểu tóc vốn dĩ đóng một vai trò rất quan trọng trong việc tạo ấn tượng với người ngoài. Vậy những kiểu tóc nam nào hiện đang làm mưa làm gió xứ sở Kim Chi. Cùng nhau tìm hiểu nha!</div>
+  <div class="news-feature" v-if="first">
+    <div class="img"> 
+      <router-link :to="{ name: 'new', params: { id: first.slug } }">
+        <img :src="first.image_url" />
+      </router-link>
+    </div>
+    <div class="name">
+      <router-link :to="{ name: 'new', params: { id: first.slug } }">
+        {{ first.title}}
+      </router-link>
+    </div>
+    <div class="des" v-if="first.intro.length<200">Welcome, {{ first.intro }}</div>
+    <div class="des" v-if="first.intro.length>=200">Welcome, {{ first.intro.substring(0,200)+".." }}</div>
   </div>
   <div class="ads-1">
     <div class="img"> <a href="#"> <img src="../../assets/news/images/ads-1.jpg" /> </a> </div>
     <div class="name"><a href="#">Hàn Quốc vẫn được biết đến là quốc gia châu Á luôn dẫn đầu các xu hướng thời trang, trang điểm và mẫu tóc trong khu vực.</a></div>
   </div>
+  
   <div class="list">
-    <a href="#" class="item" v-for="item in news" :key="item.id">
+    <router-link class="item" v-for="item in news" :key="item.id" :to="{ name: 'new', params: { id: item.slug } }">
       <div class="img"><img src="../../assets/news/images/img-thumb-1.jpg" /></div>
       <div class="info">
         <div class="name">
-          <router-link :to="{ name: 'new', params: { id: item.slug } }">{{ item.title }}</router-link>
+          {{ item.title }}
         </div>
         <div class="time">2h trước</div>
       </div>
-    </a>
+    </router-link>
   </div>
   <div class="ads-2"> <a href="#"> <img src="../../assets/news/images/ads-2.jpg" /> </a> </div>
   
@@ -30,6 +40,7 @@ export default {
   name: 'hotnews',
   data () {
     return {
+      first: null,
       news: []
     }
   },
@@ -40,7 +51,12 @@ export default {
     fetchData () {
       this.$startLoading('fetching news')
       this.$http.get('news', { params: { limit: 6, type: 'hotnews' } }).then(({ data }) => {
-        this.news = data.data
+        const res = data.data
+        if (res.length > 0) {
+          this.first = res[0]
+          res.shift()
+        }
+        this.news = res
         this.$endLoading('fetching news')
       }).catch(() => this.$endLoading('fetching news'))
     }
