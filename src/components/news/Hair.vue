@@ -8,15 +8,20 @@
       <div class="cate-feature" v-if="first">
         <div class="img"><a href="#"><img :src="first.image_url" /></a></div>
         <div class="info">
-          <div class="name"> <a href="#">{{ first.title}}</a> </div>
+          <div class="name"> 
+              <router-link :to="{ name: 'new', params: { id: first.slug } }">
+                {{ first.title}}
+              </router-link>
+              
+          </div>
           <div class="creat-by">Hair - Tin mới, đăng bởi {{ first.author}}</div>
           <div class="des">{{ first.intro}}</div>
         </div>
       </div>
       <div class="tp-list">
-        <a href="#" class="item" v-for="item in news" :key="item.id">
-          {{ item.title }}
-        </a>
+        <router-link v-for="item in news" :key="item.id" :to="{ name: 'new', params: { id: item.slug } }">
+          {{ item.title}}
+        </router-link>
       </div>
     </div>
 </template>

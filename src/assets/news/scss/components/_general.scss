@@ -241,3 +241,45 @@ img {
         }
     }
 }
+
+.paging {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        @include flex();
+        @include flex-wrap(wrap);
+    }
+    li {
+        padding: 3px 5px;
+        border: 1px solid #6D6D6D;
+        margin-right: 5px;
+        margin: 0 5px 5px 0;
+        text-align: center;
+        min-width: 30px;
+        @include transition();
+        &:hover, &.active {
+            border-color: $main-color;
+            color: $main-color;
+        }
+        &:hover a {
+            color: $main-color;
+        }
+        &.prev,
+        &.next {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        &.dots {
+            border-color: transparent;
+            &:hover {
+                color: $text-color;
+            }
+        }
+        a {
+            color: $text-color;
+            display: block;
+            outline: none;
+        }
+    }
+}

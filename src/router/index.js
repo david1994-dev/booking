@@ -18,6 +18,7 @@ const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/compo
 const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
 const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
 const News = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/News')
+const New = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/New')
 import Stylist from '@/components/Stylist'
 
 Vue.use(Router)
@@ -106,6 +107,11 @@ export default new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/new/:id',
+      name: 'new',
+      component: New
     },
     {
       path: '*',

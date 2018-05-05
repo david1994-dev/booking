@@ -382,9 +382,19 @@
                     margin-bottom: 15px;
                 }
                 .img {
-                    width: 55px;
+                    width: 70px;
+                    height: 70px;
                     margin-right: 10px;
-                    img {}
+                    overflow: hidden;
+                    position: relative;
+                    img {
+                        height: 100%;
+                        max-width: none;
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
                 }
                 .info {
                     flex: 1 0;

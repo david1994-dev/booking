@@ -14,7 +14,7 @@
       <div class="img"><img src="../../assets/news/images/img-thumb-1.jpg" /></div>
       <div class="info">
         <div class="name">
-          <router-link :to="{ name: 'news', params: { id: item.id } }">{{ item.title }}</router-link>
+          <router-link :to="{ name: 'new', params: { id: item.slug } }">{{ item.title }}</router-link>
         </div>
         <div class="time">2h trước</div>
       </div>
