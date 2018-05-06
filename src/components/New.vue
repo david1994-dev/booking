@@ -32,8 +32,8 @@
 
             <div class="title-relate">Tin liên quan:</div>
 
-            <div class="list-relate" v-if="related.length">
-              <div class="item" v-for="item in related" :key="item.id">
+            <div class="list-relate" v-if="related.data.length">
+              <div class="item" v-for="item in related.data" :key="item.id">
                 <div class="img"><a href="#"><img :src="item.image_url"></a></div>
                 <div class="info">
                   <div class="name">
@@ -47,19 +47,19 @@
 
 
             <div class="paging">
-              <ul>
-                <li class="active">1</li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li class="dots">...</li>
-                <li><a href="">13</a></li>
-                <li class="prev"><a href="#">Prev</a></li>
-                <li class="next"><a href="#">Next</a></li>
-              </ul>
+              <paginate
+                :page-count="related.meta.pagination.total_pages"
+                :container-class="'pagination'"
+                :prev-text="'Prev'"
+                :next-text="'Next'"
+                :prev-class="'prev'"
+                :next-class="'next'"
+                :break-view-class="'dots'"
+                :click-handler="paginateRelated"
+              >
+              </paginate>
             </div>
-
           </div>
-
         </div>
 
       </div>
@@ -335,12 +335,14 @@
   import Slick from 'vue-slick'
   import PageHeader from './news/Header'
   import {fbAsyncInit} from '../utils/mixins'
+  import Paginate from 'vuejs-paginate'
 
   export default {
     name: 'Blog',
     components: {
       PageHeader,
-      Slick
+      Slick,
+      Paginate
     },
     mixins: [fbAsyncInit],
     computed: {
@@ -353,7 +355,16 @@
         news: {
           meta: {}
         },
-        related: [],
+        related: {
+          related: {
+            meta: {
+              pagination: {
+                current_page: 0,
+                total_pages: 0
+              }
+            }
+          }
+        },
         slickOptions: {
           speed: 300,
           slidesToShow: 1,
@@ -412,10 +423,10 @@
           this.fbAsyncInit()
         }).catch(() => this.$endLoading('fetching news'))
       },
-      fetchRelated () {
+      fetchRelated (params) {
         this.$startLoading('fetching related')
-        this.$http.get(`news/${this.$route.params.id}/related`).then(({data}) => {
-          this.related = data.data
+        this.$http.get(`news/${this.$route.params.id}/related`, {params}).then(({data}) => {
+          this.related = data
           this.$endLoading('fetching related')
         }).catch(() => this.$endLoading('fetching related'))
       },
@@ -424,6 +435,10 @@
       },
       prev () {
         this.$refs.slick.prev()
+      },
+
+      paginateRelated (page) {
+        this.fetchRelated({page})
       }
     }
   }
