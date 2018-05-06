@@ -2,7 +2,9 @@
   <div class="news-seciton">
       <div class="tp-title">
         <h2 class="main-title"><a href="#"></a>THÔNG TIN  VỀ TÓC</h2>
-        <a class="view-more" href=""><span>xem thêm</span><i class="bz-next"></i></a>
+        <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'hair' } }">
+              <span>xem thêm</span><i class="bz-next"></i>
+        </router-link>
       </div>
       
       <div class="cate-feature" v-if="first">
