@@ -50,7 +50,7 @@ export default {
   methods: {
     fetchData () {
       this.$startLoading('fetching news')
-      this.$http.get('news', { params: { limit: 6, type: 'hotnews' } }).then(({ data }) => {
+      this.$http.get(`news/${this.$route.params.id}`).then(({ data }) => {
         const res = data.data
         if (res.length > 0) {
           this.first = res[0]

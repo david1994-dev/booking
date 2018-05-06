@@ -1,252 +1,6 @@
 <template>
 <div>
-  <header id="header">
-		<div class="tp-container">
-			<a class="main-logo" href="#"> <img src="../assets/news/images/logo.png" /></a>
-			<div class="menu">
-				<div class="icon-menu">
-					<div class="inner-icon">
-						<div class="top">
-							<span></span>
-						</div>
-						<div class="bottom">
-							<span></span>
-						</div>
-					</div>
-				</div>
-
-				<div class="main-menu-search">
-					<div class="search-menu">
-						<div class="search-inner">
-							<input type="type" class="txt" placeholder="Bạn tìm gì..." />
-							<div class="button">
-								<input type="submit" value="" />
-								<i class="bz-search"></i>
-							</div>
-						</div>
-					</div>
-					<div class="title-category">DANH MỤC CHÍNH</div>
-					<div class="main-menu">
-						<ul>
-							<li><a class="main-link" href="#">Hair</a></li>
-							<li>
-								<a class="main-link" href="#">Nail</a>
-								<ul>
-									<li><a href="#">Nail</a></li>
-									<li>
-										<a href="#">Beauty</a>
-										<ul>
-											<li><a href="#">Nail</a></li>
-											<li><a href="#">Beauty</a></li>
-											<li><a href="#">Hair</a></li>
-											<li><a href="#">Đặt lịch làm đẹp</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Hair</a></li>
-									<li><a href="#">Đặt lịch làm đẹp</a></li>
-								</ul>
-							</li>
-							<li><a class="main-link" href="#">Beauty</a></li>
-							<li><a class="main-link" href="#">Đặt lịch làm đẹp</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div class="news">
-				<div class="icon-txt">NEWS</div>
-				<div class="list-news">
-					<div class="title-listw">TIN TỨC</div>
-					<div class="list">
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-					</div>
-					<div class="day-post">03/04/2018</div>
-					<div class="list">
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-					</div>
-					<div class="day-post">02/04/2018</div>
-					<div class="list">
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-1.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-						<a href="#" class="item">
-							<div class="img"><img src="../assets/news/images/img-thumb-2.jpg" /></div>
-							<div class="info">
-								<div class="name">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</div>
-								<div class="time">2h trước</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="search">
-				<div class="search-inner">
-					<input type="type" class="txt" placeholder="Tìm kiếm" />
-					<div class="button">
-						<input type="submit" value="">
-						<i class="bz-search"></i>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+  	<pageHeader />
 
 	<div id="main-content">
 		<div class="left-content">
@@ -254,7 +8,7 @@
 				<h2 class="main-title"><a href="#"></a>HOT NEWS</h2>
 			</div>
 			<div class="hot-news-ads">
-        <hotnews />
+        		<hotnews />
 			</div>
 
 			<div class="ads-full"><a href="#"><img src="../assets/news/images/ads-3.jpg" /></a></div>
@@ -618,7 +372,7 @@ const Hair = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hair
 const Nail = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Nail')
 const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
 const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
-
+import PageHeader from './news/Header'
 import { mapState } from 'vuex'
 import $ from 'jquery'
 
@@ -635,7 +389,8 @@ export default {
     Hair,
     Nail,
     Beauty,
-    RightContent
+    RightContent,
+    PageHeader
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
