@@ -25,7 +25,7 @@
 			</div>
 			<pagination  :pagination="pagination" :offset="4"  />
 		</div>
-		
+
 		<rightContent />
 	</div>
 
@@ -105,7 +105,7 @@ export default {
     }
   },
   created () {
-    this.fetchData()
+    this.fetchData(this.$route.params.id)
   },
   metaInfo: {
     title: 'Bzone News',
@@ -136,10 +136,17 @@ export default {
   mounted () {
     this.$nextTick(() => this.menuMobile())
   },
+
+  watch: {
+    '$route.params.id': function (id) {
+      this.fetchData(id)
+    }
+  },
+
   methods: {
-    fetchData () {
+    fetchData (id) {
       this.$startLoading('fetching news')
-      this.$http.get('news', { params: { limit: 20, type: `${this.$route.params.id}` } }).then(({ data }) => {
+      this.$http.get('news', { params: { limit: 20, type: id } }).then(({ data }) => {
         this.news = data.data
         this.paging = data.meta.pagination
         this.$endLoading('fetching news')
