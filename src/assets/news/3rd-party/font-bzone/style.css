@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'bzone';
-  src:  url('fonts/bzone.eot?joqfhu');
-  src:  url('fonts/bzone.eot?joqfhu#iefix') format('embedded-opentype'),
-    url('fonts/bzone.ttf?joqfhu') format('truetype'),
-    url('fonts/bzone.woff?joqfhu') format('woff'),
-    url('fonts/bzone.svg?joqfhu#bzone') format('svg');
+  src:  url('fonts/bzone2.eot?joqfhu');
+  src:  url('fonts/bzone2.eot?joqfhu#iefix') format('embedded-opentype'),
+    url('fonts/bzone2.ttf?joqfhu') format('truetype'),
+    url('fonts/bzone2.woff?joqfhu') format('woff'),
+    url('fonts/bzone2.svg?joqfhu#bzone') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-i {
+.bzone2 {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'bzone' !important;
+  font-family: 'bzone2' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;

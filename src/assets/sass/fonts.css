@@ -9,6 +9,17 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'bzone2';
+  src:  url('../fonts/bzone2.eot?joqfhu');
+  src:  url('../fonts/bzone2.eot?joqfhu#iefix') format('embedded-opentype'),
+  url('../fonts/bzone2.ttf?joqfhu') format('truetype'),
+  url('../fonts/bzone2.woff?joqfhu') format('woff'),
+  url('../fonts/bzone2.svg?joqfhu#bzone') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'bzone' !important;
@@ -140,4 +151,51 @@ i {
 }
 .bz-eye:before {
   content: "\e9ce";
+}
+
+
+i.bzone2 {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bzone2' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bzone2.bz-facebook:before {
+  content: "\e907";
+}
+.bzone2.bz-instagram:before {
+  content: "\e908";
+}
+.bzone2.bz-star:before {
+  content: "\e906";
+}
+.bzone2.bz-play-button:before {
+  content: "\e905";
+}
+.bzone2.bz-video-camera:before {
+  content: "\e904";
+}
+.bzone2.bz-prev:before {
+  content: "\e900";
+}
+.bzone2.bz-next:before {
+  content: "\e901";
+}
+.bzone2.bz-up:before {
+  content: "\e903";
+}
+.bzone2.bz-down:before {
+  content: "\e902";
+}
+.bzone2.bz-search:before {
+  content: "\e91f";
 }

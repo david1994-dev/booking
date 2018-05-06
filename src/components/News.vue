@@ -14,7 +14,7 @@
 			<div class="ads-full"><a href="#"><img src="../assets/news/images/ads-3.jpg" /></a></div>
 
       <hair />
-      
+
       <nail />
 
       <beauty />
@@ -361,7 +361,7 @@
 			<div class="copyright bottom">©Abby 2017</div>
 		</div>
 	</footer>
-  
+
 </div>
 </template>
 
@@ -375,6 +375,8 @@ const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './n
 import PageHeader from './news/Header'
 import { mapState } from 'vuex'
 import $ from 'jquery'
+import '@fancyapps/fancybox'
+import '@fancyapps/fancybox/dist/jquery.fancybox.min.css'
 
 export default {
   name: 'news',
