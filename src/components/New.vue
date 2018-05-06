@@ -356,12 +356,10 @@
           meta: {}
         },
         related: {
-          related: {
-            meta: {
-              pagination: {
-                current_page: 0,
-                total_pages: 0
-              }
+          meta: {
+            pagination: {
+              current_page: 0,
+              total_pages: 0
             }
           }
         },
