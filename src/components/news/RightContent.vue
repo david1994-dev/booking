@@ -1,8 +1,9 @@
 <template>
 <div class="right-content">
   <div class="ads-list ads-list-top">
-    <a href="#"><img src="../../assets/news/images/ads-4.jpg" /></a>
-    <a href="#"><img src="../../assets/news/images/ads-5.jpg" /></a>
+    <a v-if="ads.right_1_1" :href="ads.right_1_1.link"><img :src="ads.right_1_1.image_url"/></a>
+    <a v-if="ads.right_1_2" :href="ads.right_1_2.link"><img :src="ads.right_1_2.image_url"/></a>
+    <a v-if="ads.right_1_3" :href="ads.right_1_3.link"><img :src="ads.right_1_3.image_url"/></a>
   </div>
   <div class="newest">
     <div class="title-newest">TIN TỨC</div>
@@ -190,18 +191,18 @@
   </div>
 
   <div class="ads-list ads-list-center">
-    <a href="#"><img src="../../assets/news/images/ads-6.jpg" /></a>
+    <a v-if="ads.right_1_4" :href="ads.right_1_4.link"><img :src="ads.right_1_4.image_url"/></a>
   </div>
   <div class="like-box">
     <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fbzonevn%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=383977448645867" width="309" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
   </div>
 
-  <div class="ads-list ads-list-bottom">
-    <a href="#"><img src="../../assets/news/images/ads-11.jpg" /></a>
-    <a href="#"><img src="../../assets/news/images/ads-12.jpg" /></a>
-    <a href="#"><img src="../../assets/news/images/ads-13.jpg" /></a>
-    <a href="#"><img src="../../assets/news/images/ads-14.jpg" /></a>
-  </div>
+  <!--<div class="ads-list ads-list-bottom">-->
+    <!--<a href="#"><img src="../../assets/news/images/ads-11.jpg" /></a>-->
+    <!--<a href="#"><img src="../../assets/news/images/ads-12.jpg" /></a>-->
+    <!--<a href="#"><img src="../../assets/news/images/ads-13.jpg" /></a>-->
+    <!--<a href="#"><img src="../../assets/news/images/ads-14.jpg" /></a>-->
+  <!--</div>-->
 
 </div>
 </template>
@@ -209,6 +210,12 @@
 <script>
 export default {
   name: 'rightContent',
+  props: {
+    ads: {
+      type: Object,
+      default: {}
+    }
+  },
   data () {
     return {
       first: null,

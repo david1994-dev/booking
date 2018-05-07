@@ -8,10 +8,8 @@
 				<h2 class="main-title"><a href="#"></a>HOT NEWS</h2>
 			</div>
 			<div class="hot-news-ads">
-        		<hotnews />
+        		<hotnews :ads="ads" />
 			</div>
-
-			<div class="ads-full"><a href="#"><img src="../assets/news/images/ads-3.jpg" /></a></div>
 
       <Hair />
 
@@ -25,16 +23,16 @@
 
       <Products/>
 		</div>
-		<rightContent />
+		<rightContent :ads="ads"/>
 	</div>
 
 
 	<div id="ads-list">
 		<div class="inner">
-			<a href="#"><img src="../assets/news/images/ads-7.jpg" /></a>
-			<a href="#"><img src="../assets/news/images/ads-8.jpg" /></a>
-			<a href="#"><img src="../assets/news/images/ads-9.jpg" /></a>
-			<a href="#"><img src="../assets/news/images/ads-10.jpg" /></a>
+			<a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url" /></a>
+			<a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url" /></a>
+			<a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url" /></a>
+			<a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url" /></a>
 		</div>
 	</div>
 
@@ -115,6 +113,25 @@ export default {
     Products,
     PageHeader
   },
+  data () {
+    return {
+      ads: {
+        center_1_1: {},
+        center_1_2: {},
+        right_1_1: {},
+        right_1_2: {},
+        right_1_3: {},
+        right_1_4: {},
+        under_1_1: {},
+        under_1_2: {},
+        under_1_3: {},
+        under_1_4: {}
+      }
+    }
+  },
+  created () {
+    this.fetchAds()
+  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.$store.dispatch('clearSearchQuery')
@@ -130,6 +147,14 @@ export default {
     this.$nextTick(() => this.menuMobile())
   },
   methods: {
+    fetchAds () {
+      this.$http.get(`ads/home_page`).then(({data}) => {
+        this.ads = data
+        console.log(this.ads)
+        this.$endLoading('fetching ads')
+        this.fbAsyncInit()
+      }).catch(() => this.$endLoading('fetching ads'))
+    },
     menuMobile () {
       $('.main-header .menu li').each((index, item) => {
         var _this = $(item)

@@ -410,12 +410,13 @@
     },
     methods: {
       fetchData () {
-        this.fetchBlog()
+        this.fetchBlog(this.$route.query.preview || null)
         this.fetchRelated()
       },
-      fetchBlog () {
+      fetchBlog (preview = null) {
+        let params = {preview}
         this.$startLoading('fetching news')
-        this.$http.get(`news/${this.$route.params.id}`).then(({data}) => {
+        this.$http.get(`news/${this.$route.params.id}`, {params}).then(({data}) => {
           this.news = data
           this.$endLoading('fetching news')
           this.fbAsyncInit()
