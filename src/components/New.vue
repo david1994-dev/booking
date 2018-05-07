@@ -65,8 +65,9 @@
       </div>
       <div class="right-content">
         <div class="ads-list ads-list-top">
-          <a href="#"><img src="../assets/news/images/ads-4.jpg"/></a>
-          <a href="#"><img src="../assets/news/images/ads-5.jpg"/></a>
+          <a v-if="ads.right_1_1" :href="ads.right_1_1.link"><img :src="ads.right_1_1.image_url"/></a>
+          <a v-if="ads.right_1_2" :href="ads.right_1_2.link"><img :src="ads.right_1_2.image_url"/></a>
+          <a v-if="ads.right_1_3" :href="ads.right_1_3.link"><img :src="ads.right_1_3.image_url"/></a>
         </div>
         <div class="newest">
           <div class="title-newest">TIN TỨC</div>
@@ -257,7 +258,8 @@
         </div>
 
         <div class="ads-list ads-list-center">
-          <a href="#"><img src="../assets/news/images/ads-6.jpg"/></a>
+          <a v-if="ads.right_1_4" :href="ads.right_1_4.link"><img :src="ads.right_1_4.image_url"/></a>
+
         </div>
         <div class="like-box">
           <iframe
@@ -266,25 +268,25 @@
             allowTransparency="true" allow="encrypted-media"></iframe>
         </div>
 
-        <div class="ads-list ads-list-bottom">
-          <a href="#"><img src="../assets/news/images/ads-11.jpg"/></a>
-          <a href="#"><img src="../assets/news/images/ads-12.jpg"/></a>
-          <a href="#"><img src="../assets/news/images/ads-13.jpg"/></a>
-          <a href="#"><img src="../assets/news/images/ads-14.jpg"/></a>
-        </div>
+        <!--<div class="ads-list ads-list-bottom">-->
+          <!--<a href="#"><img src="../assets/news/images/ads-11.jpg"/></a>-->
+          <!--<a href="#"><img src="../assets/news/images/ads-12.jpg"/></a>-->
+          <!--<a href="#"><img src="../assets/news/images/ads-13.jpg"/></a>-->
+          <!--<a href="#"><img src="../assets/news/images/ads-14.jpg"/></a>-->
+        <!--</div>-->
 
       </div>
     </div>
-
 
     <div id="ads-list">
       <div class="inner">
-        <a href="#"><img src="../assets/news/images/ads-7.jpg"/></a>
-        <a href="#"><img src="../assets/news/images/ads-8.jpg"/></a>
-        <a href="#"><img src="../assets/news/images/ads-9.jpg"/></a>
-        <a href="#"><img src="../assets/news/images/ads-10.jpg"/></a>
+        <a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url" /></a>
+        <a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url" /></a>
+        <a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url" /></a>
+        <a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url" /></a>
       </div>
     </div>
+
 
     <footer class="footer">
       <div class="tp-container">
@@ -352,6 +354,18 @@
     },
     data () {
       return {
+        ads: {
+          center_1_1: {},
+          center_1_2: {},
+          right_1_1: {},
+          right_1_2: {},
+          right_1_3: {},
+          right_1_4: {},
+          under_1_1: {},
+          under_1_2: {},
+          under_1_3: {},
+          under_1_4: {}
+        },
         news: {
           meta: {}
         },
@@ -438,6 +452,13 @@
 
       paginateRelated (page) {
         this.fetchRelated({page})
+      },
+      fetchAds () {
+        this.$http.get('ads/detail_new').then(({data}) => {
+          this.ads = data.data
+          this.$endLoading('fetching ads')
+          this.fbAsyncInit()
+        }).catch(() => this.$endLoading('fetching ads'))
       }
     }
   }

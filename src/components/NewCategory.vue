@@ -3,9 +3,7 @@
     <page-header/>
     <div id="main-content">
       <div class="left-content">
-        <hotnews/>
-        <div class="ads-full"><a href="#"><img src="../assets/news/images/ads-3.jpg"/></a></div>
-
+        <hotnews :ads="ads"/>
         <div class="list-article" v-if="news.data.length">
           <div class="item" v-for="item in news.data" :key="item.id">
             <router-link class="img" :to="{ name: 'new', params: { id: item.slug } }">
@@ -37,15 +35,15 @@
           </paginate>
         </div>
       </div>
-      <rightContent/>
+      <rightContent :ads="ads"/>
     </div>
 
     <div id="ads-list">
       <div class="inner">
-        <a href="#"><img src="../assets/news/images/ads-7.jpg"/></a>
-        <a href="#"><img src="../assets/news/images/ads-8.jpg"/></a>
-        <a href="#"><img src="../assets/news/images/ads-9.jpg"/></a>
-        <a href="#"><img src="../assets/news/images/ads-10.jpg"/></a>
+        <a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url" /></a>
+        <a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url" /></a>
+        <a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url" /></a>
+        <a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url" /></a>
       </div>
     </div>
 
@@ -121,11 +119,13 @@
             }
           }
         },
+        ads: {},
         pagination: {}
       }
     },
     created () {
       this.fetchData(this.$route.params.id)
+      this.fetchAds()
     },
     metaInfo: {
       title: 'Bzone News',
@@ -162,7 +162,6 @@
         this.fetchData(id)
       }
     },
-
     methods: {
       fetchData (id, page = 1) {
         this.$startLoading('fetching news')
@@ -201,6 +200,13 @@
       },
       paginateNews (page) {
         this.fetchData(this.$route.params.id, page)
+      },
+      fetchAds () {
+        this.$http.get('ads/category_2').then(({data}) => {
+          this.ads = data.data
+          this.$endLoading('fetching ads')
+          this.fbAsyncInit()
+        }).catch(() => this.$endLoading('fetching ads'))
       }
     }
   }

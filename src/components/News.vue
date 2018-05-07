@@ -148,9 +148,8 @@ export default {
   },
   methods: {
     fetchAds () {
-      this.$http.get(`ads/home_page`).then(({data}) => {
-        this.ads = data
-        console.log(this.ads)
+      this.$http.get('ads/home_page').then(({data}) => {
+        this.ads = data.data
         this.$endLoading('fetching ads')
         this.fbAsyncInit()
       }).catch(() => this.$endLoading('fetching ads'))
