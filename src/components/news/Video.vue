@@ -9,51 +9,29 @@
     <div class="video-section">
       <div class="video-feature" v-if="first">
         <div class="img">
-          <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/6vbFe6F48Uo">
-            <img src="https://img.youtube.com/vi/6vbFe6F48Uo/maxresdefault.jpg" />
+          <a href="javascript:;" data-fancybox data-type="iframe" :data-src="first.video_url">
+            <img :src="first.image_url"/>
           </a>
         </div>
         <div class="info">
           <div class="name">
-            <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/6vbFe6F48Uo">Titanium dioxide lại được ví như “cứu tinh chống tia tử ngoại” của mỹ phẩm bảo vệ da</a> </div>
-          <div class="time">Beauty - 10 phút trước, đăng bởi Meolun</div>
+            <a href="javascript:;" data-fancybox data-type="iframe" :data-src="first.video_url">
+              {{first.title}}
+            </a>
+          </div>
+          <div class="time">{{ first.category }} - {{ first.created_at}}, đăng bởi {{ first.author }}</div>
         </div>
       </div>
-      <div class="list">
-        <div class="item">
-          <div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
+      <div class="list" v-if="news.length > 0">
+        <div class="item" v-for="item in news" :key="item.id">
+          <div class="img"><a href="javascript:;" data-fancybox data-type="iframe" :data-src="item.video_url">
+            <img :src="item.image_url"/>
+          </a>
           </div>
-          <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
+          <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" :data-src="item.video_url">
+            {{item.title}} <i class="bz-video-camera icon-camera"></i></a>
           </div>
-          <div class="time">Beauti - 1h trước</div>
-        </div>
-        <div class="item">
-          <div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
-          </div>
-          <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
-          </div>
-          <div class="time">Beauti - 1h trước</div>
-        </div>
-        <div class="item">
-          <div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
-          </div>
-          <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
-          </div>
-          <div class="time">Beauti - 1h trước</div>
-        </div>
-        <div class="item">
-          <div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
-          </div>
-          <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
-          </div>
-          <div class="time">Beauti - 1h trước</div>
-        </div>
-        <div class="item">
-          <div class="img"> <a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8"> <img src="https://img.youtube.com/vi/305ryPvU6A8/mqdefault.jpg" /> </a>
-          </div>
-          <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" data-src="https://www.youtube.com/embed/305ryPvU6A8">[REVIEW] Son MAC thần thánh kiểu tóc nam đang gây sốt <i class="bz-video-camera icon-camera"></i></a>
-          </div>
-          <div class="time">Beauti - 1h trước</div>
+          <div class="time">{{ item.category }} - {{ item.created_at}}, đăng bởi {{ item.author }}</div>
         </div>
       </div>
     </div>
@@ -68,7 +46,10 @@
     name: 'news',
     data () {
       return {
-        first: null,
+        first: {
+          video_url: '',
+          image_url: ''
+        },
         news: []
       }
     },
@@ -78,10 +59,11 @@
     methods: {
       fetchData () {
         this.$startLoading('fetching news')
-        this.$http.get('news', { params: { limit: 6, type: 'video' } }).then(({ data }) => {
+        this.$http.get('news', {params: {limit: 6, topic: 2}}).then(({data}) => {
           const res = data.data
           if (res.length > 0) {
             this.first = res[0]
+            console.log(this.first)
             res.shift()
           }
           this.news = res

@@ -6,15 +6,14 @@
               <span>xem thêm</span><i class="bz-next"></i>
         </router-link>
       </div>
-      
+
       <div class="cate-feature" v-if="first">
         <div class="img"><a href="#"><img :src="first.image_url" /></a></div>
         <div class="info">
-          <div class="name"> 
+          <div class="name">
               <router-link :to="{ name: 'new', params: { id: first.slug } }">
                 {{ first.title}}
               </router-link>
-              
           </div>
           <div class="creat-by">Hair - Tin mới, đăng bởi {{ first.author}}</div>
           <div class="des" v-if="first.intro.length<190">Welcome, {{ first.intro }}</div>

@@ -13,11 +13,11 @@
 
 			<div class="ads-full"><a href="#"><img src="../assets/news/images/ads-3.jpg" /></a></div>
 
-      <hair />
+      <Hair />
 
-      <nail />
+      <Nail />
 
-      <beauty />
+      <Beauty />
 
       <Video/>
 

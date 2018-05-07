@@ -1,91 +1,50 @@
 <template>
   <div class="news-seciton">
-      <div class="tp-title">
-        <h2 class="main-title"><a href="#"></a>SẢN PHẨM</h2>
-        <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'product' } }">
-              <span>xem thêm</span><i class="bz-next"></i>
-        </router-link>
-      </div>
+    <div class="tp-title">
+      <h2 class="main-title"><a href="#"></a>SẢN PHẨM</h2>
+      <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'product' } }">
+        <span>xem thêm</span><i class="bz-next"></i>
+      </router-link>
+    </div>
 
-      <div class="product-section">
+    <div class="product-section">
       <div class="product-feature">
-        <div class="item first-product">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
+        <div class="item first-product" v-if="first">
+          <div class="img"><a href="#"><img :src="first.image_url"/></a></div>
           <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="des">Titanium dioxide lại được ví như “cứu tinh chống tia tử ngoại” của mỹ phẩm bảo vệ da. bảo vệ da khỏi tia UVA , UVB và không có nguy cơ kích ứng da</div>
-            <div class="time">Product - 1 giờ trước</div>
+            <div class="name">
+              <router-link :to="{ name: 'new', params: { id: first.slug } }">
+                {{ first.title}}
+              </router-link>
+            </div>
+            <div class="des">{{ first.intro}}</div>
+            <div class="time">{{ first.category}} - {{ first.created_at}}</div>
           </div>
         </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
+        <div class="item" v-if="second">
+          <div class="img"><a href="#"><img :src="second.image_url"/></a></div>
           <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="des">Titanium dioxide lại được ví như “cứu tinh chống tia tử ngoại” của mỹ phẩm bảo vệ da. bảo vệ da khỏi tia UVA , UVB và không có nguy cơ kích ứng da</div>
-            <div class="time">Product - 1 giờ trước</div>
+            <div class="name"><a href="#">{{ second.title }}</a></div>
+            <div class="des">{{ second.intro}}</div>
+            <div class="time">{{ second.category}} - {{ second.created_at}}</div>
           </div>
         </div>
       </div>
-      <div class="list">
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
+      <div class="list" v-if="news.length > 0">
+        <div class="item" v-for="item in news" :key="item.id">
+          <div class="img"><a href="#"><img :src="item.image_url"/></a></div>
           <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-place.jpg" /></a></div>
-          <div class="info">
-            <div class="name"> <a href="#">Protein phục hồi tóc hư nát Sophia platinum hari repair protein</a> </div>
-            <div class="time">Product - 1 giờ trước</div>
+            <div class="name">
+              <router-link :to="{ name: 'new', params: { id: item.slug } }">
+                {{ item.title}}
+              </router-link>
+            </div>
+            <div class="time">{{ item.category}} - {{ item.created_at }}</div>
           </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -94,6 +53,7 @@ export default {
   data () {
     return {
       first: null,
+      second: null,
       news: []
     }
   },
@@ -103,10 +63,12 @@ export default {
   methods: {
     fetchData () {
       this.$startLoading('fetching news')
-      this.$http.get('news', { params: { limit: 6, type: 'makeup' } }).then(({ data }) => {
+      this.$http.get('news', {params: {limit: 6, topic: 4}}).then(({data}) => {
         const res = data.data
-        if (res.length > 0) {
+        if (res.length > 1) {
           this.first = res[0]
+          res.shift()
+          this.second = res[0]
           res.shift()
         }
         this.news = res
