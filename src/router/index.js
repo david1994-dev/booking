@@ -20,6 +20,7 @@ const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/com
 const News = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/News')
 const New = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/New')
 const NewCategory = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/NewCategory')
+const HairCategory = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/HairCategory')
 
 import Stylist from '@/components/Stylist'
 
@@ -110,15 +111,25 @@ export default new Router({
       name: 'news',
       component: News
     },
-    {
-      path: '/news/:id',
-      name: 'newcategory',
-      component: NewCategory
-    },
+    // {
+    //   path: '/news/:id',
+    //   name: 'newcategory',
+    //   component: NewCategory
+    // },
     {
       path: '/new/:id',
       name: 'new',
       component: New
+    },
+    {
+      path: '/news/hair',
+      name: 'hairCategory',
+      component: HairCategory
+    },
+    {
+      path: '/news/hair/:slug',
+      name: 'HairChildCategory',
+      component: NewCategory
     },
     {
       path: '*',

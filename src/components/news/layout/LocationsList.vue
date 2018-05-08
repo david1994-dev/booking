@@ -1,7 +1,7 @@
 <template>
   <div class="news-seciton">
     <div class="tp-title">
-      <h2 class="main-title"><a href="#"></a>ĐỊA ĐIỂM LÀM ĐẸP</h2>
+      <h2 class="main-title"><a href="#"></a>{{text}}</h2>
       <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'makeup' } }">
         <span>xem thêm</span><i class="bz-next"></i>
       </router-link>
@@ -9,12 +9,12 @@
 
     <div class="salon-section">
       <div class="feature-ads">
-        <div class="video-feature" v-if="first">
-          <div class="img"><a href="#"><img :src="first.image_url"/></a></div>
+        <div class="video-feature" v-if="items.first">
+          <div class="img"><a href="#"><img :src="items.first.image_url"/></a></div>
           <div class="info">
             <div class="name">
-              <router-link :to="{ name: 'new', params: { id: first.slug } }">
-                {{ first.name}}
+              <router-link :to="{ name: 'new', params: { id: items.first.slug } }">
+                {{ items.first.name}}
               </router-link>
             </div>
             <div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
@@ -46,8 +46,8 @@
           <a class="discovery" href="#">KHÁM PHÁ NGAY</a>
         </div>
       </div>
-      <div class="list" v-if="news.length > 0">
-        <div class="item" v-for="item in news" :key="item.id">
+      <div class="list" v-if="items.news.length > 0">
+        <div class="item" v-for="item in items.news" :key="item.id">
           <div class="img">
             <router-link :to="{ name: 'new', params: { id: item.slug } }">
               <img :src="item.image_url"/>
@@ -83,28 +83,34 @@
 
 <script>
   export default {
-    name: 'makeup',
-    data () {
-      return {
-        first: null,
-        news: []
+    name: 'locationLayout',
+    props: {
+      text: {
+        type: String,
+        default: ''
+      },
+      routeName: {
+        type: String,
+        default: ''
+      },
+      routeParams: {
+        type: Object,
+        default: {}
+      },
+      items: {
+        type: Object,
+        default: {
+          first: {},
+          news: []
+        }
       }
+    },
+    data () {
+      return {}
     },
     created () {
       this.fetchData()
     },
-    methods: {
-      fetchData () {
-        this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
-          const res = data.data
-          if (res.length > 0) {
-            this.first = res[0]
-            res.shift()
-          }
-          this.news = res
-          this.$endLoading('fetching news')
-        }).catch(() => this.$endLoading('fetching news'))
-      }
-    }
+    methods: {}
   }
 </script>
