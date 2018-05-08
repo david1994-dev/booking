@@ -3,33 +3,14 @@
     <PageHeader/>
     <div id="main-content">
       <div class="left-content">
-        <HotNews :ads="ads" :items="hotNews"/>
+        <HotVideo :ads="ads" :items="HotVideo"/>
 
-        <CategoryList :text="'Sự kiện '+name" :routeName="'ChildCategory'"
-                      :routeParams="{
-                        category: slug,
-                        slug: 3
-                      }"
-                      :items="eventNews"/>
-
-        <CategoryList :text="'Xu hướng '+name":routeName="'ChildCategory'"
-                      :routeParams="{
-                        category: slug,
-                        slug: 1
-                      }"
-                      :items="trendNews"/>
-
-        <VideoList :text="'Video về '+name"
+        <VideoList :text="'Video về tóc'"
                    :route-params="{
-                      category: slug,
+                      category: 'hair',
                       slug: 2
                     }"
-                   :items="videoNews"/>
-
-        <LocationList :text="'Địa điểm làm '+name" :items="locations"/>
-
-        <ProductsList :text="'Các sản phẩm cho '+name" :items="products"/>
-
+                   :items="Video"/>
       </div>
       <RightContent :ads="ads"/>
     </div>
@@ -48,7 +29,7 @@
 
 <script>
   const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './Footer')
-  const HotNews = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/HotNews')
+  const HotVideo = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/HotVideo')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './RightContent')
 
   import CategoryList from './layout/CategoryList'
@@ -61,7 +42,7 @@
   // import $ from 'jquery'
 
   export default {
-    name: 'beautyCategory',
+    name: 'hairCategory',
     metaInfo: {
       title: 'Bzone News',
       bodyAttrs: {
@@ -70,7 +51,7 @@
     },
     components: {
       FooterNews,
-      HotNews,
+      HotVideo,
       RightContent,
       CategoryList,
       LocationList,
@@ -80,8 +61,6 @@
     },
     data () {
       return {
-        name: '',
-        slug: '',
         ads: {
           center_1_1: {},
           center_1_2: {},
@@ -94,28 +73,28 @@
           under_1_3: {},
           under_1_4: {}
         },
-        hotNews: {
+        HotVideo: {
           first: {},
           second: {},
           items: []
         },
-        eventNews: {
+        Nail: {
           first: {},
           items: []
         },
-        trendNews: {
+        Hair: {
           first: {},
           items: []
         },
-        videoNews: {
+        Beauty: {
           first: {},
           items: []
         },
-        products: {
-          first: {},
-          second: {},
-          items: []
-        },
+        // Video: {
+        //   first: {},
+        //   second: {},
+        //   items: []
+        // },
         locations: {
           first: {},
           locations: []
@@ -123,14 +102,12 @@
       }
     },
     created () {
-      this.setName()
       this.fetchAds()
-      this.fetchHotNews()
-      this.fetchEventNews()
-      this.fetchTrendNews()
-      this.fetchVideoNews()
-      this.fetchProducts()
-      this.fetchDataLocation()
+      this.fetchHotVideo()
+      this.fetchNailNews()
+      this.fetchHairNews()
+      this.fetchBeautyNews()
+      // this.fetchVideo()
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
@@ -146,28 +123,7 @@
     mounted () {
       // this.$nextTick(() => this.menuMobile())
     },
-    watch: {
-      '$route.params.category': function () {
-        location.reload()
-      }
-    },
     methods: {
-      setName () {
-        this.slug = this.$route.params.category
-        switch (this.$route.params.category) {
-          case 'hair':
-            this.name = 'Tóc'
-            break
-          case 'nail':
-            this.name = 'Nail'
-            break
-
-          case 'beauty':
-            this.name = 'Beauty'
-            break
-
-        }
-      },
       fetchAds () {
         this.$http.get('ads/home_page').then(({data}) => {
           this.ads = data.data
@@ -175,7 +131,7 @@
           this.fbAsyncInit()
         }).catch(() => this.$endLoading('fetching ads'))
       },
-      fetchHotNews () {
+      fetchHotVideo () {
         this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
@@ -193,8 +149,8 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
 
-      fetchDataNews (topic, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: this.$route.params.category, topic: topic}}).then(({data}) => {
+      fetchDataNews (topic, type, keyData, second = false) {
+        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -211,19 +167,18 @@
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       },
-      fetchEventNews () {
-        this.fetchDataNews(3, this.eventNews)
+      fetchNailNews () {
+        this.fetchDataNews(1, 'nail', this.Nail)
       },
-      fetchTrendNews () {
-        this.fetchDataNews(1, this.trendNews)
+      fetchHairNews () {
+        this.fetchDataNews(1, 'hair', this.Hair)
       },
-      fetchVideoNews () {
-        this.fetchDataNews(2, this.videoNews)
+      fetchBeautyNews () {
+        this.fetchDataNews(1, 'beauty', this.Beauty)
       },
-      fetchProducts () {
-        this.fetchDataNews(4, this.products, true)
-        console.log(this.products)
-      },
+      // fetchVideo () {
+      //   this.fetchDataNews(1, 'video', this.Video, true)
+      // },
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
           const res = data.data

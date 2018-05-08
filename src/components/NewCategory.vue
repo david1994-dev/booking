@@ -40,10 +40,10 @@
 
     <div id="ads-list">
       <div class="inner">
-        <a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url" /></a>
-        <a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url" /></a>
-        <a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url" /></a>
-        <a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url" /></a>
+        <a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url"/></a>
+        <a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url"/></a>
+        <a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url"/></a>
+        <a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url"/></a>
       </div>
     </div>
 
@@ -124,7 +124,7 @@
       }
     },
     created () {
-      this.fetchData(this.$route.params.id)
+      this.fetchData(this.$route.params.category, this.$route.params.slug, 1)
       this.fetchAds()
     },
     metaInfo: {
@@ -159,13 +159,13 @@
 
     watch: {
       '$route.params.id': function (id) {
-        this.fetchData(id)
+        location.reload()
       }
     },
     methods: {
-      fetchData (id, page = 1) {
+      fetchData (category, topic, page = 1) {
         this.$startLoading('fetching news')
-        this.$http.get('news', {params: {limit: 20, type: id, page: page}}).then(({data}) => {
+        this.$http.get('news', {params: {limit: 20, type: category, topic: topic, page: page}}).then(({data}) => {
           this.news = data
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
@@ -199,7 +199,7 @@
         })
       },
       paginateNews (page) {
-        this.fetchData(this.$route.params.id, page)
+        this.fetchData(this.$route.params.category, this.$route.params.slug, page)
       },
       fetchAds () {
         this.$http.get('ads/category_2').then(({data}) => {

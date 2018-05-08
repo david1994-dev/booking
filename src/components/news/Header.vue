@@ -30,13 +30,13 @@
           <div class="main-menu">
             <ul>
               <li>
-                <router-link class="main-link" :to="{ name: 'hairCategory' }">Hair</router-link>
+                <router-link class="main-link" :to="{ name: 'categories' , params:{ category: 'hair'} }">Hair</router-link>
               </li>
               <li>
-                <router-link class="main-link" :to="{ name: 'hairCategory' }">Nail</router-link>
+                <router-link class="main-link" :to="{name: 'categories' , params:{ category: 'nail'} }">Nail</router-link>
               </li>
               <li>
-                <router-link class="main-link" :to="{ name: 'hairCategory' }">Beauty</router-link>
+                <router-link class="main-link" :to="{ name: 'categories' , params:{ category: 'beauty'} }">Beauty</router-link>
               </li>
               <li><a class="main-link" href="#">Đặt lịch làm đẹp</a></li>
             </ul>

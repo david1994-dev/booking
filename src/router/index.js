@@ -18,9 +18,12 @@ const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/compo
 const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
 const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
 const News = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/News')
-const New = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/New')
+// const New = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/New')
 const NewCategory = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/NewCategory')
-const HairCategory = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/HairCategory')
+const Categories = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/Categories')
+const EventsTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/EventsTopic')
+const TrendTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/TrendTopic')
+const ProductsTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/ProductsTopic')
 
 import Stylist from '@/components/Stylist'
 
@@ -117,19 +120,29 @@ export default new Router({
     //   component: NewCategory
     // },
     {
-      path: '/new/:id',
-      name: 'new',
-      component: New
+      path: '/news/:category',
+      name: 'categories',
+      component: Categories
     },
     {
-      path: '/news/hair',
-      name: 'hairCategory',
-      component: HairCategory
-    },
-    {
-      path: '/news/hair/:slug',
-      name: 'HairChildCategory',
+      path: '/news/:category/:slug',
+      name: 'ChildCategory',
       component: NewCategory
+    },
+    {
+      path: '/news-topic/events',
+      name: 'eventsTopic',
+      component: EventsTopic
+    },
+    {
+      path: '/news-topic/trend',
+      name: 'trendTopic',
+      component: TrendTopic
+    },
+    {
+      path: '/news-topic/product',
+      name: 'productsTopic',
+      component: ProductsTopic
     },
     {
       path: '*',

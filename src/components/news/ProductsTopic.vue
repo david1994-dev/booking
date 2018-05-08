@@ -5,19 +5,12 @@
       <div class="left-content">
         <HotNews :ads="ads" :items="hotNews"/>
 
-        <CategoryList :text="'Sự kiện tóc'" id="123" :routeName="'HairChildCategory'"
-                      :routeParams="{
-                        slug: 3
-                      }"
-                      :items="eventNews"/>
+        <ProductsList :text="'Các sản phẩm cho tóc'" :items="Hair"/>
 
-        <CategoryList :text="'Xu hướng tóc'" id="4321" :routeName="'HairChildCategory'"
-                      :routeParams="{
-                        slug: 1
-                      }"
-                      :items="trendNews"/>
+        <ProductsList :text="'Các sản phẩm cho nail'" :items="Nail"/>
 
-        <VideoList :text="'Video về tóc'" :route-params="{slug: 2}" :items="videoNews"/>
+        <ProductsList :text="'Các sản phẩm cho beauty'" :items="Beauty"/>
+
       </div>
       <RightContent :ads="ads"/>
     </div>
@@ -41,6 +34,9 @@
 
   import CategoryList from './layout/CategoryList'
   import VideoList from './layout/VideoList'
+  import LocationList from './layout/LocationsList'
+  import ProductsList from './layout/ProductsList'
+
   import PageHeader from './Header'
   import {mapState} from 'vuex'
   // import $ from 'jquery'
@@ -58,6 +54,8 @@
       HotNews,
       RightContent,
       CategoryList,
+      LocationList,
+      ProductsList,
       VideoList,
       PageHeader
     },
@@ -80,27 +78,27 @@
           second: {},
           items: []
         },
-        eventNews: {
+        Nail: {
           first: {},
-          news: []
+          items: []
         },
-        trendNews: {
+        Hair: {
           first: {},
-          news: []
+          items: []
         },
-        videoNews: {
+        Beauty: {
           first: {},
-          news: []
-
+          items: []
         }
       }
     },
     created () {
       this.fetchAds()
       this.fetchHotNews()
-      this.fetchEventNews()
-      this.fetchTrendNews()
-      this.fetchVideoNews()
+      this.fetchNailNews()
+      this.fetchHairNews()
+      this.fetchBeautyNews()
+      // this.fetchVideo()
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
@@ -142,26 +140,46 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
 
-      fetchDataNews (topic, keyData) {
-        this.$http.get('news', {params: {limit: 6, type: 'hair', topic: topic}}).then(({data}) => {
+      fetchDataNews (topic, type, keyData, second = false) {
+        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
             tmp.shift()
+          }
+          if (second) {
+            if (tmp.length > 0) {
+              keyData.second = tmp[0]
+              tmp.shift()
+            }
           }
           keyData.items = tmp
 
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       },
-      fetchEventNews () {
-        this.fetchDataNews(3, this.eventNews)
+      fetchNailNews () {
+        this.fetchDataNews(4, 'nail', this.Nail)
       },
-      fetchTrendNews () {
-        this.fetchDataNews(1, this.trendNews)
+      fetchHairNews () {
+        this.fetchDataNews(4, 'hair', this.Hair)
       },
-      fetchVideoNews () {
-        this.fetchDataNews(2, this.videoNews)
+      fetchBeautyNews () {
+        this.fetchDataNews(4, 'beauty', this.Beauty)
+      },
+      // fetchVideo () {
+      //   this.fetchDataNews(1, 'video', this.Video, true)
+      // },
+      fetchDataLocation () {
+        this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
+          const res = data.data
+          if (res.length > 0) {
+            this.locations.first = res[0]
+            res.shift()
+          }
+          this.locations.locations = res
+          this.$endLoading('fetching news')
+        }).catch(() => this.$endLoading('fetching news'))
       }
       // menuMobile () {
       //   $('.main-header .menu li').each((index, item) => {

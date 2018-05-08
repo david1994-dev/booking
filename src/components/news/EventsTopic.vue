@@ -5,31 +5,33 @@
       <div class="left-content">
         <HotNews :ads="ads" :items="hotNews"/>
 
-        <CategoryList :text="'Sự kiện '+name" :routeName="'ChildCategory'"
+        <CategoryList :text="'Sự kiện tóc'" :routeName="'ChildCategory'"
                       :routeParams="{
-                        category: slug,
+                        category: 'hair',
                         slug: 3
                       }"
-                      :items="eventNews"/>
+                      :items="Hair"/>
 
-        <CategoryList :text="'Xu hướng '+name":routeName="'ChildCategory'"
+        <CategoryList :text="'Sự kiện nail'":routeName="'ChildCategory'"
                       :routeParams="{
-                        category: slug,
-                        slug: 1
+                        category: 'nail',
+                        slug: 3
                       }"
-                      :items="trendNews"/>
+                      :items="Nail"/>
 
-        <VideoList :text="'Video về '+name"
-                   :route-params="{
-                      category: slug,
-                      slug: 2
-                    }"
-                   :items="videoNews"/>
+        <CategoryList :text="'Sự kiện beauty'" :routeName="'ChildCategory'"
+                      :routeParams="{
+                        category: 'beauty',
+                        slug: 3
+                      }"
+                      :items="Beauty"/>
 
-        <LocationList :text="'Địa điểm làm '+name" :items="locations"/>
-
-        <ProductsList :text="'Các sản phẩm cho '+name" :items="products"/>
-
+        <!--<VideoList :text="'Video về tóc'"-->
+                   <!--:route-params="{-->
+                      <!--category: 'hair',-->
+                      <!--slug: 2-->
+                    <!--}"-->
+                   <!--:items="Video"/>-->
       </div>
       <RightContent :ads="ads"/>
     </div>
@@ -61,7 +63,7 @@
   // import $ from 'jquery'
 
   export default {
-    name: 'beautyCategory',
+    name: 'hairCategory',
     metaInfo: {
       title: 'Bzone News',
       bodyAttrs: {
@@ -80,8 +82,6 @@
     },
     data () {
       return {
-        name: '',
-        slug: '',
         ads: {
           center_1_1: {},
           center_1_2: {},
@@ -99,23 +99,23 @@
           second: {},
           items: []
         },
-        eventNews: {
+        Nail: {
           first: {},
           items: []
         },
-        trendNews: {
+        Hair: {
           first: {},
           items: []
         },
-        videoNews: {
+        Beauty: {
           first: {},
           items: []
         },
-        products: {
-          first: {},
-          second: {},
-          items: []
-        },
+        // Video: {
+        //   first: {},
+        //   second: {},
+        //   items: []
+        // },
         locations: {
           first: {},
           locations: []
@@ -123,14 +123,12 @@
       }
     },
     created () {
-      this.setName()
       this.fetchAds()
       this.fetchHotNews()
-      this.fetchEventNews()
-      this.fetchTrendNews()
-      this.fetchVideoNews()
-      this.fetchProducts()
-      this.fetchDataLocation()
+      this.fetchNailNews()
+      this.fetchHairNews()
+      this.fetchBeautyNews()
+      // this.fetchVideo()
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
@@ -146,28 +144,7 @@
     mounted () {
       // this.$nextTick(() => this.menuMobile())
     },
-    watch: {
-      '$route.params.category': function () {
-        location.reload()
-      }
-    },
     methods: {
-      setName () {
-        this.slug = this.$route.params.category
-        switch (this.$route.params.category) {
-          case 'hair':
-            this.name = 'Tóc'
-            break
-          case 'nail':
-            this.name = 'Nail'
-            break
-
-          case 'beauty':
-            this.name = 'Beauty'
-            break
-
-        }
-      },
       fetchAds () {
         this.$http.get('ads/home_page').then(({data}) => {
           this.ads = data.data
@@ -193,8 +170,8 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
 
-      fetchDataNews (topic, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: this.$route.params.category, topic: topic}}).then(({data}) => {
+      fetchDataNews (topic, type, keyData, second = false) {
+        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -211,19 +188,18 @@
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       },
-      fetchEventNews () {
-        this.fetchDataNews(3, this.eventNews)
+      fetchNailNews () {
+        this.fetchDataNews(1, 'nail', this.Nail)
       },
-      fetchTrendNews () {
-        this.fetchDataNews(1, this.trendNews)
+      fetchHairNews () {
+        this.fetchDataNews(1, 'hair', this.Hair)
       },
-      fetchVideoNews () {
-        this.fetchDataNews(2, this.videoNews)
+      fetchBeautyNews () {
+        this.fetchDataNews(1, 'beauty', this.Beauty)
       },
-      fetchProducts () {
-        this.fetchDataNews(4, this.products, true)
-        console.log(this.products)
-      },
+      // fetchVideo () {
+      //   this.fetchDataNews(1, 'video', this.Video, true)
+      // },
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
           const res = data.data

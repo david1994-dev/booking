@@ -83,7 +83,7 @@
 
 <script>
   export default {
-    name: 'makeup',
+    name: 'locations',
     data () {
       return {
         first: null,

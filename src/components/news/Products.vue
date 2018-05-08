@@ -2,7 +2,7 @@
   <div class="news-seciton">
     <div class="tp-title">
       <h2 class="main-title"><a href="#"></a>SẢN PHẨM</h2>
-      <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'product' } }">
+      <router-link class="view-more" :to="{ name: 'productsTopic' }">
         <span>xem thêm</span><i class="bz-next"></i>
       </router-link>
     </div>

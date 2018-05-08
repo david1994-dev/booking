@@ -2,11 +2,11 @@
   <div class="news-seciton">
       <div class="tp-title">
         <h2 class="main-title"><a href="#"></a>THÔNG TIN  VỀ BEAUTY</h2>
-        <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'beauty' } }">
+        <router-link class="view-more" :to="{ name: 'categories' , params:{ category: 'beauty'}}">
               <span>xem thêm</span><i class="bz-next"></i>
         </router-link>
       </div>
-      
+
       <div class="cate-feature" v-if="first">
         <div class="img"><a href="#"><img :src="first.image_url" /></a></div>
         <div class="info">

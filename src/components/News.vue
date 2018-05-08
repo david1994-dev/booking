@@ -19,7 +19,7 @@
 
       <Video/>
 
-      <MakeUp/>
+      <Locations/>
 
       <Products/>
 		</div>
@@ -48,7 +48,7 @@ const Nail = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Nail
 const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
 const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
 const Video = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Video')
-const MakeUp = () => import(/* webpackChunkName: "homepage-bundle" */ './news/MakeUp')
+const Locations = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Locations')
 const Products = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Products')
 const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Footer')
 
@@ -71,7 +71,7 @@ export default {
     Beauty,
     RightContent,
     Video,
-    MakeUp,
+    Locations,
     Products,
     FooterNews,
     PageHeader

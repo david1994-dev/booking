@@ -9,12 +9,12 @@
 
     <div class="salon-section">
       <div class="feature-ads">
-        <div class="video-feature" v-if="items.first">
-          <div class="img"><a href="#"><img :src="items.first.image_url"/></a></div>
+        <div class="video-feature" v-if="items.locations.first">
+          <div class="img"><a href="#"><img :src="items.locations.first.image_url"/></a></div>
           <div class="info">
             <div class="name">
-              <router-link :to="{ name: 'new', params: { id: items.first.slug } }">
-                {{ items.first.name}}
+              <router-link :to="{ name: 'new', params: { id: items.locations.first.slug } }">
+                {{ items.locations.first.name}}
               </router-link>
             </div>
             <div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
@@ -38,16 +38,16 @@
           <div class="btn-style order">ĐẶT LỊCH</div>
           <div class="btn-style online">LÀM ĐẸP ONLINE</div>
           <div class="salon-image">
-            <div><img src="../../assets/news/images/salon-image-1.jpg"/></div>
-            <div><img src="../../assets/news/images/salon-image-2.jpg"/></div>
-            <div><img src="../../assets/news/images/salon-image-3.jpg"/></div>
+            <div><img src="../../../assets/news/images/salon-image-1.jpg"/></div>
+            <div><img src="../../../assets/news/images/salon-image-2.jpg"/></div>
+            <div><img src="../../../assets/news/images/salon-image-3.jpg"/></div>
           </div>
           <div class="des">Với hơn 200 salons hàng đầu tại Hà Nội</div>
           <a class="discovery" href="#">KHÁM PHÁ NGAY</a>
         </div>
       </div>
-      <div class="list" v-if="items.news.length > 0">
-        <div class="item" v-for="item in items.news" :key="item.id">
+      <div class="list" v-if="items.locations.length > 0">
+        <div class="item" v-for="item in items.locations" :key="item.id">
           <div class="img">
             <router-link :to="{ name: 'new', params: { id: item.slug } }">
               <img :src="item.image_url"/>
@@ -101,7 +101,7 @@
         type: Object,
         default: {
           first: {},
-          news: []
+          locations: []
         }
       }
     },
@@ -109,7 +109,6 @@
       return {}
     },
     created () {
-      this.fetchData()
     },
     methods: {}
   }
