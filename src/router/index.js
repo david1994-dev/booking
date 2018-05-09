@@ -114,11 +114,11 @@ export default new Router({
       name: 'news',
       component: News
     },
-    // {
-    //   path: '/news/:id',
-    //   name: 'newcategory',
-    //   component: NewCategory
-    // },
+    {
+      path: '/new/:id',
+      name: 'newcategory',
+      component: NewCategory
+    },
     {
       path: '/news/:category',
       name: 'categories',
