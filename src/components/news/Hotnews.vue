@@ -17,7 +17,7 @@
     <div class="ads-1" v-if="second">
       <div class="img">
         <router-link :to="{ name: 'new', params: { id: second.slug } }">
-          <img :src="second.image_url"/>
+          <img :src="second.second_image_url"/>
         </router-link>
       </div>
       <div class="name">
