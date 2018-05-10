@@ -47,7 +47,7 @@
 
 <script>
   export default {
-    name: 'HotNews',
+    name: 'hotNews',
     props: {
       ads: {
         type: Object,
