@@ -164,7 +164,7 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+        this.$http.get('news', {params: {limit: 6, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]
