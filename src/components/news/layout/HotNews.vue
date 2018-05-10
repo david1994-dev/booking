@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="hot-news-ads">
     <div class="news-feature" v-if="items.first">
       <div class="img">
@@ -11,8 +12,8 @@
           {{ items.first.title}}
         </router-link>
       </div>
-      <div class="des" v-if="items.first.intro.length<200">Welcome, {{ items.first.intro }}</div>
-      <div class="des" v-if="items.first.intro.length>=200">Welcome, {{ items.first.intro.substring(0,200)+".." }}</div>
+      <div class="des" v-if="items.first.intro.length<200">{{ items.first.intro }}</div>
+      <div class="des" v-if="items.first.intro.length>=200">{{ items.first.intro.substring(0,200)+".." }}</div>
     </div>
     <div class="ads-1" v-if="items.second">
       <div class="img">
@@ -28,7 +29,9 @@
     </div>
     <div class="list" v-if="items.items.length > 0">
       <router-link class="item" v-for="item in items.items" :key="item.id" :to="{ name: 'new', params: { id: item.slug } }">
-        <div class="img"><img src="../../../assets/news/images/img-thumb-1.jpg"/></div>
+        <div class="img">
+          <img :src="item.image_url"/>
+        </div>
         <div class="info">
           <div class="name">
             {{ item.title }}
@@ -38,10 +41,10 @@
       </router-link>
     </div>
     <div class="ads-2" v-if="ads.center_1_2"> <a :href="ads.center_1_2.link"><img :src="ads.center_1_2.image_url"/></a></div>
-
-    <div class="ads-full" v-if="ads.center_1_1">
-      <a :href="ads.center_1_1.link"><img :src="ads.center_1_1.image_url"/></a>
-    </div>
+  </div>
+  <div class="ads-full" v-if="ads.center_1_1">
+    <a :href="ads.center_1_1.link"><img :src="ads.center_1_1.image_url"/></a>
+  </div>
   </div>
 </template>
 

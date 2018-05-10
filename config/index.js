@@ -4,12 +4,12 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    // index: path.resolve(__dirname, '../dist/index.html'),
-    // assetsRoot: path.resolve(__dirname, '../dist'),
-    // assetsSubDirectory: 'static',
-    index: path.resolve(__dirname, '../../beautify/resources/views/app.blade.php'),
-    assetsRoot: path.resolve(__dirname, '../../beautify/public'),
-    assetsSubDirectory: 'assets',
+    index: path.resolve(__dirname, '../dist/index.html'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    // index: path.resolve(__dirname, '../../beautify/resources/views/app.blade.php'),
+    // assetsRoot: path.resolve(__dirname, '../../beautify/public'),
+    // assetsSubDirectory: 'assets',
     assetsPublicPath: '/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as

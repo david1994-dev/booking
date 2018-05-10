@@ -9,21 +9,25 @@
 
           <h1 class="main-title">{{ news.title }}</h1>
 
-          <div class="time">{{news.category}} - Đăng bởi {{ news.author }}, {{ moment(news.created_at).fromNow() }}
+          <div class="time"><span class="text-capitalize">{{news.category}}</span> - Đăng bởi {{ news.author }}, {{
+            moment(news.created_at).fromNow() }}
           </div>
 
           <div class="social-detail">
             <div class="social">
-              <a :href="'http://www.facebook.com/share.php?u='+url" target="_blank"><img src="../assets/news/images/icon-facebook.svg"/></a>
-              <a :href="'http://twitter.com/home?status='+url" target="_blank"><img src="../assets/news/images/icon-twitter.svg"/></a>
-              <a :href="'http://www.linkedin.com/shareArticle?mini=true&url='+url" target="_blank"><img src="../assets/news/images/icon-linkedin.svg"/></a>
+              <a :href="'http://www.facebook.com/share.php?u='+url" target="_blank"><img
+                src="../assets/news/images/icon-facebook.svg"/></a>
+              <a :href="'http://twitter.com/home?status='+url" target="_blank"><img
+                src="../assets/news/images/icon-twitter.svg"/></a>
+              <a :href="'http://www.linkedin.com/shareArticle?mini=true&url='+url" target="_blank"><img
+                src="../assets/news/images/icon-linkedin.svg"/></a>
             </div>
             <div class="detail-content">
               <div class="des">{{ news.intro }}</div>
-              <div class="list-relate">
-                <a href="#">Tổng thống Trump được đề cử giải Nobel Hòa bình</a>
-                <a href="#">Thăm Trung Quốc trước thềm cuộc gặp dự kiến với Tổng thống Donald Trump cho thấy ông Kim
-                  Jong-un đang tìm cách cân bằng quan hệ với 2 nước lớn.</a>
+              <div class="list-relate" v-if="relatedNews.length > 0">
+                <router-link v-for="relatedN in relatedNews" :key="relatedN.id" :to="{ name: 'new', params: { id: relatedN.slug } }">{{
+                  relatedN.title }}
+                </router-link>
               </div>
               <div class="main-content" v-html="news.content"></div>
             </div>
@@ -40,8 +44,12 @@
                   <div class="name">
                     <router-link :to="{ name: 'new', params: { id: item.slug } }">{{ item.title }}</router-link>
                   </div>
-                  <div class="creat-by">{{news.category}} - {{ moment(news.created_at).fromNow() }}, đăng bởi {{ news.author }}</div>
-                  <div class="des">{{ item.intro }}</div>
+                  <div class="creat-by"><span class="text-capitalize">{{news.category}}</span> - {{
+                    moment(news.created_at).fromNow() }}, đăng bởi {{ news.author }}
+                  </div>
+
+                  <div class="des" v-if="item.intro.length<140">{{ item.intro }}</div>
+                  <div class="des" v-if="item.intro.length>=140">{{ item.intro.substring(0,140)+".." }}</div>
                 </div>
               </div>
             </div>
@@ -129,6 +137,7 @@
             }
           }
         },
+        relatedNews: {},
         slickOptions: {
           speed: 300,
           slidesToShow: 1,
@@ -179,6 +188,7 @@
         this.fetchBlog(this.$route.query.preview || null)
         this.fetchRelated()
         this.fetchAds()
+        this.fetchRelatedNews()
       },
       fetchBlog (preview = null) {
         let params = {preview}
@@ -193,6 +203,13 @@
         this.$startLoading('fetching related')
         this.$http.get(`news/${this.$route.params.id}/related`, {params}).then(({data}) => {
           this.related = data
+          this.$endLoading('fetching related')
+        }).catch(() => this.$endLoading('fetching related'))
+      },
+      fetchRelatedNews () {
+        this.$startLoading('fetching related')
+        this.$http.get(`news/${this.$route.params.id}/related`, {params: {limit: 2}}).then(({data}) => {
+          this.relatedNews = data.data
           this.$endLoading('fetching related')
         }).catch(() => this.$endLoading('fetching related'))
       },

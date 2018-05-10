@@ -169,14 +169,14 @@
         }
       },
       fetchAds () {
-        this.$http.get('ads/home_page').then(({data}) => {
+        this.$http.get('ads/category_1').then(({data}) => {
           this.ads = data.data
           this.$endLoading('fetching ads')
           this.fbAsyncInit()
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('category', {params: {limit: 6, hotnew: 1}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, type: this.$route.params.category, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]

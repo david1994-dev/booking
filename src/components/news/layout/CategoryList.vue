@@ -3,7 +3,7 @@
     <div class="tp-title">
       <h2 class="main-title"><a href="#"></a>{{text || ''}}</h2>
       <router-link class="view-more" :to="{ name: routeName, params: routeParams }">
-        <span>xem thêm</span><i class="bz-next"></i>
+        <span>xem thêm</span><i class="bz-next bzone2"></i>
       </router-link>
     </div>
 
@@ -19,9 +19,9 @@
             {{ items.first.title}}
           </router-link>
         </div>
-        <div class="creat-by">{{items.first.category}} - {{ moment(items.first.created_at).fromNow() }}, đăng bởi {{ items.first.author}}</div>
-        <div class="des" v-if="items.first.intro.length<190">Welcome, {{ items.first.intro }}</div>
-        <div class="des" v-if="items.first.intro.length>=190">Welcome, {{ items.first.intro.substring(0,190)+".." }}
+        <div class="creat-by"><span class="text-capitalize">{{items.first.category}}</span> - {{ moment(items.first.created_at).fromNow() }}, đăng bởi {{ items.first.author}}</div>
+        <div class="des" v-if="items.first.intro.length<190">{{ items.first.intro }}</div>
+        <div class="des" v-if="items.first.intro.length>=190">{{ items.first.intro.substring(0,190)+".." }}
         </div>
       </div>
     </div>

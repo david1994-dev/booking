@@ -3,7 +3,7 @@
     <div class="tp-title">
       <h2 class="main-title"><a href="#"></a>{{text || ''}}</h2>
       <router-link class="view-more" :to="{ name: routeName , params: routeParams }">
-        <span>xem thêm</span><i class="bz-next"></i>
+        <span>xem thêm</span><i class="bz-next bzone2"></i>
       </router-link>
     </div>
     <div class="video-section">
@@ -19,7 +19,7 @@
               {{items.first.title}}
             </a>
           </div>
-          <div class="time" v-if="items.first.category">{{ items.first.category }} - {{ moment(items.first.created_at).fromNow() }}, đăng bởi {{ items.first.author }}</div>
+          <div class="time" v-if="items.first.category"><span class="text-capitalize">{{ items.first.category }}</span> - {{ moment(items.first.created_at).fromNow() }}, đăng bởi {{ items.first.author }}</div>
         </div>
       </div>
       <div class="list" v-if="items.items && items.items.length > 0">
@@ -31,7 +31,7 @@
           <div class="name"><a href="javascript:;" data-fancybox data-type="iframe" :data-src="item.video_url">
             {{item.title}} <i class="bz-video-camera icon-camera"></i></a>
           </div>
-          <div class="time">{{ item.category }} - {{ moment(item.created_at).fromNow() }}, đăng bởi {{ item.author }}</div>
+          <div class="time"><span class="text-capitalize">{{ item.category }}</span> - {{ moment(item.created_at).fromNow() }}, đăng bởi {{ item.author }}</div>
         </div>
       </div>
     </div>

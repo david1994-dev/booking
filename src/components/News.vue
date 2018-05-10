@@ -35,7 +35,7 @@
 
         <LocationList :text="'ĐỊA ĐIỂM LÀM ĐẸP'" :items="locations"/>
 
-        <ProductsList :text="'SẢN PHẢM'" :items="products"/>
+        <ProductsList :text="'SẢN PHẢM'" :routeName="'productsTopic'" :items="products"/>
       </div>
       <rightContent :ads="ads"/>
     </div>
@@ -57,7 +57,6 @@
 <script>
   const HotNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/HotNews')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
-  const Products = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Products')
   const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Footer')
 
   import CategoryList from './news/layout/CategoryList'
@@ -79,7 +78,6 @@
     components: {
       HotNews,
       RightContent,
-      Products,
       FooterNews,
       CategoryList,
       VideoList,
@@ -182,8 +180,8 @@
           this.fbAsyncInit()
         }).catch(() => this.$endLoading('fetching ads'))
       },
-      fetchDataNews (topic, type, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
+      fetchDataNews (topic, type, keyData, limit = 6, second = false) {
+        this.$http.get('news', {params: {limit: limit, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -213,7 +211,7 @@
         this.fetchDataNews(2, null, this.Video)
       },
       fetchProducts () {
-        this.fetchDataNews(4, null, this.products, true)
+        this.fetchDataNews(4, null, this.products, 20, true)
       },
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {

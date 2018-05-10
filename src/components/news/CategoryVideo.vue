@@ -18,7 +18,7 @@
                   {{item.title}}
                 </a>
               </div>
-              <div class="time" v-if="item.category">{{ item.category }} - {{ item.created_at}}, đăng bởi {{ item.author
+              <div class="time" v-if="item.category"><span class="text-capitalize">{{ item.category }}</span> - {{ item.created_at}}, đăng bởi {{ item.author
                 }}
               </div>
               <div class="des" v-if="item.intro.length<140">{{ item.intro }}</div>

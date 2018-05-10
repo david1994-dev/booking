@@ -2,8 +2,8 @@
   <div class="news-seciton" v-if="items.first">
     <div class="tp-title">
       <h2 class="main-title"><a href="#"></a>{{text}}</h2>
-      <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'product' } }">
-        <span>xem thêm</span><i class="bz-next"></i>
+      <router-link class="view-more" :to="{ name: routeName, params: routeParams }">
+        <span>xem thêm</span><i class="bz-next bzone2"></i>
       </router-link>
     </div>
     <div class="product-section">
@@ -17,7 +17,7 @@
               </router-link>
             </div>
             <div class="des" v-if="items.first.intro">{{ items.first.intro}}</div>
-            <div class="time" v-if="items.first.category">{{ items.first.category}} - {{ items.first.created_at}}</div>
+            <div class="time" v-if="items.first.category"><span class="text-capitalize">{{ items.first.category}}</span> - {{ items.first.created_at}}</div>
           </div>
         </div>
         <div class="item" v-if="items.second">
@@ -38,7 +38,7 @@
                 {{ item.title}}
               </router-link>
             </div>
-            <div class="time">{{ item.category}} - {{ moment(item.created_at).fromNow() }}</div>
+            <div class="time"><span class="text-capitalize">{{ item.category}}</span> - {{ moment(item.created_at).fromNow() }}</div>
           </div>
         </div>
       </div>

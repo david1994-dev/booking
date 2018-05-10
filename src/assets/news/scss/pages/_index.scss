@@ -165,7 +165,6 @@
                         }
                     }
                     img {
-                        width: 100%;
                         height: 100%;
                         max-width: none;
                         position: absolute;
@@ -212,7 +211,7 @@
                     }
                     &:after {
                         content: '\e904';
-                        font-family: 'bzone'!important;
+                        font-family: 'bzone2'!important;
                         speak: none;
                         font-style: normal;
                         font-weight: normal;

@@ -1,4 +1,3 @@
-
 @media screen and (min-width: 768px) {
     .tp-list a {
         border-bottom: none;
@@ -159,7 +158,8 @@
                         text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
                     }
                     img {
-                        max-width: 100%;
+                      width: 100%;
+                      max-width: 100%;
                         height: auto;
                         position: static;
                         transform: none;
@@ -193,7 +193,7 @@
                 scrollbar-face-color: #e5e6eb;
                 scrollbar-track-color: transparent;
                 .name a {
-                    font-weight: 500;
+                    font-weight: 400;
                     display: block;
                     margin-top: 10px;
                     &:after {
@@ -215,6 +215,7 @@
                     font-size: 12px;
                     color: rgba(47, 47, 47, 0.7);
                     font-style: italic;
+                    font-weight: 300;
                 }
                 .item .img a {
                     display: block;
@@ -288,7 +289,7 @@
                     position: absolute;
                     background: #00daa0;
                     color: #fff;
-                    padding: 15px;
+                    padding: 10px 15px;
                     font-weight: 600;
                     font-size: 16px;
                     &.order {
@@ -363,7 +364,9 @@
                     }
                 }
                 .info {
-                    .name a, .address {}
+                    .address {
+                        color: inherit;
+                    }
                     .tp-rate {
                         .number, .dash, .rate-status {
                             display: block;
@@ -466,6 +469,7 @@
                         font-size: 12px;
                         color: rgba(47, 47, 47, 0.7);
                         font-style: italic;
+                        font-weight: 300;
                     }
                 }
             }
@@ -627,11 +631,12 @@
 
     .tp-title {
         background: transparent;
-        height: 25px;
+        height: 20px;
         margin-bottom: 25px;
         padding-left: 15px;
         .main-title {
             font-size: 18px;
+            font-weight: 300;
         }
         .view-more {
             font-size: 15px;
@@ -661,6 +666,9 @@
     }
     .tp-list {
         font-size: 15px;
+        a {
+            font-weight: 400;
+        }
     }
     .tp-container {
         max-width: 1070px;
@@ -815,27 +823,32 @@
             flex: 1 0;
             .hot-news-ads {
                 padding-bottom: 25px;
-                .news-feature {
-                    width: calc(100% - 240px);
-                    margin-bottom: 30px;
-                }
                 .ads-1 {
                     margin: 0 0 30px 20px;
+                    .name a {
+                        font-weight: 400;
+                    }
                     .img {
                         margin-bottom: 20px;
                     }
                 }
                 .news-feature {
+                    width: calc(100% - 240px);
+                    margin-bottom: 30px;
                     .name {
                         margin: 15px 0;
-                        font-size: 20px;
+                        font-size: 22px;
+                        font-weight: 400;
                     }
                     .des {
-                        font-size: 16px;
+                        font-size: 15px;
+                        font-weight: 300;
+                        color: inherit;
                     }
                 }
                 .list {
                     font-size: 15px;
+                    font-weight: 400;
                 }
             }
             .ads-full {
@@ -859,12 +872,16 @@
                 .info {
                     .name {
                         font-size: 16px;
+                        font-weight: 400;
                     }
                     .creat-by {
                         font-size: 14px;
+                        font-weight: 300;
                     }
                     .des {
                         font-size: 15px;
+                        font-weight: 300;
+                        color: inherit;
                     }
                 }
             }
@@ -875,12 +892,16 @@
                 .info {
                     .name {
                         font-size: 16px;
+                        font-weight: 400;
                     }
                     .creat-by {
                         font-size: 14px;
+                        font-weight: 300;
                     }
                     .des {
                         font-size: 15px;
+                        font-weight: 300;
+                        color: inherit;
                     }
                 }
             }
@@ -890,9 +911,11 @@
                     .info {
                         .name {
                             font-size: 18px;
+                            font-weight: 400;
                         }
                         .time {
                             font-size: 14px;
+                            font-weight: 300;
                         }
                     }
                 }
@@ -915,24 +938,12 @@
                         }
                         .address {
                             margin: 3px 0;
+                            font-weight: 300;
+                            color: inherit;
                         }
-                    }
-                }
-                .list {
-                    width: calc(100% - 315px);
-                    .img {
-                        margin-right: 15px;
-                    }
-                    .info .name {
-                        font-size: 16px;
-                    }
-                }
-            }
-            .product-section {
-                .product-feature .item {
-                    margin-bottom: 30px;
-                    .info .name {
-                        font-size: 16px;
+                        .tp-rate {
+                            font-weight: 300;
+                        }
                     }
                 }
                 .list {
@@ -942,7 +953,41 @@
                     }
                     .info {
                         .name {
+                            font-size: 15px;
+                        }
+                        .address,
+                        .tp-rate {
+                            font-weight: 300;
+                        }
+                    }
+                }
+                .ads .btn-style {
+                    font-weight: 300;
+                }
+            }
+            .product-section {
+                .product-feature .item {
+                    margin-bottom: 30px;
+                    .info {
+                        .name {
                             font-size: 16px;
+                        }
+                        .des {
+                            font-weight: 300;
+                            font-size: 15px;
+                            color: inherit;
+                        }
+                    }
+
+                }
+                .list {
+                    width: calc(100% - 315px);
+                    .img {
+                        margin-right: 15px;
+                    }
+                    .info {
+                        .name {
+                            font-size: 15px;
                         }
                         .time {
                             font-size: 14px;
@@ -954,9 +999,11 @@
                 .name {
                     font-size: 20px;
                     margin-top: 15px;
+                    font-weight: 400;
                 }
                 .time {
                     font-size: 14px;
+                    font-weight: 300;
                 }
             }
             .video-section-list {
@@ -968,17 +1015,22 @@
                     .info {
                         .name {
                             font-size: 16px;
+                            font-weight: 400;
                         }
                         .time {
                             font-size: 14px;
+                            font-weight: 300;
                         }
                         .des {
                             font-size: 15px;
+                            font-weight: 300;
+                            color: inherit;
                         }
                     }
                 }
                 .list {
                     font-size: 15px;
+                    font-weight: 400;
                 }
             }
             .list-video {
@@ -989,12 +1041,16 @@
                     .info {
                         .name {
                             font-size: 16px;
+                            font-weight: 400;
                         }
                         .time {
                             font-size: 14px;
+                            font-weight: 300;
                         }
                         .des {
                             font-size: 15px;
+                            font-weight: 300;
+                            color: inherit;
                         }
                     }
                 }
@@ -1092,6 +1148,7 @@
                             .time {
                                 font-size: 12px;
                                 color: rgba(47, 47, 47, 0.7);
+                                font-weight: 300;
                             }
                         }
                     }
@@ -1125,10 +1182,14 @@
     }
 
     #news-detail {
+        .main-title {
+            font-weight: 400;
+        }
         .time {
             border-bottom: 1px solid #edf1f4;
             padding-bottom: 10px;
             margin-bottom: 30px;
+            font-weight: 300;
         }
         .social-detail {
             display: flex;
@@ -1146,13 +1207,24 @@
         }
         .detail-content {
             flex: 1 0;
+
             .des, .main-content {
                 font-size: 15px;
+            }
+            .des {
+                font-weight: 400;
+            }
+            .main-content {
+                font-weight: 300;
+            }
+            .list-relate {
+                font-weight: 300;
             }
         }
         .news-relate {
             .title-relate {
                 margin-bottom: 15px;
+                font-weight: 400;
             }
             .list-relate {
                 .item {
@@ -1164,17 +1236,36 @@
                 }
                 .name a {
                     font-size: 15px;
+                    font-weight: 400;
+                }
+                .creat-by,
+                .des {
+                    font-weight: 300;
+                }
+                .des {
+                    color: inherit;
                 }
             }
         }
     }
 
+    .paging li {
+        font-weight: 300;
+    }
+
 	.footer {
 		.links {
 			width: 120px;
+            .list-link {
+                font-weight: 300;
+            }
 		}
 		.savetime-footer {
 			margin: 0 70px;
+            p,
+            .copyright {
+                font-weight: 300;
+            }
 		}
 	}
 }

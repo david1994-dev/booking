@@ -11,7 +11,7 @@
           {{item.title}}
         </a>
       </div>
-      <div class="time">{{item.category}} - {{ moment(item.created_at).fromNow() }}, đăng bởi {{item.author}}</div>
+      <div class="time"><span class="text-capitalize">{{item.category}}</span> - {{ moment(item.created_at).fromNow() }}, đăng bởi {{item.author}}</div>
     </div>
 
     <div class="ads-full" v-if="ads.center_1_1">
