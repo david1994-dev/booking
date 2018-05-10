@@ -1,150 +1,262 @@
 <template>
-<div>
-  	<pageHeader />
+  <div>
+    <pageHeader/>
 
-	<div id="main-content">
-		<div class="left-content">
-			<div class="tp-title">
-				<h2 class="main-title"><a href="#"></a>HOT NEWS</h2>
-			</div>
-			<div class="hot-news-ads">
-        		<hotnews :ads="ads" />
-			</div>
+    <div id="main-content">
+      <div class="left-content">
+        <div class="tp-title">
+          <h2 class="main-title"><a href="#"></a>HOT NEWS</h2>
+        </div>
 
-      <Hair />
+        <Hotnews :ads="ads" :items="hotNews"/>
 
-      <Nail />
+        <CategoryList :text="'THÔNG TIN VỀ TÓC'" :routeName="'categories'"
+                      :routeParams="{
+                        category: 'hair',
+                      }"
+                      :items="Hair"/>
 
-      <Beauty />
+        <CategoryList :text="'THÔNG TIN VỀ NAIL'" :routeName="'categories'"
+                      :routeParams="{
+                        category: 'nail',
+                      }"
+                      :items="Nail"/>
 
-      <Video/>
+        <CategoryList :text="'THÔNG TIN VỀ BEAUTY'" :routeName="'categories'"
+                      :routeParams="{
+                        category: 'beauty',
+                      }"
+                      :items="Beauty"/>
 
-      <Locations/>
+        <VideoList :text="'VIDEO CHỌN LỌC'"
+                   :route-name="'videoTopic'"
+                   :route-params="{}"
+                   :items="Video"/>
 
-      <Products/>
-		</div>
-		<rightContent :ads="ads"/>
-	</div>
+        <LocationList :text="'ĐỊA ĐIỂM LÀM ĐẸP'" :items="locations"/>
+
+        <ProductsList :text="'SẢN PHẢM'" :items="products"/>
+      </div>
+      <rightContent :ads="ads"/>
+    </div>
 
 
-	<div id="ads-list">
-		<div class="inner">
-			<a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url" /></a>
-			<a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url" /></a>
-			<a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url" /></a>
-			<a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url" /></a>
-		</div>
-	</div>
+    <div id="ads-list">
+      <div class="inner">
+        <a v-if="ads.under_1_1" :href="ads.under_1_1.link"><img :src="ads.under_1_1.image_url"/></a>
+        <a v-if="ads.under_1_2" :href="ads.under_1_2.link"><img :src="ads.under_1_2.image_url"/></a>
+        <a v-if="ads.under_1_3" :href="ads.under_1_3.link"><img :src="ads.under_1_3.image_url"/></a>
+        <a v-if="ads.under_1_4" :href="ads.under_1_4.link"><img :src="ads.under_1_4.image_url"/></a>
+      </div>
+    </div>
 
-  <FooterNews/>
-</div>
+    <FooterNews/>
+  </div>
 </template>
 
 <script>
+  const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/Hotnews')
+  const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
+  const Video = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Video')
+  const Products = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Products')
+  const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Footer')
 
-const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hotnews')
-const Hair = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hair')
-const Nail = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Nail')
-const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
-const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
-const Video = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Video')
-const Locations = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Locations')
-const Products = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Products')
-const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Footer')
+  import CategoryList from './news/layout/CategoryList'
+  import VideoList from './news/layout/VideoList'
+  import LocationList from './news/layout/LocationsList'
+  import ProductsList from './news/layout/ProductsList'
+  import PageHeader from './news/Header'
+  import {mapState} from 'vuex'
+  import $ from 'jquery'
 
-import PageHeader from './news/Header'
-import { mapState } from 'vuex'
-import $ from 'jquery'
-
-export default {
-  name: 'news',
-  metaInfo: {
-    title: 'Bzone News',
-    bodyAttrs: {
-      class: null
-    }
-  },
-  components: {
-    Hotnews,
-    Hair,
-    Nail,
-    Beauty,
-    RightContent,
-    Video,
-    Locations,
-    Products,
-    FooterNews,
-    PageHeader
-  },
-  data () {
-    return {
-      ads: {
-        center_1_1: {},
-        center_1_2: {},
-        right_1_1: {},
-        right_1_2: {},
-        right_1_3: {},
-        right_1_4: {},
-        under_1_1: {},
-        under_1_2: {},
-        under_1_3: {},
-        under_1_4: {}
+  export default {
+    name: 'news',
+    metaInfo: {
+      title: 'Bzone News',
+      bodyAttrs: {
+        class: null
       }
-    }
-  },
-  created () {
-    this.fetchAds()
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$store.dispatch('clearSearchQuery')
-    })
-  },
-  beforeRouteLeave (to, from, next) {
-    this.$store.dispatch('clearSearchQuery').then(() => next())
-  },
-  computed: mapState({
-    categories: state => state.preloadData.categories || []
-  }),
-  mounted () {
-    this.$nextTick(() => this.menuMobile())
-  },
-  methods: {
-    fetchAds () {
-      this.$http.get('ads/home_page').then(({data}) => {
-        this.ads = data.data
-        this.$endLoading('fetching ads')
-        this.fbAsyncInit()
-      }).catch(() => this.$endLoading('fetching ads'))
     },
-    menuMobile () {
-      $('.main-header .menu li').each((index, item) => {
-        var _this = $(item)
-        var count = _this.find('ul').length
-        if (count) {
-          _this.addClass('bullet')
-          $('<i class="bullet-icon bz-down-2"></i>').insertAfter(_this.children('a'))
+    components: {
+      Hotnews,
+      RightContent,
+      Video,
+      Products,
+      FooterNews,
+      CategoryList,
+      VideoList,
+      LocationList,
+      ProductsList,
+      PageHeader
+    },
+    data () {
+      return {
+        ads: {
+          center_1_1: {},
+          center_1_2: {},
+          right_1_1: {},
+          right_1_2: {},
+          right_1_3: {},
+          right_1_4: {},
+          under_1_1: {},
+          under_1_2: {},
+          under_1_3: {},
+          under_1_4: {}
+        },
+        hotNews: {
+          first: {},
+          second: {},
+          items: []
+        },
+        Nail: {
+          first: {},
+          items: []
+        },
+        Hair: {
+          first: {},
+          items: []
+        },
+        Beauty: {
+          first: {},
+          items: []
+        },
+        Video: {
+          first: {},
+          items: []
+        },
+        locations: {
+          first: {},
+          locations: []
+        },
+        products: {
+          first: {},
+          second: {},
+          items: []
         }
+      }
+    },
+    created () {
+      this.fetchAds()
+      this.fetchHotNews()
+      this.fetchNailNews()
+      this.fetchHairNews()
+      this.fetchBeautyNews()
+      this.fetchVideo()
+      this.fetchDataLocation()
+      this.fetchProducts()
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.dispatch('clearSearchQuery')
       })
-      $('.main-header .menu .icon, .main-header .menu .overlay, .main-header .menu .close-menu').click(() => {
-        $('.main-header .menu').toggleClass('active-menu')
-      })
+    },
+    beforeRouteLeave (to, from, next) {
+      this.$store.dispatch('clearSearchQuery').then(() => next())
+    },
+    computed: mapState({
+      categories: state => state.preloadData.categories || []
+    }),
+    mounted () {
+      this.$nextTick(() => this.menuMobile())
+    },
+    methods: {
+      fetchAds () {
+        this.$http.get('ads/home_page').then(({data}) => {
+          this.ads = data.data
+          this.$endLoading('fetching ads')
+          this.fbAsyncInit()
+        }).catch(() => this.$endLoading('fetching ads'))
+      },
+      fetchHotNews () {
+        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+          let tmp = data.data
+          if (tmp.length > 0) {
+            this.hotNews.first = tmp[0]
+            tmp.shift()
+          }
+          if (tmp.length > 0) {
+            this.hotNews.second = tmp[0]
+            tmp.shift()
+          }
+          this.hotNews.items = tmp
 
-      $('.main-header .menu .bullet-icon').each((index, item) => {
-        $(item).click(() => {
-          if ($('.main-header .menu.active-menu').length) {
-            var parent = $(item).parent()
-
-            if (parent.hasClass('active-down')) {
-              $(item).siblings('ul').stop(true, true).slideUp()
-            } else {
-              $(item).siblings('ul').stop(true, true).slideDown()
+          this.$endLoading('fetching ads')
+          this.fbAsyncInit()
+        }).catch(() => this.$endLoading('fetching ads'))
+      },
+      fetchDataNews (topic, type, keyData, second = false) {
+        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
+          let tmp = data.data
+          if (tmp.length > 0) {
+            keyData.first = tmp[0]
+            tmp.shift()
+          }
+          if (second) {
+            if (tmp.length > 0) {
+              keyData.second = tmp[0]
+              tmp.shift()
             }
-            parent.toggleClass('active-down')
+          }
+          keyData.items = tmp
+
+          this.$endLoading('fetching news')
+        }).catch(() => this.$endLoading('fetching news'))
+      },
+      fetchNailNews () {
+        this.fetchDataNews(null, 'nail', this.Nail)
+      },
+      fetchHairNews () {
+        this.fetchDataNews(null, 'hair', this.Hair)
+      },
+      fetchBeautyNews () {
+        this.fetchDataNews(null, 'beauty', this.Beauty)
+      },
+      fetchVideo () {
+        this.fetchDataNews(2, null, this.Video)
+      },
+      fetchProducts () {
+        this.fetchDataNews(4, null, this.products, true)
+      },
+      fetchDataLocation () {
+        this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
+          const res = data.data
+          if (res.length > 0) {
+            this.locations.first = res[0]
+            res.shift()
+          }
+          this.locations.locations = res
+          this.$endLoading('fetching news')
+        }).catch(() => this.$endLoading('fetching news'))
+      },
+
+      menuMobile () {
+        $('.main-header .menu li').each((index, item) => {
+          var _this = $(item)
+          var count = _this.find('ul').length
+          if (count) {
+            _this.addClass('bullet')
+            $('<i class="bullet-icon bz-down-2"></i>').insertAfter(_this.children('a'))
           }
         })
-      })
+        $('.main-header .menu .icon, .main-header .menu .overlay, .main-header .menu .close-menu').click(() => {
+          $('.main-header .menu').toggleClass('active-menu')
+        })
+
+        $('.main-header .menu .bullet-icon').each((index, item) => {
+          $(item).click(() => {
+            if ($('.main-header .menu.active-menu').length) {
+              var parent = $(item).parent()
+
+              if (parent.hasClass('active-down')) {
+                $(item).siblings('ul').stop(true, true).slideUp()
+              } else {
+                $(item).siblings('ul').stop(true, true).slideDown()
+              }
+              parent.toggleClass('active-down')
+            }
+          })
+        })
+      }
     }
   }
-}
 </script>

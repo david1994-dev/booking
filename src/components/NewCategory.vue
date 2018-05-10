@@ -93,8 +93,6 @@
 
 <script>
   const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hotnews')
-  const Hair = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hair')
-  const Nail = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Nail')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
 
   const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
@@ -135,8 +133,6 @@
     },
     components: {
       Hotnews,
-      Hair,
-      Nail,
       Beauty,
       PageHeader,
       RightContent,
@@ -165,7 +161,7 @@
     methods: {
       fetchData (category, topic, page = 1) {
         this.$startLoading('fetching news')
-        this.$http.get('news', {params: {limit: 20, type: category, topic: topic, page: page}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 20, type: category, topic: topic, page: page}}).then(({data}) => {
           this.news = data
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))

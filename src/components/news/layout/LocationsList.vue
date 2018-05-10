@@ -43,7 +43,7 @@
             <div><img src="../../../assets/news/images/salon-image-3.jpg"/></div>
           </div>
           <div class="des">Với hơn 200 salons hàng đầu tại Hà Nội</div>
-          <a class="discovery" href="#">KHÁM PHÁ NGAY</a>
+          <a class="discovery" href="https://dev.bzone.vn/search?q=a">KHÁM PHÁ NGAY</a>
         </div>
       </div>
       <div class="list" v-if="items.locations.length > 0">

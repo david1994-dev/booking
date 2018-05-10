@@ -26,12 +26,6 @@
                       }"
                       :items="Beauty"/>
 
-        <!--<VideoList :text="'Video hot'"-->
-                   <!--:route-params="{-->
-                      <!--category: 'hair',-->
-                      <!--slug: 2-->
-                    <!--}"-->
-                   <!--:items="Video"/>-->
       </div>
       <RightContent :ads="ads"/>
     </div>
@@ -153,7 +147,7 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+        this.$http.get('news', {params: {limit: 6, topic: 1, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]
@@ -169,9 +163,8 @@
           this.fbAsyncInit()
         }).catch(() => this.$endLoading('fetching ads'))
       },
-
       fetchDataNews (topic, type, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -189,13 +182,13 @@
         }).catch(() => this.$endLoading('fetching news'))
       },
       fetchNailNews () {
-        this.fetchDataNews(3, 'nail', this.Nail)
+        this.fetchDataNews(1, 'nail', this.Nail)
       },
       fetchHairNews () {
         this.fetchDataNews(1, 'hair', this.Hair)
       },
       fetchBeautyNews () {
-        this.fetchDataNews(2, 'beauty', this.Beauty)
+        this.fetchDataNews(1, 'beauty', this.Beauty)
       },
       // fetchVideo () {
       //   this.fetchDataNews(4, 'video', this.Video, true)

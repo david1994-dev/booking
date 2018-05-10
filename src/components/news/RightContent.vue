@@ -8,182 +8,20 @@
   <div class="newest">
     <div class="title-newest">TIN TỨC</div>
     <div class="list-newest">
-      <div class="list">
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">6 kiểu túc ngang vai giúp trẻ ra đến chục tuổi đang được hội chị em rất ưa chuộng</a></div>
-            <div class="time">2h trước</div>
+      <div class="list" v-if="news.length > 0">
+        <div class="item" v-for="item in news">
+          <div class="img">
+            <router-link :to="{ name: 'new', params: { id: item.slug } }">
+              <img :src="item.image_url"/>
+            </router-link>
           </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
           <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">6 kiểu túc ngang vai giúp trẻ ra đến chục tuổi đang được hội chị em rất ưa chuộng</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">6 kiểu túc ngang vai giúp trẻ ra đến chục tuổi đang được hội chị em rất ưa chuộng</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-      </div>
-      <div class="day">04/04/2018</div>
-      <div class="list">
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-      </div>
-      <div class="day">03/04/2018</div>
-      <div class="list">
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-      </div>
-      <div class="day">02/04/2018</div>
-      <div class="list">
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-1.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="img"><a href="#"><img src="../../assets/news/images/img-thumb-2.jpg"></a></div>
-          <div class="info">
-            <div class="name"><a href="#">Cách chăm sóc da mặt đúng cách, bạn đã biết chưa?</a></div>
-            <div class="time">2h trước</div>
+            <div class="name">
+              <router-link :to="{ name: 'new', params: { id: item.slug } }">
+                {{ item.title}}
+              </router-link>
+            </div>
+            <div class="time">{{ moment(item.created_at).fromNow()}}</div>
           </div>
         </div>
       </div>
@@ -228,12 +66,8 @@ export default {
   methods: {
     fetchData () {
       this.$startLoading('fetching news')
-      this.$http.get('news', { params: { limit: 6, type: 'hotnews' } }).then(({ data }) => {
+      this.$http.get('news', { params: { limit: 20 } }).then(({ data }) => {
         const res = data.data
-        if (res.length > 0) {
-          this.first = res[0]
-          res.shift()
-        }
         this.news = res
         this.$endLoading('fetching news')
       }).catch(() => this.$endLoading('fetching news'))

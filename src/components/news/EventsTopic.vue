@@ -26,7 +26,7 @@
                       }"
                       :items="Beauty"/>
 
-        <!--<VideoList :text="'Video về tóc'"-->
+        <!--<VideoList :text="'Video về sự kiện'"-->
                    <!--:route-params="{-->
                       <!--category: 'hair',-->
                       <!--slug: 2-->
@@ -111,11 +111,10 @@
           first: {},
           items: []
         },
-        // Video: {
-        //   first: {},
-        //   second: {},
-        //   items: []
-        // },
+        Video: {
+          first: {},
+          items: []
+        },
         locations: {
           first: {},
           locations: []
@@ -153,7 +152,7 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, topic: 3, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]
@@ -171,7 +170,7 @@
       },
 
       fetchDataNews (topic, type, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -189,17 +188,17 @@
         }).catch(() => this.$endLoading('fetching news'))
       },
       fetchNailNews () {
-        this.fetchDataNews(1, 'nail', this.Nail)
+        this.fetchDataNews(3, 'nail', this.Nail)
       },
       fetchHairNews () {
-        this.fetchDataNews(1, 'hair', this.Hair)
+        this.fetchDataNews(3, 'hair', this.Hair)
       },
       fetchBeautyNews () {
-        this.fetchDataNews(1, 'beauty', this.Beauty)
+        this.fetchDataNews(3, 'beauty', this.Beauty)
       },
-      // fetchVideo () {
-      //   this.fetchDataNews(1, 'video', this.Video, true)
-      // },
+      fetchVideo () {
+        this.fetchDataNews(1, null, this.Video, true)
+      },
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
           const res = data.data

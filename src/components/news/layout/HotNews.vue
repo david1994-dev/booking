@@ -17,7 +17,7 @@
     <div class="ads-1" v-if="items.second">
       <div class="img">
         <router-link :to="{ name: 'new', params: { id: items.second.slug } }">
-          <img :src="items.second.image_url"/>
+          <img :src="items.second.second_image_url"/>
         </router-link>
       </div>
       <div class="name">
@@ -25,9 +25,6 @@
           {{ items.second.title}}
         </router-link>
       </div>
-    </div>
-    <div class="ads-full" v-if="ads.center_1_1">
-      <a :href="ads.center_1_1.link"><img :src="ads.center_1_1.image_url"/></a>
     </div>
     <div class="list" v-if="items.items.length > 0">
       <router-link class="item" v-for="item in items.items" :key="item.id" :to="{ name: 'new', params: { id: item.slug } }">
@@ -41,6 +38,10 @@
       </router-link>
     </div>
     <div class="ads-2" v-if="ads.center_1_2"> <a :href="ads.center_1_2.link"><img :src="ads.center_1_2.image_url"/></a></div>
+
+    <div class="ads-full" v-if="ads.center_1_1">
+      <a :href="ads.center_1_1.link"><img :src="ads.center_1_1.image_url"/></a>
+    </div>
   </div>
 </template>
 

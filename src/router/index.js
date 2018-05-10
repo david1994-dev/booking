@@ -24,6 +24,8 @@ const Categories = () => import(/* webpackChunkName: "blog-bundle" */ '@/compone
 const EventsTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/EventsTopic')
 const TrendTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/TrendTopic')
 const ProductsTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/ProductsTopic')
+const VideoTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/VideoTopic')
+const CategoryVideo = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/CategoryVideo')
 
 import Stylist from '@/components/Stylist'
 
@@ -143,6 +145,16 @@ export default new Router({
       path: '/news-topic/product',
       name: 'productsTopic',
       component: ProductsTopic
+    },
+    {
+      path: '/news-topic/video',
+      name: 'videoTopic',
+      component: VideoTopic
+    },
+    {
+      path: '/news-topic/video/:category',
+      name: 'categoryVideo',
+      component: CategoryVideo
     },
     {
       path: '*',

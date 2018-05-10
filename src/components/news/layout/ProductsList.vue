@@ -38,7 +38,7 @@
                 {{ item.title}}
               </router-link>
             </div>
-            <div class="time">{{ item.category}} - {{ item.created_at }}</div>
+            <div class="time">{{ item.category}} - {{ moment(item.created_at).fromNow() }}</div>
           </div>
         </div>
       </div>
@@ -75,7 +75,6 @@
       return {}
     },
     created () {
-      console.log('vao day chua')
     },
     methods: {}
   }

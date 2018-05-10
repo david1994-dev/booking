@@ -20,9 +20,9 @@
                       :items="trendNews"/>
 
         <VideoList :text="'Video về '+name"
+                   :route-name="'categoryVideo'"
                    :route-params="{
                       category: slug,
-                      slug: 2
                     }"
                    :items="videoNews"/>
 
@@ -176,7 +176,7 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]
@@ -194,7 +194,7 @@
       },
 
       fetchDataNews (topic, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: this.$route.params.category, topic: topic}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, type: this.$route.params.category, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]

@@ -250,21 +250,10 @@
       }
     },
     created () {
-      this.fetchData()
+
     },
     methods: {
-      fetchData () {
-        this.$startLoading('fetching news')
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
-          const res = data.data
-          if (res.length > 0) {
-            this.first = res[0]
-            res.shift()
-          }
-          this.news = res
-          this.$endLoading('fetching news')
-        }).catch(() => this.$endLoading('fetching news'))
-      }
+
     }
   }
 </script>

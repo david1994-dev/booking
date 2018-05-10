@@ -6,11 +6,25 @@
         <HotVideo :ads="ads" :items="HotVideo"/>
 
         <VideoList :text="'Video về tóc'"
+                   :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'hair',
-                      slug: 2
                     }"
-                   :items="Video"/>
+                   :items="Hair"/>
+
+        <VideoList :text="'Video về nail'"
+                   :route-name="'categoryVideo'"
+                   :route-params="{
+                      category: 'nail',
+                    }"
+                   :items="Nail"/>
+
+        <VideoList :text="'Video về Beauty'"
+                   :route-name="'categoryVideo'"
+                   :route-params="{
+                      category: 'beauty',
+                    }"
+                   :items="Beauty"/>
       </div>
       <RightContent :ads="ads"/>
     </div>
@@ -74,8 +88,10 @@
           under_1_4: {}
         },
         HotVideo: {
+          item: {}
+        },
+        Event: {
           first: {},
-          second: {},
           items: []
         },
         Nail: {
@@ -90,11 +106,6 @@
           first: {},
           items: []
         },
-        // Video: {
-        //   first: {},
-        //   second: {},
-        //   items: []
-        // },
         locations: {
           first: {},
           locations: []
@@ -132,17 +143,12 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotVideo () {
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+        this.$http.get('news', {params: {limit: 1, topic: 2, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
-            this.hotNews.first = tmp[0]
+            this.HotVideo.item = tmp[0]
             tmp.shift()
           }
-          if (tmp.length > 0) {
-            this.hotNews.second = tmp[0]
-            tmp.shift()
-          }
-          this.hotNews.items = tmp
 
           this.$endLoading('fetching ads')
           this.fbAsyncInit()
@@ -150,7 +156,7 @@
       },
 
       fetchDataNews (topic, type, keyData, second = false) {
-        this.$http.get('news', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 6, type: type, topic: topic}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -168,13 +174,13 @@
         }).catch(() => this.$endLoading('fetching news'))
       },
       fetchNailNews () {
-        this.fetchDataNews(1, 'nail', this.Nail)
+        this.fetchDataNews(2, 'nail', this.Nail)
       },
       fetchHairNews () {
-        this.fetchDataNews(1, 'hair', this.Hair)
+        this.fetchDataNews(2, 'hair', this.Hair)
       },
       fetchBeautyNews () {
-        this.fetchDataNews(1, 'beauty', this.Beauty)
+        this.fetchDataNews(2, 'beauty', this.Beauty)
       },
       // fetchVideo () {
       //   this.fetchDataNews(1, 'video', this.Video, true)
