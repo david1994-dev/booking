@@ -26,9 +26,7 @@
         </router-link>
       </div>
     </div>
-    <div class="ads-full" v-if="ads.center_1_1">
-      <a :href="ads.center_1_1.link"><img :src="ads.center_1_1.image_url"/></a>
-    </div>
+    
     <div class="list">
       <router-link class="item" v-for="item in news" :key="item.id" :to="{ name: 'new', params: { id: item.slug } }">
         <div class="img"><img src="../../assets/news/images/img-thumb-1.jpg"/></div>
@@ -41,6 +39,9 @@
       </router-link>
     </div>
     <div class="ads-2" v-if="ads.center_1_2"> <a :href="ads.center_1_2.link"><img :src="ads.center_1_2.image_url"/></a></div>
+    <div class="ads-full" v-if="ads.center_1_1">
+      <a :href="ads.center_1_1.link"><img :src="ads.center_1_1.image_url"/></a>
+    </div>
   </div>
 </template>
 
