@@ -8,7 +8,7 @@
           <h2 class="main-title"><a href="#"></a>HOT NEWS</h2>
         </div>
 
-        <Hotnews :ads="ads" :items="hotNews"/>
+        <HotNews :ads="ads" :items="hotNews"/>
 
         <CategoryList :text="'THÔNG TIN VỀ TÓC'" :routeName="'categories'"
                       :routeParams="{
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-  const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/Hotnews')
+  const HotNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/HotNews')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
   const Products = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Products')
   const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Footer')
@@ -77,7 +77,7 @@
       }
     },
     components: {
-      Hotnews,
+      HotNews,
       RightContent,
       Products,
       FooterNews,

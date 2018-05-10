@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  const HotNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/Hotnews')
+  const HotNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/HotNews')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
 
   const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
