@@ -1,5 +1,5 @@
 <template>
-  <div class="news-seciton">
+  <div class="news-seciton" v-if="items.first">
     <div class="tp-title">
       <h2 class="main-title"><a href="#"></a>{{text}}</h2>
       <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'product' } }">

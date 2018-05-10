@@ -26,8 +26,8 @@
         </router-link>
       </div>
     </div>
-    
-    <div class="list">
+
+    <div class="list" >
       <router-link class="item" v-for="item in news" :key="item.id" :to="{ name: 'new', params: { id: item.slug } }">
         <div class="img"><img src="../../assets/news/images/img-thumb-1.jpg"/></div>
         <div class="info">

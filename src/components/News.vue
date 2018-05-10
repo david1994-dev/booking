@@ -57,7 +57,6 @@
 <script>
   const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/Hotnews')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
-  const Video = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Video')
   const Products = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Products')
   const FooterNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Footer')
 
@@ -80,7 +79,6 @@
     components: {
       Hotnews,
       RightContent,
-      Video,
       Products,
       FooterNews,
       CategoryList,

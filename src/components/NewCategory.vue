@@ -3,7 +3,7 @@
     <page-header/>
     <div id="main-content">
       <div class="left-content">
-        <hotnews :ads="ads"/>
+        <HotNews :ads="ads"/>
         <div class="list-article" v-if="news.data.length">
           <div class="item" v-for="item in news.data" :key="item.id">
             <router-link class="img" :to="{ name: 'new', params: { id: item.slug } }">
@@ -47,52 +47,12 @@
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="tp-container">
-        <div class="savetime-footer">
-          <h3>Tích kiệm thời gian, đặt lịch chăm sóc bản thân ngay tại đây</h3>
-          <p>là điểm đến trực tuyến cho các chuyên gia chăm sóc sắc đẹp và khách hàng. Chuyên gia có thể giới thiệu công
-            việc của họ, kết nối với khách hàng mới và hiện tại và xây dựng doanh nghiệp của họ. Khách hàng có thể khám
-            phá các dịch vụ và nhà cung cấp dịch vụ mới, đặt hẹn trực tuyến và lấy cảm hứng.</p>
-          <div class="full"></div>
-          <div class="copyright">©Abby 2017</div>
-        </div>
-        <div class="instagram">
-          <ul>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-            <li><a href="#"><img src="../assets/news/images/image-instagram.jpg"/></a></li>
-          </ul>
-        </div>
-        <div class="links">
-          <div class="title">Link</div>
-          <ul class="list-link">
-            <li><a href="#">Về chúng tôi</a></li>
-            <li><a href="#">Hỗ trợ</a></li>
-            <li><a href="#">Ảnh</a></li>
-            <li><a href="#">Đối tác</a></li>
-            <li><a href="#">Liên hệ</a></li>
-          </ul>
-          <div class="full"></div>
-          <ul class="social">
-            <li><a href="#"><i class="bz-facebook"></i></a></li>
-            <li><a href="#"><i class="bz-instagram"></i></a></li>
-          </ul>
-        </div>
-        <div class="copyright bottom">©Abby 2017</div>
-      </div>
-    </footer>
+    <PageFooter/>
   </div>
 </template>
 
 <script>
-  const Hotnews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Hotnews')
+  const HotNews = () => import(/* webpackChunkName: "homepage-bundle" */ './news/layout/Hotnews')
   const RightContent = () => import(/* webpackChunkName: "homepage-bundle" */ './news/RightContent')
 
   const Beauty = () => import(/* webpackChunkName: "homepage-bundle" */ './news/Beauty')
@@ -100,6 +60,7 @@
   import Paginate from 'vuejs-paginate'
 
   import PageHeader from './news/Header'
+  import PageFooter from './news/Footer'
 
   import {mapState} from 'vuex'
   import $ from 'jquery'
@@ -117,12 +78,18 @@
             }
           }
         },
+        hotNews: {
+          first: null,
+          second: null,
+          items: []
+        },
         ads: {},
         pagination: {}
       }
     },
     created () {
       this.fetchData(this.$route.params.category, this.$route.params.slug, 1)
+      this.fetchHotNews()
       this.fetchAds()
     },
     metaInfo: {
@@ -132,10 +99,11 @@
       }
     },
     components: {
-      Hotnews,
+      HotNews,
       Beauty,
       PageHeader,
       RightContent,
+      PageFooter,
       Paginate
     },
     beforeRouteEnter (to, from, next) {
@@ -159,6 +127,30 @@
       }
     },
     methods: {
+      fetchHotNews () {
+        this.$http.get('news', {
+          params: {
+            limit: 6,
+            type: this.$route.params.category,
+            topic: this.$route.params.slug,
+            hotnew: 1
+          }
+        }).then(({data}) => {
+          let tmp = data.data
+          if (tmp.length > 0) {
+            this.hotNews.first = tmp[0]
+            tmp.shift()
+          }
+          if (tmp.length > 0) {
+            this.hotNews.second = tmp[0]
+            tmp.shift()
+          }
+          this.hotNews.items = tmp
+
+          this.$endLoading('fetching ads')
+          this.fbAsyncInit()
+        }).catch(() => this.$endLoading('fetching ads'))
+      },
       fetchData (category, topic, page = 1) {
         this.$startLoading('fetching news')
         this.$http.get('category', {params: {limit: 20, type: category, topic: topic, page: page}}).then(({data}) => {
