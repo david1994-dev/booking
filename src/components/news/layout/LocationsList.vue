@@ -64,11 +64,11 @@
               <div class="tp-rate">
                 <div class="stars-number">
                   <div class="stars star-35">
-                    <i class="bz-star"></i>
-                    <i class="bz-star"></i>
-                    <i class="bz-star"></i>
-                    <i class="bz-star"></i>
-                    <i class="bz-star"></i>
+                    <i class="bz-star bzone2"></i>
+                    <i class="bz-star bzone2"></i>
+                    <i class="bz-star bzone2"></i>
+                    <i class="bz-star bzone2"></i>
+                    <i class="bz-star bzone2"></i>
                   </div>
                   <div class="number">8.0 Rất tốt</div>
                 </div>
