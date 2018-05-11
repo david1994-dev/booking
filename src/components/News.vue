@@ -227,7 +227,7 @@
         this.fetchDataNews(2, null, this.Video)
       },
       fetchProducts () {
-        this.fetchDataNews(4, null, this.products)
+        this.fetchDataNews(4, null, this.products, 20, true)
       },
       fetchEventNews () {
         this.fetchDataNews(3, null, this.Events)
