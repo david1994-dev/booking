@@ -227,13 +227,13 @@
         this.fetchDataNews(2, null, this.Video)
       },
       fetchProducts () {
-        this.fetchDataNews(4, null, this.products, 20, true)
+        this.fetchDataNews(4, null, this.products)
       },
       fetchEventNews () {
-        this.fetchDataNews(3, null, this.Events, 20, true)
+        this.fetchDataNews(3, null, this.Events)
       },
       fetchTrendNews () {
-        this.fetchDataNews(1, null, this.Trends, 20, true)
+        this.fetchDataNews(1, null, this.Trends)
       },
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
