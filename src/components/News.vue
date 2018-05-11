@@ -216,11 +216,14 @@
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
           const res = data.data
+          let tmp = res
           if (res.length > 0) {
-            this.locations.first = res[0].salons[0]
-            res[0].salons.shift()
+            let salons = res[0].salons
+            this.locations.first = salons[0]
+            salons.shift()
+            tmp[0].salons = salons
           }
-          this.locations.locations = res
+          this.locations.locations = tmp
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       },

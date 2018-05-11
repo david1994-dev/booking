@@ -48,7 +48,7 @@
       </div>
       <div class="list" v-if="items.locations.length > 0">
         <div v-for="item in items.locations">
-          <div class="item" v-for="salon in item.salon" :key="salon.id">
+          <div class="item" v-for="salon in item.salons" :key="salon.id">
             <div class="img">
               <a :href="salon.google_url">
                 <img :src="salon.image_url"/>
