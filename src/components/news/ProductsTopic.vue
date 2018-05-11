@@ -5,11 +5,27 @@
       <div class="left-content">
         <HotNews :ads="ads" :items="hotNews"/>
 
-        <ProductsList :text="'Các sản phẩm cho tóc'" :items="Hair"/>
+        <ProductsList :text="'Các sản phẩm cho tóc'" :items="Hair"
+                      :routeName="'ChildCategory'"
+                      :routeParams="{
+                        category: 'hair',
+                        slug: 4
+                      }"
+        />
 
-        <ProductsList :text="'Các sản phẩm cho nail'" :items="Nail"/>
+        <ProductsList :text="'Các sản phẩm cho nail'" :items="Nail"
+                      :routeName="'ChildCategory'"
+                      :routeParams="{
+                        category: 'nail',
+                        slug: 4
+                      }"/>
 
-        <ProductsList :text="'Các sản phẩm cho beauty'" :items="Beauty"/>
+        <ProductsList :text="'Các sản phẩm cho beauty'" :items="Beauty"
+                      :routeName="'ChildCategory'"
+                      :routeParams="{
+                        category: 'beauty',
+                        slug: 4
+                      }"/>
 
       </div>
       <RightContent :ads="ads"/>

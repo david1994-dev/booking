@@ -28,7 +28,12 @@
 
         <LocationList :text="'Địa điểm làm '+name" :items="locations"/>
 
-        <ProductsList :text="'Các sản phẩm cho '+name" :items="products"/>
+        <ProductsList :text="'Các sản phẩm cho '+name"
+                      :routeName="'ChildCategory'"
+                      :routeParams="{
+                        category: slug,
+                        slug: 4
+                      }" :items="products"/>
 
       </div>
       <RightContent :ads="ads"/>
