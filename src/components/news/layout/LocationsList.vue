@@ -9,15 +9,15 @@
 
     <div class="salon-section">
       <div class="feature-ads">
-        <div class="video-feature" v-if="items.locations.first">
-          <div class="img"><a href="#"><img :src="items.locations.first.image_url"/></a></div>
+        <div class="feature" v-if="items.first">
+          <div class="img"><a href="#"><img :src="items.first.image_url"/></a></div>
           <div class="info">
             <div class="name">
-              <router-link :to="{ name: 'new', params: { id: items.locations.first.slug } }">
-                {{ items.locations.first.name}}
+              <router-link :to="{ name: 'new', params: { id: items.first.slug } }">
+                {{ items.first.name}}
               </router-link>
             </div>
-            <div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
+            <div class="address">{{ items.first.address }}</div>
             <div class="tp-rate">
               <div class="stars-number">
                 <div class="stars star-35">
@@ -30,7 +30,7 @@
                 <div class="number">8.0 Rất tốt</div>
               </div>
               <div class="dash">-</div>
-              <div class="rate-status">2 Đánh giá</div>
+              <div class="rate-status">{{ items.first.review_count}} Đánh giá</div>
             </div>
           </div>
         </div>
@@ -47,32 +47,34 @@
         </div>
       </div>
       <div class="list" v-if="items.locations.length > 0">
-        <div class="item" v-for="item in items.locations" :key="item.id">
-          <div class="img">
-            <router-link :to="{ name: 'new', params: { id: item.slug } }">
-              <img :src="item.image_url"/>
-            </router-link>
-          </div>
-          <div class="info">
-            <div class="name">
-              <router-link :to="{ name: 'new', params: { id: item.slug } }">
-                {{ item.name}}
+        <div v-for="item in items.locations">
+          <div class="item" v-for="salon in item.salon" :key="salon.id">
+            <div class="img">
+              <router-link :to="{ name: 'new', params: { id: salon.slug } }">
+                <img :src="salon.image_url"/>
               </router-link>
             </div>
-            <div class="address">14 Hàng Bún, Hoàn Kiếm, Hà Nội</div>
-            <div class="tp-rate">
-              <div class="stars-number">
-                <div class="stars star-35">
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                  <i class="bz-star"></i>
-                </div>
-                <div class="number">8.0 Rất tốt</div>
+            <div class="info">
+              <div class="name">
+                <router-link :to="{ name: 'new', params: { id: salon.slug } }">
+                  {{ salon.name}}
+                </router-link>
               </div>
-              <div class="dash">-</div>
-              <div class="rate-status">2 Đánh giá</div>
+              <div class="address">{{ salon.address}}</div>
+              <div class="tp-rate">
+                <div class="stars-number">
+                  <div class="stars star-35">
+                    <i class="bz-star"></i>
+                    <i class="bz-star"></i>
+                    <i class="bz-star"></i>
+                    <i class="bz-star"></i>
+                    <i class="bz-star"></i>
+                  </div>
+                  <div class="number">8.0 Rất tốt</div>
+                </div>
+                <div class="dash">-</div>
+                <div class="rate-status">{{ salon.review_count }} Đánh giá</div>
+              </div>
             </div>
           </div>
         </div>
@@ -109,6 +111,7 @@
       return {}
     },
     created () {
+      console.log('test', this.items)
     },
     methods: {}
   }

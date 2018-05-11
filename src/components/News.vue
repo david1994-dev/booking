@@ -214,11 +214,11 @@
         this.fetchDataNews(4, null, this.products, 20, true)
       },
       fetchDataLocation () {
-        this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
+        this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
           const res = data.data
           if (res.length > 0) {
-            this.locations.first = res[0]
-            res.shift()
+            this.locations.first = res[0].salons[0]
+            res[0].salons.shift()
           }
           this.locations.locations = res
           this.$endLoading('fetching news')
