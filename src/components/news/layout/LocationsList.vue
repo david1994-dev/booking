@@ -10,12 +10,12 @@
     <div class="salon-section">
       <div class="feature-ads">
         <div class="feature" v-if="items.first">
-          <div class="img"><a href="#"><img :src="items.first.image_url"/></a></div>
+          <div class="img"><a :href="items.first.google_url"><img :src="items.first.image_url"/></a></div>
           <div class="info">
             <div class="name">
-              <router-link :to="{ name: 'new', params: { id: items.first.slug } }">
+              <a :href="items.first.google_url">
                 {{ items.first.name}}
-              </router-link>
+              </a>
             </div>
             <div class="address">{{ items.first.address }}</div>
             <div class="tp-rate">
@@ -50,15 +50,15 @@
         <div v-for="item in items.locations">
           <div class="item" v-for="salon in item.salon" :key="salon.id">
             <div class="img">
-              <router-link :to="{ name: 'new', params: { id: salon.slug } }">
+              <a :href="salon.google_url">
                 <img :src="salon.image_url"/>
-              </router-link>
+              </a>
             </div>
             <div class="info">
               <div class="name">
-                <router-link :to="{ name: 'new', params: { id: salon.slug } }">
+                <a :href="salon.google_url">
                   {{ salon.name}}
-                </router-link>
+                </a>
               </div>
               <div class="address">{{ salon.address}}</div>
               <div class="tp-rate">
