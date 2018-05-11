@@ -10,6 +10,12 @@
 
         <HotNews :ads="ads" :items="hotNews"/>
 
+        <CategoryList :text="'SỰ KIỆN'" :routeName="'eventsTopic'"
+                      :items="Events"/>
+
+        <CategoryList :text="'XU HƯỚNG'" :routeName="'trendTopic'"
+                      :items="Trends"/>
+
         <CategoryList :text="'THÔNG TIN VỀ TÓC'" :routeName="'categories'"
                       :routeParams="{
                         category: 'hair',
@@ -120,6 +126,14 @@
           first: {},
           items: []
         },
+        Events: {
+          first: {},
+          items: []
+        },
+        Trends: {
+          first: {},
+          items: []
+        },
         locations: {
           first: {},
           locations: []
@@ -140,6 +154,8 @@
       this.fetchVideo()
       this.fetchDataLocation()
       this.fetchProducts()
+      this.fetchEventNews()
+      this.fetchTrendNews()
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
@@ -212,6 +228,12 @@
       },
       fetchProducts () {
         this.fetchDataNews(4, null, this.products, 20, true)
+      },
+      fetchEventNews () {
+        this.fetchDataNews(3, null, this.Events, 20, true)
+      },
+      fetchTrendNews () {
+        this.fetchDataNews(1, null, this.Trends, 20, true)
       },
       fetchDataLocation () {
         this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
