@@ -2,9 +2,9 @@
   <div class="news-seciton">
     <div class="tp-title">
       <h2 class="main-title"><a href="#"></a>{{text}}</h2>
-      <router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'makeup' } }">
-        <span>xem thêm</span><i class="bz-next bzone2"></i>
-      </router-link>
+      <!--<router-link class="view-more" :to="{ name: 'newcategory', params: { id: 'makeup' } }">-->
+        <!--<span>xem thêm</span><i class="bz-next bzone2"></i>-->
+      <!--</router-link>-->
     </div>
 
     <div class="salon-section">
