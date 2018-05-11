@@ -41,7 +41,7 @@
 
         <LocationList :text="'ĐỊA ĐIỂM LÀM ĐẸP'" :items="locations"/>
 
-        <ProductsList :text="'SẢN PHẢM'" :routeName="'productsTopic'" :items="products"/>
+        <ProductsList :text="'SẢN PHẨM'" :routeName="'productsTopic'" :items="products"/>
       </div>
       <rightContent :ads="ads"/>
     </div>

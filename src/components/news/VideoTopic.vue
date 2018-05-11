@@ -5,21 +5,21 @@
       <div class="left-content">
         <HotVideo :ads="ads" :item="HotVideo"/>
 
-        <VideoList :text="'Video về tóc'"
+        <VideoList :text="'VIDEO VỀ TÓC'"
                    :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'hair',
                     }"
                    :items="Hair"/>
 
-        <VideoList :text="'Video về nail'"
+        <VideoList :text="'VIDEO VỀ NAIL'"
                    :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'nail',
                     }"
                    :items="Nail"/>
 
-        <VideoList :text="'Video về Beauty'"
+        <VideoList :text="'VIDEO VỀ BEAUTY'"
                    :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'beauty',
