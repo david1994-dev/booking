@@ -32,7 +32,7 @@
     <a v-if="ads.right_1_4" :href="ads.right_1_4.link"><img :src="ads.right_1_4.image_url"/></a>
   </div>
   <div class="like-box">
-    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fbzonevn%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=383977448645867" width="309" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbzonevn%2F&tabs=share&width=340&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=383977448645867" width="340" height="214" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
   </div>
 
   <!--<div class="ads-list ads-list-bottom">-->
