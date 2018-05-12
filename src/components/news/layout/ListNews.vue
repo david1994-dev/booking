@@ -21,8 +21,7 @@
 <script>
   export default {
     name: 'rightContent',
-    props: {
-    },
+    props: {},
     data () {
       return {
         news: []
