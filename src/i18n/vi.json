@@ -76,7 +76,7 @@
 		"representatives": "Người đại diện",
 		"phone_number": "Số điện thoại",
 		"password": "Mật khẩu",
-		"password_confirm": "Nhập lại mật khẩu",
+		"password_confirmation": "Nhập lại mật khẩu",
 		"enter_verified_code": "Nhập Code để xác nhận tài khoản",
 		"we_sent_verified": "Hệ thống vừa gửi một mã xác nhận tới",
 		"enter_the_verified_code": "vui lòng xác nhận vào ô bên dưới",
@@ -87,7 +87,9 @@
 		"easily_manageable_on_app": "Quản lý dễ hơn với ứng dụng mobile",
 		"app_comming_soon": "Dự kiến ra mắt tháng 10.2017",
 		"enter_code": "Nhập mã xác nhận",
-		"invalid_code": "Mã xác nhận không hợp lệ"
+		"invalid_code": "Mã xác nhận không hợp lệ",
+		"des_code_salon": "Hệ thống vừa gửi một mã xác nhận tới <span class=\"phone-number\">{phone}</span> vui lòng xác nhận vào ô bên dưới",
+    "enter_code_salon": "Nhập Code để xác nhận tài khoản"
 	},
 	"search":{
 		"no_more_results": "Không tìm thấy thêm kết quả",

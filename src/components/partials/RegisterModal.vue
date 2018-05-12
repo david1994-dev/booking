@@ -2,8 +2,11 @@
   <b-modal id="modal-choice-account"
            ref="registerModal"
            :hideHeader="true"
-           :hideFooter="true">
-    <i class="bz-close tp-modal-close" @click="hide"></i>
+           :hideFooter="true"
+           :no-close-on-esc="notClose"
+           :no-enforce-focus="notClose"
+           :no-close-on-backdrop="notClose">
+    <i class="bz-close tp-modal-close" v-if="!success" @click="hide"></i>
     <div class="modal-body-inner">
       <div v-show="!salonRegister">
         <div class="salon">
@@ -31,20 +34,41 @@
             <div class="des-success">Đăng ký thành công. Vui lòng hoàn thành thông tin về thương hiệu tại PHẦM MỀM QUẢN
               LÝ SALON - chỉ dành cho salon.
             </div>
-            <a href="#" class="tp-btn">Chuyển trang trong 5s</a>
+            <a href="#" class="tp-btn" :disabled="counting" @click="countdown">
+              <countdown v-if="counting" :time="5000" @countdownend="countdownend">
+                <template slot-scope="props">Chuyển trang trong {{ props.seconds || 5 }}s</template>
+              </countdown>
+            </a>
             <div class="name-mobile">Bzone Bussiness App - Quản lý salon hiệu quả hơn.</div>
             <div class="img-mobile"><a href="#"><img width="150" src="../../assets/images/app-store.png"/></a></div>
           </div>
         </div>
         <div v-else-if="confirmCode">
-          <div class="tp-title-form">Nhập Code để xác nhận tài khoản</div>
-          <div class="tp-des-form">Hệ thống vừa gửi một mã xác nhận tới <span class="phone-number">{{phone}}</span>
-            vui lòng xác nhận vào ô bên dưới
-          </div>
-          <input class="tp-text-form" type="text" placeholder="Nhập code"/>
-          <input class="tp-btn" type="submit" value="Xác nhận" data-toggle="modal" @click="success = true">
-          <div class="tp-send-form"><a href="#">Gửi lại mã xác nhận</a></div>
-          <div class="tp-back-form" @click="confirmCode = false">Quay lại</div>
+          <form novalidate @submit.prevent="verify">
+            <div class="tp-title-form">{{ $t('auth.enter_code_salon') }}</div>
+            <div class="tp-des-form" v-html="$t('auth.des_code_salon', {phone: verifyData.phone_number})">
+            </div>
+            <input class="tp-text-form form-control"
+                   type="text"
+                   name="code"
+                   :placeholder="$t('auth.enter_code')"
+                   v-model="verification_code"
+                   v-validate="'required|min:6'"
+                   :data-vv-as="$t('auth.enter_code')"
+                   :class="{ 'is-invalid': errors.has('verification_code') }" title="code"/>
+            <div class="text-left invalid-feedback">{{ errors.first('verification_code') }}</div>
+            <br/>
+            <input class="tp-btn" type="submit" value="Xác nhận">
+            <div class="tp-send-form">
+              <a href="#" :disabled="countingResend" @click="countDownResend">
+                <countdown v-if="countingResend" :time="5000" @countdownend="countDownResendEnd">
+                  <template slot-scope="props">Gửi lại mã xác nhận sau {{ props.seconds || 60 }}s</template>
+                </countdown>
+                <span v-else>Gửi lại mã xác nhận</span>
+              </a>
+            </div>
+            <div class="tp-back-form" @click="confirmCode = false">Quay lại</div>
+          </form>
         </div>
         <form novalidate v-else @submit.prevent="submit">
           <div class="tp-title-form">{{ $t('auth.register_as_salon') }}</div>
@@ -56,7 +80,7 @@
                  v-model="name"
                  v-validate="'required|min:3'"
                  :data-vv-as="$t('auth.salon_name')"
-                 :class="{ 'is-invalid': errors.has('name') }"/>
+                 :class="{ 'is-invalid': errors.has('name') }" title="name"/>
           <div class="text-left invalid-feedback">{{ errors.first('name') }}</div>
           <input class="tp-text-form form-control"
                  type="text"
@@ -65,16 +89,16 @@
                  v-model="address"
                  :data-vv-as="$t('auth.salon_address')"
                  :placeholder="$t('auth.salon_address')"
-                 :class="{ 'is-invalid': errors.has('address') }"/>
+                 :class="{ 'is-invalid': errors.has('address') }" title="address"/>
           <div class="text-left invalid-feedback">{{ errors.first('address') }}</div>
           <input class="tp-text-form form-control"
                  type="text"
                  name="representatives"
-                 v-validate="'required|min:3'"
+                 v-validate="'required|min:5'"
                  v-model="representatives"
                  :data-vv-as="$t('auth.representatives')"
                  :placeholder="$t('auth.representatives')"
-                 :class="{ 'is-invalid': errors.has('representatives') }"/>
+                 :class="{ 'is-invalid': errors.has('representatives') }" title="representatives"/>
           <div class="text-left invalid-feedback">{{ errors.first('representatives') }}</div>
           <input class="tp-text-form form-control"
                  type="text"
@@ -83,32 +107,32 @@
                  v-model="phone"
                  :data-vv-as="$t('auth.phone_number')"
                  :placeholder="$t('auth.phone_number')"
-                 :class="{ 'is-invalid': errors.has('phone') }"/>
+                 :class="{ 'is-invalid': errors.has('phone') }" title="phone"/>
           <div class="text-left invalid-feedback">{{ errors.first('phone') }}</div>
           <input class="tp-text-form form-control"
                  type="password"
                  name="password"
-                 v-validate="'required'"
+                 v-validate="'required|min:6'"
                  v-model="password"
                  :data-vv-as="$t('auth.password')"
                  :placeholder="$t('auth.password')"
-                 :class="{ 'is-invalid': errors.has('password') }"/>
+                 :class="{ 'is-invalid': errors.has('password') }" title="password"/>
           <div class="text-left invalid-feedback">{{ errors.first('password') }}</div>
           <input class="tp-text-form form-control"
                  type="password"
                  name="password_confirm"
-                 v-validate="'required'"
-                 v-model="password_confirm"
-                 :data-vv-as="$t('auth.password_confirm')"
-                 :placeholder="$t('auth.password_confirm')"
-                 :class="{ 'is-invalid': errors.has('password_confirm') }"/>
-          <div class="text-left invalid-feedback">{{ errors.first('password_confirm') }}</div>
+                 v-validate="'required|confirmed:password|min:6'"
+                 v-model="password_confirmation"
+                 :data-vv-as="$t('auth.password_confirmation')"
+                 :placeholder="$t('auth.password_confirmation')"
+                 :class="{ 'is-invalid': errors.has('password_confirmation') }" title="password confirm"/>
+          <div class="text-left invalid-feedback">{{ errors.first('password_confirmation') }}</div>
           <label class="tp-checkbox-txt">
-            <div class="tp-checkbox"><input type="checkbox"><span></span></div>
+            <div class="tp-checkbox"><input type="checkbox" v-model="checkTerm"><span></span></div>
             <span>Đăng ký nghĩa là bạn đồng ý với mọi <a href="#">điều khoản dịch vụ</a></span>
           </label>
-
-          <input class="tp-btn" type="submit" :disabled="$isLoading('creating salon')" :value="$t('auth.register')">
+          <input class="tp-btn mw-100 btn" type="submit" :disabled="($isLoading('creating salon') || !checkTerm)"
+                 :value="$t('auth.register')">
         </form>
       </div>
     </div>
@@ -117,17 +141,31 @@
 
 <script>
   import {forEach} from 'lodash'
+  import countdown from '@xkeshi/vue-countdown'
+  import {domainUrl} from '../../config'
 
   export default {
     name: 'RegisterModal',
+    components: {
+      countdown
+    },
     data () {
       return {
         salonRegister: false,
         confirmCode: false,
         success: false,
         name: '',
+        representatives: '',
         address: '',
-        phone: ''
+        password: '',
+        password_confirmation: '',
+        phone: '',
+        verification_code: '',
+        checkTerm: false,
+        counting: true,
+        countingResend: false,
+        notClose: false,
+        verifyData: {}
       }
     },
     mounted () {
@@ -135,6 +173,7 @@
         if (vueTarget.id === 'modal-choice-account') {
           this.salonRegister = false
           this.success = false
+          this.counting = false
         }
       })
     },
@@ -142,27 +181,53 @@
       submit () {
         this.$validator.validateAll().then((result) => {
           if (result) {
-            // const postData = {
-            //   name: this.name,
-            //   address: this.address,
-            //   hotline: this.phone
-            // }
-            // TODO: call API
+            const postData = {
+              name: this.name,
+              address: this.address,
+              hotline: this.phone,
+              account_name: this.representatives,
+              password: this.password,
+              password_confirmation: this.password_confirmation
+            }
 
-            this.confirmCode = true
-            // this.$startLoading('creating salon')
-            // this.$http.post('salons', postData).then(() => {
-            //   this.$endLoading('creating salon')
-            //   this.success = true
-            //   this.resetState()
-            // }).catch(({ response }) => {
-            //   if (response.data.errors) {
-            //     this.updateValidationMessage(response.data.errors)
-            //   }
-            //   this.success = false
-            //   this.$endLoading('creating salon')
-            // })
+            this.$startLoading('creating salon')
+            this.$http.post('salons', postData).then((response) => {
+              this.$endLoading('creating salon')
+              this.verifyData = response.data
+              this.confirmCode = true
+              this.countingResend = true
+            }).catch(({response}) => {
+              if (response.data.errors) {
+                this.updateValidationMessage(response.data.errors)
+              }
+              this.success = false
+              this.$endLoading('creating salon')
+            })
           }
+        })
+      },
+      verify () {
+        this.$startLoading('verify salon')
+        this.$http.post('salons/verify', {verification_code: this.verification_code}, {headers: {'X-Verification-Token': this.verifyData.verification_token}}).then((response) => {
+          this.$endLoading('verify salon')
+          this.confirmCode = false
+          this.success = true
+          this.countdown()
+        }).catch(({response}) => {
+          if (response.data.errors) {
+            this.updateValidationMessage(response.data.errors)
+          }
+          this.success = false
+          this.$endLoading('creating salon')
+        })
+      },
+      resend () {
+        this.$startLoading('resend code salon')
+        this.$http.post('salons/resend_code', {phone_number: this.verifyData.phone_number}, {headers: {'X-Verification-Token': this.verifyData.verification_token}}).then((response) => {
+          this.$endLoading('resend code salon')
+          this.verifyData = response.data
+        }).catch(({response}) => {
+          this.$endLoading('creating salon')
         })
       },
       resetState () {
@@ -170,6 +235,10 @@
         this.address = ''
         this.phone = ''
         // this.salonRegister = false
+        this.representatives = ''
+        this.password = ''
+        this.password_confirmation = ''
+        this.checkTerm = false
       },
       hide () {
         this.$refs.registerModal.hide()
@@ -182,6 +251,22 @@
             this.errors.add(field, messages.join('\n'))
           }
         })
+      },
+      countdown: function () {
+        this.counting = true
+        this.notClose = true
+      },
+      countdownend: function () {
+        window.location = domainUrl + '/app'
+      },
+      countDownResend: function () {
+        if (!this.countingResend) {
+          this.countingResend = true
+          this.resend()
+        }
+      },
+      countDownResendEnd: function () {
+        this.countingResend = false
       }
     },
     computed: {

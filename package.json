@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.3.5",
+    "@xkeshi/vue-countdown": "^0.6.0",
     "axios": "^0.16.2",
     "bootstrap": "4.0.0-beta.2",
     "bootstrap-vue": "^1.2.0",

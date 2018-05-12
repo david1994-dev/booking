@@ -76,7 +76,7 @@
     "representatives": "Người đại diện",
     "phone_number": "Phone number",
     "password": "Mật khẩu",
-    "password_confirm": "Nhập lại mật khẩu",
+    "password_confirmation": "Nhập lại mật khẩu",
 		"enter_verified_code": "Enter verified code to confirm",
 		"we_sent_verified": "We have sent a verified code to ",
 		"enter_the_verified_code": "Please enter the verified code in the box below",
@@ -87,8 +87,9 @@
 		"easily_manageable_on_app": "Easily manageable on mobile app",
 		"app_comming_soon": "New app comming soon: October 2017",
 		"enter_code": "Enter code",
-		"invalid_code": "The validation code is invalid"
-	},
+		"invalid_code": "The validation code is invalid",
+    "enter_code_salon": "Nhập Code để xác nhận tài khoản"
+  },
 	"search":{
 		"no_more_results": "There is no more results",
 		"search_results": "We have found {total_results} results matched your key word",

@@ -10,6 +10,9 @@ module.exports = {
     // index: path.resolve(__dirname, '../../beautify/resources/views/app.blade.php'),
     // assetsRoot: path.resolve(__dirname, '../../beautify/public'),
     // assetsSubDirectory: 'assets',
+    // index: path.resolve(__dirname, '../../Bzone-Server/resources/views/app.blade.php'),
+    // assetsRoot: path.resolve(__dirname, '../../Bzone-Server/public'),
+    // assetsSubDirectory: 'assets',
     assetsPublicPath: '/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
