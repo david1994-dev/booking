@@ -17,8 +17,8 @@
     </div>
     <div class="like-box">
       <iframe
-        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbzonevn%2F&tabs=share&width=340&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=383977448645867"
-        width="340" height="214" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbzonevn%2F&tabs&width=310&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=383977448645867"
+        width="310" height="214" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
         allowTransparency="true" allow="encrypted-media"></iframe>
     </div>
 
