@@ -22,6 +22,8 @@ module.exports = merge(baseWebpackConfig, {
   plugins: [
     new webpack.ProvidePlugin({
       jQuery: "jquery",
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
       $: "jquery"
     }),
     new webpack.DefinePlugin({

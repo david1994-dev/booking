@@ -16,8 +16,7 @@ export default {
     titleTemplate: '%s | Bzone',
     script: [
       // { id: 'facebook-jssdk', src: `//connect.facebook.net/${facebook.locale}/sdk.js#xfbml=1&version=${facebook.version}&appId=${facebook.appId}` }
-      { id: 'facebook-jssdk', src: `//connect.facebook.net/${facebook.locale}/sdk.js` },
-      { id: 'function-menu', src: `./assets/news/js/function.js` }
+      { id: 'facebook-jssdk', src: `//connect.facebook.net/${facebook.locale}/sdk.js` }
     ]
   },
   created () {

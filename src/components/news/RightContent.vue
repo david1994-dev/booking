@@ -8,23 +8,7 @@
     <div class="newest">
       <div class="title-newest">TIN TỨC</div>
       <div class="list-newest">
-        <div class="list" v-if="news.length > 0">
-          <div class="item" v-for="item in news">
-            <div class="img">
-              <router-link :to="{ name: 'new', params: { id: item.slug } }">
-                <img :src="item.image_url"/>
-              </router-link>
-            </div>
-            <div class="info">
-              <div class="name">
-                <router-link :to="{ name: 'new', params: { id: item.slug } }">
-                  {{ item.title}}
-                </router-link>
-              </div>
-              <div class="time">{{ moment(item.created_at).fromNow()}}</div>
-            </div>
-          </div>
-        </div>
+        <listNews/>
       </div>
     </div>
 
@@ -49,6 +33,8 @@
 </template>
 
 <script>
+  import listNews from './layout/ListNews'
+
   export default {
     name: 'rightContent',
     props: {
@@ -56,6 +42,9 @@
         type: Object,
         default: {}
       }
+    },
+    components: {
+      listNews
     },
     data () {
       return {
