@@ -3,23 +3,23 @@
     <PageHeader/>
     <div id="main-content">
       <div class="left-content">
-        <HotVideo :ads="ads" :items="HotVideo"/>
+        <HotVideo :ads="ads" :item="HotVideo"/>
 
-        <VideoList :text="'Video về tóc'"
+        <VideoList :text="'VIDEO VỀ TÓC'"
                    :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'hair',
                     }"
                    :items="Hair"/>
 
-        <VideoList :text="'Video về nail'"
+        <VideoList :text="'VIDEO VỀ NAIL'"
                    :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'nail',
                     }"
                    :items="Nail"/>
 
-        <VideoList :text="'Video về Beauty'"
+        <VideoList :text="'VIDEO VỀ BEAUTY'"
                    :route-name="'categoryVideo'"
                    :route-params="{
                       category: 'beauty',
@@ -87,9 +87,7 @@
           under_1_3: {},
           under_1_4: {}
         },
-        HotVideo: {
-          item: {}
-        },
+        HotVideo: {},
         Event: {
           first: {},
           items: []
@@ -143,11 +141,10 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotVideo () {
-        this.$http.get('news', {params: {limit: 1, topic: 2, hotnew: 1}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 1, topic: 2, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
-            this.HotVideo.item = tmp[0]
-            tmp.shift()
+            this.HotVideo = tmp[0]
           }
 
           this.$endLoading('fetching ads')

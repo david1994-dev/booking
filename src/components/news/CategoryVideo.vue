@@ -3,7 +3,7 @@
     <Header/>
     <div id="main-content">
       <div class="left-content">
-        <HotVideo :ads="ads" :items="HotVideo"/>
+        <HotVideo :ads="ads" :item="HotVideo"/>
 
         <div class="list-video" v-if="items.data.length > 0">
           <div class="item" v-for="item in items.data">
@@ -72,9 +72,7 @@
           under_1_3: {},
           under_1_4: {}
         },
-        HotVideo: {
-          item: {}
-        },
+        HotVideo: {},
         items: {
           meta: {
             pagination: {
@@ -128,12 +126,13 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotVideo () {
-        this.$http.get('category', {params: {limit: 1, topic: 2}}).then(({data}) => {
+        this.$http.get('category', {params: {limit: 1, type: this.$route.params.category, topic: 2, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
-            this.HotVideo.item = tmp[0]
-            tmp.shift()
+            this.HotVideo = tmp[0]
           }
+
+          console.log('hotvideo', this.HotVideo)
 
           this.$endLoading('fetching ads')
           this.fbAsyncInit()

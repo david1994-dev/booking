@@ -10,6 +10,12 @@
 
         <HotNews :ads="ads" :items="hotNews"/>
 
+        <CategoryList :text="'SỰ KIỆN'" :routeName="'eventsTopic'"
+                      :items="Events"/>
+
+        <CategoryList :text="'XU HƯỚNG'" :routeName="'trendTopic'"
+                      :items="Trends"/>
+
         <CategoryList :text="'THÔNG TIN VỀ TÓC'" :routeName="'categories'"
                       :routeParams="{
                         category: 'hair',
@@ -35,7 +41,7 @@
 
         <LocationList :text="'ĐỊA ĐIỂM LÀM ĐẸP'" :items="locations"/>
 
-        <ProductsList :text="'SẢN PHẢM'" :routeName="'productsTopic'" :items="products"/>
+        <ProductsList :text="'SẢN PHẨM'" :routeName="'productsTopic'" :items="products"/>
       </div>
       <rightContent :ads="ads"/>
     </div>
@@ -120,6 +126,14 @@
           first: {},
           items: []
         },
+        Events: {
+          first: {},
+          items: []
+        },
+        Trends: {
+          first: {},
+          items: []
+        },
         locations: {
           first: {},
           locations: []
@@ -140,6 +154,8 @@
       this.fetchVideo()
       this.fetchDataLocation()
       this.fetchProducts()
+      this.fetchEventNews()
+      this.fetchTrendNews()
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
@@ -164,7 +180,7 @@
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('news', {params: {limit: 6, type: 'hotnews'}}).then(({data}) => {
+        this.$http.get('news', {params: {limit: 6, hotnew: 1}}).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]
@@ -213,14 +229,23 @@
       fetchProducts () {
         this.fetchDataNews(4, null, this.products, 20, true)
       },
+      fetchEventNews () {
+        this.fetchDataNews(3, null, this.Events)
+      },
+      fetchTrendNews () {
+        this.fetchDataNews(1, null, this.Trends)
+      },
       fetchDataLocation () {
-        this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
+        this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
           const res = data.data
+          let tmp = res
           if (res.length > 0) {
-            this.locations.first = res[0]
-            res.shift()
+            let salons = res[0].salons
+            this.locations.first = salons[0]
+            salons.shift()
+            tmp[0].salons = salons
           }
-          this.locations.locations = res
+          this.locations.locations = tmp
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       },

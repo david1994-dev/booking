@@ -3,7 +3,7 @@
     <page-header/>
     <div id="main-content">
       <div class="left-content">
-        <HotNews :ads="ads"/>
+        <HotNews :ads="ads" :items="hotNews"/>
         <div class="list-article" v-if="news.data.length">
           <div class="item" v-for="item in news.data" :key="item.id">
             <router-link class="img" :to="{ name: 'new', params: { id: item.slug } }">
@@ -128,7 +128,7 @@
     },
     methods: {
       fetchHotNews () {
-        this.$http.get('news', {
+        this.$http.get('category', {
           params: {
             limit: 6,
             type: this.$route.params.category,

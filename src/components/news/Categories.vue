@@ -28,7 +28,12 @@
 
         <LocationList :text="'Địa điểm làm '+name" :items="locations"/>
 
-        <ProductsList :text="'Các sản phẩm cho '+name" :items="products"/>
+        <ProductsList :text="'Các sản phẩm cho '+name"
+                      :routeName="'ChildCategory'"
+                      :routeParams="{
+                        category: slug,
+                        slug: 4
+                      }" :items="products"/>
 
       </div>
       <RightContent :ads="ads"/>
@@ -225,13 +230,16 @@
         console.log(this.products)
       },
       fetchDataLocation () {
-        this.$http.get('showcases', {params: {limit: 6}}).then(({data}) => {
+        this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
           const res = data.data
+          let tmp = res
           if (res.length > 0) {
-            this.locations.first = res[0]
-            res.shift()
+            let salons = res[0].salons
+            this.locations.first = salons[0]
+            salons.shift()
+            tmp[0].salons = salons
           }
-          this.locations.locations = res
+          this.locations.locations = tmp
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       }
