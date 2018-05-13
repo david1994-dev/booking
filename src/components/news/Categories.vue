@@ -63,7 +63,7 @@
 
   import PageHeader from './Header'
   import {mapState} from 'vuex'
-  // import $ from 'jquery'
+  import $ from 'jquery'
 
   export default {
     name: 'beautyCategory',
@@ -152,6 +152,10 @@
       // this.$nextTick(() => this.menuMobile())
     },
     watch: {
+      $route: function () {
+        $('body').removeClass('active-menu')
+        $('body').removeClass('active-news')
+      },
       '$route.params.category': function () {
         location.reload()
       }
@@ -242,7 +246,13 @@
         console.log(this.products)
       },
       fetchDataLocation () {
-        this.$http.get('showcases', {params: {limit: 20, includeSalon: 1, category: this.$route.params.category}}).then(({data}) => {
+        this.$http.get('showcases', {
+          params: {
+            limit: 20,
+            includeSalon: 1,
+            category: this.$route.params.category
+          }
+        }).then(({data}) => {
           const res = data.data
           let tmp = res
           if (res.length > 0) {
