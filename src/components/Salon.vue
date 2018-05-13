@@ -72,6 +72,7 @@ const CoverSlider = () => import(/* webpackChunkName: "salon-bundle" */ './salon
 const Overview = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Overview')
 const Services = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Services')
 const Stylists = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Stylists')
+const News = () => import(/* webpackChunkName: "salon-bundle" */ './salon/News')
 const Gallery = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Gallery')
 const Reviews = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Reviews')
 const Related = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Related')
@@ -87,6 +88,7 @@ export default {
     Overview,
     Services,
     Stylists,
+    News,
     Gallery,
     Reviews,
     Related,
@@ -137,7 +139,7 @@ export default {
       }
 
       this.$startLoading('fetching salon')
-      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'covers,gallery,services,chemicals,amenities' } }).then(({ data }) => {
+      this.$http.get(`salons/${this.$route.params.id}`, { params: { includes: 'stylists,news,covers,gallery,services,chemicals,amenities' } }).then(({ data }) => {
         this.salon = data
         this.$store.dispatch('setSalon', data)
         this.$endLoading('fetching salon')

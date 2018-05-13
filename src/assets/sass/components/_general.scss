@@ -157,6 +157,49 @@ button.fancybox-arrow {
 	}
 }
 
+/*	[ Staff ]
+- - - - - - - - - - - - - - - - - - - - */
+.tp-modal-staff {
+	text-align: center;
+	padding:20px;
+	.avata {
+		width: 150px;
+		margin: 0 auto 10px;
+		img {
+			border-radius: 100px;
+		}
+	}
+	.info {
+		flex: 1 0;
+		.name {
+			font-size: 16px;
+    		font-weight: 400;
+		}
+		.position {
+			font-size: 14px;
+		}
+		.social {
+			display: flex;
+			justify-content: center;
+    		margin: 10px 0 25px;
+			a {
+				margin: 0 5px;
+    			color: inherit;
+    			&:hover {
+    				color: #54B2B0;
+    			}
+    			i {
+    				display: block;
+    			}
+			}
+		}
+		.des {
+			text-align: left;
+    		font-size: 15px;
+		}
+	}
+}
+
 /*	[ Choice account type ]
 - - - - - - - - - - - - - - - - - - - - */
 #modal-choice-account {

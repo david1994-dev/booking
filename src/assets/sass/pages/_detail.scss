@@ -282,8 +282,138 @@
                 margin-bottom: 0;
             }
         }
+        .hot-news {
+            padding: 20px 0;
+            border-bottom: 1px solid #EDF1F4;
+            .list {
+                height: 275px;
+                overflow-y: auto;
+                overflow-scrolling: touch;
+                -o-overflow-scrolling: touch;
+                -ms-overflow-scrolling: touch;
+                -moz-overflow-scrolling: touch;
+                -webkit-overflow-scrolling: touch;
+            }
+            .title {
+                font-size: 17px;
+                margin-bottom: 15px;
+            }
+            .item {
+                display: flex;
+                margin-bottom: 10px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            .img {
+                width: 70px;
+                height: 70px;
+                position: relative;
+                overflow: hidden;
+                margin-right: 10px;
+                img {
+                    height: 100%;
+                    max-width: none;
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .info {
+                flex: 1 0;
+            }
+            .name {
+                margin-bottom: 10px;
+                font-size: 14px;
+                a {
+                    color: inherit;
+                    &:hover {
+                        color: #54B2B0;
+                    }
+                }
+            }
+            .creat-by {
+                font-size: 12px;
+                color: rgba(47, 47, 47, 0.7);
+                font-style: italic;
+            }
+            .des {
+                display: none;
+            }
+        }
     }
 
+    .staff-d {
+        padding: 20px 0;
+        border-bottom: 1px solid #EDF1F4;
+        .title {
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px -20px;
+            .item {
+                position: relative;
+                width: calc(33.33% - 20px);
+                margin: 0 10px 20px;
+                display: flex;
+                align-items: flex-start;
+                cursor: pointer;
+                img {
+                    width: calc(100% - 60px);
+                }
+                .info {
+                    border: 2px solid #948a54;
+                    width: 70px;
+                    padding: 2px 10px 4px;
+                    margin: 10px 0 0 -10px;
+                    transition: all 0.3s;
+                    .level {
+                        font-size: 12px;
+                        margin-bottom: 10px;
+                    }
+                    .name {
+                        font-weight: 500;
+                        font-size: 13px;
+                        line-height: 1.2;
+                    }
+                }
+                &:hover {
+                    .info {
+                        margin-left: 0;
+                    }
+                }
+
+                &.more {
+                    position: relative;
+                    .number {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 1;
+                        color: #fff;
+                        background: rgba(53, 53, 53, 0.7);
+                        width: 100%;
+                        height: 100%;
+                        font-size: 24px;
+                        font-weight: bold;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    ~ .item {
+                        display: none;
+                    }
+                }
+                &:not(.more) .number {
+                    display: none;
+                }
+            }
+        }
+    }
     .service-d {
         border-bottom: 1px solid $border-color;
         padding: 20px 0;

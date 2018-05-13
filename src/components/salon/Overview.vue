@@ -70,6 +70,51 @@
     <a class="pointer" style="color:#54B2B0" @click="translateLang(salon.description, $event)">{{ $t('salon.see_translations') }}</a>
     <p v-if="translateText" class="translation-text">{{ translateText }}</p>
   </div>
+  <div class="hot-news">
+    <div class="title">HOT NEWS</div>
+    <div class="list">
+      <div class="item" v-for="(snew, index) in salon.news">
+        <div class="img"><a target="_blank" :href="snew.url"><img :src="snew.image_url"></a></div>
+        <div class="info">
+          <div class="name"> <a target="_blank" :href="snew.url">{{ snew.title }}</a> </div>
+          <div class="creat-by">{{ snew.created_at }}</div>
+          <div class="des">{{ snew.content }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="staff-d" data-scroll="stylist">
+    <div class="title">ĐỘI NGŨ NHÂN VIÊN</div>
+    <div class="list">
+      <div class="item" @click="viewInfoStaff(child)" v-for="(child, index) in salon.stylists">
+        <img :src="child.avatar_url" />
+        <div class="info">
+          <div class="level">{{ child.position }}</div>
+          <div class="name">{{ child.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <b-modal id="modal-staff-info"
+      ref="staffModal"
+      centered
+      size="lg"
+      :hide-header="true"
+      :hide-footer="true"
+      title="1">
+      <div class="tp-modal-staff">
+        <div class="avata"><img :src="staff.avatar_url" /></div>
+          <div class="name">{{ staff.name }}</div>
+          <div class="position">{{ staff.position }}</div>
+          <div class="social">
+            <a :href="staff.facebook" target="_blank"><i class="bz-facebook"></i></a>
+            <a :href="staff.instagram" target="_blank"><i class="bz-instagram"></i></a>
+          </div>
+          <div class="des">
+            {{ staff.about }}
+          </div>
+      </div>
+    </b-modal>
 </div>
 </template>
 
@@ -90,7 +135,15 @@ export default {
   data () {
     return {
       expand: false,
-      translateText: ''
+      translateText: '',
+      staff: {
+        name: '',
+        about: '',
+        position: '',
+        avatar_url: '',
+        instagram: '',
+        facebook: ''
+      }
     }
   },
   computed: {
@@ -121,6 +174,10 @@ export default {
         event.target.style.display = 'none'
         this.translateText = data.translation
       })
+    },
+    viewInfoStaff (child) {
+      this.staff = child
+      this.$nextTick(() => this.$refs.staffModal.show())
     }
   }
 }

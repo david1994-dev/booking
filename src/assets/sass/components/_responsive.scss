@@ -420,6 +420,58 @@
 		.slide .slide-inner {
 		    min-height: 320px;
 		}
+		.about-d {
+	        .hot-news {
+	            .list {
+	            	height: 370px;
+                    overflow-y: visible;
+                    overflow-x: auto;
+                    &::-webkit-scrollbar {
+                        width: 7px;
+                        height: 7px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #e5e6eb;
+                        border-radius: 10px;
+                    }
+                    &::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+                    scrollbar-face-color: #e5e6eb;
+                    scrollbar-track-color: transparent;
+	            }
+	            .title {
+	            }
+	            .item {
+	            	margin-bottom: 20px;
+	            }
+	            .img {
+	                width: 140px;
+	                height: auto;
+	                margin-right: 15px;
+	                img {
+	                    max-width: 100%;
+	                    height: auto;
+	                    position: static;
+	                    transform: none;
+	                }
+	            }
+	            .name {
+	                margin-bottom: 0;
+	                font-weight: 400;
+	            }
+	            .creat-by {
+	                font-size: 13px;
+    				margin: 4px 0;
+	            }
+	            .des {
+	            	font-size: 14px;
+	                display: block;
+	                line-height: 1.4;
+	                color: rgba(47, 47, 47, 0.7);
+	            }
+	        }
+   		}   		
 
        	.about-d .utilities li {
         	width: 33.33%;
@@ -438,6 +490,24 @@
 			}
 		}
 	}
+	.staff-d {
+            .list {
+                .item {
+                	width: calc(33.33% - 20px);
+                    img {
+                    }
+                    .info {
+                    	padding: 5px 10px 7px;
+                        .level {
+                        	font-size: 13px;
+                        }
+                        .name {
+                        	font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
     .stylists-page .stylists {
 		.stylist-item {
 	        @include flex();
