@@ -95,7 +95,7 @@
   import PageFooter from './news/Footer'
   import {fbAsyncInit} from '../utils/mixins'
   import Paginate from 'vuejs-paginate'
-  // import { domainUrl } from '../config'
+  import $ from 'jquery'
 
   export default {
     name: 'Blog',
@@ -181,7 +181,11 @@
       }
     },
     watch: {
-      '$route': 'fetchData'
+      $route: function () {
+        this.fetchData()
+        $('body').removeClass('active-menu')
+        $('body').removeClass('active-news')
+      }
     },
     methods: {
       fetchData () {

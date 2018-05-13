@@ -7,7 +7,7 @@
       <div class="menu">
         <div class="icon-menu">
           <div class="inner-icon">
-            <div class="top" >
+            <div class="top">
               <span></span>
             </div>
             <div class="bottom">
@@ -84,12 +84,13 @@
       listNews
     },
     created () {
-
+      $('body').removeClass('active-news')
+      $('body').removeClass('active-menu')
     },
     watch: {
-      '$route': function () {
-        $('body').removeClass('active-news')
+      $route: function () {
         $('body').removeClass('active-menu')
+        $('body').removeClass('active-news')
       },
       '$route.params': function () {
         $('body').removeClass('active-news')
@@ -102,8 +103,8 @@
 
         function Menu () {
           $('#header .menu .icon-menu').click(function () {
-            $('body').toggleClass('active-menu')
             $('body').removeClass('active-news')
+            $('body').toggleClass('active-menu')
           })
           $('#header .news .icon-txt').click(function () {
             $('body').toggleClass('active-news')
@@ -148,7 +149,8 @@
           Lightbox()
         })
 
-        $(window).on('load', function () {})
+        $(window).on('load', function () {
+        })
       })($)
     },
     methods: {
