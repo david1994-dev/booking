@@ -63,7 +63,6 @@
   import PageFooter from './news/Footer'
 
   import {mapState} from 'vuex'
-  import $ from 'jquery'
 
   export default {
     name: 'news',
@@ -118,7 +117,6 @@
       categories: state => state.preloadData.categories || []
     }),
     mounted () {
-      this.$nextTick(() => this.menuMobile())
     },
 
     watch: {
@@ -158,39 +156,27 @@
           this.$endLoading('fetching news')
         }).catch(() => this.$endLoading('fetching news'))
       },
-      menuMobile () {
-        $('.main-header .menu li').each((index, item) => {
-          var _this = $(item)
-          var count = _this.find('ul').length
-          if (count) {
-            _this.addClass('bullet')
-            $('<i class="bullet-icon bz-down-2"></i>').insertAfter(_this.children('a'))
-          }
-        })
-        $('.main-header .menu .icon, .main-header .menu .overlay, .main-header .menu .close-menu').click(() => {
-          $('.main-header .menu').toggleClass('active-menu')
-        })
 
-        $('.main-header .menu .bullet-icon').each((index, item) => {
-          $(item).click(() => {
-            if ($('.main-header .menu.active-menu').length) {
-              var parent = $(item).parent()
-
-              if (parent.hasClass('active-down')) {
-                $(item).siblings('ul').stop(true, true).slideUp()
-              } else {
-                $(item).siblings('ul').stop(true, true).slideDown()
-              }
-              parent.toggleClass('active-down')
-            }
-          })
-        })
-      },
       paginateNews (page) {
         this.fetchData(this.$route.params.category, this.$route.params.slug, page)
       },
       fetchAds () {
-        this.$http.get('ads/category_2').then(({data}) => {
+        let topic = null
+        switch (this.$route.params.slug) {
+          case 1:
+            topic = 'trend'
+            break
+          case 2:
+            topic = 'video'
+            break
+          case 3:
+            topic = 'event'
+            break
+          case 4:
+            topic = 'product'
+            break
+        }
+        this.$http.get('ads/category_2', {params: { type: this.$route.params.category, topic: topic }}).then(({data}) => {
           this.ads = data.data
           this.$endLoading('fetching ads')
           this.fbAsyncInit()

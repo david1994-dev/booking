@@ -132,7 +132,7 @@
     },
     methods: {
       fetchAds () {
-        this.$http.get('ads/category_1').then(({data}) => {
+        this.$http.get('ads/category_1', {params: {type: 'product'}}).then(({data}) => {
           this.ads = data.data
           this.$endLoading('fetching ads')
           this.fbAsyncInit()

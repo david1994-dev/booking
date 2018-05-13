@@ -12,7 +12,7 @@
                       }"
                       :items="eventNews"/>
 
-        <CategoryList :text="'Xu hướng '+name":routeName="'ChildCategory'"
+        <CategoryList :text="'Xu hướng '+name" :routeName="'ChildCategory'"
                       :routeParams="{
                         category: slug,
                         slug: 1
@@ -174,14 +174,20 @@
         }
       },
       fetchAds () {
-        this.$http.get('ads/category_1').then(({data}) => {
+        this.$http.get('ads/category_1', {params: {type: this.$route.params.category}}).then(({data}) => {
           this.ads = data.data
           this.$endLoading('fetching ads')
           this.fbAsyncInit()
         }).catch(() => this.$endLoading('fetching ads'))
       },
       fetchHotNews () {
-        this.$http.get('category', {params: {limit: 6, type: this.$route.params.category, hotnew: 1}}).then(({data}) => {
+        this.$http.get('category', {
+          params: {
+            limit: 6,
+            type: this.$route.params.category,
+            hotnew: 1
+          }
+        }).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             this.hotNews.first = tmp[0]
@@ -199,7 +205,13 @@
       },
 
       fetchDataNews (topic, keyData, second = false) {
-        this.$http.get('category', {params: {limit: 6, type: this.$route.params.category, topic: topic}}).then(({data}) => {
+        this.$http.get('category', {
+          params: {
+            limit: 6,
+            type: this.$route.params.category,
+            topic: topic
+          }
+        }).then(({data}) => {
           let tmp = data.data
           if (tmp.length > 0) {
             keyData.first = tmp[0]
@@ -230,7 +242,7 @@
         console.log(this.products)
       },
       fetchDataLocation () {
-        this.$http.get('showcases', {params: {limit: 20, includeSalon: 1}}).then(({data}) => {
+        this.$http.get('showcases', {params: {limit: 20, includeSalon: 1, category: this.$route.params.category}}).then(({data}) => {
           const res = data.data
           let tmp = res
           if (res.length > 0) {

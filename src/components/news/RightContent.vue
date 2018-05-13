@@ -33,37 +33,38 @@
 </template>
 
 <script>
-  import listNews from './layout/ListNews'
 
-  export default {
-    name: 'rightContent',
-    props: {
-      ads: {
-        type: Object,
-        default: {}
-      }
-    },
-    components: {
-      listNews
-    },
-    data () {
-      return {
-        first: null,
-        news: []
-      }
-    },
-    created () {
-      this.fetchData()
-    },
-    methods: {
-      fetchData () {
-        this.$startLoading('fetching news')
-        this.$http.get('news', {params: {limit: 20}}).then(({data}) => {
-          const res = data.data
-          this.news = res
-          this.$endLoading('fetching news')
-        }).catch(() => this.$endLoading('fetching news'))
-      }
+import listNews from './layout/ListNews'
+
+export default {
+  name: 'rightContent',
+  props: {
+    ads: {
+      type: Object,
+      default: {}
+    }
+  },
+  components: {
+    listNews
+  },
+  data () {
+    return {
+      first: null,
+      news: []
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.$startLoading('fetching news')
+      this.$http.get('news', {params: {limit: 20}}).then(({data}) => {
+        const res = data.data
+        this.news = res
+        this.$endLoading('fetching news')
+      }).catch(() => this.$endLoading('fetching news'))
     }
   }
+}
 </script>
