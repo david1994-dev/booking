@@ -86,6 +86,16 @@
     created () {
 
     },
+    watch: {
+      '$route': function () {
+        $('body').removeClass('active-news')
+        $('body').removeClass('active-menu')
+      },
+      '$route.params': function () {
+        $('body').removeClass('active-news')
+        $('body').removeClass('active-menu')
+      }
+    },
     mounted: function () {
       (function ($) {
         'use strict'
