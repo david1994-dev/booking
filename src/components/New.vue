@@ -212,7 +212,7 @@
       },
       fetchRelatedNews () {
         this.$startLoading('fetching related')
-        this.$http.get(`news/${this.$route.params.id}/related`, {params: {limit: 2}}).then(({data}) => {
+        this.$http.get(`news/${this.$route.params.id}/related`, {params: {limit: 2, inpost: 1}}).then(({data}) => {
           this.relatedNews = data.data
           this.$endLoading('fetching related')
         }).catch(() => this.$endLoading('fetching related'))
