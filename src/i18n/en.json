@@ -132,6 +132,7 @@
 		"username": "Insert your phone number/email",
 		"validate_username": "phone number/email",
 		"optional_text": " (optional)",
-		"maybe_you_are_interested": "Maybe you are interested"
+		"maybe_you_are_interested": "Maybe you are interested",
+		"call_to_salon": "Call to salon"
 	}
 }

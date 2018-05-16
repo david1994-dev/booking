@@ -120,7 +120,7 @@
 		"period_of_execution": "Thời gian thực hiện",
 		"make_an_appointment": "Đặt lịch hẹn",
 		"choose_service_time": "Bạn chưa chọn thời gian làm dịch vụ",
-		"choose_the_service": "Bạn chưa chọn dịch vụ",
+		"choose_the_service": "Đặt lịch làm đẹp tại salon",
 		"enter_the_phone_number": "Vui lòng nhập số điện thoại hoặc email",
 		"sent_verified_code_to_phone": "Hệ thống sẽ gửi mã xác nhận tới số điện thoại/email này của bạn",
 		"first_time_booking": "Đặt lịch lần đầu?",
@@ -133,6 +133,7 @@
 		"username": "Số điện thoại/email",
 		"validate_username": "Số điện thoại/email là bắt buộc",
 		"optional_text": " (không bắt buộc)",
-		"maybe_you_are_interested": "Có thể bạn quan tâm"
+		"maybe_you_are_interested": "Có thể bạn quan tâm",
+		"call_to_salon": "Gọi cho salon"
 	}
 }
