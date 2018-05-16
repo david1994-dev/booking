@@ -110,6 +110,7 @@
 		"establishment": "Ngày thành lập",
 		"utilities": "Tiện ích",
 		"select_service": "Chọn dịch vụ",
+		"discover_booking": "Khám phá đặt lịch",
 		"choose_the_time": "Chọn thời gian",
 		"salon_photos": "{photos} trải nghiệm khách hàng",
 		"promocode_exprided": "Mã giảm giá không đúng hoặc hết hạn",
@@ -131,6 +132,7 @@
 		"see_translations": "Xem bản dịch",
 		"username": "Số điện thoại/email",
 		"validate_username": "Số điện thoại/email là bắt buộc",
-		"optional_text": " (không bắt buộc)"
+		"optional_text": " (không bắt buộc)",
+		"maybe_you_are_interested": "Có thể bạn quan tâm"
 	}
 }

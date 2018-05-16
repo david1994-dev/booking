@@ -58,4 +58,3 @@ export default {
 </script>
 
 <style lang="scss" src="./assets/sass/app.scss"></style>
-<style lang="scss" src="./assets/news/scss/style.scss"></style>

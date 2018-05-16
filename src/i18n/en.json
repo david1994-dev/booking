@@ -109,6 +109,7 @@
 		"establishment": "Establishment",
 		"utilities": "Conveniences ",
 		"select_service": "Select service",
+		"discover_booking": "Discover booking",
 		"choose_the_time": "Available time-slots",
 		"salon_photos": "{photos} customer experiences",
 		"promocode_exprided": "The promocode is incorrect or exprided",
@@ -130,6 +131,7 @@
 		"see_translations": "See translation",
 		"username": "Insert your phone number/email",
 		"validate_username": "phone number/email",
-		"optional_text": " (optional)"
+		"optional_text": " (optional)",
+		"maybe_you_are_interested": "Maybe you are interested"
 	}
 }

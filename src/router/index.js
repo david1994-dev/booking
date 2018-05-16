@@ -17,15 +17,6 @@ const Contact = () => import(/* webpackChunkName: "static-page-bundle" */ '@/com
 const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/About')
 const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
 const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
-const News = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/News')
-const New = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/New')
-const NewCategory = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/NewCategory')
-const Categories = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/Categories')
-const EventsTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/EventsTopic')
-const TrendTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/TrendTopic')
-const ProductsTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/ProductsTopic')
-const VideoTopic = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/VideoTopic')
-const CategoryVideo = () => import(/* webpackChunkName: "blog-bundle" */ '@/components/news/CategoryVideo')
 
 import Stylist from '@/components/Stylist'
 
@@ -110,51 +101,6 @@ export default new Router({
       path: '/stylist/:id',
       name: 'stylist',
       component: Stylist
-    },
-    {
-      path: '/news',
-      name: 'news',
-      component: News
-    },
-    {
-      path: '/new/:id',
-      name: 'new',
-      component: New
-    },
-    {
-      path: '/news/:category',
-      name: 'categories',
-      component: Categories
-    },
-    {
-      path: '/news/:category/:slug',
-      name: 'ChildCategory',
-      component: NewCategory
-    },
-    {
-      path: '/news-topic/events',
-      name: 'eventsTopic',
-      component: EventsTopic
-    },
-    {
-      path: '/news-topic/trend',
-      name: 'trendTopic',
-      component: TrendTopic
-    },
-    {
-      path: '/news-topic/product',
-      name: 'productsTopic',
-      component: ProductsTopic
-    },
-    {
-      path: '/news-topic/video',
-      name: 'videoTopic',
-      component: VideoTopic
-    },
-    {
-      path: '/news-topic/video/:category',
-      name: 'categoryVideo',
-      component: CategoryVideo
     },
     {
       path: '*',

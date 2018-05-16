@@ -135,25 +135,23 @@ button.fancybox-arrow {
 	text-align: center;
 	.name-success {
 		font-size: 22px;
-	    font-weight: 400;
 	    margin-bottom: 20px;
-	    color: $main-color;
+	    color: #54B2B0;
+	}
+	.tp-btn {
+		max-width: 250px;
+    	margin: auto;
 	}
 	.des-success {
-	    font-size: 14px;
-	    color: $primary-text-color;
-	    margin-bottom: 20px;
-	    padding-bottom: 20px;
-	    border-bottom: 1px solid $border-color;
+	    font-size: 16px;
+    	margin-bottom: 15px;
 	}
 	.name-mobile {
-	    font-size: 17px;
-    	margin-bottom: 5px;
-	}
-	.des-mobile {
-		font-size: 14px;
-	    color: $primary-text-color;
-	    margin-bottom: 12px;
+	    font-size: 16px;
+	    margin-bottom: 10px;
+	    border-top: 1px solid #EDF1F4;
+	    margin-top: 20px;
+	    padding-top: 20px;
 	}
 }
 
@@ -161,7 +159,6 @@ button.fancybox-arrow {
 - - - - - - - - - - - - - - - - - - - - */
 .tp-modal-staff {
 	text-align: center;
-	padding:20px;
 	.avata {
 		width: 150px;
 		margin: 0 auto 10px;
@@ -287,7 +284,18 @@ button.fancybox-arrow {
 	  font-size: 15px;
 	}
 }
-
+.tp-checkbox-txt {
+    display: flex;
+    margin: 20px 0 20px;
+	.tp-checkbox {
+		margin-right: 5px;
+		transform: scale(0.7);
+	}
+	span {
+		font-size: 14px;
+    	margin-top: 2px;
+	}
+}
 .tp-gender-form {
     @include flex();
     @include align-items(center);
@@ -322,6 +330,15 @@ button.fancybox-arrow {
 	    &:hover {
 	    	color: $text-color;
 	    }
+    }
+}
+.tp-back-form {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+    &:hover {
+    	color: $main-color;
     }
 }
 
@@ -363,11 +380,14 @@ button.fancybox-arrow {
 	    margin: 0 12px 4px 0;
 	    font-size: 22px;
     }
+    &.red {
+    	background: $primary-color;
+    }
     &:focus {
     	color: #fff;
     }
     &:hover {
-    	background: $text-color;    	
+    	background: $text-color;
     	color: #fff;
     }
     &.disable {
@@ -1065,6 +1085,7 @@ button.fancybox-arrow {
 		.delete {
 			background: $text-color;
 			width: 24px;
+			min-width: 24px;
 			height: 24px;
 			border-radius: 5px;
 			@include flex();
