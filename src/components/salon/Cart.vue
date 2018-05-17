@@ -70,8 +70,8 @@
 
   <div class="cart-mobile" :class="{ active: mobileCart }">
     <div class="no-choice-service" v-show="!cartServices.length">
-      <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
-      <p>{{ $t('salon.choose_the_service') }}</p>
+      <a class="tp-btn-book red" :href="'tel:'+this.salon.hotline"><i class="bz-phone"></i>{{ $t('salon.call_to_salon') }}</a>
+      <a class="tp-btn-book choice-service" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
     </div>
 
     <div class="wrap-book" v-show="cartServices.length">

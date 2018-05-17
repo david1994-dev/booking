@@ -49,7 +49,7 @@
         <div class="ads-d"><a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-1.jpg" /></a></div>
         <div class="map-about">
           <div class="map-d" v-if="salon.latitude && salon.longitude">
-            <div class="title">{{ $t('salon.map') }}</div>
+            <div class="title" style="text-transform: uppercase">{{ $t('salon.map') }}</div>
             <div class="content-map">
               <gmap-map ref="map"
                 :center="{ lat: salon.latitude, lng: salon.longitude }"
@@ -78,14 +78,10 @@
           </div>
           <div class="utilities-d" >
             <div class="title">{{ $t('salon.utilities') }}</div>
-            <ul :class="{ active: expand }" v-if="salon.amenities">
+            <ul v-if="salon.amenities">
               <li v-for="amenity in salon.amenities" :key="amenity.id">
                 <i :class="amenity.icon" v-b-tooltip.hover.top :title="amenity.name"></i>
                 <span>{{ amenity.description || amenity.name }}</span>
-              </li>
-              <li class="view-all-wrap">
-                <div class="view-all expand" @click="expand = true"><span>{{ $t('common.view_all') }}</span> <i class="bz-down-2"></i></div>
-                <div class="view-all collapse" @click="expand = false"><span>{{ $t('common.collapse') }}</span> <i class="bz-up-2"></i></div>
               </li>
             </ul>
           </div>
@@ -93,7 +89,7 @@
             <div class="title">{{ $t('salon.chemicals') }}</div>
             <div class="list">
               <div class="item" v-for="chemical in salon.chemicals" :key="chemical.id">
-                <img :src="chemical.image_url">
+                <img style="border-radius: 50%;border:1px solid" :src="chemical.image_url">
                 <span>{{ chemical.name }}</span>
               </div>
             </div>
