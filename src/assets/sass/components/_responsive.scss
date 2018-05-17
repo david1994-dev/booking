@@ -370,24 +370,6 @@
 		    min-height: 320px;
 		}
        	.about-d {
-       		.staff-d {
-	            .list {
-	                .item {
-	                	width: calc(33.33% - 20px);
-	                    img {
-	                    }
-	                    .info {
-	                    	padding: 5px 10px 7px;
-	                        .level {
-	                        	font-size: 13px;
-	                        }
-	                        .name {
-	                        	font-size: 14px;
-	                        }
-	                    }
-	                }
-	            }
-	        }
 	        .hot-news {
 	            .list {
 	            	height: 370px;
@@ -437,9 +419,26 @@
 	                line-height: 1.4;
 	                color: rgba(47, 47, 47, 0.7);
 	            }
-	        }	        
+	        }
    		}
-        
+        .staff-d {
+            .list {
+                .item {
+                	width: calc(33.33% - 20px);
+                    img {
+                    }
+                    .info {
+                    	padding: 5px 10px 7px;
+                        .level {
+                        	font-size: 13px;
+                        }
+                        .name {
+                        	font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
    		.utilities-d li {
         	width: 33.33%;
 			&:nth-child(n + 5) {

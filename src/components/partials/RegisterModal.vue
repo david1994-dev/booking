@@ -30,17 +30,22 @@
           <!--src="../../assets/images/app-store.png"/></a>-->
           <!--</div>-->
           <div class="tp-modal-success">
-            <div class="name-success">Thank you!</div>
-            <div class="des-success">Đăng ký thành công. Vui lòng hoàn thành thông tin về thương hiệu tại PHẦM MỀM QUẢN
-              LÝ SALON - chỉ dành cho salon.
+            <div class="name-success">{{ $t('auth.success')}}</div>
+            <div class="gift-bzone">
+              <div class="title-gift">{{ $t('auth.gift')}}</div>
+              <ul>
+                <li v-html="$t('auth.gift_line_1')"></li>
+                <li v-html="$t('auth.gift_line_2')"></li>
+                <li v-html="$t('auth.gift_line_3')"></li>
+              </ul>
+            </div>
+            <div class="complete-info" v-html="$t('auth.success_info_desc')">
             </div>
             <a href="#" class="tp-btn" :disabled="counting" @click="countdown">
               <countdown v-if="counting" :time="5000" @countdownend="countdownend">
-                <template slot-scope="props">Chuyển trang trong {{ props.seconds || 5 }}s</template>
+                <template slot-scope="props">{{ $t('auth.redirect',{seconds: props.seconds || 5 })}}</template>
               </countdown>
             </a>
-            <div class="name-mobile">Bzone Bussiness App - Quản lý salon hiệu quả hơn.</div>
-            <div class="img-mobile"><a href="#"><img width="150" src="../../assets/images/app-store.png"/></a></div>
           </div>
         </div>
         <div v-else-if="confirmCode">
@@ -61,13 +66,13 @@
             <input class="tp-btn" type="submit" value="Xác nhận">
             <div class="tp-send-form">
               <a href="#" :disabled="countingResend" @click="countDownResend">
-                <countdown v-if="countingResend" :time="5000" @countdownend="countDownResendEnd">
-                  <template slot-scope="props">Gửi lại mã xác nhận sau {{ props.seconds || 60 }}s</template>
+                <countdown v-if="countingResend" :time="60000" @countdownend="countDownResendEnd">
+                  <template slot-scope="props">{{ $t('auth.resend_seconds',{seconds: props.seconds || 60 })}}</template>
                 </countdown>
-                <span v-else>Gửi lại mã xác nhận</span>
+                <span v-else>{{$t('auth.resend')}}</span>
               </a>
             </div>
-            <div class="tp-back-form" @click="confirmCode = false">Quay lại</div>
+            <div class="tp-back-form" @click="confirmCode = false">{{$t('auth.back')}}</div>
           </form>
         </div>
         <form novalidate v-else @submit.prevent="submit">
@@ -120,7 +125,7 @@
           <div class="text-left invalid-feedback">{{ errors.first('password') }}</div>
           <input class="tp-text-form form-control"
                  type="password"
-                 name="password_confirm"
+                 name="password_confirmation"
                  v-validate="'required|confirmed:password|min:6'"
                  v-model="password_confirmation"
                  :data-vv-as="$t('auth.password_confirmation')"
@@ -128,8 +133,8 @@
                  :class="{ 'is-invalid': errors.has('password_confirmation') }" title="password confirm"/>
           <div class="text-left invalid-feedback">{{ errors.first('password_confirmation') }}</div>
           <label class="tp-checkbox-txt">
-            <div class="tp-checkbox"><input type="checkbox" v-model="checkTerm"><span></span></div>
-            <span>Đăng ký nghĩa là bạn đồng ý với mọi <a href="#">điều khoản dịch vụ</a></span>
+            <div class="tp-checkbox"><input type="checkbox" v-model="checkTerm"><span/></div>
+            <span v-html="$t('auth.term', {url:'#'})"></span>
           </label>
           <input class="tp-btn mw-100 btn" type="submit" :disabled="($isLoading('creating salon') || !checkTerm)"
                  :value="$t('auth.register')">
@@ -143,6 +148,14 @@
   import {forEach} from 'lodash'
   import countdown from '@xkeshi/vue-countdown'
   import {domainUrl} from '../../config'
+
+  let errors = {
+    vi: {
+      messages: {
+        confirmed: () => 'Mật khẩu xác nhận không khớp'
+      }
+    }
+  }
 
   export default {
     name: 'RegisterModal',
@@ -169,6 +182,8 @@
       }
     },
     mounted () {
+      this.$validator.localize(errors)
+
       this.$root.$on('bv::modal::hidden', ({vueTarget}) => {
         if (vueTarget.id === 'modal-choice-account') {
           this.salonRegister = false
@@ -257,7 +272,7 @@
         this.notClose = true
       },
       countdownend: function () {
-        window.location = domainUrl + '/app'
+        window.location = domainUrl + '/app/login?usr=' + this.phone + '&pass=' + this.password + '&first_login=1'
       },
       countDownResend: function () {
         if (!this.countingResend) {
