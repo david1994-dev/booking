@@ -31,12 +31,14 @@
   <div class="staff-d" data-scroll="stylist" id="stylists-f">
     <div class="title">ĐỘI NGŨ NHÂN VIÊN</div>
     <div class="list">
-      <div class="item" @click="viewInfoStaff(child)" v-for="(child, index) in salon.stylists">
+      <div @click="viewInfoStaff(child, index)" v-for="(child, index) in salon.stylists" 
+        v-bind:class="{'item': 1, 'more': (index == 5 && more)}" >
         <img :src="child.avatar_url" />
         <div class="info">
           <div class="level">{{ child.position }}</div>
           <div class="name">{{ child.name }}</div>
         </div>
+        <div v-if="(index==5)" class="number">+15</div>
       </div>
     </div>
   </div>
@@ -81,6 +83,7 @@ export default {
   data () {
     return {
       expand: false,
+      more: true,
       translateText: '',
       staff: {
         name: '',
@@ -121,8 +124,12 @@ export default {
         this.translateText = data.translation
       })
     },
-    viewInfoStaff (child) {
+    viewInfoStaff (child, key) {
       this.staff = child
+      if (key === 5 && this.more) {
+        this.more = false
+        return false
+      }
       this.$nextTick(() => this.$refs.staffModal.show())
     }
   }
