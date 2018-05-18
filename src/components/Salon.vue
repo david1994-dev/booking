@@ -46,7 +46,7 @@
 
           <cart v-if="salon.id" :salon="salon" />
         </scrollactive>
-        <div class="ads-d"><a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-1.jpg" /></a></div>
+        <!--<div class="ads-d"><a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-1.jpg" /></a></div>-->
         <div class="map-about">
           <div class="map-d" v-if="salon.latitude && salon.longitude">
             <div class="title text-uppercase" style="text-transform: uppercase">{{ $t('salon.map') }}</div>

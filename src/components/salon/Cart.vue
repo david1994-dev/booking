@@ -164,12 +164,12 @@
     <booking-modal />
   </b-modal>
 
-  <div class="ads-cart">
-      <a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-11.jpg" /></a>
-      <a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-12.jpg" /></a>
-      <a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-13.jpg" /></a>
-      <a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-14.jpg" /></a>
-    </div>
+  <!--<div class="ads-cart">-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-11.jpg" /></a>-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-12.jpg" /></a>-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-13.jpg" /></a>-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-14.jpg" /></a>-->
+  <!--</div>-->
 </div>
 </template>
 
