@@ -31,14 +31,14 @@
   <div class="staff-d" data-scroll="stylist" id="stylists-f">
     <div class="title">ĐỘI NGŨ NHÂN VIÊN</div>
     <div class="list">
-      <div @click="viewInfoStaff(child, index)" v-for="(child, index) in salon.stylists" 
+      <div @click="viewInfoStaff(child, index)" v-for="(child, index) in salon.stylists"
         v-bind:class="{'item': 1, 'more': (index == 5 && more)}" >
         <img :src="child.avatar_url" />
         <div class="info">
           <div class="level">{{ child.position }}</div>
           <div class="name">{{ child.name }}</div>
         </div>
-        <div v-if="(index==5)" class="number">+15</div>
+        <div v-if="(index===5 && salon.stylists.length > 6)" class="number">+{{salon.stylists.length - 6}}</div>
       </div>
     </div>
   </div>
@@ -49,6 +49,7 @@
     :hide-header="true"
     :hide-footer="true"
     title="1">
+    <i class="bz-close tp-modal-close" @click="hide"></i>
     <div class="tp-modal-staff">
       <div class="avata"><img :src="staff.avatar_url" /></div>
         <div class="name">{{ staff.name }}</div>
@@ -62,7 +63,7 @@
         </div>
     </div>
   </b-modal>
-  
+
 </div>
 </template>
 
@@ -123,6 +124,9 @@ export default {
         event.target.style.display = 'none'
         this.translateText = data.translation
       })
+    },
+    hide () {
+      this.$refs.staffModal.hide()
     },
     viewInfoStaff (child, key) {
       this.staff = child
