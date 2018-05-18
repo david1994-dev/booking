@@ -20,7 +20,7 @@
         <div class="img"><a target="_blank" :href="snew.url"><img :src="snew.image_url"></a></div>
         <div class="info">
           <div class="name"> <a target="_blank" :href="snew.url">{{ snew.title }}</a> </div>
-          <div class="creat-by">{{ snew.created_at }}</div>
+          <!--<div class="creat-by">{{ snew.created_at }}</div>-->
           <div class="des">{{ snew.content }}</div>
         </div>
       </div>
