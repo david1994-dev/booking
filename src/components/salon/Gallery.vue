@@ -1,6 +1,6 @@
 <template>
 <div class="images-d" v-if="salon.gallery">
-  <div class="title">{{ $t('salon.salon_photos',{'photos':salon.gallery.length}) }}</div>
+  <div class="title text-uppercase">{{ $t('salon.salon_photos',{'photos':salon.gallery.length}) }}</div>
   <div class="list">
     <div class="item pointer" v-for="(image, index) in items"
       :key="image.id">
