@@ -39,17 +39,17 @@
 
             <div id="reviews">
               <reviews v-if="salon.id" :salon="salon"></reviews>
-            </div>            
+            </div>
           </div>
 
-          
+
 
           <cart v-if="salon.id" :salon="salon" />
         </scrollactive>
         <div class="ads-d"><a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-1.jpg" /></a></div>
         <div class="map-about">
           <div class="map-d" v-if="salon.latitude && salon.longitude">
-            <div class="title" style="text-transform: uppercase">{{ $t('salon.map') }}</div>
+            <div class="title text-uppercase" style="text-transform: uppercase">{{ $t('salon.map') }}</div>
             <div class="content-map">
               <gmap-map ref="map"
                 :center="{ lat: salon.latitude, lng: salon.longitude }"
@@ -67,17 +67,17 @@
           </div>
 
           <div class="about-des-d">
-            <div class="title">VỀ CHÚNG TÔI</div>
+            <div class="title text-uppercase">VỀ CHÚNG TÔI</div>
             <div class="content-about">
               {{ salon.description }}
             </div>
           </div>
 
           <div class="working">
-            <working v-if="salon.id" :salon="salon"></working>          
+            <working v-if="salon.id" :salon="salon"></working>
           </div>
           <div class="utilities-d" >
-            <div class="title">{{ $t('salon.utilities') }}</div>
+            <div class="title text-uppercase">{{ $t('salon.utilities') }}</div>
             <ul v-if="salon.amenities">
               <li v-for="amenity in salon.amenities" :key="amenity.id">
                 <i :class="amenity.icon" v-b-tooltip.hover.top :title="amenity.name"></i>
@@ -86,7 +86,7 @@
             </ul>
           </div>
           <div class="chemical-d" >
-            <div class="title">{{ $t('salon.chemicals') }}</div>
+            <div class="title text-uppercase">{{ $t('salon.chemicals') }}</div>
             <div class="list">
               <div class="item" v-for="chemical in salon.chemicals" :key="chemical.id">
                 <img style="border-radius: 50%;border:1px solid" :src="chemical.image_url">

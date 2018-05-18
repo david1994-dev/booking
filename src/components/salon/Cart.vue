@@ -19,7 +19,7 @@
       </div>
 
       <div class="stylist-c" v-show="cartStylist.id">
-        <div class="title-stylist">{{ $t('salon.staff')}}</div>
+        <div class="title-stylist text-uppercase">{{ $t('salon.staff')}}</div>
         <div class="wrap">
           <figure><span class="deletez"></span><img :src="cartStylist.avatar_url"></figure>
           <div class="info">
@@ -60,10 +60,10 @@
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
-        <p>{{ $t('salon.choose_the_service') }}</p>        
+        <p>{{ $t('salon.choose_the_service') }}</p>
         <a class="tp-btn-book red" :href="'tel:'+this.salon.hotline"><i class="bz-phone"></i>{{ $t('salon.call_to_salon') }}</a>
         <a class="tp-btn-book choice-service" href="services" @click.prevent="scrollToServices"><i class="bz-book"></i>{{ $t('salon.select_service') }}</a>
-        
+
       </div>
     </div>
   </div>
