@@ -137,7 +137,7 @@
                 color: $primary-text-color;
             }
         }
-        
+
         .rate {
             border-bottom: 1px solid $border-color;
             padding: 15px 0;
@@ -147,7 +147,8 @@
             padding: 20px 0;
             border-bottom: 1px solid #EDF1F4;
             .list {
-                height: 275px;
+                height: auto;
+                max-height: 275px;
                 overflow-y: auto;
                 overflow-scrolling: touch;
                 -o-overflow-scrolling: touch;
@@ -310,7 +311,7 @@
                     margin-right: 10px;
                 }
             }
-            .item-subs.active .name-sub .bz-down-2:before, 
+            .item-subs.active .name-sub .bz-down-2:before,
             .item.active .name-item .bz-down-2:before {
                 content: "\e910";
             }
@@ -882,7 +883,7 @@
                 &:hover {
                     color: $text-color;
                     i {
-                       color: $text-color; 
+                       color: $text-color;
                     }
                 }
                 i {
@@ -953,5 +954,5 @@
     .slick-list,
     .slick-track {
         @include transform(none !important);
-    }   
+    }
 }

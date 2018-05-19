@@ -13,7 +13,7 @@
     </div>
     <p class="address">{{ salon.address }}</p>
   </div>
-  <div class="hot-news">
+  <div class="hot-news" v-if="salon.news.length > 0">
     <div class="title">HOT NEWS</div>
     <div class="list">
       <div class="item" v-for="(snew, index) in salon.news">

@@ -244,7 +244,7 @@
 							display: block;
 							.sub-service {
 								display: block;
-							}	
+							}
 						}
 					}
 					.name-item {
@@ -341,7 +341,7 @@
 		.beautify-place {
 			.list .item {
 				width: 33.33%;
-			}	
+			}
 		}
 	}
 	.discovery-page {
@@ -372,7 +372,7 @@
        	.about-d {
 	        .hot-news {
 	            .list {
-	            	height: 370px;
+	            	    max-height: 370px;
                     overflow-y: visible;
                     overflow-x: auto;
                     &::-webkit-scrollbar {
@@ -731,7 +731,7 @@
 		.beautify-place {
 			.list .item {
 				width: 25%;
-			}	
+			}
 		}
 	}
 	.discovery-page {
@@ -863,7 +863,7 @@
 						margin-right: 66px;
 						&:nth-child(3) {
 							display:block;
-						}	
+						}
 					}
 				}
 				.wrap-menu.fixed .menu {
@@ -929,7 +929,7 @@
 								text-align: center;
 								line-height: 48px;
 								font-size: 19px;
-								border-radius: 100px;							
+								border-radius: 100px;
 							}
 						}
 					}
@@ -1120,7 +1120,7 @@
 							padding: 5px 0;
 							color: $primary-color;
 						}
-					} 
+					}
 					.price-c {
 						margin-bottom: 20px;
 					}
@@ -1418,7 +1418,7 @@
 			width: 770px;
 		}
 	}
-	
+
 }
 
 @media screen and (max-width: 768px) {
