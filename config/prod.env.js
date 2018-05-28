@@ -1,6 +1,6 @@
 module.exports = {
   NODE_ENV: '"production"',
-  API_URL: 'http://dev.booking.bzone.vn/api/v2"',
+  API_URL: '"http://dev.booking.bzone.vn/api/v2"',
   FB_APP_ID: '"1637966656508513"',
   GOOGLE_MAP_KEY: '"AIzaSyC4Lr23cLmL1FNhKbVZepiG6MsXcwNPvVA"',
   DOMAIN: '"http://dev.booking.bzone.vn"',
