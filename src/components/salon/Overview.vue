@@ -4,9 +4,9 @@
     <h1 class="title">{{ salon.name }}</h1>
     <div class="tp-rate">
       <div class="stars-number">
-        <div class="number">8.0</div>
+        <div class="number">{{ salon.average_rating | numberFormat('0.0') }}</div>
         <stars :rating="salon.average_rating_rounded">
-          <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
+          <!--<div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>-->
         </stars>
       </div>
       <div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}</div>
