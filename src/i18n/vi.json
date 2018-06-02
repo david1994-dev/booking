@@ -143,6 +143,8 @@
     "validate_username": "Số điện thoại/email là bắt buộc",
     "optional_text": " (không bắt buộc)",
     "maybe_you_are_interested": "Có thể bạn quan tâm",
-    "call_to_salon": "Gọi cho salon"
+    "call_to_salon": "Gọi cho salon",
+    "about_us": "VỀ CHÚNG TÔI",
+    "working_hours": "GIỜ LÀM VIỆC"
   }
 }

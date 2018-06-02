@@ -1,8 +1,8 @@
 <template>
 <div class="working-d">
-  <div class="title">GIỜ LÀM VIỆC</div>
+  <div class="title">{{ $t('salon.working_hours')}}</div>
   <div class="list">
-    <div class="item" v-for="(hours, day) in salon.opening_hours" v-if="hours.open && hours.close"> 
+    <div class="item" v-for="(hours, day) in salon.opening_hours" v-if="hours.open && hours.close">
       <span>{{ displayDate(day) }}</span>
       <span>{{ hours.open }} - {{ hours.close }}</span>
     </div>

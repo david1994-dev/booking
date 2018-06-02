@@ -142,6 +142,8 @@
     "validate_username": "phone number/email",
     "optional_text": " (optional)",
     "maybe_you_are_interested": "Maybe you are interested",
-    "call_to_salon": "Call to salon"
+    "call_to_salon": "Call to salon",
+    "about_us": "About us",
+    "working_hours": "Working hours"
   }
 }

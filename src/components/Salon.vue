@@ -67,9 +67,13 @@
           </div>
 
           <div class="about-des-d">
-            <div class="title text-uppercase">VỀ CHÚNG TÔI</div>
+            <div class="title text-uppercase">{{ $t('salon.about_us')}}</div>
             <div class="content-about">
               {{ salon.description }}
+              <p>
+                <a class="pointer" style="color:#54B2B0" @click="translateLang(salon.description, $event)">{{ $t('salon.see_translations') }}</a>
+              </p>
+              <p v-if="translateText" class="translation-text">{{ translateText }}</p>
             </div>
           </div>
 
@@ -145,6 +149,7 @@ export default {
         opening_hours: [],
         meta: {}
       },
+      translateText: '',
       mapOptions: googlemap
     }
   },
@@ -193,6 +198,12 @@ export default {
         setTimeout(() => {
           this.addStickyClass('.wrap-menu')
         }, 500)
+      })
+    },
+    translateLang (text, event) {
+      this.$http.post('translate', { text: text }).then(({ data }) => {
+        event.target.style.display = 'none'
+        this.translateText = data.translation
       })
     }
   }
