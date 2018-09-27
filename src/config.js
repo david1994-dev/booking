@@ -2,7 +2,7 @@ export const apiUrl = process.env.API_URL || 'http://localhost'
 export const fbAppId = process.env.FB_APP_ID || ''
 export const googleMapKey = process.env.GOOGLE_MAP_KEY || ''
 export const mixpanelProjectToken = process.env.MIXPANEL_PROJECT_TOKEN || ''
-
+export const domainUrl = process.env.DOMAIN
 export const languages = {
   'vi': 'VN',
   'en': 'EN'

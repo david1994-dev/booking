@@ -19,7 +19,7 @@
       </div>
 
       <div class="stylist-c" v-show="cartStylist.id">
-        <div class="title-stylist">{{ $t('salon.staff')}}</div>
+        <div class="title-stylist text-uppercase">{{ $t('salon.staff')}}</div>
         <div class="wrap">
           <figure><span class="deletez"></span><img :src="cartStylist.avatar_url"></figure>
           <div class="info">
@@ -60,16 +60,18 @@
       </div>
 
       <div class="no-service-c" v-show="!cartServices.length">
-        <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
         <p>{{ $t('salon.choose_the_service') }}</p>
+        <a class="tp-btn-book red" :href="'tel:'+this.salon.hotline"><i class="bz-phone"></i>{{ $t('salon.call_to_salon') }}</a>
+        <a class="tp-btn-book choice-service" href="services" @click.prevent="scrollToServices"><i class="bz-book"></i>{{ $t('salon.select_service') }}</a>
+
       </div>
     </div>
   </div>
 
   <div class="cart-mobile" :class="{ active: mobileCart }">
     <div class="no-choice-service" v-show="!cartServices.length">
-      <a class="tp-btn choice-service red" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
-      <p>{{ $t('salon.choose_the_service') }}</p>
+      <a class="tp-btn-book red" :href="'tel:'+this.salon.hotline"><i class="bz-phone"></i>{{ $t('salon.call_to_salon') }}</a>
+      <a class="tp-btn-book choice-service" href="services" @click.prevent="scrollToServices">{{ $t('salon.select_service') }}</a>
     </div>
 
     <div class="wrap-book" v-show="cartServices.length">
@@ -161,6 +163,13 @@
     <i class="bz-close tp-modal-close" @click="checkoutModal = false"></i>
     <booking-modal />
   </b-modal>
+
+  <!--<div class="ads-cart">-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-11.jpg" /></a>-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-12.jpg" /></a>-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-13.jpg" /></a>-->
+  <!--<a href="#"><img src="http://frontend.ajaxle.co/bzone/assets/images/ads-14.jpg" /></a>-->
+  <!--</div>-->
 </div>
 </template>
 

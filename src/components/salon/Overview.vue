@@ -2,74 +2,68 @@
 <div class="about-d">
   <div class="title-address">
     <h1 class="title">{{ salon.name }}</h1>
-    <p class="address">{{ salon.address }}</p>
-  </div>
-
-  <!-- <div class="total-view">
-    <div class="tp-view">
-      <div class="viewing" v-if="salon.today_page_views"><i class="bz-check"></i><span>Đã có {{ salon.today_page_views }} người xem</span></div>
-        <div class="viewed"><i class="bz-eye"></i><span>{{ salon.page_views }} lượt xem</span></div>
-    </div>
-  </div> -->
-
-  <div class="rate">
     <div class="tp-rate">
-      <stars :rating="salon.average_rating_rounded">
-        <div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>
-      </stars>
+      <div class="stars-number">
+        <div class="number">{{ salon.average_rating | numberFormat('0.0') }}</div>
+        <stars :rating="salon.average_rating_rounded">
+          <!--<div class="number" v-if="salon.average_rating">{{ salon.average_rating | numberFormat('0.0') }} - {{ salon.rating_summary }}</div>-->
+        </stars>
+      </div>
       <div class="rate-status">{{ $t('common.rates',{'rates':salon.review_count})}}</div>
     </div>
+    <p class="address">{{ salon.address }}</p>
   </div>
-
-  <div class="link" v-if="salon.facebook_url || salon.instagram_url">
-    <ul>
-      <li v-if="salon.facebook_url"><a :href="salon.facebook_url"><i class="bz-facebook"></i></a></li>
-      <li v-if="salon.instagram_url"><a :href="salon.instagram_url"><i class="bz-instagram"></i></a></li>
-    </ul>
-    <div class="name">{{ $t('salon.link') }}</div>
-  </div>
-
-  <div class="time-since">
-    <div class="item date-open"><i class="bz-clock"></i>
-      <ul>
-        <li v-for="(hours, day) in salon.opening_hours"
-          v-if="hours.open && hours.close"
-          >{{ hours.open }} - {{ hours.close }} <span class="main-color">-</span> {{ displayDate(day) }}</li>
-        <!-- <li v-if="salon.opening_hours['monday']['open']">{{ salon.opening_hours['monday']['open'] }} - {{ salon.opening_hours['monday']['close'] }} <span class="main-color">-</span> Các ngày trong tuần</li>
-        <li v-if="salon.opening_hours['saturday']['open'] ">{{ salon.opening_hours['saturday']['open'] }} - {{ salon.opening_hours['saturday']['close'] }} <span class="main-color">-</span> {{ weekendAvaiable }}</li> -->
-      </ul>
-    </div>
-    <div class="item" v-if="salon.established"><i class="bz-calendar"></i> {{ $t('salon.establishment') }} {{ salon.established | dateFormat('D-M-YYYY') }}</div>
-    <div class="item chemical" v-if="salon.chemicals.length">
-      <i class="bz-hair-spray"></i> {{ $t('salon.chemicals') }}:
-      <ul>
-        <li v-for="chemical in salon.chemicals" :key="chemical.id">
-          <img :src="chemical.image_url" />
-          <span>{{ chemical.name }}</span>
-        </li>
-      </ul>
+  <div class="hot-news" v-if="salon.news.length > 0">
+    <div class="title">HOT NEWS</div>
+    <div class="list">
+      <div class="item" v-for="(snew, index) in salon.news">
+        <div class="img"><a target="_blank" :href="snew.url"><img :src="snew.image_url"></a></div>
+        <div class="info">
+          <div class="name"> <a target="_blank" :href="snew.url">{{ snew.title }}</a> </div>
+          <!--<div class="creat-by">{{ snew.created_at }}</div>-->
+          <div class="des">{{ snew.content }}</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="utilities" v-if="salon.amenities">
-    <div class="title">{{ $t('salon.utilities') }}</div>
-    <ul :class="{ active: expand }">
-      <li v-for="amenity in salon.amenities" :key="amenity.id">
-        <i :class="amenity.icon" v-b-tooltip.hover.top :title="amenity.name"></i>
-        <span>{{ amenity.description || amenity.name }}</span>
-      </li>
-      <li class="view-all-wrap">
-        <div class="view-all expand" @click="expand = true"><span>{{ $t('common.view_all') }}</span> <i class="bz-down-2"></i></div>
-        <div class="view-all collapse" @click="expand = false"><span>{{ $t('common.collapse') }}</span> <i class="bz-up-2"></i></div>
-      </li>
-    </ul>
-  </div>
 
-  <div class="des" v-if="salon.description">
-    <p>{{ salon.description }}</p>
-    <a class="pointer" style="color:#54B2B0" @click="translateLang(salon.description, $event)">{{ $t('salon.see_translations') }}</a>
-    <p v-if="translateText" class="translation-text">{{ translateText }}</p>
+  <div class="staff-d" data-scroll="stylist" id="stylists-f">
+    <div class="title">ĐỘI NGŨ NHÂN VIÊN</div>
+    <div class="list">
+      <div @click="viewInfoStaff(child, index)" v-for="(child, index) in salon.stylists"
+        v-bind:class="{'item': 1, 'more': (index == 5 && more)}" >
+        <img :src="child.avatar_url" />
+        <div class="info">
+          <div class="level">{{ child.position }}</div>
+          <div class="name">{{ child.name }}</div>
+        </div>
+        <div v-if="(index===5 && salon.stylists.length > 6)" class="number">+{{salon.stylists.length - 6}}</div>
+      </div>
+    </div>
   </div>
+  <b-modal id="modal-staff-info"
+    ref="staffModal"
+    centered
+    size="lg"
+    :hide-header="true"
+    :hide-footer="true"
+    title="1">
+    <i class="bz-close tp-modal-close" @click="hide"></i>
+    <div class="tp-modal-staff">
+      <div class="avata"><img :src="staff.avatar_url" /></div>
+        <div class="name">{{ staff.name }}</div>
+        <div class="position">{{ staff.position }}</div>
+        <div class="social">
+          <a :href="staff.facebook" target="_blank"><i class="bz-facebook"></i></a>
+          <a :href="staff.instagram" target="_blank"><i class="bz-instagram"></i></a>
+        </div>
+        <div class="des">
+          {{ staff.about }}
+        </div>
+    </div>
+  </b-modal>
+
 </div>
 </template>
 
@@ -90,7 +84,16 @@ export default {
   data () {
     return {
       expand: false,
-      translateText: ''
+      more: true,
+      translateText: '',
+      staff: {
+        name: '',
+        about: '',
+        position: '',
+        avatar_url: '',
+        instagram: '',
+        facebook: ''
+      }
     }
   },
   computed: {
@@ -121,6 +124,17 @@ export default {
         event.target.style.display = 'none'
         this.translateText = data.translation
       })
+    },
+    hide () {
+      this.$refs.staffModal.hide()
+    },
+    viewInfoStaff (child, key) {
+      this.staff = child
+      if (key === 5 && this.more) {
+        this.more = false
+        return false
+      }
+      this.$nextTick(() => this.$refs.staffModal.show())
     }
   }
 }
