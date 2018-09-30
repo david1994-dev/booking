@@ -69,13 +69,8 @@
       },
       location: {
         get () {
-          let yourLocation = this.$store.state.yourLocation.address || 'Hà Nội'
-          this.$store.dispatch('setLocation', yourLocation)
-          this.$store.dispatch('setPosition', {
-            lat: yourLocation.lat,
-            lng: yourLocation.lng
-          })
-          return this.$store.state.search.location || yourLocation
+          console.log(this.$store.state.search.location)
+          return this.$store.state.search.location
         },
         set (value) {
           this.$store.dispatch('setLocation', value)
@@ -101,6 +96,11 @@
         showSuggestions: false,
         showLocations: false
       }
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.dispatch('clearSearchQuery')
+      })
     },
     methods: {
       submit () {
