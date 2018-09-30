@@ -19,7 +19,8 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
-
+import _ from 'lodash'
+import {googleMapKey} from '../../config'
 export default {
   name: 'LocationResults',
   computed: mapState({
@@ -28,27 +29,50 @@ export default {
   methods: {
     ...mapActions(['setSelectedCity', 'setSelectedArea']),
     getCurrentPosition () {
-      if (navigator.geolocation) {
-        this.$startLoading('geolocation')
-        navigator.geolocation.getCurrentPosition(position => {
-          this.geolocation(position.coords.latitude, position.coords.longitude)
-        }, () => {
+      let yourLocation = this.$store.state.yourLocation
+      if (_.isNull(yourLocation.lat) || _.isNull(yourLocation.lng)) {
+        if (navigator.geolocation) {
+          this.$startLoading('geolocation')
+          navigator.geolocation.getCurrentPosition(position => {
+            this.geolocation(position.coords.latitude, position.coords.longitude)
+          }, () => {
+            this.$endLoading('geolocation')
+          })
+        } else {
           this.$endLoading('geolocation')
-          alert(`The Geolocation service failed`)
-        })
+        }
       } else {
-        this.$endLoading('geolocation')
-        alert(`Your browser doesn't support geolocation`)
+        this.setLocation(yourLocation)
       }
+    },
+    setLocation (yourLocation) {
+      this.$startLoading('geolocation')
+      this.$endLoading('geolocation')
+      this.$store.dispatch('setLocation', yourLocation.address)
+      this.$store.dispatch('setPosition', {
+        lat: yourLocation.lat,
+        lng: yourLocation.lng
+      })
     },
     geolocation (lat, lng) {
       this.$startLoading('geolocation')
-      axios.get('https://maps.googleapis.com/maps/api/geocode/json', { params: { latlng: `${lat},${lng}`, sensor: false } }).then(({ data }) => {
+      axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          latlng: `${lat},${lng}`,
+          sensor: false,
+          key: googleMapKey
+        }
+      }).then(({data}) => {
         if (data.status === 'OK') {
           if (data.results[1]) {
             this.$endLoading('geolocation')
             this.$store.dispatch('setLocation', data.results[1].formatted_address)
-            this.$store.dispatch('setPosition', { lat, lng })
+            this.$store.dispatch('setPosition', {lat, lng})
+            this.$store.dispatch('setYourLocation', {
+              address: data.results[1].formatted_address,
+              lat: lat,
+              lng: lng
+            })
           }
         }
       }).catch(() => {

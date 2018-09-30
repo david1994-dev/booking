@@ -18,5 +18,9 @@ export default {
   [types.SET_PRELOAD_DATA] (state, data) {
     store('preloadData', data)
     state.preloadData = data
+  },
+  [types.SET_YOUR_LOCATION] (state, data) {
+    store('yourLocation', data)
+    state.yourLocation = data
   }
 }
