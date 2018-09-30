@@ -30,7 +30,7 @@ export default {
     ...mapActions(['setSelectedCity', 'setSelectedArea']),
     getCurrentPosition () {
       let yourLocation = this.$store.state.yourLocation
-      if (_.isNull(yourLocation.lat) || _.isNull(yourLocation.lng)) {
+      if ((_.isNull(yourLocation.lat) || _.isNull(yourLocation.lng)) || (_.isEmpty(yourLocation.lat) || _.isEmpty(yourLocation.lng))) {
         if (navigator.geolocation) {
           this.$startLoading('geolocation')
           navigator.geolocation.getCurrentPosition(position => {
@@ -48,7 +48,7 @@ export default {
     setLocation (yourLocation) {
       this.$startLoading('geolocation')
       this.$endLoading('geolocation')
-      this.$store.dispatch('setLocation', yourLocation.address)
+      this.$store.dispatch('setLocation', yourLocation.address || 'Hà Nội')
       this.$store.dispatch('setPosition', {
         lat: yourLocation.lat,
         lng: yourLocation.lng

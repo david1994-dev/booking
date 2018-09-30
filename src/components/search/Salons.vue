@@ -140,7 +140,7 @@ export default {
         params = merge(this.position, params)
       }
       if (!params.latitude || !params.longitude) {
-        if (this.$store.state.yourLocation.lat && this.$store.state.yourLocation.lng) {
+        if (this.$store.state.yourLocation.lat && this.$store.state.yourLocation.lng && params.l === this.$store.state.yourLocation.address) {
           params = merge({
             latitude: this.$store.state.yourLocation.lat,
             longitude: this.$store.state.yourLocation.lng

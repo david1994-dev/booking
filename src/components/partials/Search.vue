@@ -88,7 +88,6 @@
       }
     },
     created () {
-      // this.location = this.$store.state.yourLocation.address
       this.getCurrentPosition()
     },
     data () {
@@ -140,22 +139,27 @@
         }, 200)
       },
       getCurrentPosition () {
+        let params = this.$route.query
         let yourLocation = this.$store.state.yourLocation
-        if (_.isNull(yourLocation.lat) || _.isNull(yourLocation.lng)) {
-          if (navigator.geolocation) {
-            this.$startLoading('geolocation')
-            navigator.geolocation.getCurrentPosition(position => {
-              this.geolocation(position.coords.latitude, position.coords.longitude)
-            }, () => {
+        if (params.l) {
+          this.$store.dispatch('setLocation', params.l)
+        } else {
+          if (_.isNull(yourLocation.lat) || _.isNull(yourLocation.lng)) {
+            if (navigator.geolocation) {
+              this.$startLoading('geolocation')
+              navigator.geolocation.getCurrentPosition(position => {
+                this.geolocation(position.coords.latitude, position.coords.longitude)
+              }, () => {
+                this.$endLoading('geolocation')
+                this.setLocation(yourLocation)
+              })
+            } else {
               this.$endLoading('geolocation')
               this.setLocation(yourLocation)
-            })
+            }
           } else {
-            this.$endLoading('geolocation')
             this.setLocation(yourLocation)
           }
-        } else {
-          this.setLocation(yourLocation)
         }
       },
       setLocation (yourLocation) {
