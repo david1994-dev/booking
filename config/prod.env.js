@@ -3,5 +3,6 @@ module.exports = {
   API_URL: '"https://dev.bzone.vn/api/v1"',
   FB_APP_ID: '""',
   GOOGLE_MAP_KEY: '""',
+  NEWS_URL: '"http://dev.bzone.bzone.vn"',
   MIXPANEL_PROJECT_TOKEN: '""'
 }

@@ -4,6 +4,9 @@
 	background: #fff;
 	position: relative;
 	z-index: 10;
+	.menu-top {
+		display: none;
+	}
 	.inner {
 		padding: 0 25px;
     	height: 75px;
@@ -71,6 +74,20 @@
 		.content-menu {
 			height: 100%;
 			overflow-y: auto;
+			.menu-top-mobile {
+				background: #2c2d2f;
+				@include flex();
+				a {
+					color: #fff;
+				    font-size: 14px;
+				    padding: 8px 15px;
+				    &.active,
+				    &:hover {
+				    	background: #fff;
+				    	color: #2F2F2F;
+				    }
+				}
+			}
 		}
 		ul {
 			margin: 0;
