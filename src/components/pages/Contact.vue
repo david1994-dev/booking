@@ -43,13 +43,13 @@
 
           <div class="wrap-form">
             <div class="title-form">Thông tin liên hệ</div>
-            <form method="post">
+            <form @submit.prevent="submit">
               <div class="name-email">
-                <input class="txt-field" type="text" placeholder="Họ & tên" />
-                <input class="txt-field" type="email" placeholder="Email" />
+                <input class="txt-field" type="text" name="name" v-model="name" placeholder="Họ & tên" />
+                <input class="txt-field" type="email" name="email" v-model="email"  placeholder="Email" />
               </div>
-              <input class="txt-field" type="text" placeholder="Tiêu đề" />
-              <textarea rows="7" placeholder="Nội dung" class="txt-field tae-field"></textarea>
+              <input class="txt-field" type="text" name="subject" v-model="subject"  placeholder="Tiêu đề" />
+              <textarea rows="7" placeholder="Nội dung" name="content" v-model="content"  class="txt-field tae-field"></textarea>
               <input class="tp-btn btn-submit" type="submit" value="Gửi" />
             </form>
           </div>
@@ -73,6 +73,19 @@ export default {
   },
   metaInfo: {
     title: 'Liên hệ'
+  },
+  data () {
+    return {
+      name: '',
+      email: '',
+      subject: '',
+      content: ''
+    }
+  },
+  methods: {
+    submit () {
+
+    }
   }
 }
 </script>
