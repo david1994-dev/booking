@@ -2,7 +2,7 @@
 <div>
   <div class="wrapper-header">
     <header class="main-header">
-      <div class="menu-top">
+      <div class="top-header">
         <div class="menu-top-inner">
           <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
           <a :href="getNewsUrl()">Tin tức làm đẹp</a>

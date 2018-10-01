@@ -1,12 +1,12 @@
 /*	[ Header ]
 - - - - - - - - - - - - - - - - - - - - */
+.top-header {
+	display: none;
+}
 .main-header {
 	background: #fff;
 	position: relative;
 	z-index: 10;
-	.menu-top {
-		display: none;
-	}
 	.inner {
 		padding: 0 25px;
     	height: 75px;

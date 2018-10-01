@@ -1176,27 +1176,27 @@
     }
 }
 @media screen and (min-width: 1200px) {
-	.main-header {
-		.menu-top {
-			background: #2c2d2f;
-			display: block;
-			.menu-top-inner {
-				@include flex();
-				max-width: 1200px;
-			    padding: 0 15px;
-			    margin: 0 auto;
-			}
-			a {
-				color: #fff;
-			    font-size: 14px;
-			    padding: 8px 15px;
-			    &.active,
-			    &:hover {
-			    	background: #fff;
-			    	color: #2F2F2F;
-			    }
-			}
+	.top-header {
+		background: #2c2d2f;
+		display: block;
+		.menu-top-inner {
+			@include flex();
+			max-width: 1200px;
+		    padding: 0 15px;
+		    margin: 0 auto;
 		}
+		a {
+			color: #fff;
+		    font-size: 14px;
+		    padding: 8px 15px;
+		    &.active,
+		    &:hover {
+		    	background: #fff;
+		    	color: #2F2F2F;
+		    }
+		}
+	}
+	.main-header {
 		.inner {
 		    max-width: 1200px;
     		padding: 0 15px;
