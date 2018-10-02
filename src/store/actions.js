@@ -22,3 +22,7 @@ export const setMessage = ({ commit }, { type, message }) => {
 export const setPreloadData = ({ commit }, data) => {
   commit(types.SET_PRELOAD_DATA, data)
 }
+
+export const setYourLocation = ({ commit }, data) => {
+  commit(types.SET_YOUR_LOCATION, data)
+}

@@ -47,11 +47,21 @@ const actions = {
   setSelectedCity ({ commit }, city) {
     commit(types.SET_SELECTED_AREA, {})
     commit(types.SET_SELECTED_CITY, city)
+    commit(types.SET_LOCATION, city.name)
+    commit(types.SET_POSITION, {
+      latitude: '',
+      longitude: ''
+    })
   },
 
   setSelectedArea ({ commit }, area) {
     commit(types.SET_SELECTED_CITY, {})
     commit(types.SET_SELECTED_AREA, area)
+    commit(types.SET_LOCATION, area.name)
+    commit(types.SET_POSITION, {
+      latitude: '',
+      longitude: ''
+    })
   },
 
   findAndSetService ({ commit, rootState }, id) {

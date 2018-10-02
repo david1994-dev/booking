@@ -65,7 +65,6 @@ import InfiniteLoading from 'vue-infinite-loading'
 import GmapRichMarker from '../RichMarker'
 import { stickyClassMixin } from '@/utils/mixins'
 import mixpanel from 'mixpanel-browser'
-
 const Salon = () => import(/* webpackChunkName: "salon-bundle" */ '../partials/SalonCard')
 const SalonMarker = () => import(/* webpackChunkName: "search-bundle" */ './Marker')
 const SearchFilter = () => import(/* webpackChunkName: "search-bundle" */ './Filters')
@@ -139,6 +138,14 @@ export default {
 
       if (this.position.latitude && this.position.longitude) {
         params = merge(this.position, params)
+      }
+      if (!params.latitude || !params.longitude) {
+        if (this.$store.state.yourLocation.lat && this.$store.state.yourLocation.lng && params.l === this.$store.state.yourLocation.address) {
+          params = merge({
+            latitude: this.$store.state.yourLocation.lat,
+            longitude: this.$store.state.yourLocation.lng
+          }, params)
+        }
       }
 
       if (params.hotel && params.source) {
