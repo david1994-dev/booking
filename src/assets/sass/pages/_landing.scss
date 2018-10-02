@@ -1,5 +1,8 @@
 /*	[ Header ]
 - - - - - - - - - - - - - - - - - - - - */
+.top-header {
+	display: none;
+}
 .main-header {
 	background: #fff;
 	position: relative;
@@ -71,6 +74,20 @@
 		.content-menu {
 			height: 100%;
 			overflow-y: auto;
+			.menu-top-mobile {
+				background: #2c2d2f;
+				@include flex();
+				a {
+					color: #fff;
+				    font-size: 14px;
+				    padding: 8px 15px;
+				    &.active,
+				    &:hover {
+				    	background: #fff;
+				    	color: #2F2F2F;
+				    }
+				}
+			}
 		}
 		ul {
 			margin: 0;

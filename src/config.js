@@ -3,6 +3,8 @@ export const fbAppId = process.env.FB_APP_ID || ''
 export const googleMapKey = process.env.GOOGLE_MAP_KEY || ''
 export const mixpanelProjectToken = process.env.MIXPANEL_PROJECT_TOKEN || ''
 export const domainUrl = process.env.DOMAIN
+export const newsUrl = process.env.NEWS_URL || '#'
+
 export const languages = {
   'vi': 'VN',
   'en': 'EN'

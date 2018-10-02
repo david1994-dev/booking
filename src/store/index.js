@@ -22,7 +22,12 @@ const state = {
     type: 'error',
     message: ''
   },
-  preloadData: store('preloadData') || {}
+  preloadData: store('preloadData') || {},
+  yourLocation: store('yourLocation') || {
+    address: 'Hà Nội',
+    lat: null,
+    lng: null
+  }
 }
 
 export default new Vuex.Store({

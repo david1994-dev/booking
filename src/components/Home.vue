@@ -2,6 +2,12 @@
 <div>
   <div class="wrapper-header">
     <header class="main-header">
+      <div class="top-header">
+        <div class="menu-top-inner">
+          <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
+          <a :href="getNewsUrl()">Tin tức làm đẹp</a>
+        </div>
+      </div>
       <div class="inner">
         <router-link class="logo" :to="{ name: 'home' }"><img src="../assets/images/logo-blue.png" /></router-link>
         <div class="menu">
@@ -10,6 +16,10 @@
         <div class="inner-menu">
           <div class="close-menu"><i class="bz-close"></i></div>
             <div class="content-menu">
+              <div class="menu-top-mobile">
+                <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
+                <a :href="getNewsUrl()">Tin tức làm đẹp</a>
+              </div>
               <ul>
                 <li v-for="category in categories"><a class="pointer">{{ category.name }}</a>
                   <ul v-if="category.children.length">
@@ -76,6 +86,7 @@ import RegisterModal from './partials/RegisterModal'
 
 import { mapState } from 'vuex'
 import $ from 'jquery'
+import { newsUrl } from './../config'
 
 export default {
   name: 'Home',
@@ -112,6 +123,9 @@ export default {
     this.$nextTick(() => this.menuMobile())
   },
   methods: {
+    getNewsUrl () {
+      return newsUrl
+    },
     menuMobile () {
       $('.main-header .menu li').each((index, item) => {
         var _this = $(item)

@@ -328,12 +328,23 @@ button.fancybox-arrow {
 	  font-size: 15px;
 	}
 }
+
+.tp-text-form-icon {
+	position: relative;
+	i {
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		@include transform(translateY(-50%));
+	}	
+}
+
 .tp-checkbox-txt {
     display: flex;
     margin: 20px 0 20px;
 	.tp-checkbox {
 		margin-right: 5px;
-		transform: scale(0.7);
+		@include transform(scale(0.7));
 	}
 	span {
 		font-size: 14px;
@@ -453,6 +464,34 @@ button.fancybox-arrow {
     margin: 0;
     font-weight: 300;
     text-align: center;
+    outline: none;
+    width: 100%;
+    &.red {
+    	background: $primary-color;
+    }
+    &:focus {
+    	color: #fff;
+    }
+    &:hover {
+    	background: $text-color;
+    	color: #fff;
+    }
+}
+.tp-btn-facebook {
+	@include flex();
+	@include align-items(center);
+	@include justify-content(space-between);
+    background: #4065b4;
+    color: #fff;
+    font-size: 15px;
+    line-height: 45px;
+    border-radius: 5px;
+    @include transition();
+    cursor: pointer;
+    border: none;
+    padding: 0 20px;
+    margin: 0 0 20px;
+    font-weight: 300;
     outline: none;
     width: 100%;
     &.red {
