@@ -1,5 +1,11 @@
 <template>
 <header class="sub-header">
+  <div class="top-header">
+    <div class="menu-top-inner">
+      <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
+      <a :href="getNewsUrl()">Tin tức làm đẹp</a>
+    </div>
+  </div>
   <div class="sub-container">
     <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
     <div class="fx-full"></div>
@@ -22,6 +28,7 @@ import { mapGetters } from 'vuex'
 const Search = () => import(/* webpackChunkName: "search-bundle" */ '../partials/Search')
 import RightHeader from '../partials/RightHeader'
 import RegisterModal from '../partials/RegisterModal'
+import { newsUrl } from './../../config'
 
 export default {
   name: 'Header',
@@ -48,6 +55,11 @@ export default {
   data () {
     return {
       showSearchForm: false
+    }
+  },
+  methods: {
+    getNewsUrl () {
+      return newsUrl
     }
   }
 }
