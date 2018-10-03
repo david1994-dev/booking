@@ -69,7 +69,6 @@
       },
       location: {
         get () {
-          console.log(this.$store.state.search.location)
           return this.$store.state.search.location
         },
         set (value) {

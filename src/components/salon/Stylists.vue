@@ -56,7 +56,7 @@ const today = moment()
 const DATE_FORMAT = 'YYYY-MM-DD'
 
 export default {
-  name: 'SalonStylists',
+  name: 'Stylists',
   props: {
     salon: {
       type: Object,

@@ -1,6 +1,6 @@
 <template>
 <div class="service-d">
-  <div class="title">{{ $t('salon.select_service') }}</div>
+  <div class="title" style="text-transform: uppercase">{{ $t('salon.discover_booking') }}</div>
   <v-loading loader="fetching services">
     <template slot="spinner">
       <div class="text-center">

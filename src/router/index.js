@@ -17,6 +17,7 @@ const Contact = () => import(/* webpackChunkName: "static-page-bundle" */ '@/com
 const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/About')
 const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
 const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
+
 import Stylist from '@/components/Stylist'
 
 Vue.use(Router)

@@ -44,6 +44,7 @@ moment.locale(lang)
 Validator.localize('vi', vi)
 Validator.localize('en', en)
 
+Vue.prototype.moment = moment
 Vue.use(VeeValidate, {
   locale: lang
 })
