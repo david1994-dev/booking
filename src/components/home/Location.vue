@@ -3,7 +3,7 @@
   <div class="tp-wrap-title">
     <h3 class="tp-title"><strong>{{ $t('home.block.explore') }}</strong> {{ $t('home.block.locations') }}</h3>
     <div class="tp-view-more bottom orange">
-      <router-link :to="{ name: 'explore', query: { type: 3 } }">
+      <router-link :to="{ name: 'explore', params: { type: 'location' } }">
         {{ $t('common.see_more') }}
       </router-link>
     </div>
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 3 } }">{{ $t('common.see_more') }}</router-link></div>
+  <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', params: { type: 'location' } }">{{ $t('common.see_more') }}</router-link></div>
 </div>
 </template>
 <script>

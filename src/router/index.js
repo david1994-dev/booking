@@ -48,7 +48,7 @@ export default new Router({
       component: Stylists
     },
     {
-      path: '/explore',
+      path: '/explore/:type',
       name: 'explore',
       component: Explore
     },
@@ -83,7 +83,7 @@ export default new Router({
       component: Blog
     },
     {
-      path: '/salon/:id',
+      path: '/salondetail/:id',
       name: 'salon',
       component: Salon
     },
