@@ -11,13 +11,12 @@
       <div v-show="!salonRegister">
         <div class="salon">
           <div class="des">{{ $t('auth.register_as_salon') }}</div>
-          <div class="tp-btn" @click="salonRegister = true">{{ $t('auth.register') }}</div>
+          <div class="tp-btn" @click="clickSignInSalon">{{ $t('auth.register') }}</div>
         </div>
         <div class="user">
           <div class="des">{{ $t('auth.register_as_user') }}</div>
           <p>{{ $t('auth.easily_book') }}</p>
-          <a href="#" class="tp-btn" v-if="$route.name === 'explore'" @click.prevent="hide">{{ $t('common.search')
-            }}</a>
+          <a href="#" class="tp-btn" v-if="$route.name === 'explore'" @click.prevent="hide">{{ $t('common.search') }}</a>
           <router-link class="tp-btn" v-else :to="{ name: 'explore' }">{{ $t('common.search') }}</router-link>
         </div>
       </div>
@@ -193,6 +192,14 @@
       })
     },
     methods: {
+      clickSignInSalon () {
+        this.salonRegister = true
+        this.$ga.page({
+          page: '/registation/information',
+          title: 'Click đăng ký trên popup',
+          location: window.location.href
+        })
+      },
       submit () {
         this.$validator.validateAll().then((result) => {
           if (result) {
@@ -211,12 +218,24 @@
               this.verifyData = response.data
               this.confirmCode = true
               this.countingResend = true
+
+              this.$ga.page({
+                page: '/registation/verifiedcode',
+                title: 'Verified code',
+                location: window.location.href
+              })
             }).catch(({response}) => {
               if (response.data.errors) {
                 this.updateValidationMessage(response.data.errors)
               }
               this.success = false
               this.$endLoading('creating salon')
+
+              this.$ga.page({
+                page: '/registation/verifiedcode-error',
+                title: 'Đăng ký lỗi hoặc tài khoản đã được đăng ký',
+                location: window.location.href
+              })
             })
           }
         })
@@ -228,6 +247,11 @@
           this.confirmCode = false
           this.success = true
           this.countdown()
+          this.$ga.page({
+            page: '/registation/success',
+            title: 'Đăng ký thành công salon',
+            location: window.location.href
+          })
         }).catch(({response}) => {
           if (response.data.errors) {
             this.updateValidationMessage(response.data.errors)

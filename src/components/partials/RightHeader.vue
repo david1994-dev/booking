@@ -9,7 +9,7 @@
       </li>
     </ul>
   </div>
-  <div class="account" @click="$root.$emit('bv::show::modal', 'modal-choice-account')">
+  <div class="account" @click="clickRegister()">
     <span>{{ $t('auth.register') }}</span>
     <i class="bz-profile-user"></i>
   </div>
@@ -38,6 +38,14 @@ export default {
     }
   },
   methods: {
+    clickRegister () {
+      this.$root.$emit('bv::show::modal', 'modal-choice-account')
+      this.$ga.page({
+        page: '/registation',
+        title: 'Click đăng ký trên menu',
+        location: window.location.href
+      })
+    },
     hide () {
       this.active = false
     },
