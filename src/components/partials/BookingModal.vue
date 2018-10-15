@@ -162,10 +162,11 @@ export default {
           this.name = data.name
           this.user = data.id
           this.step = 'registration'
-          /* eslint-disable no-undef */
-          // GA Tracking virtual pageviews
-          ga('set', 'page', '/thankyou')
-          ga('send', 'pageview')
+          this.$ga.page({
+            page: '/salondetail/appointment/register-information/',
+            title: 'Booking infomation',
+            location: window.location.href
+          })
         } else {
           this.resetState()
           this.$store.dispatch('emptyCart')
@@ -173,6 +174,11 @@ export default {
           this.$bus.$emit('booking::completed')
           mixpanel.init(mixpanelProjectToken)
           mixpanel.track('Pop-up thành công của SDT cũ')
+          this.$ga.page({
+            page: '/salondetail/appointment/success/',
+            title: 'Booking register verified code resend',
+            location: window.location.href
+          })
         }
       }).catch(({ response }) => {
         this.$endLoading('booking')
@@ -188,6 +194,11 @@ export default {
             this.required = 'phone'
           }
           this.step = 'registration'
+          this.$ga.page({
+            page: '/salondetail/appointment/register-information/',
+            title: 'Booking infomation',
+            location: window.location.href
+          })
         }
       })
     },
@@ -238,6 +249,11 @@ export default {
           this.$http.post('users', data).then(({ headers }) => {
             this.token = headers['x-verification-token'] || ''
             this.step = 'verification'
+            this.$ga.page({
+              page: '/salondetail/appointment/register-verifiedcode/',
+              title: 'Booking register verified code',
+              location: window.location.href
+            })
           }).catch(({ response }) => {
             if (response.data.errors) {
               this.updateValidationMessage(response.data.errors)
@@ -262,6 +278,11 @@ export default {
           this.$http.put(`users/${this.user}`, data, { headers: { 'X-Verification-Token': this.token } }).then(({ headers }) => {
             this.token = headers['x-verification-token'] || ''
             this.step = 'verification'
+            this.$ga.page({
+              page: '/salondetail/appointment/register-verifiedcode/',
+              title: 'Booking register verified code',
+              location: window.location.href
+            })
           }).catch(({ response }) => {
             if (response.data.errors) {
               this.updateValidationMessage(response.data.errors)
@@ -273,6 +294,11 @@ export default {
     resendVerificationCode () {
       this.$http.post('users/verification-code', {}, { headers: { 'X-Verification-Token': this.token } }).then(response => {
         // Success message
+        this.$ga.page({
+          page: '/salondetail/appointment/register-verifiedcode-resend/',
+          title: 'Booking register verified code resend',
+          location: window.location.href
+        })
       }).catch(({ response }) => {
         if (response.data.errors) {
           this.updateValidationMessage(response.data.errors)
