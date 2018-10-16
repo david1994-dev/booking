@@ -139,6 +139,12 @@
                 this.success = true
                 this.alert = true
                 this.resetState()
+
+                this.$ga.page({
+                  page: '/contact/success',
+                  title: 'Contact send success',
+                  location: window.location.href
+                })
               }).catch(({ response }) => {
                 this.$endLoading('send contacts')
                 if (response.data.errors) {

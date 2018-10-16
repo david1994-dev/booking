@@ -2,7 +2,7 @@
 <div class="sale-off tp-box" v-if="promotions.length">
   <div class="tp-wrap-title">
     <h3 class="tp-title"><strong>{{ $t('home.block.special') }}</strong> {{ $t('home.block.deals') }}</h3>
-    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 4 } }">{{ $t('common.see_more') }}</router-link></div>
+    <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', params: { type: 'promotion' } }">{{ $t('common.see_more') }}</router-link></div>
   </div>
   <div class="ofhd">
     <div class="list">
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', query: { type: 4 } }">{{ $t('common.see_more') }}</router-link></div>
+  <div class="tp-view-more bottom orange"><router-link :to="{ name: 'explore', params: { type: 'promotion' } }">{{ $t('common.see_more') }}</router-link></div>
 </div>
 </template>
 <script>

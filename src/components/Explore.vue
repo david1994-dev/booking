@@ -62,11 +62,23 @@ export default {
   },
   methods: {
     fetchData (query, cb, errCb) {
-      let params = this.$route.query
+      let params = this.$route.params
       params._meta = 1
       params.limit = 8
       params.booking_count = 1
       params = merge(query, params)
+
+      switch (params.type) {
+        case 'services':
+          params.type = 1
+          break
+        case 'location':
+          params.type = 3
+          break
+        case 'promotion':
+          params.type = 4
+          break
+      }
       this.$http.get('showcases', { params })
         .then(response => cb(response))
         .catch(error => errCb ? errCb(error) : null)
@@ -81,7 +93,6 @@ export default {
       this.fetchData({ page: parseInt(this.meta.pagination.current_page) + 1 }, ({ data }) => {
         this.showcases = this.showcases.concat(data.data)
         this.meta = data.meta
-        // this.$refs.infiniteLoading.$emit(data.data.length ? '$InfiniteLoading:loaded' : '$InfiniteLoading:complete')
         if (data.data.length) {
           $state.loaded()
         } else {

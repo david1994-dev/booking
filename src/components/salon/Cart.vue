@@ -275,6 +275,11 @@ export default {
             'salon_name': this.salon.name
           }
         )
+        this.$ga.page({
+          page: '/salondetail/appointment/information/',
+          title: 'Booking infomation',
+          location: window.location.href
+        })
       } else {
         document.getElementById('mennu-stylists').click()
       }

@@ -4,20 +4,21 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import { default as http, setLocale } from './utils/http'
+import {default as http, setLocale} from './utils/http'
 import eventbus from './utils/eventbus'
 import * as filters from './utils/filters'
-import { sync } from 'vuex-router-sync'
+import {sync} from 'vuex-router-sync'
 import BootstrapVue from 'bootstrap-vue'
 import Scrollactive from 'vue-scrollactive'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VuePhotoSwipe from './utils/photoswipe'
-import { VueMasonryPlugin } from 'vue-masonry'
-import VeeValidate, { Validator } from 'vee-validate'
+import {VueMasonryPlugin} from 'vue-masonry'
+import VeeValidate, {Validator} from 'vee-validate'
 import moment from 'moment-timezone'
-import { googleMapKey } from './config'
+import {googleMapKey, GAId} from './config'
 import storage from 'store2'
 import VueI18n from 'vue-i18n'
+import VueAnalytics from 'vue-analytics'
 
 // const en = () => import(/* webpackChunkName: "lang-bundle" */ 'vee-validate/dist/locale/en')
 // const vi = () => import(/* webpackChunkName: "lang-bundle" */ 'vee-validate/dist/locale/vi')
@@ -51,7 +52,7 @@ Vue.use(VeeValidate, {
 Vue.use(VueI18n)
 Vue.use(BootstrapVue)
 Vue.use(Scrollactive)
-Vue.use(http, { store, router })
+Vue.use(http, {store, router})
 Vue.use(eventbus)
 Vue.use(VuePhotoSwipe)
 Vue.use(VueMasonryPlugin)
@@ -60,6 +61,9 @@ Vue.use(VueGoogleMaps, {
     key: googleMapKey,
     libraries: 'places'
   }
+})
+Vue.use(VueAnalytics, {
+  id: GAId
 })
 
 Object.keys(filters).map((method) => {
