@@ -37,9 +37,11 @@ export default {
             this.geolocation(position.coords.latitude, position.coords.longitude)
           }, () => {
             this.$endLoading('geolocation')
+            alert('Bạn cần cấp quyền truy cập địa điểm cho trình duyệt để có thể sử dụng chức năng này')
           })
         } else {
           this.$endLoading('geolocation')
+          alert('Bạn cần cấp quyền truy cập địa điểm cho trình duyệt để có thể sử dụng chức năng này')
         }
       } else {
         this.setLocation(yourLocation)
