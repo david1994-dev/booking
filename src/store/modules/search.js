@@ -11,7 +11,8 @@ const state = {
   area: {},
   city: {},
   service: {},
-  filters: []
+  filters: [],
+  tabActive: 0
 }
 
 const getters = {
@@ -21,7 +22,8 @@ const getters = {
   selectedArea: state => state.area,
   selectedCity: state => state.city,
   selectedService: state => state.service,
-  searchFilters: state => state.filters
+  searchFilters: state => state.filters,
+  tabActive: state => state.tabActive
 }
 
 const actions = {
@@ -108,6 +110,10 @@ const actions = {
 
   removeFilter ({ commit }, filter) {
     commit(types.REMOVE_FILTER, filter)
+  },
+
+  tabActive ({ commit }, tabActive) {
+    commit(types.SET_TAB_ACTIVE, tabActive)
   }
 }
 
@@ -115,6 +121,9 @@ const mutations = {
   [types.SET_KEYWORD] (state, keyword) {
     state.keyword = keyword || ''
     state.service = {}
+  },
+  [types.SET_TAB_ACTIVE] (state, tabActive) {
+    state.tabActive = tabActive
   },
 
   [types.SET_LOCATION] (state, location) {

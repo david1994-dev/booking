@@ -5,11 +5,11 @@
       ref="slick"
       class="slide-salon"
       :options="slickOptions">
-      <div><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
+      <div class="demo1"><router-link :to="{ name: 'salon', params: { id: salon.slug } }">
         <img :src="salon.image_url">
       </router-link></div>
       <div v-if="salon.covers" v-for="image in salon.covers"
-        :key="image.id">
+        :key="image.id" class="demo2">
         <router-link :to="{ name: 'salon', params: { id: salon.slug } }">
           <img :src="image.template_url.replace('{size}', 'large')">
         </router-link>

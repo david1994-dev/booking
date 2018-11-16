@@ -11,7 +11,7 @@
     <div class="fx-full"></div>
     <div class="search">
       <i class="bz-search search-icon" :class="{ active: keyword }" @click="showSearchForm = !showSearchForm"></i>
-      <search wrapper-class="search-inner" />
+      <search-new wrapper-class="search-inner" input-class="search-input active" top-header="true" />
     </div>
     <!-- <ul class="account">
       <li class="register"><a href="">Đăng ký</a></li>
@@ -26,6 +26,7 @@
 <script>
 import { mapGetters } from 'vuex'
 const Search = () => import(/* webpackChunkName: "search-bundle" */ '../partials/Search')
+const SearchNew = () => import(/* webpackChunkName: "search-bundle" */ '../partials/SearchNew')
 import RightHeader from '../partials/RightHeader'
 import RegisterModal from '../partials/RegisterModal'
 import { newsUrl } from './../../config'
@@ -34,6 +35,7 @@ export default {
   name: 'Header',
   components: {
     Search,
+    SearchNew,
     RegisterModal,
     RightHeader
   },

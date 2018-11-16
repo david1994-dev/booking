@@ -16,7 +16,8 @@
   },
   "home": {
     "search_bar": {
-      "input_service": "Service, Stylist, or Salon...",
+      "input_service": "Search service, salon...",
+      "input_style": "Search style...",
       "input_location": "Cities...",
       "current_location": "Current location",
       "exploring_and_booking": "Find and book beauty services 24/7"

@@ -44,7 +44,7 @@
         </div>
         <h2 class="text">{{ $t('home.search_bar.exploring_and_booking') }}</h2>
       </div>
-      <search />
+      <search-new />
     </div>
     
   </div>
@@ -74,6 +74,7 @@
 
 <script>
 const Search = () => import(/* webpackChunkName: "search-bundle" */ './partials/Search')
+const SearchNew = () => import(/* webpackChunkName: "search-bundle" */ './partials/SearchNew')
 const PageFooter = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/Footer')
 const Service = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Service')
 const Promotion = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Promotion')
@@ -99,6 +100,7 @@ export default {
   components: {
     PageFooter,
     Search,
+    SearchNew,
     Promotion,
     Guide,
     TopSalon,

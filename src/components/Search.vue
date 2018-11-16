@@ -25,7 +25,7 @@ export default {
   },
   mixins: [parseSearchQuery],
   computed: {
-    ...mapGetters(['keyword', 'selectedArea']),
+    ...mapGetters(['tabActive', 'keyword', 'selectedArea']),
     searchByService () {
       return this.$route.query.category_id
     }

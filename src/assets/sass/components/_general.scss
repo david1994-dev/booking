@@ -5,6 +5,11 @@ body {
 	color: $text-color;
 	background: $background-color;
 	font-weight: 300;
+	&:before {
+		content: '';
+		display: block;
+		clear: both;
+	}
 }
 a {
 	@include transition();

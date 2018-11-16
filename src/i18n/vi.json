@@ -17,6 +17,7 @@
   "home": {
     "search_bar": {
       "input_service": "Dịch vụ, Stylist, Salon ...",
+      "input_style": "Style, Stylist ...",
       "input_location": "Thành phố bạn ở",
       "current_location": "Vị trí hiện tại",
       "exploring_and_booking": "Khám phá và đặt lịch làm đẹp 24/7"

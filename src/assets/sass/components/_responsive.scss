@@ -100,6 +100,16 @@
 			border: 1px solid $border-color;
 		}
     }
+    .styles-page .related .list {
+    	@include flex();
+    	@include flex-wrap(wrap);
+	    margin: 0 -10px;
+    	.item {
+    		width: 50%;
+		    margin-bottom: 0;
+		    padding: 0 10px 20px;
+    	}
+    }
 	.footer .instagram li {
 		width: 25%;
 	}
@@ -294,6 +304,12 @@
 			margin: 0 auto;
 	    }
     }
+    .show-searchform .sub-header .search-inner,
+    .slogan-search .search-outer {
+    	.tab-search .item-tab {
+	    	@include flex-grow("0 1 auto");
+	    }
+    }
     .tp-account-lang {
     	.account {
     		margin-left: 20px;
@@ -320,6 +336,26 @@
 			width: 150px;
 		}
  	}
+
+ 	.slogan-search {
+		.search-outer {
+			max-width: 830px;
+			margin: auto;
+		}
+		.search {
+			&.active {
+				@include flex();
+			}
+	    	.wrap-input {
+				margin: 0 20px 0 0;
+				@include flex-grow("1 0");
+			}
+			.btn-search {
+				width: 150px;
+			}
+	 	}
+	}
+
 	.landing-page {
 		.savetime {
 			max-width: 790px;
@@ -466,6 +502,102 @@
 	        margin: 0 15px 0 0;
 	    }
 	}
+    .styles-page {
+    	.styles {
+			.style-item {
+		        @include flex();
+		        padding: 25px 25px 0;
+		        border-radius: 5px;
+		        margin-bottom: 30px;
+		    }
+		    .avata-price {
+		        width: 350px;
+		        margin: 0 15px 0 0;
+		        @include flex();
+		        @include flex-direction(column);
+		    }
+		    .avata-info {
+		    	@include flex-grow("1 0");
+		    }
+		    .price-rate {
+		    	margin-bottom: 0;
+		    	border-bottom: none;
+		    }
+		    .images {
+		    	width: calc(100% - 365px);
+		    	position: relative;
+		    	&.show-control .tp-control {
+		    		display: block;
+		    	}
+		    	.tp-control {
+		    		.slick-disabled {
+		    			visibility: hidden;
+		    		}
+		    		.btn {
+		    			position: absolute;
+		    			z-index: 10;
+		    			top: 50%;
+					    @include transform(translateY(-50%));
+					    margin-top: -17px;
+					    opacity: 0;
+					    display: none;
+					    &.slick-arrow {
+					    	display: block;
+					    }
+		    		}
+		    		.prev {
+		    			margin-right: 0;
+		    			left: -30px;
+		    		}
+		    		.next {
+		    			right: -30px;
+		    		}
+		    	}
+		    	&:hover .tp-control {
+		    		.btn {
+		    			opacity: 1;
+		    		}
+		    		.prev {
+		    			left: 10px;
+		    		}
+		    		.next {
+		    			right: 10px;
+		    		}
+		    	}
+		    }
+		}
+		.related {
+			max-width: 1220px;
+    		margin: auto;
+			.related-inner {
+				margin: 25px;
+				border-radius: 5px;
+				padding: 0 25px;
+			}
+			.list .item {
+			    width: 25%;
+			}
+		}
+    }
+    .styles-sub-page {
+		max-width: 1220px;
+		margin: auto;
+		padding: 0 25px;
+    	.title-page {
+    		font-size: 30px;
+    		margin: 23px 0;
+    	}
+		.list-style {
+			margin-bottom: 25px;
+			.list-style-inner {
+				border-radius: 5px;
+				padding: 25px;
+			}
+			.list .item {
+			    width: 25%;
+			}
+		}
+    }
 	.service-page {
 		.services {
 	        margin-top: -15px;
@@ -655,6 +787,81 @@
 		}
 		.search-inner {
 			@include flex();
+			.tab-search {
+				color: #fff;
+				border: 1px solid #4a494e;
+			    padding-left: 10px;
+			    width: 140px;
+			    position: relative;
+			    cursor: pointer;
+			    &:after {
+			    	content: "\e92d";
+			    	font-family: 'bzone' !important;
+				    speak: none;
+				    font-style: normal;
+				    font-weight: normal;
+				    font-variant: normal;
+				    text-transform: none;
+				    line-height: 1;
+				    -webkit-font-smoothing: antialiased;
+				    -moz-osx-font-smoothing: grayscale;
+				    position: absolute;
+				    top: 50%;
+				    right: 10px;
+				    @include transform(translateY(-50%));
+				    font-size: 8px;
+			    }
+				.item-tab {
+					display: none;
+					@include align-items(center);
+			    	height: 46px;
+			    	i {
+			    		margin-right: 5px;
+			    	}
+				    .name-tab {
+				    	font-size: 14px;
+				    }
+					&.active {
+						@include flex();
+					}
+				}
+				&.show-select {
+					.item-tab:not(.active) {
+						@include flex();
+					    position: absolute;
+					    z-index: 10;
+					    background: #2b2e2e;
+					    border: 1px solid #4a494e;
+					    border-top: none;
+					    right: -1px;
+					    padding-left: 10px;
+					    left: -1px;
+					    top: 46px;
+					    @include transition();
+					    &:hover {
+					    	background: #404040;
+					    }
+					}
+				}
+			}
+			.search-input {
+				display: none;
+				@include flex-grow("1 0");
+				&.active {
+					@include flex();
+				}
+			}
+			.wrap-input.key-type {
+				&:after {
+					content: '';
+				    position: absolute;
+				    width: 1px;
+				    background: #4a494e;
+				    top: 10px;
+				    bottom: 10px;
+				    right: 0;
+				}
+			}
 		}
 
 		.tp-account-lang {
