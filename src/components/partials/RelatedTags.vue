@@ -7,39 +7,31 @@
             <div class="list">
                 <feature-tag v-for="featureTag in featureTags" :key="featureTag.tag" :featureTag="featureTag" />
             </div>
-            <!--<infinite-loading-->
-                <!--@infinite="onInfinite"-->
-                <!--spinner="waveDots"-->
-                <!--ref="infiniteLoading">-->
-              <!--<span slot="no-more">-->
-                <!--{{ $t('search.no_more_results') }}-->
-              <!--</span>-->
-                    <!--<span slot="no-results">-->
-                <!--{{ $t('search.no_more_results') }}-->
-              <!--</span>-->
-            <!--</infinite-loading>-->
-            <!--<div class="tp-paging">-->
-                <!--<a href="#" class="arrow prev"><i class="bz-prev-2"></i></a>-->
-                <!--<a href="#" class="number active">1</a>-->
-                <!--<a href="#" class="number">2</a>-->
-                <!--<a href="#" class="number">3</a>-->
-                <!--<a href="#" class="arrow next active"><i class="bz-next-2"></i></a>-->
-            <!--</div>-->
+            <div class="paging tp-paging" v-if="featureTags.length">
+                <paginate
+                    :click-handler="paginateTags"
+                    :page-count="meta.pagination.total_pages"
+                    :prev-text="'<'"
+                    :next-text="'>'"
+                    :page-class="'number'"
+                    :prev-class="'arrow prev'"
+                    :next-class="'arrow next'">
+                </paginate>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
   import { merge } from 'lodash'
-  import InfiniteLoading from 'vue-infinite-loading'
-//  import Paginate from 'vuejs-paginate'
+  import Paginate from 'vuejs-paginate'
   const FeatureTag = () => import(/* webpackChunkName: "search-bundle" */ './FeatureTag')
 
   export default {
     name: 'RelatedTags',
     components: {
       FeatureTag,
-      InfiniteLoading
+      Paginate
     },
     metaInfo: {
       title: 'Related Tags'
@@ -52,7 +44,8 @@
             current_page: 0,
             total_pages: 0
           }
-        }
+        },
+        paginate: ['featureTags']
       }
     },
     computed: {
@@ -64,6 +57,12 @@
           this.$store.dispatch('setKeyword', value)
         }
       }
+    },
+    mounted () {
+      this.fetchData({}, ({ data }) => {
+        this.featureTags = data.data
+        this.meta = data.meta
+      })
     },
     methods: {
       fetchData (query, cb, errCb) {
@@ -82,15 +81,11 @@
         }
         return 'item'
       },
-      onInfinite ($state) {
-        this.fetchData({ page: parseInt(this.meta.pagination.current_page) + 1 }, ({ data }) => {
-          this.featureTags = this.featureTags.concat(data.data)
+      paginateTags (page) {
+        this.fetchData({ page }, ({ data }) => {
+          this.featureTags = data.data
           this.meta = data.meta
-          if (data.data.length) {
-            $state.loaded()
-          } else {
-            $state.complete()
-          }
+//          document.getElementById('mennu-reviews').click()
         })
       }
     }
