@@ -1,16 +1,28 @@
 <template>
   <div class="styles-page">
     <div class="tp-bigcontainer">
-      <h1 class="styles-result">Có 108 địa điểm phù hợp với từ khóa dịch vụ <strong>Kiểu side-part</strong> tại <strong>Hà Nội</strong> </h1>
+      <h1 class="styles-result">Có {{ meta.pagination.total }} địa điểm phù hợp với từ khóa <strong>{{ keyword }}</strong> tại <strong>{{ location }}</strong> </h1>
       <div class="content-page">
         <div class="styles">
           <salon-new v-for="salon in salons"
                  :key="salon.id"
                  :salon="salon" />
         </div>
+        <infinite-loading
+            @infinite="onInfinite"
+            spinner="waveDots"
+            ref="infiniteLoading">
+          <span slot="no-more">
+            {{ $t('search.no_more_results') }}
+          </span>
+            <span slot="no-results">
+            {{ $t('search.no_more_results') }}
+          </span>
+        </infinite-loading>
       </div>
     </div>
 
+    <related-tags></related-tags>
   </div>
 </template>
 
@@ -19,13 +31,14 @@ import { merge } from 'lodash'
 import InfiniteLoading from 'vue-infinite-loading'
 const Salon = () => import(/* webpackChunkName: "search-bundle" */ './SalonCard')
 const SalonNew = () => import(/* webpackChunkName: "search-bundle" */ './SalonCardNew')
-
+const RelatedTags = () => import(/* webpackChunkName: "search-bundle" */ '../partials/RelatedTags')
 export default {
   name: 'SalonResults',
   components: {
     InfiniteLoading,
     Salon,
-    SalonNew
+    SalonNew,
+    RelatedTags
   },
   data () {
     return {
@@ -35,6 +48,32 @@ export default {
           current_page: 0,
           total_pages: 0
         }
+      }
+    }
+  },
+  computed: {
+    keyword: {
+      get () {
+        return this.$store.state.search.keyword
+      },
+      set (value) {
+        this.$store.dispatch('setKeyword', value)
+      }
+    },
+    location: {
+      get () {
+        return this.$store.state.search.location
+      },
+      set (value) {
+        this.$store.dispatch('setLocation', value)
+      }
+    },
+    tabActive: {
+      get () {
+        return this.$store.state.search.tabActive
+      },
+      set (value) {
+        this.$store.dispatch('tabActive', value)
       }
     }
   },
@@ -57,8 +96,9 @@ export default {
     fetchData (query, cb, errCb) {
       let params = this.$route.query
       params._meta = 1
+      params.keyword = this.keyword
       params = merge(query, params)
-      this.$http.get('search/salons', { params })
+      this.$http.get('tags', { params })
         .then(response => cb(response))
         .catch(error => errCb ? errCb(error) : null)
     },

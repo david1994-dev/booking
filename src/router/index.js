@@ -17,6 +17,7 @@ const Contact = () => import(/* webpackChunkName: "static-page-bundle" */ '@/com
 const About = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/About')
 const Faq = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Faq')
 const Partner = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/pages/Partner')
+const FeatureTags = () => import(/* webpackChunkName: "static-page-bundle" */ '@/components/FeatureTags')
 
 import Stylist from '@/components/Stylist'
 
@@ -101,6 +102,11 @@ export default new Router({
       path: '/stylist/:id',
       name: 'stylist',
       component: Stylist
+    },
+    {
+      path: '/tags',
+      name: 'tags',
+      component: FeatureTags
     },
     {
       path: '*',

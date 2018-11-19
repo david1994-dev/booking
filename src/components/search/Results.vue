@@ -7,7 +7,6 @@
     <stylists />
     <services />
     <salons-new />
-    <salons />
   </div>
 </div>
 </template>

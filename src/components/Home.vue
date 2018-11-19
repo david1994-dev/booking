@@ -51,6 +51,7 @@
   <div class="tp-container landing-page">
     <div class="guide-discovery">
       <guide />
+      <feature-tags />
       <promotion />
       <service />
       <top-salon />
@@ -78,6 +79,7 @@ const SearchNew = () => import(/* webpackChunkName: "search-bundle" */ './partia
 const PageFooter = () => import(/* webpackChunkName: "homepage-bundle" */ './layout/Footer')
 const Service = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Service')
 const Promotion = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Promotion')
+const FeatureTags = () => import(/* webpackChunkName: "homepage-bundle" */ './home/FeatureTags')
 const Guide = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Guide')
 const TopSalon = () => import(/* webpackChunkName: "homepage-bundle" */ './home/TopSalon')
 const Location = () => import(/* webpackChunkName: "homepage-bundle" */ './home/Location')
@@ -101,6 +103,7 @@ export default {
     PageFooter,
     Search,
     SearchNew,
+    FeatureTags,
     Promotion,
     Guide,
     TopSalon,

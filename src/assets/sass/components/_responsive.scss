@@ -25,6 +25,7 @@
 				padding: 0 10px;
 			}
 		}
+		.trend-style,
 		.top-barbershop,
 		.beautify-place {
 			.list {
@@ -101,6 +102,16 @@
 		}
     }
     .styles-page .related .list {
+    	@include flex();
+    	@include flex-wrap(wrap);
+	    margin: 0 -10px;
+    	.item {
+    		width: 50%;
+		    margin-bottom: 0;
+		    padding: 0 10px 20px;
+    	}
+    }
+    .styles-sub-page .list-style .list {
     	@include flex();
     	@include flex-wrap(wrap);
 	    margin: 0 -10px;
@@ -372,6 +383,7 @@
 				width: 50%;
 			}
 		}
+		.trend-style,
 		.top-barbershop,
 		.beautify-place {
 			.list .item {
@@ -933,6 +945,7 @@
 				}
 			}
 		}
+		.trend-style,
 		.top-barbershop,
 		.beautify-place {
 			.list .item {

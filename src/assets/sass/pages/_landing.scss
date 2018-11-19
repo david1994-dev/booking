@@ -259,7 +259,7 @@
 	}
 
 	.search {
-		display: none;
+		//display: none;
 		padding: 10px;
 		&.active {
 			display: block;
@@ -404,6 +404,50 @@
 			}
 		}
 	}
+
+	.trend-style {
+		.list {
+			@include flex();
+			@include flex-wrap(wrap);
+			.item {
+				margin-bottom: 25px;
+				width: 100%;
+			}
+			.img-info {
+				margin-bottom: 10px;
+				position: relative;
+				img {
+					width: 100%;
+				}
+			}
+			.info-style {
+				h4 {
+					margin: 0 0 5px;
+				    font-size: 17px;
+				    font-weight: 300;
+				    a {
+				    	color: #2F2F2F;
+				    	white-space: -moz-pre-wrap;
+					    white-space: -hp-pre-wrap;
+					    white-space: -o-pre-wrap;
+					    white-space: -pre-wrap;
+					    white-space: pre-wrap;
+					    white-space: pre-line;
+					    word-wrap: break-word;
+					    word-break: break-all;
+				    	&:hover {
+				    		color: $main-color;
+				    	}
+				    }
+				}
+				span {
+					font-size: 13px;
+					display: block;
+				}
+			}
+		}
+	}
+
 	.sale-off .list {
 		@include flex();
 		@include flex-wrap(wrap);

@@ -34,6 +34,10 @@
       "step4": "Review",
       "step4_detail": "Send feedbacks  to salons & share your experience for other beauty lovers"
     },
+    "feature": {
+      "num_booked": "{num} people have booked",
+      "num_salon": "{num} salon use this style"
+    },
     "block": {
       "special": "Special ",
       "deals": "deals",
@@ -146,5 +150,8 @@
     "call_to_salon": "Call to salon",
     "about_us": "About us",
     "working_hours": "Working hours"
+  },
+  "featureTag": {
+    "list": "Popular Tags"
   }
 }

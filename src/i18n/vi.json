@@ -34,6 +34,10 @@
       "step4": "Đánh giá",
       "step4_detail": "Trực tiếp phản hồi trải nghiệm của bạn đến salon và chia sẻ đến mọi người"
     },
+    "feature": {
+      "num_booked": "{num} người đã đặt",
+      "num_salon": "{num} salon làm kiểu này"
+    },
     "block": {
       "special": "Khuyễn mại",
       "deals": "hấp dẫn",
@@ -147,5 +151,8 @@
     "call_to_salon": "Gọi cho salon",
     "about_us": "VỀ CHÚNG TÔI",
     "working_hours": "GIỜ LÀM VIỆC"
+  },
+  "featureTag": {
+    "list": "Từ khoá phổ biến"
   }
 }
