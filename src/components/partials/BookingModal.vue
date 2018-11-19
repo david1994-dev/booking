@@ -95,7 +95,7 @@ const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 export default {
   name: 'BookingModal',
   computed: {
-    ...mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate', 'promoCode']),
+    ...mapGetters(['cartSalon', 'cartServices', 'cartStylist', 'bookingDate', 'promoCode', 'verifyStyle']),
     userMobileAppUrl () {
       return `${window.location.protocol}//${window.location.host}` + '/redirect?type=user_mobile_app'
     }
@@ -145,6 +145,10 @@ export default {
       }
       if (this.promoCode.id) {
         data.promo = this.promoCode.id
+      }
+      if (this.verifyStyle) {
+        data.tag_name = this.verifyStyle.tag
+        data.image_id = this.verifyStyle.image.id
       }
       this.$startLoading('booking')
       this.$http.post(`salons/${this.cartSalon.id}/order`, data, { headers: { 'X-Implicit-Booking': 1 } }).then(({ data, status, headers }) => {

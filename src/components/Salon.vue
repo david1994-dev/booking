@@ -33,6 +33,32 @@
               <stylists v-if="salon.id" :salon="salon"></stylists>
             </div>
 
+            <div id="verified">
+              <verified v-if="salon.id" :salon="salon"></verified>
+              <!--<div class="styles-d">-->
+                <!--<div class="verified">-->
+                  <!--<div class="icon-txt">-->
+                    <!--<i class="bz-correct"></i>-->
+                    <!--<span>{{ $t('salon.verified_style') }}</span>-->
+                  <!--</div>-->
+                  <!--<i class="bz-information-button note-verified" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>-->
+                <!--</div>-->
+                <!--<div class="notes">Tab vào <i class="bz-heart"></i> để chọn kiểu bạn muốn làm!</div>-->
+
+                <!--<div class="list">-->
+                  <!--<div class="item" v-for="style in styles" :key="style.tag" :class="{active: style.tag == selectedItem}">-->
+                    <!--<i class="icon bz-heart" @click="setSelectedStyle(style.tag, $event)"></i>-->
+                    <!--<div>-->
+                      <!--<img :src="style.image" />-->
+                    <!--</div>-->
+                    <!--<div class="hashtag">#{{ style.tag }}</div>-->
+                  <!--</div>-->
+
+                <!--</div>-->
+              <!--</div>-->
+            </div>
+
+
             <div id="images">
               <gallery v-if="salon.id" :salon="salon"></gallery>
             </div>
@@ -124,6 +150,7 @@ const Related = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Rel
 const Cart = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Cart')
 const DateTimePicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/DateTimePicker')
 const StylistPicker = () => import(/* webpackChunkName: "salon-bundle" */ './salon/StylistPicker')
+const Verified = () => import(/* webpackChunkName: "salon-bundle" */ './salon/Verified')
 
 export default {
   name: 'Salon',
@@ -140,7 +167,8 @@ export default {
     Related,
     Cart,
     DateTimePicker,
-    StylistPicker
+    StylistPicker,
+    Verified
   },
   mixins: [stickyClassMixin],
   data () {
@@ -151,6 +179,8 @@ export default {
       },
       translateText: '',
       mapOptions: googlemap
+//      selectedItem: '',
+//      styles: []
     }
   },
   metaInfo () {
@@ -175,6 +205,8 @@ export default {
     this.$bus.$on('locale::change', locale => {
       this.fetchSalon()
     })
+
+    // this.fetchStyles()
   },
   watch: {
     '$route': 'fetchSalon'
@@ -193,6 +225,14 @@ export default {
         this.$bus.$on('coverSliderInit', () => this.initSticky())
       }).catch(() => this.$endLoading('fetching salon'))
     },
+    fetchStyles () {
+      this.$startLoading('fetching verified')
+      this.$http.get(`salons/${this.$route.params.id}/tags`).then(({ data }) => {
+        this.styles = data.data
+        this.$endLoading('fetching verified')
+        this.setSelectedService()
+      }).catch(() => this.$endLoading('fetching verified'))
+    },
     initSticky () {
       this.$nextTick(() => {
         setTimeout(() => {
@@ -205,6 +245,10 @@ export default {
         event.target.style.display = 'none'
         this.translateText = data.translation
       })
+    },
+    setSelectedStyle (item, event) {
+      console.log(item, event)
+      this.selectedItem = item
     }
   }
 }

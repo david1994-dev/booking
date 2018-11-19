@@ -150,7 +150,9 @@
     "maybe_you_are_interested": "Có thể bạn quan tâm",
     "call_to_salon": "Gọi cho salon",
     "about_us": "VỀ CHÚNG TÔI",
-    "working_hours": "GIỜ LÀM VIỆC"
+    "working_hours": "GIỜ LÀM VIỆC",
+    "verified_style": "VERIFIED STYLES",
+    "tooltip_tab_style": "Tab vào <i class=\"bz-heart\"></i> để chọn kiểu bạn muốn làm!"
   },
   "featureTag": {
     "list": "Từ khoá phổ biến"

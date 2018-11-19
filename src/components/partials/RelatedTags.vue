@@ -7,17 +7,17 @@
             <div class="list">
                 <feature-tag v-for="featureTag in featureTags" :key="featureTag.tag" :featureTag="featureTag" />
             </div>
-            <infinite-loading
-                @infinite="onInfinite"
-                spinner="waveDots"
-                ref="infiniteLoading">
-              <span slot="no-more">
-                {{ $t('search.no_more_results') }}
-              </span>
-                    <span slot="no-results">
-                {{ $t('search.no_more_results') }}
-              </span>
-            </infinite-loading>
+            <!--<infinite-loading-->
+                <!--@infinite="onInfinite"-->
+                <!--spinner="waveDots"-->
+                <!--ref="infiniteLoading">-->
+              <!--<span slot="no-more">-->
+                <!--{{ $t('search.no_more_results') }}-->
+              <!--</span>-->
+                    <!--<span slot="no-results">-->
+                <!--{{ $t('search.no_more_results') }}-->
+              <!--</span>-->
+            <!--</infinite-loading>-->
             <!--<div class="tp-paging">-->
                 <!--<a href="#" class="arrow prev"><i class="bz-prev-2"></i></a>-->
                 <!--<a href="#" class="number active">1</a>-->
@@ -32,6 +32,7 @@
 <script>
   import { merge } from 'lodash'
   import InfiniteLoading from 'vue-infinite-loading'
+//  import Paginate from 'vuejs-paginate'
   const FeatureTag = () => import(/* webpackChunkName: "search-bundle" */ './FeatureTag')
 
   export default {

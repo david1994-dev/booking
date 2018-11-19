@@ -442,6 +442,76 @@
             }
         }
     }
+    .styles-d {
+        border-bottom: 1px solid $border-color;
+        padding: 20px 0;
+        .verified {
+            @include flex();
+            @include align-items(center);
+            @include justify-content(space-between);
+            @include flex-wrap(wrap);
+            margin-bottom: 10px;
+            .icon-txt {
+                @include flex();
+                @include align-items(center);
+                color: $main-color;
+                font-size: 17px;
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+        .notes {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .list {
+            @include flex();
+            @include flex-wrap(wrap);
+            margin: -7px;
+            .item {
+                width: calc(50% - 14px);
+                margin: 7px;
+                position: relative;
+                color: inherit;
+                .icon {
+                    position: absolute;
+                    z-index: 10;
+                    color: #fff;
+                    right: 10px;
+                    top: 10px;
+                    text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+                    @include transition();
+                    cursor: pointer;
+                    &:hover {
+                        color: $main-color;
+                    }
+                }
+                img {
+                    width: 100%;
+                    margin-bottom: 5px;
+                }
+                .hashtag {
+                    font-size: 14px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block;
+                    @include transition();
+                }
+                &:hover .hashtag {
+                    color: $main-color;
+                }
+                &.active .icon {
+                    color: $main-color;
+                    text-shadow: none;
+                    &:before {
+                        content: "\e92e";
+                    }
+                }
+            }
+        }
+    }
     .rate-d {
         border-bottom: 1px solid $border-color;
         padding-bottom: 5px;

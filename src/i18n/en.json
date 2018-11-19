@@ -149,7 +149,9 @@
     "maybe_you_are_interested": "Maybe you are interested",
     "call_to_salon": "Call to salon",
     "about_us": "About us",
-    "working_hours": "Working hours"
+    "working_hours": "Working hours",
+    "verified_style": "VERIFIED STYLES",
+    "tooltip_tab_style": "Tab vào <i class=\"bz-heart\"></i> để chọn kiểu bạn muốn làm!"
   },
   "featureTag": {
     "list": "Popular Tags"

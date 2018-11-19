@@ -9,7 +9,8 @@ const state = {
   promoCode: {
     type: '',
     value: 0
-  }
+  },
+  verifyStyle: null
 }
 
 const getters = {
@@ -17,7 +18,8 @@ const getters = {
   cartServices: state => state.services,
   cartStylist: state => state.stylist,
   bookingDate: state => state.date,
-  promoCode: state => state.promoCode
+  promoCode: state => state.promoCode,
+  verifyStyle: state => state.verifyStyle
 }
 
 const actions = {
@@ -55,6 +57,10 @@ const actions = {
 
   emptyCart ({ commit }) {
     commit(types.CLEAR_CART, false)
+  },
+
+  setVerifyStyle ({ commit }, style) {
+    commit(types.SET_VERIFY_STYLE, style)
   }
 }
 
@@ -107,8 +113,13 @@ const mutations = {
       type: '',
       value: 0
     }
+    state.verifyStyle = null
 
     store.remove('cart')
+  },
+
+  [types.SET_VERIFY_STYLE] (state, style) {
+    state.verifyStyle = style
   }
 }
 

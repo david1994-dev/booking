@@ -9,6 +9,9 @@
             display: block;
         }
 	}
+	.detail-page .styles-d .list .item {
+	  	width: calc(33.33% - 14px);
+	}
 }
 @media screen and (min-width: 480px) {
 	.landing-page {
@@ -71,6 +74,9 @@
 			&:nth-child(-n+8) {
 				display: block;
 			}
+		}
+		.styles-d .list .item {
+			width: calc(25% - 14px);
 		}
 		.related .related-slide .tp-salon {
 			width: 320px;
@@ -204,6 +210,9 @@
 			&:nth-child(-n+10) {
 				display: block;
 			}
+		}
+		.styles-d .list .item {
+	 		width: calc(20% - 14px);
 		}
 		.service-d {
 			.title {
@@ -500,6 +509,9 @@
 			&:nth-child(-n+12) {
 				display: block;
 			}
+		}
+		.styles-d .list .item {
+	 		width: calc(16.66% - 14px);
 		}
 	}
     .stylists-page .stylists {
@@ -902,6 +914,9 @@
 				display: block;
 			}
 		}
+		.styles-d .list .item {
+			width: calc(14.28% - 14px);
+		}
 		.slide .slide-inner {
 	        min-height: 420px;
 		}
@@ -1174,6 +1189,11 @@
 					&:nth-child(n+11) {
 						display: none;
 					}
+				}
+			}
+			.styles-d {
+				.list .item {
+				    width: calc(20% - 14px);
 				}
 			}
 			.rate-d {
