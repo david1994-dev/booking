@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import { merge } from 'lodash'
+// import { merge } from 'lodash'
+import _ from 'lodash'
 import InfiniteLoading from 'vue-infinite-loading'
 const Salon = () => import(/* webpackChunkName: "search-bundle" */ './SalonCard')
 const SalonNew = () => import(/* webpackChunkName: "search-bundle" */ './SalonCardNew')
@@ -97,14 +98,16 @@ export default {
       let params = this.$route.query
       params._meta = 1
       params.keyword = this.keyword
-      params = merge(query, params)
+      params = _.merge(query, params)
       this.$http.get('tags', { params })
         .then(response => cb(response))
         .catch(error => errCb ? errCb(error) : null)
     },
     onInfinite ($state) {
-      this.fetchData({ page: parseInt(this.meta.pagination.current_page) + 1 }, ({ data }) => {
-        this.salons = this.salons.concat(data.data)
+      console.log(this.meta)
+      this.meta.pagination.current_page = parseInt(this.meta.pagination.current_page) + 1
+      this.fetchData({ page: this.meta.pagination.current_page }, ({ data }) => {
+        this.salons = _.uniqBy(this.salons.concat(data.data), 'salon_id')
         this.meta = data.meta
         if (data.data.length) {
           $state.loaded()

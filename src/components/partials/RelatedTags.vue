@@ -69,6 +69,7 @@
         let params = this.$route.params
         params._meta = 1
         params.keyword = this.keyword
+        params.limit = 8
         params = merge(query, params)
 
         this.$http.get('tags/featured', { params })

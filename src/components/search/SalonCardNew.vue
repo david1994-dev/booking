@@ -80,7 +80,9 @@ export default {
         slidesToShow: 6,
         prevArrow: false,
         nextArrow: false,
-        infinite: false
+        infinite: false,
+        variableWidth: true,
+        mobileFirst: true
       }
     }
   },
