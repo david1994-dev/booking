@@ -147,7 +147,7 @@ export default {
         data.promo = this.promoCode.id
       }
       if (this.verifyStyle) {
-        data.tag_name = this.verifyStyle.tag
+        data.tag_id = this.verifyStyle.id
         data.image_id = this.verifyStyle.image.id
       }
       this.$startLoading('booking')
