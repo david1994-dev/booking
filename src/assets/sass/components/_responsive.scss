@@ -1436,6 +1436,40 @@
 		    }
 		}
 	}
+
+	.menu-top {
+		.menu-list {
+			.selected {
+				display: none;
+			}
+			ul {
+				@include flex();
+				position: static;
+				opacity: 1 !important;
+				visibility: visible !important;
+				@include transform(none !important);
+				width: auto;
+				padding: 0;
+				background: none;
+			}
+			li {
+				display: block !important;
+				border-bottom: none;
+			}
+			ul {
+				a {
+					display: block;
+					padding-left: 25px;
+					padding-right: 25px;
+				}
+				li.active a, a:hover {
+					background: rgba(255, 255, 255, 0.1);
+					color: #fff;
+				}
+			}
+		}
+	}
+
 	.main-header {
 		.inner {
 		    max-width: 1200px;

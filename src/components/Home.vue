@@ -2,10 +2,17 @@
 <div>
   <div class="wrapper-header">
     <header class="main-header">
-      <div class="top-header">
+      <div class="menu-top">
         <div class="menu-top-inner">
-          <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
-          <a :href="getNewsUrl()">Tin tức làm đẹp</a>
+          <div class="menu-list" :class="{'show-list': showList}" @click="showList = !showList">
+            <div class="selected">Đặt lịch làm đẹp</div>
+            <ul>
+              <li class="active"><a href="#">Đặt lịch làm đẹp</a></li>
+              <li><a :href="getNewsUrl()">Tin tức</a></li>
+              <li><a href="#">Khóa học</a></li>
+              <li><a href="#">Mua sắm</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="inner">
@@ -16,10 +23,10 @@
         <div class="inner-menu">
           <div class="close-menu"><i class="bz-close"></i></div>
             <div class="content-menu">
-              <div class="menu-top-mobile">
-                <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
-                <a :href="getNewsUrl()">Tin tức làm đẹp</a>
-              </div>
+              <!--<div class="menu-top-mobile">-->
+                <!--<router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>-->
+                <!--<a :href="getNewsUrl()">Tin tức làm đẹp</a>-->
+              <!--</div>-->
               <ul>
                 <li v-for="category in categories"><a class="pointer">{{ category.name }}</a>
                   <ul v-if="category.children.length">
@@ -120,6 +127,11 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.$store.dispatch('clearSearchQuery').then(() => next())
+  },
+  data () {
+    return {
+      showList: false
+    }
   },
   computed: mapState({
     categories: state => state.preloadData.categories || []

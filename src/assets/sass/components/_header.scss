@@ -1,5 +1,77 @@
+.menu-top {
+	background: #2c2d2f;
+	.menu-top-inner {
+		padding: 0 20px;
+		max-width: 1210px;
+		margin: 0 auto;
+	}
+	.menu-list {
+		position: relative;
+		font-size: 13px;
+		font-weight: 300;
+		&.show-list .selected:after {
+			content: '\e910';
+		}
+		.selected {
+			&:after {
+				content: '\e911';
+				font-family: 'bzone' !important;
+				speak: none;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				color: #fff;
+				font-size: 10px;
+				margin-left: 10px;
+			}
+			color: rgba(255, 255, 255, 0.7);
+			font-size: 13px;
+			font-weight: 300;
+			padding: 10px 0;
+		}
+		ul {
+			margin: 0;
+			list-style: none;
+			position: absolute;
+			top: 39px;
+			left: -20px;
+			background: #323438;
+			z-index: 999999;
+			width: 145px;
+			padding: 0 10px 0 20px;
+			transition: all 0.3s;
+			@include transform(translateX(-100%));
+			opacity: 0;
+			visibility: hidden;
+			a {
+				color: rgba(255, 255, 255, 0.7);
+				display: block;
+				padding: 10px 0;
+			}
+		}
+		&.show-list ul {
+			opacity: 1;
+			visibility: visible;
+			@include transform(translateX(0));
+		}
+		li {
+			border-bottom: 1px solid rgba(236, 236, 236, 0.05);
+			&.active {
+				display: none;
+			}
+		}
+	}
+}
+
 .sub-header {
 	background: $primary-background-color;
+	.menu-top {
+		background: #3a3a3a;
+	}
 	.sub-container {
 	    @include justify-content(space-between);
 	    height: 75px;

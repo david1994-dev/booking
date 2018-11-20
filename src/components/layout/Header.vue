@@ -1,13 +1,20 @@
 <template>
 <header class="sub-header">
-  <div class="top-header">
+  <div class="menu-top">
     <div class="menu-top-inner">
-      <router-link class="active" :to="{ name: 'home' }" >Đặt lịch làm đẹp</router-link>
-      <a :href="getNewsUrl()">Tin tức làm đẹp</a>
+      <div class="menu-list" :class="{'show-list': showList}" @click="showList = !showList">
+        <div class="selected" >Đặt lịch làm đẹp</div>
+        <ul>
+          <li class="active"><a href="#">Đặt lịch làm đẹp</a></li>
+          <li><a :href="getNewsUrl()">Tin tức</a></li>
+          <li><a href="#">Khóa học</a></li>
+          <li><a href="#">Mua sắm</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="sub-container">
-    <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo_beta.png" /></router-link>
+    <router-link class="logo" :to="{ name: 'home' }"><img src="../../assets/images/logo.png" /></router-link>
     <div class="fx-full"></div>
     <div class="search">
       <i class="bz-search search-icon" :class="{ active: keyword }" @click="showSearchForm = !showSearchForm"></i>
@@ -56,7 +63,8 @@ export default {
   },
   data () {
     return {
-      showSearchForm: false
+      showSearchForm: false,
+      showList: false
     }
   },
   methods: {

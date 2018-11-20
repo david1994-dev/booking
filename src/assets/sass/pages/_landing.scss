@@ -10,6 +10,7 @@
 	.inner {
 		padding: 0 25px;
     	height: 75px;
+		position: relative;
 	}
 	.logo {
 	    position: absolute;
@@ -122,13 +123,12 @@
 		.bullet-icon {
 			position: absolute;
 			top: 6px;
-			right: 4px;
-			background: rgba(0, 0, 0, 0.15);
+			right: 6px;
 			width: 36px;
 			padding: 14px 0 11px;
 			text-align: center;
 			border-radius: 2px;
-			color: #fff;
+			color: $main-color;
 			cursor: pointer;
 			font-size: 11px;
 		}
