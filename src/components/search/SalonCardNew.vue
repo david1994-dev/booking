@@ -2,7 +2,7 @@
   <div class="style-item" :class="{ unverified: !salon.verified }">
     <div class="avata-price">
       <div class="avata-info">
-        <figure> <router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image"></router-link> </figure>
+        <figure> <router-link :to="{ name: 'salon', params: { id: salon.slug } }"><img :src="salon.image_url"></router-link> </figure>
         <div class="info">
           <h2><router-link :to="{ name: 'salon', params: { id: salon.slug } }">{{ salon.name }}</router-link></h2>
           <div class="address">{{ salon.address }}</div>

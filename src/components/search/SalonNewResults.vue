@@ -104,10 +104,10 @@ export default {
         .catch(error => errCb ? errCb(error) : null)
     },
     onInfinite ($state) {
-      console.log(this.meta)
       this.meta.pagination.current_page = parseInt(this.meta.pagination.current_page) + 1
       this.fetchData({ page: this.meta.pagination.current_page }, ({ data }) => {
-        this.salons = _.uniqBy(this.salons.concat(data.data), 'salon_id')
+//        this.salons = this.salons.concat(data.data)
+        this.salons = _.uniqBy(this.salons.concat(data.data), 'id')
         this.meta = data.meta
         if (data.data.length) {
           $state.loaded()
